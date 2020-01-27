@@ -220,14 +220,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         //        let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
         //        let earthParent = SCNNode()
         //        let venusParent = SCNNode()
+//        let earthParent = SCNNode()
+                                     let venusParent = SCNNode()
+                                  let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
                 for index in 0...20 {
                     var Shoonode = SCNNode()
-                      // var ShoonodeCloserEarP = SCNNode()
-                                    var ssShoonode = SCNNode()
-                         //            let sun = SCNNode(geometry: SCNSphere(radius: 0.15))
-                                         let earthParent = SCNNode()
-                                         let venusParent = SCNNode()
-                                      let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
+                    // var ShoonodeCloserEarP = SCNNode()
+                     let earthParent = SCNNode()
+                                  var ssShoonode = SCNNode()
+                       //            let sun = SCNNode(geometry: SCNSphere(radius: 0.15))
+//                                       let earthParent = SCNNode()
+//                                       let venusParent = SCNNode()
+//                                    let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
         //            let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
 //                    var Shoonode = SCNNode()
 //                   var ssShoonode = SCNNode()
@@ -295,7 +299,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         //             moon.name = "moon"
 
                            
-                              let sunAction = Rotation(time: 3)
+                              let sunAction = Rotation(time: 9)
                             let earthParentRotation = Rotation(time: 3)
                             let venusParentRotation = Rotation(time: 10)
                             let earthRotation = Rotation(time: 3)
