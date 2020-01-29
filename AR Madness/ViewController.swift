@@ -10,6 +10,10 @@ import UIKit
 import SceneKit
 import ARKit
 
+enum BitMaskCategory: Int {
+    case target  = 3
+}
+
 class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate {
     
     //MARK: - variables
@@ -126,7 +130,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     //resets the timer
     func resetTimer(){
         timer.invalidate()
-        seconds = 30
+        seconds = 60
         timerLabel.text = "\(seconds)"
     }
     
@@ -136,7 +140,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         //store the score in UserDefaults
         let defaults = UserDefaults.standard
         defaults.set(score, forKey: "score")
-        
+
         //go back to the Home View Controller
         self.dismiss(animated: true, completion: nil)
     }
@@ -214,29 +218,45 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     //Adds 100 objects to the scene, spins them, and places them at random positions around the player.
     func addTargetNodes(){
 
-                                    let venusParent = SCNNode()
+                                  //  let venusParent = SCNNode()
                                   let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
-                for index in 0...20 {
+          let earthParent = SCNNode()
+        let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
+         earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                            earth.physicsBody?.isAffectedByGravity = false
+         earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                            earthParent.physicsBody?.isAffectedByGravity = false
+        
+//         earth.addChildNode(Shoonode)
+          earth.name = "earth"
+         earthParent.name = "earthParent"
+                                  earth.position = SCNVector3(0,0,-1)
+                                   earthParent.position = SCNVector3(0,0,-1)
+        earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+        earth.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+        earthParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+        earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                for index in 0...6 {
                     var Shoonode = SCNNode()
-                    var ShoonodeSec = SCNNode()
+                   // var ShoonodeSec = SCNNode()
                     // var ShoonodeCloserEarP = SCNNode()
-                     let earthParent = SCNNode()
-                                  var ssShoonode = SCNNode()
+//                     let earthParent = SCNNode()
+                                //  var ssShoonode = SCNNode()
                       
-                    let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
-                                            ssShoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
-                                             ssShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                            //Shoonode.name = "shark"
-                    msun.geometry?.firstMaterial?.diffuse.contents = #imageLiteral(resourceName: "moon Diffuse")
-                                          let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
+//                    let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+//                                            Shoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+//                                             Shoonode.scale = SCNVector3(0.02,0.02,0.02)
+//                                            //Shoonode.name = "shark"
+//                    msun.geometry?.firstMaterial?.diffuse.contents = #imageLiteral(resourceName: "moon Diffuse")
+//                                          let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
 //                                                    moon.name = "moon"//Shoonode
                         let moonParent = SCNNode()
         //             let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
                    if (index > 3) && (index % 3 == 0) {
                                   let scene = SCNScene(named: "art.scnassets/spaceARblcopy.scn")
-                                 ShoonodeSec = (scene?.rootNode.childNode(withName: "spaceARbl", recursively: true)!)!
-                                  ShoonodeSec.scale = SCNVector3(0.03,0.03,0.03)
-                                 ShoonodeSec.name = "shark"
+                                 Shoonode = (scene?.rootNode.childNode(withName: "spaceARbl", recursively: true)!)!
+                                  Shoonode.scale = SCNVector3(0.03,0.03,0.03)
+                                 Shoonode.name = "shark"
                               }else{
                                   let scene = SCNScene(named: "art.scnassets/SS1copy.scn")
                                  Shoonode = (scene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
@@ -244,72 +264,74 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                                   Shoonode.name = "SS1copy.scn"
                               }
                     
+                   
                     Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                    Shoonode.physicsBody?.isAffectedByGravity = false
-                    ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                                       ShoonodeSec.physicsBody?.isAffectedByGravity = false
-                      let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
-                    earth.addChildNode(Shoonode)
+                                       Shoonode.physicsBody?.isAffectedByGravity = false
+                  //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                       //ShoonodeSec.physicsBody?.isAffectedByGravity = false
+//                      let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
+//                    earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+//                                       earth.physicsBody?.isAffectedByGravity = false
+//                    earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+//                                       earthParent.physicsBody?.isAffectedByGravity = false
+//
+                   earth.addChildNode(Shoonode)
+//                     earth.name = "earth"
+//                    earthParent.name = "earthParent"
                     //earth.addChildNode(ShoonodeSec)
                        //Shoonode.addChildNode(ssShoonode)
-                       ShoonodeSec.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                     //  ShoonodeSec.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
                     Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                 //   ssShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.3))
-                    //place randomly, within thresholds
-                    //************this is where the code to rotate it around the sun and each other**************
-                    // Must also place the sun/s here. this where ya get creative with knowledge from other games!
-                    //After the above go AR war!!!!
+           
                     
-                    //change
-        //            let sun = SCNNode(geometry: SCNSphere(radius: 0.35))
-        //                 let earthParent = SCNNode()
-                         //  let venusParent = SCNNode()
-                    //Shoonode
-                      //     let moonParent = SCNNode()
-
-                          // sun.geometry?.firstMaterial?.diffuse.contents = #imageLiteral(resourceName: "Sun diffuse")
                     
-                           earth.position = SCNVector3(0,0,-1)
-                           earthParent.position = SCNVector3(0,0,-1)
-                           venusParent.position = SCNVector3(0,0,-1)
+                    
+//                           earth.position = SCNVector3(0,0,-1)
+//                           earthParent.position = SCNVector3(0,0,-1)
+                          // venusParent.position = SCNVector3(0,0,-1)
                            moonParent.position = SCNVector3(0 ,0 , -1)
+                    //earth earthParent
+//                    earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+//                    earth.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+//                    earthParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+//                    earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                     Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                           Shoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                    ShoonodeSec.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-                                           ShoonodeSec.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                   // ShoonodeSec.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                           //ShoonodeSec.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                            self.sceneView.scene.rootNode.addChildNode(earth)
                            self.sceneView.scene.rootNode.addChildNode(earthParent)
-                           self.sceneView.scene.rootNode.addChildNode(venusParent)
+                           //self.sceneView.scene.rootNode.addChildNode(venusParent)
 
                            self.sceneView.scene.rootNode.addChildNode(Shoonode)
-                    self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
+                    //self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
 
         //                   let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
         //             moon.name = "moon"
 
-                           let SecRotation = XRotation(time: 3)
+                           let SecRotation = XRotation(time: 10)
                               let sunAction = Rotation(time: 9)
-                            let earthParentRotation = Rotation(time: 3)
+                            let earthParentRotation = Rotation(time: 10)
                             let venusParentRotation = XRotation(time: 20)
-                            let earthRotation = Rotation(time: 3)
+                            let earthRotation = Rotation(time: 10)
                             let moonRotation = Rotation(time: 5)
                          //   let venusRotation = Rotation(time: 8)
                             
                          
                              Shoonode.runAction(earthRotation)
-                    ShoonodeSec.runAction(SecRotation)
+                //    ShoonodeSec.runAction(SecRotation)
                             // Shoonode.runAction(venusRotation)
                     
                          // Shoonode.runAction(earthRotation)
                           // Shoonode.runAction(venusRotation)
                            earthParent.runAction(earthParentRotation)
-                           venusParent.runAction(venusParentRotation)
+                        //   venusParent.runAction(venusParentRotation)
                            moonParent.runAction(moonRotation)
 
                            
                            earth.runAction(sunAction)
-                    earthParent.addChildNode(venusParent)
-                     venusParent.addChildNode(ShoonodeSec)
+                   // earthParent.addChildNode(venusParent)
+//                     venusParent.addChildNode(ShoonodeSec)
                            earthParent.addChildNode(Shoonode)
                            earthParent.addChildNode(moonParent)
                           // venusParent.addChildNode(venus)
@@ -324,10 +346,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         //            Shoonode.runAction(forever)
                     
                     //for the collision detection
-                    Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-                   Shoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                    ShoonodeSec.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-                                     ShoonodeSec.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+//                    Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+//                   Shoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+//                    ShoonodeSec.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+//                                     ShoonodeSec.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                     //add to scene
         //            sceneView.scene.rootNode.addChildNode(Shoonode)
                 }
@@ -382,7 +404,23 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             
             if (contact.nodeA.name! == "shark" || contact.nodeB.name! == "shark") {
                 score+=5
-            }else{
+            } else if (contact.nodeA.name! == "earth" || contact.nodeB.name! == "earth") {
+            
+              //  contact.nodeA.removeFromParentNode()
+                            //  contact.nodeB.removeFromParentNode()
+               // gameOver()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                    self.score=0
+                    let defaults = UserDefaults.standard
+                    defaults.set(self.score, forKey: "score")
+
+                    //go back to the Home View Controller
+                    //maybe add popup that ask if you want to play again
+                    
+                    self.dismiss(animated: true, completion: nil)
+                })
+            }
+                else{
                 score+=1
             }
             
@@ -430,7 +468,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     func playSound(sound : String, format: String) {
         guard let url = Bundle.main.url(forResource: sound, withExtension: format) else { return }
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)))
             try AVAudioSession.sharedInstance().setActive(true)
             
             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
@@ -466,4 +504,9 @@ struct CollisionCategory: OptionSet {
 extension Int {
     
     var degreesToRadians: Double { return Double(self) * .pi/180}
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }
