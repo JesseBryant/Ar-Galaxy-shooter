@@ -317,8 +317,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                             let moonRotation = Rotation(time: 5)
                          //   let venusRotation = Rotation(time: 8)
                             
-                         
-                             Shoonode.runAction(earthRotation)
+                         //now just have a few rotating x-asis
+                           //  Shoonode.runAction(earthRotation)
+                    Shoonode.runAction(SecRotation)
                 //    ShoonodeSec.runAction(SecRotation)
                             // Shoonode.runAction(venusRotation)
                     
