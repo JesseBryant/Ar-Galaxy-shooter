@@ -6,6 +6,19 @@
 //  Copyright © 2018 O'Sullivan, Andy. All rights reserved.
 //
 
+//get a feel for game difficulty and level base difficulty..breakfast
+//next color coat ships
+//space ships around a little more..
+//more elaboratle explosion!!
+//new lasor sounds
+//add pop ups that gives instructions(eventually AFTER ads(reward ads!!)).. for levels and coin clamage or possibly in- app
+//next level open if win and more important coins..that can unlock new levels or just in- app
+//two new ideas for levels.... 1) have a little faster and maybe less ships
+//repack code to Jesse Bryant
+//have to it to where some ships shooting planet.. lke general and/or planet explode when out of time!
+//Next marketing
+
+
 import UIKit
 import SceneKit
 import ARKit
@@ -187,19 +200,29 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
     //creates nodes
     func createMissile(type : String)->SCNNode{
-         var node = SCNNode()
+        var node = SCNNode(geometry: SCNSphere(radius: 0.2))
+        //get a feel for game difficulty and level base difficulty
+        //next color coat ships
+        //space ships around a little more..
+        //more elaboratle explosion!!
+        //new lasor sounds
+        //add pop ups that gives instructions(eventually AFTER ads(reward ads!!)).. for levels and coin clamage or possibly in- app
+        //next level open if win and more important coins..that can unlock new levels or just in- app
+        //two new ideas for levels.... 1) have a little faster and maybe less ships
               
               //using case statement to allow variations of scale and rotations
               switch type {
               case "banana":
-                  let scene = SCNScene(named: "art.scnassets/missile.dae")
-                  node = (scene?.rootNode.childNode(withName: "missile", recursively: true)!)!
-                  node.scale = SCNVector3(0.2,0.2,0.2)
+//                  let scene = SCNScene(named: "art.scnassets/missile.dae")
+//                  node = (scene?.rootNode.childNode(withName: "missile", recursively: true)!)!
+//                  node.scale = SCNVector3(0.2,0.2,0.2)
+                node .geometry?.firstMaterial?.diffuse.contents = UIColor.red
                   node.name = "banana"
               case "axe":
-                  let scene = SCNScene(named: "art.scnassets/missile.dae")
-                  node = (scene?.rootNode.childNode(withName: "missile", recursively: true)!)!
-                  node.scale = SCNVector3(0.2,0.2,0.2)
+//                  let scene = SCNScene(named: "art.scnassets/missile.dae")
+//                  node = (scene?.rootNode.childNode(withName: "missile", recursively: true)!)!
+//                  node.scale = SCNVector3(0.2,0.2,0.2)
+                node .geometry?.firstMaterial?.diffuse.contents = UIColor.red
                   node.name = "bathtub"
               default:
                   node = SCNNode()
@@ -238,15 +261,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                 for index in 0...6 {
                     var Shoonode = SCNNode()
-                   // var ShoonodeSec = SCNNode()
+                   var ShoonodeSec = SCNNode()
                     // var ShoonodeCloserEarP = SCNNode()
 //                     let earthParent = SCNNode()
-                                //  var ssShoonode = SCNNode()
-                      
-//                    let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
-//                                            Shoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
-//                                             Shoonode.scale = SCNVector3(0.02,0.02,0.02)
-//                                            //Shoonode.name = "shark"
+                                  var ssShoonode = SCNNode()
+//
+                    let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                            ssShoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                             ssShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                            ssShoonode.name = "shark"
 //                    msun.geometry?.firstMaterial?.diffuse.contents = #imageLiteral(resourceName: "moon Diffuse")
 //                                          let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
 //                                                    moon.name = "moon"//Shoonode
@@ -267,8 +290,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                    
                     Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                        Shoonode.physicsBody?.isAffectedByGravity = false
-                  //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                                       //ShoonodeSec.physicsBody?.isAffectedByGravity = false
+                    ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                       ShoonodeSec.physicsBody?.isAffectedByGravity = false
+                    Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                          Shoonode.physicsBody?.isAffectedByGravity = false
+                                       ssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                         ssShoonode.physicsBody?.isAffectedByGravity = false
 //                      let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
 //                    earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
 //                                       earth.physicsBody?.isAffectedByGravity = false
@@ -278,10 +305,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                    earth.addChildNode(Shoonode)
 //                     earth.name = "earth"
 //                    earthParent.name = "earthParent"
-                    //earth.addChildNode(ShoonodeSec)
-                       //Shoonode.addChildNode(ssShoonode)
-                     //  ShoonodeSec.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                    earth.addChildNode(ShoonodeSec)
+                       Shoonode.addChildNode(ssShoonode)
+                      ShoonodeSec.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
                     Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                        ssShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
            
                     
                     
@@ -297,21 +325,27 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 //                    earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                     Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                           Shoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                   // ShoonodeSec.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-                                           //ShoonodeSec.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                    ShoonodeSec.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                           ShoonodeSec.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                    //ssShoonode
+                    ssShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                             ssShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                    
+                    // -0.8
                            self.sceneView.scene.rootNode.addChildNode(earth)
                            self.sceneView.scene.rootNode.addChildNode(earthParent)
                            //self.sceneView.scene.rootNode.addChildNode(venusParent)
 
                            self.sceneView.scene.rootNode.addChildNode(Shoonode)
-                    //self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
+                    self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
+                    self.sceneView.scene.rootNode.addChildNode(ssShoonode)
 
         //                   let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
         //             moon.name = "moon"
 
                            let SecRotation = XRotation(time: 10)
-                              let sunAction = Rotation(time: 9)
-                            let earthParentRotation = Rotation(time: 10)
+                              let sunAction = Rotation(time: 30)
+                            let earthParentRotation = Rotation(time: 15)
                             let venusParentRotation = XRotation(time: 20)
                             let earthRotation = Rotation(time: 10)
                             let moonRotation = Rotation(time: 5)
@@ -320,7 +354,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                          //now just have a few rotating x-asis
                            //  Shoonode.runAction(earthRotation)
                     Shoonode.runAction(SecRotation)
-                //    ShoonodeSec.runAction(SecRotation)
+                    ShoonodeSec.runAction(SecRotation)
+                   ssShoonode.runAction(SecRotation)
                             // Shoonode.runAction(venusRotation)
                     
                          // Shoonode.runAction(earthRotation)
@@ -334,6 +369,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                    // earthParent.addChildNode(venusParent)
 //                     venusParent.addChildNode(ShoonodeSec)
                            earthParent.addChildNode(Shoonode)
+                    earthParent.addChildNode(ShoonodeSec)
+                    earthParent.addChildNode(ssShoonode)
                            earthParent.addChildNode(moonParent)
                           // venusParent.addChildNode(venus)
         //                   Shoonode.addChildNode(msun)
