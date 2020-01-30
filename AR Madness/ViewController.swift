@@ -7,7 +7,7 @@
 //
 
 //get a feel for game difficulty and level base difficulty..breakfast
-//next color coat ships
+//next color coat ships. 100 
 //space ships around a little more..
 //more elaboratle explosion!!
 //new lasor sounds
@@ -17,7 +17,11 @@
 //repack code to Jesse Bryant
 //have to it to where some ships shooting planet.. lke general and/or planet explode when out of time!
 //Next marketing
-
+//make some ships stronger(may not be possible dont want to make easer to destroy earth) just stronger blast..can destroy eash ship....show  meaning it take more shots!!!! prob big shps
+//have it to where the blast can become stronger possibly.. if you kill certain amount of ships or the right one.*** as is game a little tough
+//Must purchase nice blast and nice ship! 3d should be fine and a blaster
+//change in color at right time..ie time running low maybe red or countdown...than red for earth explosion lke ghost AR app  each level
+//8328579
 
 import UIKit
 import SceneKit
@@ -211,6 +215,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         //two new ideas for levels.... 1) have a little faster and maybe less ships
               
               //using case statement to allow variations of scale and rotations
+        
               switch type {
               case "banana":
 //                  let scene = SCNScene(named: "art.scnassets/missile.dae")
@@ -251,6 +256,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                             earthParent.physicsBody?.isAffectedByGravity = false
         
 //         earth.addChildNode(Shoonode)
+        //8328579
           earth.name = "earth"
          earthParent.name = "earthParent"
                                   earth.position = SCNVector3(0,0,-1)
@@ -276,13 +282,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                         let moonParent = SCNNode()
         //             let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
                    if (index > 3) && (index % 3 == 0) {
-                                  let scene = SCNScene(named: "art.scnassets/spaceARblcopy.scn")
-                                 Shoonode = (scene?.rootNode.childNode(withName: "spaceARbl", recursively: true)!)!
+                                  let scene = SCNScene(named: "art.scnassets/spaceARcopy.scn")
+                                 Shoonode = (scene?.rootNode.childNode(withName: "SS1redcopy", recursively: true)!)!
                                   Shoonode.scale = SCNVector3(0.03,0.03,0.03)
                                  Shoonode.name = "shark"
                               }else{
-                                  let scene = SCNScene(named: "art.scnassets/SS1copy.scn")
-                                 Shoonode = (scene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                  let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
+                                 Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                   Shoonode.scale = SCNVector3(0.03,0.03,0.03)
                                   Shoonode.name = "SS1copy.scn"
                               }
