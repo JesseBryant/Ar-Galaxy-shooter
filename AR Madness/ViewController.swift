@@ -7,7 +7,7 @@
 //
 
 //get a feel for game difficulty and level base difficulty..breakfast
-//next color coat ships. 100 
+//next color coat ships. 100
 //space ships around a little more..
 //more elaboratle explosion!!
 //new lasor sounds
@@ -265,6 +265,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         earth.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
         earthParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
         earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+      //  let frame = self.sceneView.session.currentFrame
+      //  let frame = self.sceneView.
+        // let mat = SCNMatrix4(frame.camera.transform)
                 for index in 0...6 {
                     var Shoonode = SCNNode()
                    var ShoonodeSec = SCNNode()
