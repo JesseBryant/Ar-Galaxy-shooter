@@ -42,7 +42,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FiO-93-bhW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-764" y="31.934032983508249"/>
+            <point key="canvasLocation" x="-1815" y="32"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -52,13 +52,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CA1-Ym-8qw">
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CA1-Ym-8qw">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </arscnView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="target" translatesAutoresizingMaskIntoConstraints="NO" id="ufE-5C-HHR">
-                                <rect key="frame" x="137" y="283" width="100" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="target" translatesAutoresizingMaskIntoConstraints="NO" id="ufE-5C-HHR">
+                                <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yFX-oe-3bl">
                                 <rect key="frame" x="81" y="551" width="96" height="96"/>
@@ -106,11 +104,30 @@
                                 <color key="textColor" red="0.91764705879999997" green="0.67450980390000004" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZU2-qb-MzX">
+                                <rect key="frame" x="44" y="198" width="287" height="77.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ufE-5C-HHR" firstAttribute="top" secondItem="ZU2-qb-MzX" secondAttribute="bottom" constant="8" symbolic="YES" id="1bc-zg-dzR"/>
+                            <constraint firstItem="CA1-Ym-8qw" firstAttribute="top" secondItem="vxL-5k-dWy" secondAttribute="top" id="ELG-gJ-ddy"/>
+                            <constraint firstItem="CA1-Ym-8qw" firstAttribute="leading" secondItem="4bO-rh-b54" secondAttribute="leading" id="OJg-w9-Oi1"/>
+                            <constraint firstItem="ZU2-qb-MzX" firstAttribute="centerX" secondItem="CA1-Ym-8qw" secondAttribute="centerX" id="QOn-B6-vjI"/>
+                            <constraint firstItem="CA1-Ym-8qw" firstAttribute="centerY" secondItem="ufE-5C-HHR" secondAttribute="centerY" id="cmG-mV-U2g"/>
+                            <constraint firstItem="ZU2-qb-MzX" firstAttribute="centerX" secondItem="ufE-5C-HHR" secondAttribute="centerX" id="dB1-JN-k1m"/>
+                            <constraint firstItem="vxL-5k-dWy" firstAttribute="trailing" secondItem="ZU2-qb-MzX" secondAttribute="trailing" constant="44" id="ikG-dp-y9d"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="CA1-Ym-8qw" secondAttribute="bottom" constant="-20" id="lYv-Fn-ekR"/>
+                            <constraint firstItem="ZU2-qb-MzX" firstAttribute="leading" secondItem="vxL-5k-dWy" secondAttribute="leading" constant="44" id="r02-cP-mbQ"/>
+                            <constraint firstItem="ZU2-qb-MzX" firstAttribute="top" secondItem="4bO-rh-b54" secondAttribute="top" constant="198" id="xYg-4E-EtQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="vxL-5k-dWy"/>
                     </view>
                     <connections>
+                        <outlet property="messageLabel" destination="ZU2-qb-MzX" id="uYg-c0-rzu"/>
                         <outlet property="sceneView" destination="CA1-Ym-8qw" id="VdT-NP-AZd"/>
                         <outlet property="scoreLabel" destination="s8M-pf-58c" id="sjE-f0-CKC"/>
                         <outlet property="timerLabel" destination="oII-wX-Kk6" id="r1l-Jl-Y0R"/>
@@ -118,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="31.934032983508249"/>
+            <point key="canvasLocation" x="-866.39999999999998" y="20.239880059970016"/>
         </scene>
     </scenes>
     <resources>

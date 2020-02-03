@@ -23,6 +23,13 @@
 //change in color at right time..ie time running low maybe red or countdown...than red for earth explosion lke ghost AR app  each level
 //8328579
 
+
+//                                 1st mission
+//when points get to a certain point like 40 means 1 left and 37 means 2 may be left
+       //when game finish congrat them
+       //kill certain ship and certain amount of points
+       //when time run out
+       // message when planet destroyed
 import UIKit
 import SceneKit
 import ARKit
@@ -43,9 +50,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     //used to display score to player
     @IBOutlet weak var scoreLabel: UILabel!
     
+    @IBOutlet weak var messageLabel: UILabel!
     //used to store the score
     var score = 0
-    
+//   messageLabel.isHidden = true
     //MARK: - buttons
     
     //axe button
@@ -89,10 +97,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         //set the physics delegate
         sceneView.scene.physicsWorld.contactDelegate = self
+//        messageLabel.text = "Shoot all the spaceships. Do not shoot earth"
+//        messageLabel.isHidden = false
+//            messageLabel.text = "Shoot all the spaceships. Do not shoot earth"
+//        UIView.animate(withDuration: 2.5, animations: { () -> Void in
+//            self.messageLabel.alpha = 0
+//        })
+        //messageLabel
         
         //add objects to shoot at
+         messageLabel.isHidden = true
         addTargetNodes()
-        
+        PlayInstructions()
         //play background music
         playBackgroundMusic()
         
@@ -131,6 +147,28 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     //to run the timer
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
+    }
+    func PlayInstructions() {
+        
+//        messageLabel.isHidden = false
+//        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
+        self.messageLabel.isHidden = false
+               self.messageLabel.text = "Shoot all the spaceships. Do not shoot earth"
+    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+              
+        self.messageLabel.isHidden = true
+                 })
+        
+        
+//         messageLabel.isHidden = false
+               // messageLabel.text = "Shoot all the spaceships. Do not shoot earth"
+//                messageLabel.isHidden = false
+                  //  messageLabel.text = "Shoot all the spaceships. Do not shoot earth"
+//                UIView.animate(withDuration: 2.5, animations: { () -> Void in
+//                    self.messageLabel.alpha = 1
+//                })
+      //  messageLabel.isHidden = true
+        
     }
     
     //decrements seconds by 1, updates the timerLabel and calls gameOver if seconds is 0
@@ -245,6 +283,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     //Adds 100 objects to the scene, spins them, and places them at random positions around the player.
     func addTargetNodes(){
+        
+        //when points get to a certain point like 40 means 1 left and 37 means 2 may be left
+        //when game finish congrat them
+        //kill certain ship and certain amount of points
+        //when time run out
 
                                   //  let venusParent = SCNNode()
                                   let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
