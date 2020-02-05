@@ -53,6 +53,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     @IBOutlet weak var messageLabel: UILabel!
     //used to store the score
     var score = 0
+    var earN: SCNNode?
     var nodeArray : [SCNNode] = []
 //   messageLabel.isHidden = true
     //MARK: - buttons
@@ -290,6 +291,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         //when game finish congrat them
         //kill certain ship and certain amount of points
         //when time run out
+        //next take code from here appl to brd version
 
                                   //  let venusParent = SCNNode()
                                   let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
@@ -302,6 +304,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
 //         earth.addChildNode(Shoonode)
         //8328579
+        earN = earthParent
           earth.name = "earth"
          earthParent.name = "earthParent"
                                   earth.position = SCNVector3(0,0,-1)
@@ -356,15 +359,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 //                    earthParent.name = "earthParent"
                   //  earth.addChildNode(ShoonodeSec)
                     nodeArray.append(Shoonode)
-                   //  nodeArray.append(ShoonodeSec)
+                 //   nodeArray.append(ShoonodeSec)
                     nodeArray.append(ssShoonode)
-                    let r = ssShoonode
-                     let b = ssShoonode
-                     let c = ssShoonode
+//                    let r = ssShoonode
+//                     let b = ssShoonode
+//                     let c = ssShoonode
                        Shoonode.addChildNode(ssShoonode)
-                     Shoonode.addChildNode(r)
-                     Shoonode.addChildNode(b)
-                    Shoonode.addChildNode(c)
+//                     Shoonode.addChildNode(r)
+//                     Shoonode.addChildNode(b)
+//                    Shoonode.addChildNode(c)
                 //      ShoonodeSec.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
                     Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
                         ssShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
@@ -481,9 +484,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                     defaults.set(self.score, forKey: "score")
                     self.messageLabel.isHidden = false
                     self.messageLabel.text = "you destroyed the earth."
+                  //  contact.nodeB.children.map{ $0.rem}
                     //go back to the Home View Controller
                     //maybe add popup that ask if you want to play again
-                    
+                   // nodeArray?.rem
+//                    for r in self.nodeArray {
+//                        r.removeFromParentNode()
+//                    }
+                   // self.earN?.removeFromParentNode()
                     self.dismiss(animated: true, completion: nil)
                 })
             }
@@ -493,8 +501,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             
             DispatchQueue.main.async {
                 contact.nodeA.removeFromParentNode()
+                 // contact.nodeA.removeFromParentNode()
                 contact.nodeB.removeFromParentNode()
+               // contact.ear
+                //LETS GOOOOOOOOOOOOOOOOOO This it ******************
                 self.scoreLabel.text = String(self.score)
+                if (contact.nodeA.name! == "earth" || contact.nodeB.name! == "earth"){
+                                    for r in self.nodeArray {
+                                        r.removeFromParentNode()
+                                    }
+                }
             }
             
             playSound(sound: "explosion", format: "wav")
