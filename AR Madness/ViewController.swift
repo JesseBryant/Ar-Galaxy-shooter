@@ -57,11 +57,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var nodeArray : [SCNNode] = []
     var SSnodeArray : [SCNNode] = []
     var SecGroupNodeArray : [SCNNode] = []
+     var ThirdGroupNodeArray : [SCNNode] = []
       var name : [String] = ["1","1","1","2"]
     
 //   messageLabel.isHidden = true
     //MARK: - buttons
-    
+  //make blue and red(esp) clse!!!
     //axe button
     @IBAction func onAxeButton(_ sender: Any) {
         fireMissile(type: "axe")
@@ -329,16 +330,26 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 //                     let earthParent = SCNNode()
                                   var ssShoonode = SCNNode()
                                 var ssThShoonode = SCNNode()
-//
+                                var FourthShoonode = SCNNode()
+//frts one!!!
                     let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
                                             ssShoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                              ssShoonode.scale = SCNVector3(0.02,0.02,0.02)
                     ssShoonode.name = "shark"
+                    //second one
+                    
                     let Spacehscene = SCNScene(named: "art.scnassets/SS1copy.scn")
                                             ssThShoonode = (Spacehscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                              ssThShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                    ssShoonode.name = "shark"
+                    ssThShoonode.name = "shark"
+                    // third one
                     
+                    let SpacehFscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                               FourthShoonode = (SpacehFscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                                                FourthShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                       FourthShoonode.name = "shark"
+                    
+                    //ThirdGroupNodeArray
                     //name
 //                    for v in name {
 //
@@ -370,6 +381,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                                                           Shoonode.physicsBody?.isAffectedByGravity = false
                                        ssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                          ssShoonode.physicsBody?.isAffectedByGravity = false
+                    FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                           FourthShoonode.physicsBody?.isAffectedByGravity = false
 
                    earth.addChildNode(Shoonode)
 //                     earth.name = "earth"
@@ -377,6 +390,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                   //  earth.addChildNode(ShoonodeSec)
                     nodeArray.append(Shoonode)
                  //   nodeArray.append(ShoonodeSec)
+                    ThirdGroupNodeArray.append(FourthShoonode)
                    SSnodeArray.append(ssShoonode)
                     SecGroupNodeArray.append(ssThShoonode)
 //                    let r = ssShoonode
@@ -384,13 +398,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 //                     let c = ssShoonode
                        Shoonode.addChildNode(ssShoonode)
                      Shoonode.addChildNode(ssThShoonode)
+                    Shoonode.addChildNode(FourthShoonode)
 //                     Shoonode.addChildNode(b)
 //                    Shoonode.addChildNode(c)
                 //      ShoonodeSec.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
                     Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                        ssShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
+                       
+                    ssShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
            
-                    ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
+                    ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                     FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
                     
                     
 
@@ -405,6 +422,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                                                              ssShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                     ssThShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                                                ssThShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                     FourthShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                                                 FourthShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                     
                     // -0.8
                            self.sceneView.scene.rootNode.addChildNode(earth)
@@ -415,6 +434,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                     //self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
                     self.sceneView.scene.rootNode.addChildNode(ssShoonode)
                       self.sceneView.scene.rootNode.addChildNode(ssThShoonode)
+                     self.sceneView.scene.rootNode.addChildNode(FourthShoonode)
 
    
 
@@ -428,7 +448,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                     Shoonode.runAction(SecRotation)
                   //  ShoonodeSec.runAction(SecRotation)
                    ssShoonode.runAction(SecRotation)
+                    //FourthShoonode
                      ssThShoonode.runAction(SecRotation)
+                    FourthShoonode.runAction(SecRotation)
 //                        ssThShoonode
                            earthParent.runAction(earthParentRotation)
                         //   venusParent.runAction(venusParentRotation)
@@ -443,6 +465,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                     earthParent.addChildNode(ssShoonode)
                   //  ssThShoonode.addChildNode(ssShoonode)
                     earthParent.addChildNode(ssThShoonode)
+                    earthParent.addChildNode(FourthShoonode)
                            earthParent.addChildNode(moonParent)
 //                    for n in SSnodeArray {
 //                        print("\(n.name) jessss")
@@ -557,12 +580,26 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                                                         }
                 }
                 else { if  (contact.nodeA.name! == "SS1copy.scn" || contact.nodeB.name! == "SS1copy.scn"){
+                    if !self.SecGroupNodeArray.isEmpty{
                     for r in self.SecGroupNodeArray {
                         //    self.SSnodeArray.filter({ $0 == 4 }).forEach({ $0.removeFromParentNode() })
                            // if r.name != "2" {
                               //  print("\(r.name)")
+                     //   if !self.SecGroupNodeArray.isEmpty{
                             r.removeFromParentNode()
-                         //   }
+                        self.SecGroupNodeArray.removeAll()
+                        print("\(self.SecGroupNodeArray)SecGroupNodeArray jessssssss 2 ")
+                        }
+                    
+                    
+                        } else {
+                            for g in self.ThirdGroupNodeArray {
+                                g.removeFromParentNode()
+                                self.ThirdGroupNodeArray.removeAll()
+                                print("\(self.ThirdGroupNodeArray)ThirdGroupNodeArray made las jessssss3")
+                            }
+                     //   }
+                          // }
                         //                                        r.childNodes.filter({ $0.name == "shark" }).forEach({ $0.removeFromParentNode() })
                                                             }
                     }
