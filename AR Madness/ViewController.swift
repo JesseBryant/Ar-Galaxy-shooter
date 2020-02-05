@@ -55,6 +55,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var score = 0
     var earN: SCNNode?
     var nodeArray : [SCNNode] = []
+    var SSnodeArray : [SCNNode] = []
+    var SecGroupNodeArray : [SCNNode] = []
+      var name : [String] = ["1","1","1","2"]
+    
 //   messageLabel.isHidden = true
     //MARK: - buttons
     
@@ -324,20 +328,33 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                     // var ShoonodeCloserEarP = SCNNode()
 //                     let earthParent = SCNNode()
                                   var ssShoonode = SCNNode()
+                                var ssThShoonode = SCNNode()
 //
                     let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
                                             ssShoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                              ssShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                            ssShoonode.name = "shark"
-
+                    ssShoonode.name = "shark"
+                    let Spacehscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                            ssThShoonode = (Spacehscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                             ssThShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                    ssShoonode.name = "shark"
+                    
+                    //name
+//                    for v in name {
+//
+//                        ssShoonode.name = v
+//                    }
+//                    name.removeAll()
                         let moonParent = SCNNode()
       
                    if (index > 1) && (index % 3 == 0) {
+                   // red
                                   let scene = SCNScene(named: "art.scnassets/spaceARcopy.scn")
                                  Shoonode = (scene?.rootNode.childNode(withName: "SS1redcopy", recursively: true)!)!
                                   Shoonode.scale = SCNVector3(0.03,0.03,0.03)
                                  Shoonode.name = "shark"
                               }else{
+                   // blue
                                   let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
                                  Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                   Shoonode.scale = SCNVector3(0.03,0.03,0.03)
@@ -360,7 +377,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                   //  earth.addChildNode(ShoonodeSec)
                     nodeArray.append(Shoonode)
                  //   nodeArray.append(ShoonodeSec)
-                    nodeArray.append(ssShoonode)
+                   SSnodeArray.append(ssShoonode)
+                    SecGroupNodeArray.append(ssThShoonode)
 //                    let r = ssShoonode
 //                     let b = ssShoonode
 //                     let c = ssShoonode
@@ -420,6 +438,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                    // earthParent.addChildNode(ShoonodeSec)
                     earthParent.addChildNode(ssShoonode)
                            earthParent.addChildNode(moonParent)
+//                    for n in SSnodeArray {
+//                        print("\(n.name) jessss")
+//                    }
         
                 }
             }
@@ -465,7 +486,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     // MARK: - Contact Delegate
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-        
+        //can reduce by size to
          print("** Collision!! " + contact.nodeA.name! + " hit " + contact.nodeB.name!)
         
         if contact.nodeA.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue
@@ -508,9 +529,40 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                 self.scoreLabel.text = String(self.score)
                 if (contact.nodeA.name! == "earth" || contact.nodeB.name! == "earth"){
                                     for r in self.nodeArray {
+                                        
                                         r.removeFromParentNode()
+//                                        r.childNodes.filter({ $0.name == "shark" }).forEach({ $0.removeFromParentNode() })
                                     }
+                    
+                    
                 }
+                
+                else if (contact.nodeA.name! == "shark" || contact.nodeB.name! == "shark"){
+                    
+                    //SSnodeArray
+//                    if self.SSnodeArray.count > 3 {
+                    for r in self.SSnodeArray {
+                    //    self.SSnodeArray.filter({ $0 == 4 }).forEach({ $0.removeFromParentNode() })
+                       // if r.name != "2" {
+                          //  print("\(r.name)")
+                        r.removeFromParentNode()
+                     //   }
+                    //                                        r.childNodes.filter({ $0.name == "shark" }).forEach({ $0.removeFromParentNode() })
+                                                        }
+                }
+                else {
+                    for r in self.SecGroupNodeArray {
+                        //    self.SSnodeArray.filter({ $0 == 4 }).forEach({ $0.removeFromParentNode() })
+                           // if r.name != "2" {
+                              //  print("\(r.name)")
+                            r.removeFromParentNode()
+                         //   }
+                        //                                        r.childNodes.filter({ $0.name == "shark" }).forEach({ $0.removeFromParentNode() })
+                                                            }
+                    }
+                
+                
+                
             }
             
             playSound(sound: "explosion", format: "wav")
