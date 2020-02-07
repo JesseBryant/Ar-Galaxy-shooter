@@ -458,13 +458,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 
                            let SecRotation = XRotation(time: 300)
                       let SecRo = XRotation(time: 6)
-                              let sunAction = Rotation(time: 30)
-                            let earthParentRotation = Rotation(time: 15)
+                              let sunAction = Rotation(time: 20)
+                            let earthParentRotation = Rotation(time: 10)
                     let VRotation = Rotation(time: 6)
                             let venusParentRotation = XRotation(time: 20)
                             let earthRotation = Rotation(time: 10)
                             let moonRotation = Rotation(time: 5)
-                    
+                    // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                       //  make big ships spin as it Rotate
                     Shoonode.runAction(SecRo)
 //                  //  ShoonodeSec.runAction(SecRotation)
