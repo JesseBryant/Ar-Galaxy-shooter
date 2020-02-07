@@ -300,15 +300,25 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         //when time run out
         //next take code from here appl to brd version
 
-                                  //  let venusParent = SCNNode()
+                                    let venusParent = SCNNode()
                                   let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
           let earthParent = SCNNode()
         let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
+     //   venusParent
          earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                             earth.physicsBody?.isAffectedByGravity = false
          earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                             earthParent.physicsBody?.isAffectedByGravity = false
+
         
+        
+        
+       // venusParent
+        venusParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                  venusParent.physicsBody?.isAffectedByGravity = false
+            venusParent.position = SCNVector3(0,0,-1)
+         
+        // venusParent.name = "earth"
 //         earth.addChildNode(Shoonode)
         //8328579
         earN = earthParent
@@ -320,6 +330,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         earth.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
         earthParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
         earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+        venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+             venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
       //  let frame = self.sceneView.session.currentFrame
       //  let frame = self.sceneView.
         // let mat = SCNMatrix4(frame.camera.transform)
@@ -386,7 +398,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                     FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                                            FourthShoonode.physicsBody?.isAffectedByGravity = false
 
-                   earth.addChildNode(Shoonode)
+               //    venusParent.addChildNode(Shoonode)
+                    earth.addChildNode(Shoonode)
+                        earth.addChildNode(ssShoonode)
+                                        earth.addChildNode(ssThShoonode)
+                                        earth.addChildNode(FourthShoonode)
 //                     earth.name = "earth"
 //                    earthParent.name = "earthParent"
                   //  earth.addChildNode(ShoonodeSec)
@@ -398,9 +414,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 //                    let r = ssShoonode
 //                     let b = ssShoonode
 //                     let c = ssShoonode
-                       Shoonode.addChildNode(ssShoonode)
-                     Shoonode.addChildNode(ssThShoonode)
-                    Shoonode.addChildNode(FourthShoonode)
+//                       Shoonode.addChildNode(ssShoonode)
+//                     Shoonode.addChildNode(ssThShoonode)
+//                    Shoonode.addChildNode(FourthShoonode)
 //                     Shoonode.addChildNode(b)
 //                    Shoonode.addChildNode(c)
                 //      ShoonodeSec.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
@@ -430,7 +446,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                     // -0.8
                            self.sceneView.scene.rootNode.addChildNode(earth)
                            self.sceneView.scene.rootNode.addChildNode(earthParent)
-                           //self.sceneView.scene.rootNode.addChildNode(venusParent)
+                           self.sceneView.scene.rootNode.addChildNode(venusParent)
 
                            self.sceneView.scene.rootNode.addChildNode(Shoonode)
                     //self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
@@ -440,29 +456,34 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 
    
 
-                           let SecRotation = XRotation(time: 10)
+                           let SecRotation = XRotation(time: 300)
+                      let SecRo = XRotation(time: 6)
                               let sunAction = Rotation(time: 30)
                             let earthParentRotation = Rotation(time: 15)
+                    let VRotation = Rotation(time: 6)
                             let venusParentRotation = XRotation(time: 20)
                             let earthRotation = Rotation(time: 10)
                             let moonRotation = Rotation(time: 5)
-                        
-                    Shoonode.runAction(SecRotation)
-                  //  ShoonodeSec.runAction(SecRotation)
+                    
+                      //  make big ships spin as it Rotate
+                    Shoonode.runAction(SecRo)
+//                  //  ShoonodeSec.runAction(SecRotation)
                    ssShoonode.runAction(SecRotation)
-                    //FourthShoonode
-                     ssThShoonode.runAction(SecRotation)
+//                    //FourthShoonode
+                   ssThShoonode.runAction(SecRotation)
                     FourthShoonode.runAction(SecRotation)
 //                        ssThShoonode
                            earthParent.runAction(earthParentRotation)
-                        //   venusParent.runAction(venusParentRotation)
+                           venusParent.runAction(VRotation)
                            moonParent.runAction(moonRotation)
 
                            
                            earth.runAction(sunAction)
                    // earthParent.addChildNode(venusParent)
-//                     venusParent.addChildNode(ShoonodeSec)
-                           earthParent.addChildNode(Shoonode)
+                    venusParent.addChildNode(Shoonode)
+                    
+                    ////****** and ven name*/
+                       //    earthParent.addChildNode(Shoonode)
                    // earthParent.addChildNode(ShoonodeSec)
                     earthParent.addChildNode(ssShoonode)
                   //  ssThShoonode.addChildNode(ssShoonode)
