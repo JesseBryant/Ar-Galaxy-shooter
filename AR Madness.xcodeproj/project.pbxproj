@@ -21,6 +21,14 @@
 		A73D42A820B80B4000965934 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A73D42A620B80B4000965934 /* Main.storyboard */; };
 		A73D42AA20B80B4200965934 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A73D42A920B80B4200965934 /* Assets.xcassets */; };
 		A73D42AD20B80B4200965934 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A73D42AB20B80B4200965934 /* LaunchScreen.storyboard */; };
+		E313248823EBF89E009C648F /* Fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313248723EBF89E009C648F /* Fire.scnp */; };
+		E313248B23EBF906009C648F /* caffefe.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313248923EBF906009C648F /* caffefe.scnp */; };
+		E313248C23EBF906009C648F /* confetti.png in Resources */ = {isa = PBXBuildFile; fileRef = E313248A23EBF906009C648F /* confetti.png */; };
+		E313248F23EBF94A009C648F /* Stars.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313248D23EBF94A009C648F /* Stars.scnp */; };
+		E313249023EBF94A009C648F /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = E313248E23EBF94A009C648F /* star.png */; };
+		E313249223EBF97A009C648F /* rain.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313249123EBF97A009C648F /* rain.scnp */; };
+		E313249423EBF9B0009C648F /* react.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313249323EBF9B0009C648F /* react.scnp */; };
+		E36A07F323EC1A9B000561D6 /* Confetti.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E36A07F223EC1A9B000561D6 /* Confetti.scnp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +48,14 @@
 		A73D42A920B80B4200965934 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A73D42AC20B80B4200965934 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A73D42AE20B80B4200965934 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E313248723EBF89E009C648F /* Fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Fire.scnp; sourceTree = "<group>"; };
+		E313248923EBF906009C648F /* caffefe.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = caffefe.scnp; sourceTree = "<group>"; };
+		E313248A23EBF906009C648F /* confetti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confetti.png; sourceTree = "<group>"; };
+		E313248D23EBF94A009C648F /* Stars.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Stars.scnp; sourceTree = "<group>"; };
+		E313248E23EBF94A009C648F /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		E313249123EBF97A009C648F /* rain.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = rain.scnp; sourceTree = "<group>"; };
+		E313249323EBF9B0009C648F /* react.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = react.scnp; sourceTree = "<group>"; };
+		E36A07F223EC1A9B000561D6 /* Confetti.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Confetti.scnp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +86,14 @@
 			children = (
 				A7216ACC20BE9313009F6A51 /* Explode.scnp */,
 				A7216ACD20BE9313009F6A51 /* spark.png */,
+				E313248723EBF89E009C648F /* Fire.scnp */,
+				E313248923EBF906009C648F /* caffefe.scnp */,
+				E313248A23EBF906009C648F /* confetti.png */,
+				E313248D23EBF94A009C648F /* Stars.scnp */,
+				E313248E23EBF94A009C648F /* star.png */,
+				E313249123EBF97A009C648F /* rain.scnp */,
+				E313249323EBF9B0009C648F /* react.scnp */,
+				E36A07F223EC1A9B000561D6 /* Confetti.scnp */,
 			);
 			path = Particles;
 			sourceTree = "<group>";
@@ -167,16 +191,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7216AD120BE960B009F6A51 /* overtake.mp3 in Resources */,
+				E313248C23EBF906009C648F /* confetti.png in Resources */,
+				E313248823EBF89E009C648F /* Fire.scnp in Resources */,
 				A7216ABC20BE1930009F6A51 /* explosion.wav in Resources */,
 				A73D42A320B80B4000965934 /* art.scnassets in Resources */,
+				E313249023EBF94A009C648F /* star.png in Resources */,
 				A73D42AD20B80B4200965934 /* LaunchScreen.storyboard in Resources */,
 				A7216ABE20BE1940009F6A51 /* monkey.mp3 in Resources */,
 				A73D42AA20B80B4200965934 /* Assets.xcassets in Resources */,
+				E313248F23EBF94A009C648F /* Stars.scnp in Resources */,
+				E313249223EBF97A009C648F /* rain.scnp in Resources */,
 				A7216ACF20BE9313009F6A51 /* spark.png in Resources */,
 				A7216ACE20BE9313009F6A51 /* Explode.scnp in Resources */,
+				E313249423EBF9B0009C648F /* react.scnp in Resources */,
 				A73D42A820B80B4000965934 /* Main.storyboard in Resources */,
+				E313248B23EBF906009C648F /* caffefe.scnp in Resources */,
 				A7216AC020BE1957009F6A51 /* watersplash.wav in Resources */,
 				A7216AC220BE1967009F6A51 /* rooster.mp3 in Resources */,
+				E36A07F323EC1A9B000561D6 /* Confetti.scnp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

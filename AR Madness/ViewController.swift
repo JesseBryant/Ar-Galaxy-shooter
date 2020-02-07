@@ -53,7 +53,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     @IBOutlet weak var messageLabel: UILabel!
     //used to store the score
     var score = 0
-    var earN: SCNNode?
+    
+    var target: SCNNode?
+   var earN: SCNNode?
     var nodeArray : [SCNNode] = []
     var SSnodeArray : [SCNNode] = []
     var SecGroupNodeArray : [SCNNode] = []
@@ -515,6 +517,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     // MARK: - Contact Delegate
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        let nodeA = contact.nodeA
+        let nodeB = contact.nodeB
+        if nodeA.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue {
+            self.target = nodeA
+        } else
+            if nodeB.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue {
+                       self.target = nodeB
+        }
         //can reduce by size to
          print("** Collision!! " + contact.nodeA.name! + " hit " + contact.nodeB.name!)
         
@@ -607,10 +617,31 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                 
                 
             }
+//
+//            playSound(sound: "explosion", format: "wav")
+//                       let  explosion = SCNParticleSystem(named: "Fire", inDirectory: nil)
+//                       contact.nodeB.addParticleSystem(explosion!)
+            //Fire, react, star
+             let  explosion = SCNParticleSystem(named: "Fire", inDirectory: nil)
+//                        contact.nodeB.addParticleSystem(explosion!)
+//            Fire-3
+//
+//            if let particles = SKEmitterNode(fileNamed: "ff.sks") {
+//                particles.position = contact.nodeB.position
+////                addChild(particles)
+//                contact.nodeB.addParticleSystem(particles)
+//                addChild(particles)
+//            }
+          // explosion?.loops = false
             
-            playSound(sound: "explosion", format: "wav")
-            let  explosion = SCNParticleSystem(named: "Explode", inDirectory: nil)
+            explosion?.particleLifeSpan = 4
+            explosion?.emitterShape = contact.nodeB.geometry
             contact.nodeB.addParticleSystem(explosion!)
+          //  contact.nodeB.addParticleSystem(explosion!)
+           // let explosionNode = SCNNode()
+          // explosionNode.addParticleSystem(explosion!)
+          // explosionNode.position = contact.contactPoint
+        //  self.sceneView.scene.rootNode.addChildNode(explosionNode)
         }
     }
     
