@@ -335,9 +335,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
       //  let frame = self.sceneView.session.currentFrame
       //  let frame = self.sceneView.
         // let mat = SCNMatrix4(frame.camera.transform)
-                for index in 0...3 {
+                for index in 0...6 {
                     //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
                     //make node array empty in the end of the game func
+                    //decent increase number of ships still seem a bit easy but that might be fine
                     var Shoonode = SCNNode()
                 //var ShoonodeSec = SCNNode()
                     // var ShoonodeCloserEarP = SCNNode()
@@ -349,6 +350,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                     let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
                                             ssShoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                              ssShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                  //  ssShoonode.
                     ssShoonode.name = "shark"
                     //second one
                     
@@ -462,7 +464,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                             let earthParentRotation = Rotation(time: 10)
                     let VRotation = Rotation(time: 6)
                             let venusParentRotation = XRotation(time: 20)
-                            let earthRotation = Rotation(time: 10)
+                            let earthRotation = Rotation(time: 20)
                             let moonRotation = Rotation(time: 5)
                     // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                       //  make big ships spin as it Rotate
@@ -589,7 +591,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                 self.scoreLabel.text = String(self.score)
                 if (contact.nodeA.name! == "earth" || contact.nodeB.name! == "earth"){
                                     for r in self.nodeArray {
-                                        
+//                                        if r == contact.nodeA{
+//
+//                                        }
                                         r.removeFromParentNode()
 //                                        r.childNodes.filter({ $0.name == "shark" }).forEach({ $0.removeFromParentNode() })
                                     }
