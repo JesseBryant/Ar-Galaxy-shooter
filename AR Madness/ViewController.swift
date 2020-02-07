@@ -146,7 +146,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     // MARK: - timer
     
     //to store how many sceonds the game is played for
-    var seconds = 60
+    var seconds = 30
     
     //timer
     var timer = Timer()
@@ -235,6 +235,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                 nodeDirection  = SCNVector3(direction.x*40,direction.y*40,direction.z*40)
                 node.physicsBody?.applyForce(nodeDirection, at: SCNVector3(0.1,0,0), asImpulse: true)
                 playSound(sound: "monkey", format: "mp3")
+                
+                //this stronger make a lot easier this should be temporary and rewarded after a certain level
+                //or destroying enemy ship/s
             case "axe":
                 nodeDirection  = SCNVector3(direction.x*40,direction.y*40,direction.z*40)
                 node.physicsBody?.applyForce(SCNVector3(direction.x,direction.y,direction.z), at: SCNVector3(0,0,0.1), asImpulse: true)
@@ -340,6 +343,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                     //make node array empty in the end of the game func
                     //decent increase number of ships still seem a bit easy but that might be fine
                     var Shoonode = SCNNode()
+                    //make it to where it dont kill so many
                 //var ShoonodeSec = SCNNode()
                     // var ShoonodeCloserEarP = SCNNode()
 //                     let earthParent = SCNNode()
@@ -421,10 +425,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 //                    Shoonode.addChildNode(FourthShoonode)
 //                     Shoonode.addChildNode(b)
 //                    Shoonode.addChildNode(c)
-                //      ShoonodeSec.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
+                //      ShoonodeSec.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5)) -0.8, max: 0.3
                     Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
                        
-                    ssShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
+                    
+                    //changed this one!!!
+                    ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
+                    
+                    
            
                     ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
                      FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
