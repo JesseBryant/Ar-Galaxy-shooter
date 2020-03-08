@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  AR Madness
 //
-//  Created by O'Sullivan, Andy on 25/05/2018.
+
 //  Copyright © 2018 O'Sullivan, Andy. All rights reserved.
 //
 
@@ -128,179 +128,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 //        }
         let defaults = UserDefaults.standard
             if let gameScore = defaults.value(forKey: "scoreL"){
-                let score = gameScore as! Int
-                if 90...189 ~= score {
-                    //make levels crazyyyyyyyyyyyy!!
-                    //score and coins not the same because score is infinite.
-                    //everyone will end up with same score!!
-                    //add glow things or some that with time determine coin amount
-                    //need a pop up for when game is done.. or shot everything
-                    //planet must explode if not saved
-                  
-                   // sceneView.backgroundColor = UIColor.red
-                           messageLabel.isHidden = true
-                    levelJB.text = "level 2"
-                          SecaddTargetNodes()
-                          PlayInstructions()
-                          //play background music
-                          playBackgroundMusic()
-                          
-                          //start tinmer
-                          runTimer()
-//                    if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
-//                                                 print("Empty!!!!!!!! in level 2")
-//                          }
-                    print("\(score): welcome to level 2")
-                } else if 190...700 ~= score{
-                  //  sceneView.backgroundColor = UIColor.red
-                           messageLabel.isHidden = true
-                    levelJB.text = "level 3"
-                          addTargetNodes()
-                    //FsaddTargetNodes()
-                    // FsaddTargetNodes()
-                          PlayInstructions()
-                          //play background music
-                          playBackgroundMusic()
-                          
-                          //start tinmer
-                          runTimer()
-                      print("\(score): welcome to level 3 jess")
-                 //   print("\(score): still on level 1")
-//                    if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
-//                                                                    print("Empty!!!!!!!! in level 3")
-//                                             }
-                }
-                else if 700...731 ~= score{
-                                  //  sceneView.backgroundColor = UIColor.red
-                                           messageLabel.isHidden = true
-                                    levelJB.text = "level 4"
-                                          addTargetNodesFour()
-                                    //FsaddTargetNodes()
-                                    // FsaddTargetNodes()
-                                          PlayInstructions()
-                                          //play background music
-                                          playBackgroundMusic()
-                                          
-                                          //start tinmer
-                                          runTimer()
-                                      print("\(score): welcome to level 4 jess")
-                                 //   print("\(score): still on level 1")
-                //                    if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
-                //                                                                    print("Empty!!!!!!!! in level 3")
-                //                                             }
-                                }       else if 732...750 ~= score{
-                                                            //  sceneView.backgroundColor = UIColor.red
-                                                                     messageLabel.isHidden = true
-                                                              levelJB.text = "level 5"
-                    
-                    //Will need to add other nodes give a more real effect. For smaller ships
-                                                                    addTargetNodesFive()
-                                                              //FsaddTargetNodes()
-                                                              // FsaddTargetNodes()
-                                                                    PlayInstructions()
-                                                                    //play background music
-                                                                    playBackgroundMusic()
-                                                                    
-                                                                    //start tinmer
-                                                                    runTimer()
-                                                                print("\(score): welcome to level 5 jess")
-                                                           //   print("\(score): still on level 1")
-                                          //                    if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
-                                          //                                                                    print("Empty!!!!!!!! in level 3")
-                                          //                                             }
-                                                          } else if 751...762 ~= score{
-                                                                                                  //  sceneView.backgroundColor = UIColor.red
-                                                                                                           messageLabel.isHidden = true
-                                                                                                    levelJB.text = "level 6"
-                                                          
-                                                          //Will need to add other nodes give a more real effect. For smaller ships
-                                                                                                          addTargetNodesSixVenus()
-                                                                                                    //FsaddTargetNodes()
-                                                                                                    // FsaddTargetNodes()
-                                                                                                          PlayInstructions()
-                                                                                                          //play background music
-                                                                                                          playBackgroundMusic()
-                                                                                                          
-                                                                                                          //start tinmer
-                                                                                                          runTimer()
-                                                                                                      print("\(score): welcome to level 6 jess")
-                                                                                                 //   print("\(score): still on level 1")
-                                                                                //                    if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
-                                                                                //                                                                    print("Empty!!!!!!!! in level 3")
-                                                                                //                                             }
-                                                                                                }
-                
-                //addTargetNodesSaturn()
-                else if 763...800 ~= score{
-                                                        //  sceneView.backgroundColor = UIColor.red
-                                                                 messageLabel.isHidden = true
-                                                          levelJB.text = "level 7"
-                
-                //Will need to add other nodes give a more real effect. For smaller ships
-                                                                addTargetNodesSaturn()
-                                                          //FsaddTargetNodes()
-                                                          // FsaddTargetNodes()
-                                                                PlayInstructions()
-                                                                //play background music
-                                                                playBackgroundMusic()
-                                                                
-                                                                //start tinmer
-                                                                runTimer()
-                                                            print("\(score): welcome to level 7 jess")
-                                                       //   print("\(score): still on level 1")
-                                      //                    if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
-                                      //                                                                    print("Empty!!!!!!!! in level 3") addTargetNodesNeptune()
-                                      //                                             }
-                                                      }
-                else if 807...850 ~= score{
-                                                                       //  sceneView.backgroundColor = UIColor.red
-                                                                                messageLabel.isHidden = true
-                                                                         levelJB.text = "level 8"
-                               
-                               //Will need to add other nodes give a more real effect. For smaller ships
-                                                                               addTargetNodesNeptune()
-                                                                         //FsaddTargetNodes()
-                                                                         // FsaddTargetNodes()
-                                                                               PlayInstructions()
-                                                                               //play background music
-                                                                               playBackgroundMusic()
-                                                                               
-                                                                               //start tinmer
-                                                                               runTimer()
-                                                                           print("\(score): welcome to level 8 jess")
-                                                                      //   print("\(score): still on level 1")
-                                                     //                    if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
-                                                     //                                                                    print("Empty!!!!!!!! in level 3") addTargetNodesNeptune()
-                                                     //                                             }
-                                                                     }
-//                //scoreLabel.text = "Score: \(String(score))"
-         } 
-        else{
-          //  sceneView.backgroundColor = UIColor.red
-                   messageLabel.isHidden = true
-            levelJB.text = "level 1"
-                  //addTargetNodes()
-                FsaddTargetNodes()
-                  PlayInstructions()
-                  //play background music
-                  playBackgroundMusic()
-                  
-                  //start tinmer
-                  runTimer()
-            print("\(score): still on level 1")
-//                if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
-//                                                                print("Empty!!!!!!!! in level 1")
-//                                         }
+                 score = gameScore as! Int
+                print("\(score) Jesse KKKK")
+                //pla()
         }
-//        sceneView.backgroundColor = UIColor.red
-//         messageLabel.isHidden = true
-//        addTargetNodes()
-//        PlayInstructions()
-//        //play background music
-//        playBackgroundMusic()
-//
-//        //start tinmer
-//        runTimer()
+pla()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -356,14 +188,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                  })
         
         
-//         messageLabel.isHidden = false
-               // messageLabel.text = "Shoot all the spaceships. Do not shoot earth"
-//                messageLabel.isHidden = false
-                  //  messageLabel.text = "Shoot all the spaceships. Do not shoot earth"
-//                UIView.animate(withDuration: 2.5, animations: { () -> Void in
-//                    self.messageLabel.alpha = 1
-//                })
-      //  messageLabel.isHidden = true
+
         
     }
     
@@ -395,33 +220,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
           let chdKK = "earthParent"
     
 
-      //  }
-        
-//        for r in self.EarGroupNodeArray {
-//        //                                        if r == contact.nodeA{
-//        //
-//        //                                        }
-//         //   let  explosion = SCNParticleSystem(named: "Fire", inDirectory: nil)
-//
-//                            r.removeFromParentNode()
-//                            //explosion?.particleLifeSpan = 1
-//                       // explosion?.emitterShape = r.geometry
-//                          //  r.addParticleSystem(explosion!)
-//
-//        }
-////        let  explosion = SCNParticleSystem(named: "Fire", inDirectory: nil)
-////
-////
-////                    explosion?.particleLifeSpan = 4
-////                    explosion?.emitterShape = contact.nodeB.geometry
-////                    contact.nodeB.addParticleSystem(explosion!)
+
          let defaultss = UserDefaults.standard
                     if let gameScore = defaultss.value(forKey: "scoreL"){
                          scoreJJ = gameScore as! Int
                         if score > 90 {
-                            print("\(score):score >90 welcome to level 2")
+                          //  print("\(score):score >90 welcome to level 2")
                         } else{
-                            print("\(score): score <90 still on level 1")
+                           // print("\(score): score <90 still on level 1")
                         }
         //                //scoreLabel.text = "Score: \(String(score))"
                  }
@@ -442,6 +248,182 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         defaultsJB.set(arrrrr, forKey: "scoreL")
         //go back to the Home View Controller
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    func pla() {
+        if 90...189 ~= score {
+                            //make levels crazyyyyyyyyyyyy!!
+                            //score and coins not the same because score is infinite.
+                            //everyone will end up with same score!!
+                            //add glow things or some that with time determine coin amount
+                            //need a pop up for when game is done.. or shot everything
+                            //planet must explode if not saved
+                          
+                           // sceneView.backgroundColor = UIColor.red
+                                   messageLabel.isHidden = true
+                            levelJB.text = "level 2"
+                                  SecaddTargetNodes()
+                                  PlayInstructions()
+                                  //play background music
+                                  playBackgroundMusic()
+                                  
+                                  //start tinmer
+                                  runTimer()
+        //                    if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
+        //                                                 print("Empty!!!!!!!! in level 2")
+        //                          }
+                            print("\(score): welcome to level 2")
+                        } else if 190...700 ~= score{
+                          //  sceneView.backgroundColor = UIColor.red
+                                   messageLabel.isHidden = true
+                            levelJB.text = "level 3"
+                                  addTargetNodes()
+                            //FsaddTargetNodes()
+                            // FsaddTargetNodes()
+                                  PlayInstructions()
+                                  //play background music
+                                  playBackgroundMusic()
+                                  
+                                  //start tinmer
+                                  runTimer()
+                              print("\(score): welcome to level 3 jess")
+                         //   print("\(score): still on level 1")
+        //                    if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
+        //                                                                    print("Empty!!!!!!!! in level 3")
+        //                                             }
+                        }
+                        else if 700...731 ~= score{
+                                          //  sceneView.backgroundColor = UIColor.red
+                                                   messageLabel.isHidden = true
+                                            levelJB.text = "level 4"
+                                                  addTargetNodesFour()
+                                            //FsaddTargetNodes()
+                                            // FsaddTargetNodes()
+                                                  PlayInstructions()
+                                                  //play background music
+                                                  playBackgroundMusic()
+                                                  
+                                                  //start tinmer
+                                                  runTimer()
+                                              print("\(score): welcome to level 4 jess")
+                                         //   print("\(score): still on level 1")
+                        //                    if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
+                        //                                                                    print("Empty!!!!!!!! in level 3")
+                        //                                             }
+                                        }       else if 732...750 ~= score{
+                                                                    //  sceneView.backgroundColor = UIColor.red
+                                                                             messageLabel.isHidden = true
+                                                                      levelJB.text = "level 5"
+                            
+                            //Will need to add other nodes give a more real effect. For smaller ships
+                                                                            addTargetNodesFive()
+                                                                      //FsaddTargetNodes()
+                                                                      // FsaddTargetNodes()
+                                                                            PlayInstructions()
+                                                                            //play background music
+                                                                            playBackgroundMusic()
+                                                                            
+                                                                            //start tinmer
+                                                                            runTimer()
+                                                                        print("\(score): welcome to level 5 jess")
+                                                                   //
+                                                                  } else if 751...762 ~= score{
+                                                                                                          //  sceneView.backgroundColor = UIColor.red
+                                                                                                                   messageLabel.isHidden = true
+                                                                                                            levelJB.text = "level 6"
+                                                                  
+                                                                  //Will need to add other nodes give a more real effect. For smaller ships
+                                                                                                                  addTargetNodesSixVenus()
+                                                                                                            //FsaddTargetNodes()
+                                                                                                            // FsaddTargetNodes()
+                                                                                                                  PlayInstructions()
+                                                                                                                  //play background music
+                                                                                                                  playBackgroundMusic()
+                                                                                                                  
+                                                                                                                  //start tinmer
+                                                                                                                  runTimer()
+                                                                                                              print("\(score): welcome to level 6 jess")
+                                                                                                         //   print("\(score): still on level 1")
+                                                                                        //                    if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
+                                                                                        //                                                                    print("Empty!!!!!!!! in level 3")
+                                                                                        //                                             }
+                                                                                                        }
+                        
+                        //addTargetNodesSaturn()
+                        else if 763...800 ~= score{
+                                                                //  sceneView.backgroundColor = UIColor.red
+                                                                         messageLabel.isHidden = true
+                                                                  levelJB.text = "level 7"
+                        
+                        //Will need to add other nodes give a more real effect. For smaller ships
+                                                                        addTargetNodesSaturn()
+                                                                  //FsaddTargetNodes()
+                                                                  // FsaddTargetNodes()
+                                                                        PlayInstructions()
+                                                                        //play background music
+                                                                        playBackgroundMusic()
+                                                                        
+                                                                        //start tinmer
+                                                                        runTimer()
+                                                                    print("\(score): welcome to level 7 jess")
+                                                               
+                                                              }
+                        else if 807...810 ~= score{
+                                                                               //  sceneView.backgroundColor = UIColor.red
+                                                                                        messageLabel.isHidden = true
+                                                                                 levelJB.text = "level 8"
+                                       
+                                       //Will need to add other nodes give a more real effect. For smaller ships
+                                                                                       addTargetNodesNeptune()
+                           //  FsaddTargetNodes()
+                                                                                 //FsaddTargetNodes()
+                                                                                 // FsaddTargetNodes()
+                                                                                       PlayInstructions()
+                                                                                       //play background music
+                                                                                       playBackgroundMusic()
+                                                                                       
+                                                                                       //start tinmer
+                                                                                       runTimer()
+                                                                                   print("\(score): welcome to level 8 jess")
+                                                                              
+                                                                             }
+      else if 807...950 ~= score{
+                                                                               //  sceneView.backgroundColor = UIColor.red
+                                                                                        messageLabel.isHidden = true
+                                                                                 levelJB.text = "level 9"
+                                       
+                                       //Will need to add other nodes give a more real effect. For smaller ships
+                                                                                       addTargetNodesJupitar()
+                                                                                       PlayInstructions()
+                                                                                       //play background music
+                                                                                       playBackgroundMusic()
+                                                                                       
+                                                                                       //start tinmer
+                                                                                       runTimer()
+                                                                                   print("\(score): welcome to level 8 jess")
+                                                                              
+                                                                             }
+      
+                 
+                else{
+                  //  sceneView.backgroundColor = UIColor.red
+                           messageLabel.isHidden = true
+                    levelJB.text = "level 1"
+                          //addTargetNodes()
+                        FsaddTargetNodes()
+                          PlayInstructions()
+                          //play background music
+                          playBackgroundMusic()
+                          
+                          //start tinmer
+                          runTimer()
+                    print("\(score): still on level 1")
+   
+                }
     }
     
     // MARK: - missiles & targets
@@ -1663,12 +1645,20 @@ saturnParent.position = SCNVector3(0,0,-1)
                       //Need message dont shoot moon.
                       //if so planet and moon destroyed
                //Make ships move on dif speeds llke earlter
+        let JupitarRing = createRing(ringSize: 0.3)
+                    let Jupitar = createPlanet(radius: 0.23, image: "jupitar")
+                    Jupitar.name = "neptune"
+                    Jupitar.position = SCNVector3(x:1.6 , y: 0, z: 0)
+                    rotateObject(rotation: 0.01, planet:  Jupitar, duration: 0.4)
+                    rotateObject(rotation: 0.01, planet: JupitarRing, duration: 1)
+        
         let neptuneRing = createRing(ringSize: 0.3)
                let neptune = createPlanet(radius: 0.23, image: "neptune")
                neptune.name = "neptune"
                neptune.position = SCNVector3(x:1.6 , y: 0, z: 0)
                rotateObject(rotation: 0.01, planet: neptune, duration: 0.4)
                rotateObject(rotation: 0.01, planet: neptuneRing, duration: 1)
+        
             
             let saturnRing = createRing(ringSize: 0.3)
                   let saturn = createPlanet(radius: 0.2, image: "saturn")
@@ -1725,14 +1715,9 @@ saturnParent.position = SCNVector3(0,0,-1)
                         //  let frame = self.sceneView.
                           // let mat = SCNMatrix4(frame.camera.transform)
                                   for index in 0...6 {
-                                      //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
-                                      //make node array empty in the end of the game func
-                                      //decent increase number of ships still seem a bit easy but that might be fine
+                                      
                                       var Shoonode = SCNNode()
-                                      //make it to where it dont kill so many
-                                  //var ShoonodeSec = SCNNode()
-                                      // var ShoonodeCloserEarP = SCNNode()
-                  //                     let earthParent = SCNNode()
+                           
                                                     var ssShoonode = SCNNode()
                                                   var ssThShoonode = SCNNode()
                                                   var FourthShoonode = SCNNode()
@@ -1819,9 +1804,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                                      
                                       Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                             Shoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                                      //ShoonodeSec.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-                                                             //ShoonodeSec.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                                      //ssShoonode
+                                      
                                       ssShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                                                ssShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                                       ssThShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
@@ -1909,6 +1892,271 @@ saturnParent.position = SCNVector3(0,0,-1)
                           
                                   }
                               }
+    
+    
+    
+    
+    
+    func addTargetNodesJupitar(){
+           
+                          //Need message dont shoot moon.
+                          //if so planet and moon destroyed
+                   //Make ships move on dif speeds llke earlter
+            let JupitarRing = createRing(ringSize: 0.3)
+                        let Jupitar = createPlanet(radius: 0.23, image: "jupitar")
+                        Jupitar.name = "neptune"
+                        Jupitar.position = SCNVector3(x:1.6 , y: 0, z: 0)
+                        rotateObject(rotation: 0.01, planet:  Jupitar, duration: 0.4)
+                        rotateObject(rotation: 0.01, planet: JupitarRing, duration: 1)
+            
+            let neptuneRing = createRing(ringSize: 0.3)
+                   let neptune = createPlanet(radius: 0.23, image: "neptune")
+                   neptune.name = "neptune"
+                   neptune.position = SCNVector3(x:1.6 , y: 0, z: 0)
+                   rotateObject(rotation: 0.01, planet: neptune, duration: 0.4)
+                   rotateObject(rotation: 0.01, planet: neptuneRing, duration: 1)
+            
+                
+                let saturnRing = createRing(ringSize: 0.3)
+                      let saturn = createPlanet(radius: 0.2, image: "saturn")
+                      saturn.name = "saturn"
+                saturn.position = SCNVector3(0.9,0,0)
+                      rotateObject(rotation: 0.1, planet: saturn, duration: 0.4)
+                      rotateObject(rotation: 0.1, planet: saturnRing, duration: 1)
+
+      
+                
+
+                                                          let venusParent = SCNNode()
+                                                        let sun = SCNNode(geometry: SCNSphere(radius: 0.25))
+                       sun.geometry?.firstMaterial?.diffuse.contents = #imageLiteral(resourceName: "Sun diffuse")
+                              sun.position = SCNVector3(0,0,-1)
+                                let earthParent = SCNNode()
+                           let moonParent = SCNNode()
+                          let saturnParent = SCNNode()
+                                   let neptuneParent = SCNNode()
+                                    //Jupitar
+        let JupitarParent = SCNNode()
+                              let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
+                    let venus = planet(geometry: SCNSphere(radius: 0.15), diffuse: #imageLiteral(resourceName: "Venus Surface"), specular: nil, emission: #imageLiteral(resourceName: "Venus Atmosphere"), normal: nil, position: SCNVector3(0.5, 0, 0))
+                             let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
+                           //   venusParent
+                               earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                  earth.physicsBody?.isAffectedByGravity = false
+                               earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                  earthParent.physicsBody?.isAffectedByGravity = false
+        saturnParent.position = SCNVector3(0,0,-1)
+                  neptuneParent.position = SCNVector3(0,0,-1)
+                              
+                              
+                             // venusParent
+                              venusParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                        venusParent.physicsBody?.isAffectedByGravity = false
+                                  venusParent.position = SCNVector3(0,0,-1)
+                
+                               
+                              // venusParent.name = "earth"
+                      //         earth.addChildNode(Shoonode)
+                              //8328579
+                              earN = earthParent
+                                earth.name = "earth"
+                               earthParent.name = "earthParent"
+                                                        earth.position = SCNVector3(0,0,-1)
+                                                         earthParent.position = SCNVector3(0,0,-1)
+                           moonParent.position = SCNVector3(1.2 ,0 , 0)
+                              earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                              earth.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                              earthParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                              earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                              venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                   venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                            //  let frame = self.sceneView.session.currentFrame
+                            //  let frame = self.sceneView.
+                              // let mat = SCNMatrix4(frame.camera.transform)
+                                      for index in 0...6 {
+                                          
+                                          var Shoonode = SCNNode()
+                               
+                                                        var ssShoonode = SCNNode()
+                                                      var ssThShoonode = SCNNode()
+                                                      var FourthShoonode = SCNNode()
+                      //frts one!!!
+                                          let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                                  ssShoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                                                   ssShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                        //  ssShoonode.
+                                          ssShoonode.name = "shark"
+                                          //second one
+                                          
+                                          let Spacehscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                                  ssThShoonode = (Spacehscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                                                   ssThShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                          ssThShoonode.name = "shark"
+                                          // third one
+                                          
+                                          let SpacehFscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                                                     FourthShoonode = (SpacehFscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                                                                      FourthShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                                             FourthShoonode.name = "shark"
+                                          
+
+                                              let moonParent = SCNNode()
+                            
+                                         if (index > 1) && (index % 3 == 0) {
+                     
+                                          
+                                          
+                                              let scene = SCNScene(named: "art.scnassets/spaceARcopy.scn")
+                                                                       Shoonode = (scene?.rootNode.childNode(withName: "SS1redcopy", recursively: true)!)!
+                                                                        Shoonode.scale = SCNVector3(0.03,0.03,0.03)
+                                                                       Shoonode.name = "shark"
+                                                    }else{
+
+                                         let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
+                                                                          Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
+                                                                           Shoonode.scale = SCNVector3(0.03,0.03,0.03)
+                                                                           Shoonode.name = "SS1copy.scn"
+                                                    }
+                                          
+                                         
+                                          Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                             Shoonode.physicsBody?.isAffectedByGravity = false
+                                        //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                             //ShoonodeSec.physicsBody?.isAffectedByGravity = false
+                                          Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                Shoonode.physicsBody?.isAffectedByGravity = false
+                                                             ssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                               ssShoonode.physicsBody?.isAffectedByGravity = false
+                                          FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                                 FourthShoonode.physicsBody?.isAffectedByGravity = false
+
+                                     //    venusParent.addChildNode(Shoonode)
+                                          earth.addChildNode(Shoonode)
+                                              earth.addChildNode(ssShoonode)
+                                                              earth.addChildNode(ssThShoonode)
+                                                              earth.addChildNode(FourthShoonode)
+                      //                     earth.name = "earth"
+                      //                    earthParent.name = "earthParent"
+                                        //  earth.addChildNode(ShoonodeSec)
+                                          nodeArray.append(Shoonode)
+                                       //   nodeArray.append(ShoonodeSec)
+                                          ThirdGroupNodeArray.append(FourthShoonode)
+                                         SSnodeArray.append(ssShoonode)
+                                          SecGroupNodeArray.append(ssThShoonode)
+                                          EarGroupNodeArray.append(earth)
+                                          EarGroupNodeArray.append(earthParent)
+
+                                          Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                                             
+                                          //  let moonRotation = Rotation(time: 5)
+                                          //changed this one!!!
+                                          ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
+                                          
+                                          
+                                 
+                                          ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                                           FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                                          
+                                          
+
+                                                 moonParent.position = SCNVector3(0 ,0 , -1)
+                                         
+                                          Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                Shoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                          //ShoonodeSec.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                 //ShoonodeSec.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                          //ssShoonode
+                                          ssShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                                   ssShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                          ssThShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                                                     ssThShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                           FourthShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                                                                       FourthShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                          
+                                          // -0.8
+                                                 //self.sceneView.scene.rootNode.addChildNode(earth)
+                                                 self.sceneView.scene.rootNode.addChildNode(earthParent)
+                                                 self.sceneView.scene.rootNode.addChildNode(venusParent)
+                                       // saturnParent
+         self.sceneView.scene.rootNode.addChildNode(saturnParent)
+                                        self.sceneView.scene.rootNode.addChildNode(Jupitar)
+                                        self.sceneView.scene.rootNode.addChildNode(neptuneParent)
+    //                                    neptuneParent
+                                       // self.sceneView.scene.rootNode.addChildNode(saturnRing)
+                                                 self.sceneView.scene.rootNode.addChildNode(Shoonode)
+                                         
+                                       
+                                       self.sceneView.scene.rootNode.addChildNode(sun) //self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
+                                          self.sceneView.scene.rootNode.addChildNode(ssShoonode)
+                                            self.sceneView.scene.rootNode.addChildNode(ssThShoonode)
+                                           self.sceneView.scene.rootNode.addChildNode(FourthShoonode)
+        //added Saturn
+                         
+
+                                                 let SecRotation = XRotation(time: 300)
+                                            let SecRo = XRotation(time: 6)
+                                                    let sunAction = Rotation(time: 25)
+                                                  let earthParentRotation = Rotation(time: 20)
+                                          let VRotation = Rotation(time: 27)
+                                         let VJRotation = Rotation(time: 25)
+                                         let NeptuneRotation = Rotation(time: 28)
+                                                  let venusParentRotation = XRotation(time: 30)
+                                        let saturnParentRotation = XRotation(time: 30)
+                                                  let earthRotation = Rotation(time: 30)
+                                                  let moonRotation = Rotation(time: 10)
+                                        let venusRotation = Rotation(time: 8)
+                                      
+                                          Shoonode.runAction(SecRo)
+                      //                  //  ShoonodeSec.runAction(SecRotation)
+                                         ssShoonode.runAction(SecRotation)
+                                        
+                      //                    //FourthShoonode
+                                         ssThShoonode.runAction(SecRotation)
+                                          FourthShoonode.runAction(SecRotation)
+                      //                        ssThShoonode neptuneParent
+                                                 earthParent.runAction(earthParentRotation)
+                                        saturnParent.runAction(VJRotation)
+                                        neptuneParent.runAction(NeptuneRotation)
+                                        JupitarParent.runAction(NeptuneRotation)
+                                                 venusParent.runAction(VRotation)
+                                                 moonParent.runAction(moonRotation)
+                                                venus.runAction(venusRotation)
+                                                 JupitarParent.addChildNode(Jupitar)
+                                        //Jupitar.addCildNode(JupitarRing)
+                                        venusParent.addChildNode(venus)
+                                                 earth.runAction(sunAction)
+                                       sun.runAction(sunAction)
+                                         // earthParent.addChildNode(venusParent)
+               //                           venusParent.addChildNode(Shoonode)
+                                          
+                                          ////****** and ven name*/
+                                             //    earthParent.addChildNode(Shoonode)
+                                         // earthParent.addChildNode(ShoonodeSec)
+                                        
+                                       sun.addChildNode(earth)
+                                       // sun.addChildNode(earthParent)
+                                         //sun.addChildNode(saturnParent)
+                                        
+                                        saturnParent.addChildNode(saturn)
+                                              saturn.addChildNode(saturnRing)
+                                        neptuneParent.addChildNode(neptune)
+                                        neptune.addChildNode(neptuneRing)
+                                     // sun.addChildNode(saturnRing)
+                                       // saturnParent.addChildNode(saturnRing)
+                                        earth.addChildNode(Shoonode)
+                                          earth.addChildNode(ssShoonode)
+                                        //  ssThShoonode.addChildNode(ssShoonode)
+                                          earth.addChildNode(ssThShoonode)
+                                          earth.addChildNode(FourthShoonode)
+                                               //  earth.addChildNode(moonParent)
+                                          earth.addChildNode(moon)
+                                             //  moonParent.addChildNode(moon)
+                      //                    for n in SSnodeArray {
+                      //                        print("\(n.name) jessss")
+                      //                    }
+                              
+                                      }
+                                  }
         
     
     func rotateObject(rotation: Float, planet: SCNNode, duration: Float){
@@ -2917,33 +3165,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                 self.scoreLabel.text = String(self.score)
                 if (contact.nodeA.name! == "earth" || contact.nodeB.name! == "earth"){
                     
-//                    if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
-//                        print("Empty!!!!!!!!")
-                    
-//                         let defaults = UserDefaults.standard
-//                                    if let gameScore = defaults.value(forKey: "scoreL"){
-//                                        let score = gameScore as! Int
-//                                        if 90...189 ~= score {
-//
-//                                            self.SecaddTargetNodes()
-//                                            print("\(score): welcome to level 2   SecaddTargetNodes() ")
-//                                        } else if score > 190{
-//                                          //  sceneView.backgroundColor = UIC
-//
-//                                                  //start tinmer
-//                                            self.addTargetNodes()
-//                                                              //FsaddTargetNodes()
-//                                            print("\(score): still on level 1")
-//                                        }
-//                        //                //scoreLabel.text = "Score: \(String(score))"
-//                                 }
-//                                else{
-//                                  //  sceneView.backgroundColor = UIColor.red
-//                                        self.FsaddTargetNodes()
-//                                        print("\(self.score): still on level 1")
-//                                }
-                 //   }
-                    
+
                     
                     
                     if (!self.nodeArray.isEmpty){
@@ -2994,25 +3216,13 @@ saturnParent.position = SCNVector3(0,0,-1)
                                 print("\(self.ThirdGroupNodeArray)ThirdGroupNodeArray made las jessssss3")
                             }
                             
-//                            if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
-//                                                                                             print("Empty!!!!!!!! in level 3")
-//                                                                      }
-                     //   }
-                          // }
-                        //                                        r.childNodes.filter({ $0.name == "shark" }).forEach({ $0.removeFromParentNode() })
+
                          } else if self.ThirdGroupNodeArray.isEmpty{
                               print("Empty!!!!!!!! in level 3")
                             
                             
                             
-                           //Problem this for small groups...need a condition if all emp rep...depend on level set bool true based off bool youll pck correct reload func Not lke here waiting till random crew grp empty
-                            
-                            //or use score.. restar or dismiss when certain score met
-                            
-                            
-                           //  self.addGGTargetNodes()
-                           // self.addTargetNodes()
-                            //here is where i repop or say complete than restart
+          
                             
                         }
 //                         else {
@@ -3031,25 +3241,11 @@ saturnParent.position = SCNVector3(0,0,-1)
 //                       contact.nodeB.addParticleSystem(explosion!)
             //Fire, react, star
              let  explosion = SCNParticleSystem(named: "Fire", inDirectory: nil)
-//                        contact.nodeB.addParticleSystem(explosion!)
-//            Fire-3
-//
-//            if let particles = SKEmitterNode(fileNamed: "ff.sks") {
-//                particles.position = contact.nodeB.position
-////                addChild(particles)
-//                contact.nodeB.addParticleSystem(particles)
-//                addChild(particles)
-//            }
-          // explosion?.loops = false
-            
+
             explosion?.particleLifeSpan = 4
             explosion?.emitterShape = contact.nodeB.geometry
             contact.nodeB.addParticleSystem(explosion!)
-          //  contact.nodeB.addParticleSystem(explosion!)
-           // let explosionNode = SCNNode()
-          // explosionNode.addParticleSystem(explosion!)
-          // explosionNode.position = contact.contactPoint
-        //  self.sceneView.scene.rootNode.addChildNode(explosionNode)
+ 
         }
     }
     
