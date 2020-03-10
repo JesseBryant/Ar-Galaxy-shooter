@@ -397,14 +397,16 @@ pla()
                                                                                  levelJB.text = "level 9"
                                        
                                        //Will need to add other nodes give a more real effect. For smaller ships
-                                                                                       addTargetNodesJupitar()
-                                                                                       PlayInstructions()
+             // FsaddTargetNodes()
+                                                                                    addTargetNodesJupitar()
+                                                          // FsaddTargetNodes()
+            PlayInstructions()
                                                                                        //play background music
                                                                                        playBackgroundMusic()
                                                                                        
                                                                                        //start tinmer
                                                                                        runTimer()
-                                                                                   print("\(score): welcome to level 8 jess")
+                                                                                   print("\(score): welcome to level 9 jess")
                                                                               
                                                                              }
       
@@ -1937,6 +1939,9 @@ saturnParent.position = SCNVector3(0,0,-1)
                                    let neptuneParent = SCNNode()
                                     //Jupitar
         let JupitarParent = SCNNode()
+        let EarParent = SCNNode()
+        EarParent.position = SCNVector3(1.2 ,0 , 0)
+        
                               let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
                     let venus = planet(geometry: SCNSphere(radius: 0.15), diffuse: #imageLiteral(resourceName: "Venus Surface"), specular: nil, emission: #imageLiteral(resourceName: "Venus Atmosphere"), normal: nil, position: SCNVector3(0.5, 0, 0))
                              let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
@@ -1947,6 +1952,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                                                   earthParent.physicsBody?.isAffectedByGravity = false
         saturnParent.position = SCNVector3(0,0,-1)
                   neptuneParent.position = SCNVector3(0,0,-1)
+          //  EarParent.position = SCNVector3(0,0,-1)
                               
                               
                              // venusParent
@@ -2046,17 +2052,20 @@ saturnParent.position = SCNVector3(0,0,-1)
                                           EarGroupNodeArray.append(earth)
                                           EarGroupNodeArray.append(earthParent)
 
-                                          Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                                             
-                                          //  let moonRotation = Rotation(time: 5)
-                                          //changed this one!!!
-                                          ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
                                           
-                                          
-                                 
-                                          ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                                           FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                                          
+                                        
+                                        
+                                        
+                                        Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                                                               
+                                                            
+                                                            //changed this one!!!
+                                                            ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
+                                                            
+                                                            
+                                                   
+                                                            ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                                                             FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
                                           
 
                                                  moonParent.position = SCNVector3(0 ,0 , -1)
@@ -2076,13 +2085,16 @@ saturnParent.position = SCNVector3(0,0,-1)
                                           // -0.8
                                                  //self.sceneView.scene.rootNode.addChildNode(earth)
                                                  self.sceneView.scene.rootNode.addChildNode(earthParent)
+                                        
+                                        self.sceneView.scene.rootNode.addChildNode(EarParent)
+                                        
+                                        //1.2 ,0 , 0
                                                  self.sceneView.scene.rootNode.addChildNode(venusParent)
                                        // saturnParent
          self.sceneView.scene.rootNode.addChildNode(saturnParent)
                                         self.sceneView.scene.rootNode.addChildNode(Jupitar)
                                         self.sceneView.scene.rootNode.addChildNode(neptuneParent)
-    //                                    neptuneParent
-                                       // self.sceneView.scene.rootNode.addChildNode(saturnRing)
+
                                                  self.sceneView.scene.rootNode.addChildNode(Shoonode)
                                          
                                        
@@ -2092,27 +2104,40 @@ saturnParent.position = SCNVector3(0,0,-1)
                                            self.sceneView.scene.rootNode.addChildNode(FourthShoonode)
         //added Saturn
                          
+                                        
+                                    
+                                                             // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
+                                                               //  make big ships spin as it Rotate
+                                                             
 
                                                  let SecRotation = XRotation(time: 300)
                                             let SecRo = XRotation(time: 6)
                                                     let sunAction = Rotation(time: 25)
                                                   let earthParentRotation = Rotation(time: 20)
                                           let VRotation = Rotation(time: 27)
+                                        
+                                         let JRotation = Rotation(time: 15)
                                          let VJRotation = Rotation(time: 25)
                                          let NeptuneRotation = Rotation(time: 28)
                                                   let venusParentRotation = XRotation(time: 30)
+                                        
+                                        let EarParentRotation = XRotation(time: 20)
+                                        
                                         let saturnParentRotation = XRotation(time: 30)
                                                   let earthRotation = Rotation(time: 30)
                                                   let moonRotation = Rotation(time: 10)
                                         let venusRotation = Rotation(time: 8)
+                                        
                                       
                                           Shoonode.runAction(SecRo)
                       //                  //  ShoonodeSec.runAction(SecRotation)
-                                         ssShoonode.runAction(SecRotation)
+                                         ssShoonode.runAction(SecRo)
                                         
                       //                    //FourthShoonode
                                          ssThShoonode.runAction(SecRotation)
                                           FourthShoonode.runAction(SecRotation)
+                                        
+                                        EarParent.runAction(JRotation)
                       //                        ssThShoonode neptuneParent
                                                  earthParent.runAction(earthParentRotation)
                                         saturnParent.runAction(VJRotation)
@@ -2124,7 +2149,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                                                  JupitarParent.addChildNode(Jupitar)
                                         //Jupitar.addCildNode(JupitarRing)
                                         venusParent.addChildNode(venus)
-                                                 earth.runAction(sunAction)
+                                                 earth.runAction(JRotation)
                                        sun.runAction(sunAction)
                                          // earthParent.addChildNode(venusParent)
                //                           venusParent.addChildNode(Shoonode)
@@ -2134,7 +2159,8 @@ saturnParent.position = SCNVector3(0,0,-1)
                                          // earthParent.addChildNode(ShoonodeSec)
                                         
                                        sun.addChildNode(earth)
-                                       // sun.addChildNode(earthParent)
+                                        
+                                        earth.addChildNode(EarParent)
                                          //sun.addChildNode(saturnParent)
                                         
                                         saturnParent.addChildNode(saturn)
@@ -2143,7 +2169,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                                         neptune.addChildNode(neptuneRing)
                                      // sun.addChildNode(saturnRing)
                                        // saturnParent.addChildNode(saturnRing)
-                                        earth.addChildNode(Shoonode)
+                                        EarParent.addChildNode(Shoonode)
                                           earth.addChildNode(ssShoonode)
                                         //  ssThShoonode.addChildNode(ssShoonode)
                                           earth.addChildNode(ssThShoonode)
@@ -3074,6 +3100,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                                   earth.runAction(sunAction)
                           // earthParent.addChildNode(venusParent)
                            venusParent.addChildNode(Shoonode)
+                        earthParent.addChildNode(venusParent)
                            
                            ////****** and ven name*/
                               //    earthParent.addChildNode(Shoonode)
