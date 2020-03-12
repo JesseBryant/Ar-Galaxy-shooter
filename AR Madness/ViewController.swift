@@ -380,8 +380,8 @@ pla()
                                        
                                        //Will need to add other nodes give a more real effect. For smaller ships
              // FsaddTargetNodes()
-                                                                                   // addTargetNodesJupitar()
-                                                                                    addTargetNodesFive()
+                                                                                    addTargetNodesJupitar()
+                                                                                  //  addTargetNodesFive()
                                                           // FsaddTargetNodes()
             PlayInstructions()
                                                                                        //play background music
@@ -1941,7 +1941,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                               venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                    venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                             
-                                      for index in 0...6 {
+                                      for index in 0...3 {
                                           
                                           var Shoonode = SCNNode()
                                
