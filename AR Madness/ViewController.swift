@@ -1886,7 +1886,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                 let saturnRing = createRing(ringSize: 0.3)
                       let saturn = createPlanet(radius: 0.2, image: "saturn")
                       saturn.name = "saturn"
-                saturn.position = SCNVector3(0.9,0,0)
+                saturn.position = SCNVector3(2.5,0,0)
                       rotateObject(rotation: 0.1, planet: saturn, duration: 0.4)
                       rotateObject(rotation: 0.1, planet: saturnRing, duration: 1)
 
@@ -1906,7 +1906,7 @@ saturnParent.position = SCNVector3(0,0,-1)
         let EarParent = SCNNode()
         EarParent.position = SCNVector3(0,0,-1)
         
-                              let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
+                              let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.8 ,0 , 0))
                     let venus = planet(geometry: SCNSphere(radius: 0.15), diffuse: #imageLiteral(resourceName: "Venus Surface"), specular: nil, emission: #imageLiteral(resourceName: "Venus Atmosphere"), normal: nil, position: SCNVector3(0.5, 0, 0))
                              let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
                            //   venusParent
@@ -1941,7 +1941,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                               venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                    venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                             
-                                      for index in 0...3 {
+                                      for index in 0...2 {
                                           
                                           var Shoonode = SCNNode()
                                
@@ -2077,6 +2077,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                                          let JRotation = Rotation(time: 15)
                                          let JRRotation = Rotation(time: 5)
                                          let VJRotation = Rotation(time: 25)
+                                         let SatRotation = Rotation(time: 15)
                                          let NeptuneRotation = Rotation(time: 28)
                                                   let venusParentRotation = XRotation(time: 30)
                                         
@@ -2099,7 +2100,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                                         EarParent.runAction(JRotation)
                       //                        ssThShoonode neptuneParent
                                                  earthParent.runAction(earthParentRotation)
-                                        saturnParent.runAction(VJRotation)
+                                        saturnParent.runAction(SatRotation)
                                         neptuneParent.runAction(NeptuneRotation)
                                         JupitarParent.runAction(NeptuneRotation)
                                                  venusParent.runAction(VRotation)
