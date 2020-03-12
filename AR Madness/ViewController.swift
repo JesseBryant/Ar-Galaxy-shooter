@@ -257,14 +257,7 @@ pla()
     
     func pla() {
         if 90...189 ~= score {
-                            //make levels crazyyyyyyyyyyyy!!
-                            //score and coins not the same because score is infinite.
-                            //everyone will end up with same score!!
-                            //add glow things or some that with time determine coin amount
-                            //need a pop up for when game is done.. or shot everything
-                            //planet must explode if not saved
-                          
-                           // sceneView.backgroundColor = UIColor.red
+                      
                                    messageLabel.isHidden = true
                             levelJB.text = "level 2"
                                   SecaddTargetNodes()
@@ -274,9 +267,7 @@ pla()
                                   
                                   //start tinmer
                                   runTimer()
-        //                    if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
-        //                                                 print("Empty!!!!!!!! in level 2")
-        //                          }
+    
                             print("\(score): welcome to level 2")
                         } else if 190...700 ~= score{
                           //  sceneView.backgroundColor = UIColor.red
@@ -987,10 +978,7 @@ pla()
                        for index in 0...6 {
                           
                            var Shoonode = SCNNode()
-                           //make it to where it dont kill so many
-                       //var ShoonodeSec = SCNNode()
-                           // var ShoonodeCloserEarP = SCNNode()
-       //                     let earthParent = SCNNode()
+                          
                                          var ssShoonode = SCNNode()
                                        var ssThShoonode = SCNNode()
                                        var FourthShoonode = SCNNode()
@@ -1045,10 +1033,10 @@ pla()
                                                                                   FourthShoonode.physicsBody?.isAffectedByGravity = false
 
                       //    venusParent.addChildNode(Shoonode)
-                           earth.addChildNode(Shoonode)
-                               earth.addChildNode(ssShoonode)
-                                               earth.addChildNode(ssThShoonode)
-                                               earth.addChildNode(FourthShoonode)
+//                           earth.addChildNode(Shoonode)
+//                               earth.addChildNode(ssShoonode)
+//                                               earth.addChildNode(ssThShoonode)
+//                                               earth.addChildNode(FourthShoonode)
        //                     earth.name = "earth"
        //                    earthParent.name = "earthParent"
                          //  earth.addChildNode(ShoonodeSec)
@@ -1077,9 +1065,7 @@ pla()
                           
                            Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                  Shoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                           //ShoonodeSec.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-                                                  //ShoonodeSec.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                           //ssShoonode
+                           
                            ssShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                                     ssShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                            ssThShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
@@ -1087,9 +1073,7 @@ pla()
                             FourthShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                                                                         FourthShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                            
-                           // -0.8
-                                  //self.sceneView.scene.rootNode.addChildNode(earth)
-                                  //self.sceneView.scene.rootNode.addChildNode(earthParent)
+                        
                                   self.sceneView.scene.rootNode.addChildNode(venusParent)
 
                                   self.sceneView.scene.rootNode.addChildNode(Shoonode)
@@ -1307,19 +1291,14 @@ pla()
                               
                                Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                      Shoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                               //ShoonodeSec.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-                                                      //ShoonodeSec.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                               //ssShoonode
+                            
                                ssShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                                         ssShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                                ssThShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                                                           ssThShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                                 FourthShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                                                                             FourthShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                               
-                               // -0.8
-                                      //self.sceneView.scene.rootNode.addChildNode(earth)
-                                      //self.sceneView.scene.rootNode.addChildNode(earthParent)
+                      
                                       self.sceneView.scene.rootNode.addChildNode(venusParent)
 
                                       self.sceneView.scene.rootNode.addChildNode(Shoonode)
@@ -1357,12 +1336,7 @@ pla()
                                        venusParent.addChildNode(venus)
                                       earth.runAction(sunAction)
                             sun.runAction(sunAction)
-                              // earthParent.addChildNode(venusParent)
-    //                           venusParent.addChildNode(Shoonode)
-                               
-                               ////****** and ven name*/
-                                  //    earthParent.addChildNode(Shoonode)
-                              // earthParent.addChildNode(ShoonodeSec)
+                            
                             sun.addChildNode(earth)
                              sun.addChildNode(earthParent)
                              earthParent.addChildNode(Shoonode)
@@ -1930,7 +1904,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                                     //Jupitar
         let JupitarParent = SCNNode()
         let EarParent = SCNNode()
-        EarParent.position = SCNVector3(1.2 ,0 , 0)
+        EarParent.position = SCNVector3(0,0,-1)
         
                               let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
                     let venus = planet(geometry: SCNSphere(radius: 0.15), diffuse: #imageLiteral(resourceName: "Venus Surface"), specular: nil, emission: #imageLiteral(resourceName: "Venus Atmosphere"), normal: nil, position: SCNVector3(0.5, 0, 0))
@@ -1966,9 +1940,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                               earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                               venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                    venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                            //  let frame = self.sceneView.session.currentFrame
-                            //  let frame = self.sceneView.
-                              // let mat = SCNMatrix4(frame.camera.transform)
+                            
                                       for index in 0...6 {
                                           
                                           var Shoonode = SCNNode()
@@ -2062,9 +2034,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                                          
                                           Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                 Shoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                                          //ShoonodeSec.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-                                                                 //ShoonodeSec.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                                          //ssShoonode
+                                          
                                           ssShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                                                    ssShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                                           ssThShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
@@ -2074,7 +2044,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                                           
                                           // -0.8
                                                  //self.sceneView.scene.rootNode.addChildNode(earth)
-                                                 self.sceneView.scene.rootNode.addChildNode(earthParent)
+                                              //   self.sceneView.scene.rootNode.addChildNode(earthParent)
                                         
                                         self.sceneView.scene.rootNode.addChildNode(EarParent)
                                         
@@ -2105,6 +2075,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                                           let VRotation = Rotation(time: 27)
                                         
                                          let JRotation = Rotation(time: 15)
+                                         let JRRotation = Rotation(time: 5)
                                          let VJRotation = Rotation(time: 25)
                                          let NeptuneRotation = Rotation(time: 28)
                                                   let venusParentRotation = XRotation(time: 30)
@@ -2137,13 +2108,13 @@ saturnParent.position = SCNVector3(0,0,-1)
                                                  JupitarParent.addChildNode(Jupitar)
                                         //Jupitar.addCildNode(JupitarRing)
                                         venusParent.addChildNode(venus)
-                                                 earth.runAction(JRotation)
+                                                 earth.runAction(JRRotation)
                                        sun.runAction(sunAction)
                    
                                         
                                        sun.addChildNode(earth)
                                         
-                                        earth.addChildNode(EarParent)
+                                        sun.addChildNode(EarParent)
                                          //sun.addChildNode(saturnParent)
                                         
                                         saturnParent.addChildNode(saturn)
