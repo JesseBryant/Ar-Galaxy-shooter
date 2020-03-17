@@ -380,8 +380,9 @@ pla()
                                        
                                        //Will need to add other nodes give a more real effect. For smaller ships
              // FsaddTargetNodes()
-                                                                                    addTargetNodesJupitar()
-                                                                                  //  addTargetNodesFive()
+                                                                                    //addTargetNodesJupitar()
+            addTargetNodesSixVenus()
+                                                                                    //addTargetNodesFive()
                                                           // FsaddTargetNodes()
             PlayInstructions()
                                                                                        //play background music
@@ -939,7 +940,7 @@ pla()
                  let earthParent = SCNNode()
             let moonParent = SCNNode()
            
-               let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
+               let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.8 ,0 , 0))
         let EarParent = SCNNode()
         EarParent.position = SCNVector3(0,0,-1)
               let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
@@ -975,7 +976,7 @@ pla()
              //  let frame = self.sceneView.session.currentFrame
              //  let frame = self.sceneView.
                // let mat = SCNMatrix4(frame.camera.transform)
-                       for index in 0...6 {
+                       for index in 0...2 {
                           
                            var Shoonode = SCNNode()
                           
@@ -1032,14 +1033,6 @@ pla()
                            FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                                                   FourthShoonode.physicsBody?.isAffectedByGravity = false
 
-                      //    venusParent.addChildNode(Shoonode)
-//                           earth.addChildNode(Shoonode)
-//                               earth.addChildNode(ssShoonode)
-//                                               earth.addChildNode(ssThShoonode)
-//                                               earth.addChildNode(FourthShoonode)
-       //                     earth.name = "earth"
-       //                    earthParent.name = "earthParent"
-                         //  earth.addChildNode(ShoonodeSec)
                            nodeArray.append(Shoonode)
                         //   nodeArray.append(ShoonodeSec)
                            ThirdGroupNodeArray.append(FourthShoonode)
@@ -1092,6 +1085,7 @@ pla()
                                    let earthParentRotation = Rotation(time: 20)
                         
                         let JRotation = Rotation(time: 15)
+                        let JRRotation = Rotation(time: 5)
                         let VJRotation = Rotation(time: 25)
                            let VRotation = Rotation(time: 6)
                                    let venusParentRotation = XRotation(time: 20)
@@ -1112,7 +1106,7 @@ pla()
                                   moonParent.runAction(moonRotation)
 
                                   
-                                  earth.runAction(JRotation)
+                                  earth.runAction(JRRotation)
                         sun.runAction(sunAction)
                           // earthParent.addChildNode(venusParent)
 //                           venusParent.addChildNode(Shoonode)
@@ -1146,14 +1140,16 @@ pla()
         //Make ships move on dif speeds llke earlter
 
                                                let venusParent = SCNNode()
+                                                let venusParentSun = SCNNode()
+        venusParentSun.position = SCNVector3(0,0,-1)
                                              let sun = SCNNode(geometry: SCNSphere(radius: 0.25))
             sun.geometry?.firstMaterial?.diffuse.contents = #imageLiteral(resourceName: "Sun diffuse")
                    sun.position = SCNVector3(0,0,-1)
                      let earthParent = SCNNode()
                 let moonParent = SCNNode()
                
-                   let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
-         let venus = planet(geometry: SCNSphere(radius: 0.1), diffuse: #imageLiteral(resourceName: "Venus Surface"), specular: nil, emission: #imageLiteral(resourceName: "Venus Atmosphere"), normal: nil, position: SCNVector3(0.7, 0, 0))
+                   let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.8 ,0 , 0))
+         let venus = planet(geometry: SCNSphere(radius: 0.1), diffuse: #imageLiteral(resourceName: "Venus Surface"), specular: nil, emission: #imageLiteral(resourceName: "Venus Atmosphere"), normal: nil, position: SCNVector3(0.5, 0, 0))
                   let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
                 //   venusParent
                     earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
@@ -1167,7 +1163,7 @@ pla()
                   // venusParent
                    venusParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                              venusParent.physicsBody?.isAffectedByGravity = false
-                       venusParent.position = SCNVector3(0,0,-1)
+                     //  venusParent.position = SCNVector3(0,0,-1)
                     
                    // venusParent.name = "earth"
            //         earth.addChildNode(Shoonode)
@@ -1175,8 +1171,13 @@ pla()
                    earN = earthParent
                      earth.name = "earth"
                     earthParent.name = "earthParent"
+        //where the relationships between earth and earthParent
                                              earth.position = SCNVector3(0,0,-1)
                                               earthParent.position = SCNVector3(0,0,-1)
+        
+        
+        venusParent.position = SCNVector3(0,0,-1.5)
+         venus.position = SCNVector3(0,0,-1.5)
                 moonParent.position = SCNVector3(1.2 ,0 , 0)
                    earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                    earth.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
@@ -1187,10 +1188,8 @@ pla()
                  //  let frame = self.sceneView.session.currentFrame
                  //  let frame = self.sceneView.
                    // let mat = SCNMatrix4(frame.camera.transform)
-                           for index in 0...6 {
-                               //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
-                               //make node array empty in the end of the game func
-                               //decent increase number of ships still seem a bit easy but that might be fine
+                           for index in 0...2 {
+                              
                                var Shoonode = SCNNode()
                                //make it to where it dont kill so many
                            //var ShoonodeSec = SCNNode()
@@ -1222,12 +1221,7 @@ pla()
                                    let moonParent = SCNNode()
                  
                               if (index > 1) && (index % 3 == 0) {
-                               //this good for a level 2.. speed of red shps and white hard to finish in 30 sec
-                              // red
-           //                                  let scene = SCNScene(named: "art.scnassets/spaceARcopy.scn")
-           //                                 Shoonode = (scene?.rootNode.childNode(withName: "SS1redcopy", recursively: true)!)!
-           //                                  Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-           //                                 Shoonode.name = "shark"
+                          
                                
                                
                                    let scene = SCNScene(named: "art.scnassets/spaceARcopy.scn")
@@ -1235,11 +1229,7 @@ pla()
                                                              Shoonode.scale = SCNVector3(0.03,0.03,0.03)
                                                             Shoonode.name = "shark"
                                          }else{
-                              // blue
-           //                                  let scene = SCNScene(named: "art.scnassets/SS1copy.scn")
-           //                                  FourthShoonode = (scene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
-           //                                   FourthShoonode.scale = SCNVector3(0.03,0.03,0.03)
-           //                                   FourthShoonode.name = "shark"
+     
                               let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
                                                                Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                                                 Shoonode.scale = SCNVector3(0.03,0.03,0.03)
@@ -1263,6 +1253,12 @@ pla()
                                    earth.addChildNode(ssShoonode)
                                                    earth.addChildNode(ssThShoonode)
                                                    earth.addChildNode(FourthShoonode)
+                            
+                            
+                            venus.addChildNode(Shoonode)
+                                                              venus.addChildNode(ssShoonode)
+                                                                              venus.addChildNode(ssThShoonode)
+                                                                              venus.addChildNode(FourthShoonode)
            //                     earth.name = "earth"
            //                    earthParent.name = "earthParent"
                              //  earth.addChildNode(ShoonodeSec)
@@ -1303,8 +1299,9 @@ pla()
 
                                       self.sceneView.scene.rootNode.addChildNode(Shoonode)
                               
-                            
-                            self.sceneView.scene.rootNode.addChildNode(sun) //self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
+                            self.sceneView.scene.rootNode.addChildNode(earthParent)
+                            self.sceneView.scene.rootNode.addChildNode(sun)
+                             self.sceneView.scene.rootNode.addChildNode(venusParentSun)//self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
                                self.sceneView.scene.rootNode.addChildNode(ssShoonode)
                                  self.sceneView.scene.rootNode.addChildNode(ssThShoonode)
                                 self.sceneView.scene.rootNode.addChildNode(FourthShoonode)
@@ -1313,38 +1310,55 @@ pla()
 
                                       let SecRotation = XRotation(time: 300)
                                  let SecRo = XRotation(time: 6)
+                             let JRRotation = Rotation(time: 5)
+                            
                                          let sunAction = Rotation(time: 20)
+                            
+                            
+                                         let sunActionVenus = Rotation(time: 25)
                                        let earthParentRotation = Rotation(time: 20)
                                let VRotation = Rotation(time: 15)
                                        let venusParentRotation = XRotation(time: 30)
                                        let earthRotation = Rotation(time: 30)
                                        let moonRotation = Rotation(time: 10)
                              let venusRotation = Rotation(time: 8)
-                           
+                              let JRotation = Rotation(time: 15)
                                Shoonode.runAction(SecRo)
            //                  //  ShoonodeSec.runAction(SecRotation)
-                              ssShoonode.runAction(SecRotation)
-                             
+                              ssShoonode.runAction(SecRo)
+                             venusParentSun.runAction(sunActionVenus)
            //                    //FourthShoonode
                               ssThShoonode.runAction(SecRotation)
                                FourthShoonode.runAction(SecRotation)
+                            
            //                        ssThShoonode
-                                      earthParent.runAction(earthParentRotation)
-                                      venusParent.runAction(VRotation)
+                                      earthParent.runAction(JRotation)
+                                      venusParent.runAction(JRotation)
                                       moonParent.runAction(moonRotation)
                                      venus.runAction(venusRotation)
-                                       venusParent.addChildNode(venus)
+                                       //venusParent.addChildNode(venus)
                                       earth.runAction(sunAction)
                             sun.runAction(sunAction)
-                            
+                            //figured out how distribute ships will have to create more Shoonodes
+                            //can be elaborate with given planets diff rotations since its
                             sun.addChildNode(earth)
                              sun.addChildNode(earthParent)
-                             earthParent.addChildNode(Shoonode)
-                               earthParent.addChildNode(ssShoonode)
+                            //venusParent.addChildNode(venus)
+                            venusParentSun.addChildNode(venusParent)
+                            
+                            venusParentSun.addChildNode(venus)
+                            earth.addChildNode(ssShoonode)
+                               earthParent.addChildNode(Shoonode)
                              //  ssThShoonode.addChildNode(ssShoonode)
                                earthParent.addChildNode(ssThShoonode)
                                earthParent.addChildNode(FourthShoonode)
-                                      earthParent.addChildNode(moonParent)
+                            
+                           // venus.addChildNode(ssShoonode)
+                            venusParent.addChildNode(Shoonode)
+                                                        //  ssThShoonode.addChildNode(ssShoonode)
+                                                          venusParent.addChildNode(ssThShoonode)
+                                                          venusParent.addChildNode(FourthShoonode)
+                                      //earthParent.addChildNode(moonParent)
                                earth.addChildNode(moon)
                                     moonParent.addChildNode(moon)
            //                    for n in SSnodeArray {
@@ -2042,9 +2056,7 @@ saturnParent.position = SCNVector3(0,0,-1)
                                            FourthShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                                                                                        FourthShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                                           
-                                          // -0.8
-                                                 //self.sceneView.scene.rootNode.addChildNode(earth)
-                                              //   self.sceneView.scene.rootNode.addChildNode(earthParent)
+                                  
                                         
                                         self.sceneView.scene.rootNode.addChildNode(EarParent)
                                         
