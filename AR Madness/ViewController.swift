@@ -420,6 +420,7 @@ pla()
     func fireMissile(type : String){
         var node = SCNNode()
             //create node
+        //Finish last level, new music and new ships. Dope
             node = createMissile(type: type)
             //fix it to where once you kill all says game won
             //have pop ups
@@ -438,14 +439,14 @@ pla()
             case "banana":
                 nodeDirection  = SCNVector3(direction.x*40,direction.y*40,direction.z*40)
                 node.physicsBody?.applyForce(nodeDirection, at: SCNVector3(0.1,0,0), asImpulse: true)
-                playSound(sound: "monkey", format: "mp3")
+                playSound(sound: "JBsmartsound", format: "mp3")
                 
                 //this stronger make a lot easier this should be temporary and rewarded after a certain level
-                //or destroying enemy ship/s
+                //or destroying enemy ship/s JBsmartsound.mp3
             case "axe":
                 nodeDirection  = SCNVector3(direction.x*40,direction.y*40,direction.z*40)
                 node.physicsBody?.applyForce(SCNVector3(direction.x,direction.y,direction.z), at: SCNVector3(0,0,0.1), asImpulse: true)
-                playSound(sound: "rooster", format: "mp3")
+                playSound(sound: "JBsmartsound", format: "mp3")
             default:
                 nodeDirection = direction
             }
@@ -4266,14 +4267,7 @@ pla()
                     defaults.set(self.score, forKey: "score")
                     self.messageLabel.isHidden = false
                     self.messageLabel.text = "you destroyed the earth."
-                  //  contact.nodeB.children.map{ $0.rem}
-                    //go back to the Home View Controller
-                    //maybe add popup that ask if you want to play again
-                   // nodeArray?.rem
-//                    for r in self.nodeArray {
-//                        r.removeFromParentNode()
-//                    }
-                   // self.earN?.removeFromParentNode()
+ 
                     self.dismiss(animated: true, completion: nil)
                 })
             }
@@ -4312,12 +4306,10 @@ pla()
 //                    if self.SSnodeArray.count > 3 {
                       if !self.SSnodeArray.isEmpty{
                     for r in self.SSnodeArray {
-                    //    self.SSnodeArray.filter({ $0 == 4 }).forEach({ $0.removeFromParentNode() })
-                       // if r.name != "2" {
-                          //  print("\(r.name)")
+              
                         r.removeFromParentNode()
                      //   }
-                    //                                        r.childNodes.filter({ $0.name == "shark" }).forEach({ $0.removeFromParentNode() })
+                    //
                                                         }
                     }
                 }
@@ -4421,7 +4413,7 @@ pla()
     
     func playBackgroundMusic(){
         let audioNode = SCNNode()
-        let audioSource = SCNAudioSource(fileNamed: "Sleppy.mp3")!
+        let audioSource = SCNAudioSource(fileNamed: "Sleepy.mp3")!
         let audioPlayer = SCNAudioPlayer(source: audioSource)
         
         audioNode.addAudioPlayer(audioPlayer)

@@ -29,6 +29,8 @@
 		E313249223EBF97A009C648F /* rain.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313249123EBF97A009C648F /* rain.scnp */; };
 		E313249423EBF9B0009C648F /* react.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313249323EBF9B0009C648F /* react.scnp */; };
 		E36A07F323EC1A9B000561D6 /* Confetti.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E36A07F223EC1A9B000561D6 /* Confetti.scnp */; };
+		E383ABD724237730001F79BB /* Sleepy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD62423772D001F79BB /* Sleepy.mp3 */; };
+		E383ABD92423822F001F79BB /* JBsmartsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD82423822E001F79BB /* JBsmartsound.mp3 */; };
 		E3BA590323F0ADE000860272 /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BA590223F0ADDF00860272 /* LevelsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,8 @@
 		E313249123EBF97A009C648F /* rain.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = rain.scnp; sourceTree = "<group>"; };
 		E313249323EBF9B0009C648F /* react.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = react.scnp; sourceTree = "<group>"; };
 		E36A07F223EC1A9B000561D6 /* Confetti.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Confetti.scnp; sourceTree = "<group>"; };
+		E383ABD62423772D001F79BB /* Sleepy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sleepy.mp3; sourceTree = "<group>"; };
+		E383ABD82423822E001F79BB /* JBsmartsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JBsmartsound.mp3; sourceTree = "<group>"; };
 		E3BA590223F0ADDF00860272 /* LevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +78,8 @@
 		A7216ABA20BE18C4009F6A51 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				E383ABD82423822E001F79BB /* JBsmartsound.mp3 */,
+				E383ABD62423772D001F79BB /* Sleepy.mp3 */,
 				A7216AD020BE960B009F6A51 /* overtake.mp3 */,
 				A7216ABB20BE1930009F6A51 /* explosion.wav */,
 				A7216ABF20BE1957009F6A51 /* watersplash.wav */,
@@ -208,9 +214,11 @@
 				A7216ACE20BE9313009F6A51 /* Explode.scnp in Resources */,
 				E313249423EBF9B0009C648F /* react.scnp in Resources */,
 				A73D42A820B80B4000965934 /* Main.storyboard in Resources */,
+				E383ABD92423822F001F79BB /* JBsmartsound.mp3 in Resources */,
 				E313248B23EBF906009C648F /* caffefe.scnp in Resources */,
 				A7216AC020BE1957009F6A51 /* watersplash.wav in Resources */,
 				A7216AC220BE1967009F6A51 /* rooster.mp3 in Resources */,
+				E383ABD724237730001F79BB /* Sleepy.mp3 in Resources */,
 				E36A07F323EC1A9B000561D6 /* Confetti.scnp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
