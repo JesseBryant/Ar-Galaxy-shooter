@@ -32,6 +32,7 @@
 		E383ABD724237730001F79BB /* Sleepy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD62423772D001F79BB /* Sleepy.mp3 */; };
 		E383ABD92423822F001F79BB /* JBsmartsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD82423822E001F79BB /* JBsmartsound.mp3 */; };
 		E3BA590323F0ADE000860272 /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BA590223F0ADDF00860272 /* LevelsViewController.swift */; };
+		E3F6D5E82424D96800D19AB0 /* mViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F6D5E72424D96800D19AB0 /* mViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		E383ABD62423772D001F79BB /* Sleepy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sleepy.mp3; sourceTree = "<group>"; };
 		E383ABD82423822E001F79BB /* JBsmartsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JBsmartsound.mp3; sourceTree = "<group>"; };
 		E3BA590223F0ADDF00860272 /* LevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
+		E3F6D5E72424D96800D19AB0 /* mViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				A73D42AE20B80B4200965934 /* Info.plist */,
 				A7216AD220BE9B72009F6A51 /* HomeViewController.swift */,
 				E3BA590223F0ADDF00860272 /* LevelsViewController.swift */,
+				E3F6D5E72424D96800D19AB0 /* mViewController.swift */,
 			);
 			path = "AR Madness";
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3F6D5E82424D96800D19AB0 /* mViewController.swift in Sources */,
 				A73D42A520B80B4000965934 /* ViewController.swift in Sources */,
 				A73D42A120B80B4000965934 /* AppDelegate.swift in Sources */,
 				A7216AD320BE9B72009F6A51 /* HomeViewController.swift in Sources */,

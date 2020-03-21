@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         let defaults = UserDefaults.standard
+       //  self.sceneView.scene.rootNode.removeAllAudioPlayers()
         if let gameScore = defaults.value(forKey: "score"){
             let score = gameScore as! Int
             scoreLabel.text = "Score: \(String(score))"

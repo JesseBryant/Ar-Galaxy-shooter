@@ -37,6 +37,18 @@ import ARKit
 enum BitMaskCategory: Int {
     case target  = 3
 }
+//class AudioPlayer {
+//    var audioPlayer = AVAudioPlayer()
+//    func playingSoundWith(fileName: String) {
+//        do {
+//            audioPlayer = try AVAudioPlayer(contentsOf: Bundle.main.url(forResource: fileName, withExtension: "mp3")!)
+//            audioPlayer.prepareToPlay()
+//            audioPlayer.play()
+//        } catch {
+//            print(error)
+//        }
+//    }
+//}
 
 class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate {
     
@@ -55,6 +67,23 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     @IBOutlet weak var levelJB: UILabel!
     //used to store the scoreP:>L)_________________________________________________________________________________________________________________________[…≥π÷{{Ú∏˘::
+    
+    let audioNode = SCNNode()
+    let audioSource = SCNAudioSource(fileNamed: "Sleepy.mp3")!
+    
+        var audioPlayer = AVAudioPlayer()
+    //Sleepy.mp3
+        func playingSoundWith(fileName: String) {
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: Bundle.main.url(forResource: fileName, withExtension: "mp3")!)
+                audioPlayer.prepareToPlay()
+                audioPlayer.play()
+            } catch {
+                print(error)
+            }
+        }
+    
+
     var score = 0
      var scoreL = 0
     var target: SCNNode?
@@ -98,13 +127,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     }
     
     //MARK: - view functions
-    
+    // let audioPlayer = SCNAudioPlayer(source: audioSource)
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // stopBackgroundMusic()
         // Set the view's delegate
         sceneView.delegate = self
-        
+        // let audioPlayer = SCNAudioPlayer(source: audioSource)
         // Show statistics such as fps and timing information
         //sceneView.showsStatistics = true
         
@@ -138,6 +167,7 @@ pla()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //stopBackgroundMusic()
 //        let defaults = UserDefaults.standard
 //                   if let gameScore = defaults.value(forKey: "scoreL"){
 //                       let score = gameScore as! Int
@@ -157,9 +187,10 @@ pla()
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        //stopBackgroundMusic()
         // Pause the view's session
         sceneView.session.pause()
+       // stopBackgroundMusic()
     }
     
     // MARK: - timer
@@ -178,19 +209,19 @@ pla()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
     }
     func PlayInstructions() {
-        
+
 //        messageLabel.isHidden = false
 //        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
         self.messageLabel.isHidden = false
-               self.messageLabel.text = "Shoot all the spaceships. Do not shoot earth"
+               self.messageLabel.text = "Shoot all the spaceships. Do not shoot planets"
     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-              
+
         self.messageLabel.isHidden = true
                  })
-        
-        
 
-        
+
+
+
     }
     
     //decrements seconds by 1, updates the timerLabel and calls gameOver if seconds is 0
@@ -248,7 +279,10 @@ pla()
         let defaultsJB = UserDefaults.standard
         defaultsJB.set(arrrrr, forKey: "scoreL")
         //go back to the Home View Controller
+       // removeAud
+        //stopBackgroundMusic()
         self.dismiss(animated: true, completion: nil)
+         stopBackgroundMus()
     }
     
     
@@ -261,8 +295,10 @@ pla()
                                    messageLabel.isHidden = true
                             levelJB.text = "level 2"
                                   SecaddTargetNodes()
+             sceneView.scene.rootNode.removeAllAudioPlayers()
                                   PlayInstructions()
                                   //play background music
+//                            stopBackgroundMusic()
                                   playBackgroundMusic()
                                   
                                   //start tinmer
@@ -276,6 +312,7 @@ pla()
                                   addTargetNodes()
                             //FsaddTargetNodes()
                             // FsaddTargetNodes()
+            // sceneView.scene.rootNode.removeAllAudioPlayers()
                                   PlayInstructions()
                                   //play background music
                                   playBackgroundMusic()
@@ -290,7 +327,7 @@ pla()
                                                    messageLabel.isHidden = true
                                             levelJB.text = "level 4"
                                                   addTargetNodesFour()
-                                          
+                                      //     sceneView.scene.rootNode.removeAllAudioPlayers()
                                                   PlayInstructions()
                                                   //play background music
                                                   playBackgroundMusic()
@@ -308,16 +345,19 @@ pla()
                                                                             addTargetNodesFive()
                                                                       //FsaddTargetNodes()
                                                                       // FsaddTargetNodes()
+             //sceneView.scene.rootNode.removeAllAudioPlayers()
                                                                             PlayInstructions()
                                                                             //play background music
-                                                                            playBackgroundMusic()
-                                                                            
+                                                                        //    playBackgroundMusic()
+                                                                           // playingSoundWith
                                                                             //start tinmer
                                                                             runTimer()
                                                                         print("\(score): welcome to level 5 jess")
                                                                    //
                                                                   } else if 751...762 ~= score{
                                                                                                           //  sceneView.backgroundColor = UIColor.red
+            
+             sceneView.scene.rootNode.removeAllAudioPlayers()
                                                                                                                    messageLabel.isHidden = true
                                                                                                             levelJB.text = "level 6"
                                                                   
@@ -337,6 +377,9 @@ pla()
                         
                         //addTargetNodesSaturn()
                         else if 763...800 ~= score{
+            
+             sceneView.scene.rootNode.removeAllAudioPlayers()
+            
                                                                 //  sceneView.backgroundColor = UIColor.red
                                                                          messageLabel.isHidden = true
                                                                   levelJB.text = "level 7"
@@ -355,6 +398,8 @@ pla()
                                                                
                                                               }
                         else if 807...810 ~= score{
+            
+             sceneView.scene.rootNode.removeAllAudioPlayers()
                                                                                //  sceneView.backgroundColor = UIColor.red
                                                                                         messageLabel.isHidden = true
                                                                                  levelJB.text = "level 8"
@@ -374,6 +419,7 @@ pla()
                                                                               
                                                                              }
       else if 807...2950 ~= score{
+             sceneView.scene.rootNode.removeAllAudioPlayers()
                                                                                //  sceneView.backgroundColor = UIColor.red
                                                                                         messageLabel.isHidden = true
                                                                                  levelJB.text = "level 9"
@@ -387,18 +433,24 @@ pla()
                                                                                     //addTargetNodesFive()
                                                           // FsaddTargetNodes()
             PlayInstructions()
-                                                                                       //play background music
-                                                                                       playBackgroundMusic()
+                                                                                    //play background music
+                                                                     //          stopBackgroundMusic()
+            //Sleepy
+            playBackgroundMusic()
+           // playingSoundWith(fileName: String)
+           // playingSoundWith(fileName: "Sleepy")
                                                                                        
                                                                                        //start tinmer
                                                                                        runTimer()
                                                                                    print("\(score): welcome to level 9 jess")
+           // stopBackgroundMusic()
                                                                               
                                                                              }
       
                  
                 else{
                   //  sceneView.backgroundColor = UIColor.red
+             sceneView.scene.rootNode.removeAllAudioPlayers()
                            messageLabel.isHidden = true
                     levelJB.text = "level 1"
                           //addTargetNodes()
@@ -412,6 +464,7 @@ pla()
                     print("\(score): still on level 1")
    
                 }
+      //  stopBackgroundMusic()
     }
     
     // MARK: - missiles & targets
@@ -2612,22 +2665,23 @@ pla()
                                                 
                                                // venusParent.name = "earth"
                                        //         earth.addChildNode(Shoonode)
+        //decent rotations, maybe some could be closer. Fixed bugs with music and ships ending game!
                                                //8328579
                                                earN = earthParent
-                                                 earth.name = "earth"
+                                                 earth.name = "earthQJ"
                                                 earthParent.name = "earthParent"
                                     //where the relationships between earth and earthParent
-                                                                         earth.position = SCNVector3(0,0,-1)
-                                                                          earthParent.position = SCNVector3(0,0,-1)
+        earth.position = SCNVector3(1.8,0,0)
+        earthParent.position = SCNVector3(1.8,0,0)
                                     
-                         saturn.position = SCNVector3(0,0,-1.8)
-                         SaturnParent.position = SCNVector3(0,0,-1.8)
-                  neptune.position = SCNVector3(1.6,0,0)
-                  neptuneParent.position = SCNVector3(1.6,0,0)
-        jupiter.position = SCNVector3(2.1,0,0)
-        JupitarParent.position = SCNVector3(2.1,0,0)
-                                    venusParent.position = SCNVector3(0,0,-1.5)
-                                     venus.position = SCNVector3(0,0,-1.5)
+                         saturn.position = SCNVector3(-2.8,0,0)
+                         SaturnParent.position = SCNVector3(-2.8,0,0)
+        neptune.position = SCNVector3(3.8,0,0)
+        neptuneParent.position = SCNVector3(3.8,0,0)
+        jupiter.position = SCNVector3(0,0,3.4)
+        JupitarParent.position = SCNVector3(0,0,3.4)
+        venusParent.position = SCNVector3(0,0,1.7)
+        venus.position = SCNVector3(0,0,1.7)
                       moonParent.position = SCNVector3(1.2 ,0 , 0)
                   earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                           earth.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
@@ -2636,7 +2690,7 @@ pla()
                       venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                           venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                                       
-                      for index in 0...2 {
+                      for index in 0...1 {
                                         //ear***
                               var Shoonode = SCNNode()
                                                
@@ -2996,11 +3050,11 @@ pla()
                                                             FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
                         
                         //Jup
-                        JupShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                        JupShoonode.position = SCNVector3(randomFloat(min: 0.8, max: 0.3),randomFloat(min: 0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
                                                                                      
                                                                                   //  let moonRotation = Rotation(time: 5)
                                                                                   //changed this one!!!
-                                                                                 JupssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
+                                                                                 JupssShoonode.position = SCNVector3(randomFloat(min: 0.1, max: 0.8),randomFloat(min: 0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
                                                                                   
                                                                                   
                                                                          
@@ -3142,16 +3196,16 @@ pla()
                                                                                                                              self.sceneView.scene.rootNode.addChildNode(NepFourthShoonode)
 
                                                                   let SecRotation = XRotation(time: 300)
-                                                             let SecRo = XRotation(time: 6)
+                                                             let SecRo = XRotation(time: 2)
                                                          let JRRotation = Rotation(time: 5)
                                                         
-                                                                     let sunAction = Rotation(time: 20)
+                                                                     let sunAction = Rotation(time: 10)
                                                         
                                                         
                                                                      let sunActionVenus = Rotation(time: 25)
-                                                          let sunActionNep = Rotation(time: 23)
-                                                        let sunActionJ = Rotation(time: 17)
-                                                         let sunActionSa = Rotation(time: 22)
+                                                          let sunActionNep = Rotation(time: 14)
+                                                        let sunActionJ = Rotation(time: 7)
+                                                         let sunActionEar = Rotation(time: 12)
                                                                    let earthParentRotation = Rotation(time: 20)
                                                            let VRotation = Rotation(time: 15)
                                                                    let venusParentRotation = XRotation(time: 30)
@@ -3159,27 +3213,28 @@ pla()
                                                                    let moonRotation = Rotation(time: 10)
                                                          let venusRotation = Rotation(time: 8)
                                             let JupRotation = Rotation(time: 11)
-                                                          let JRotation = Rotation(time: 15)
-                                                           Shoonode.runAction(SecRo)
+                                                          let JRotation = Rotation(time: 5)
+                                                           Shoonode.runAction(SecRotation)
                                        //                  //  ShoonodeSec.runAction(SecRotation)
-                                                          ssShoonode.runAction(SecRo)
+                                                          ssShoonode.runAction(SecRotation)
                                                      
                                        //                    //FourthShoonode
                                                           ssThShoonode.runAction(SecRo)
                                                            FourthShoonode.runAction(SecRotation)
-                                                                //Jup
-                                                                    JupShoonode.runAction(SecRo)
+                                                              
+                        //Jup
+                                                                    JupShoonode.runAction(SecRotation)
                                                         
-                                                                        JupssShoonode.runAction(SecRo)
+                                                                        JupssShoonode.runAction(SecRotation)
                                                                          
                                                            //                    //FourthShoonode
                                                                               JupssThShoonode.runAction(SecRo)
                                                                                JupFourthShoonode.runAction(SecRotation)
                                                         
                                                         //Ven added
-                                                         VenShoonode.runAction(SecRo)
+                                                         VenShoonode.runAction(SecRotation)
                                                         //                  //  ShoonodeSec.runAction(SecRotation)
-                                                                           VenssShoonode.runAction(SecRo)
+                                                                           VenssShoonode.runAction(SecRotation)
                                                                          
                                                         //                    //FourthShoonode
                                                                            VenssThShoonode.runAction(SecRo)
@@ -3193,19 +3248,19 @@ pla()
                                                                                                         NepssThShoonode.runAction(SecRo)
                                                                                                          NepFourthShoonode.runAction(SecRotation)
                                                          //Sa
-                                                         SaShoonode.runAction(SecRo)
+                                                         SaShoonode.runAction(SecRotation)
                                                                                               //                  //  ShoonodeSec.runAction(SecRotation)
-                                                                                                                 SAssShoonode.runAction(SecRo)
+                                                                                                                 SAssShoonode.runAction(SecRotation)
                                                                                                                
                                                                                               //                    //FourthShoonode
                                                                                                                  SassThShoonode.runAction(SecRo)
-                                                                                                                  SaFourthShoonode.runAction(SecRo)
+                                                                                                                  SaFourthShoonode.runAction(SecRotation)
                                                         
                                                         
                                        //                        ssThShoonode
                         JupitarParentSun.runAction(sunActionJ)
-                                                         venusParentSun.runAction(sunActionVenus)
-                                                                                             SaturnParentSun.runAction(sunActionSa)
+                                                         venusParentSun.runAction(sunAction)
+                                                                                             SaturnParentSun.runAction(sunAction)
                                                           neptuneParentSun.runAction(sunActionNep)
                                                                   earthParent.runAction(JRotation)
                                                         JupitarParent.runAction(JRotation)
@@ -4254,11 +4309,16 @@ pla()
                 score+=5
                 scoreL+=5
                 //scoreL+=s
-            } else if (contact.nodeA.name! == "earth" || contact.nodeB.name! == "earth") {
+            } else if (contact.nodeA.name! == "earthQJ" || contact.nodeB.name! == "earthQJ") {
             
               //  contact.nodeA.removeFromParentNode()
                             //  contact.nodeB.removeFromParentNode()
                // gameOver()
+//                DispatchQueue.main.async {
+//                self.messageLabel.text = "you destroyed the earth."
+                
+//                }
+                  self.sceneView.scene.rootNode.removeAllAudioPlayers()
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
                     
                     //made 0 cz sh earh
@@ -4266,9 +4326,12 @@ pla()
                     let defaults = UserDefaults.standard
                     defaults.set(self.score, forKey: "score")
                     self.messageLabel.isHidden = false
-                    self.messageLabel.text = "you destroyed the earth."
- 
-                    self.dismiss(animated: true, completion: nil)
+//                    self.stopBackgroundMusic()
+//                    self.messageLabel.text = "you destroyed the earth."
+                    self.sceneView.scene.rootNode.removeAllAudioPlayers()
+//                    self.dismiss(animated: true, completion: nil)
+                    self.gameOver()
+//                    self.stopBackgroundMusic()
                 })
             }
                 else{
@@ -4412,16 +4475,28 @@ pla()
     }
     
     func playBackgroundMusic(){
-        let audioNode = SCNNode()
-        let audioSource = SCNAudioSource(fileNamed: "Sleepy.mp3")!
+//        let audioNode = SCNNode()
+//        let audioSource = SCNAudioSource(fileNamed: "Sleepy.mp3")!
         let audioPlayer = SCNAudioPlayer(source: audioSource)
         
         audioNode.addAudioPlayer(audioPlayer)
         
         let play = SCNAction.playAudio(audioSource, waitForCompletion: true)
+//        let gg = SCNAction.removeFromParentNode()
         audioNode.runAction(play)
+        
         sceneView.scene.rootNode.addChildNode(audioNode)
     }
+    func stopBackgroundMus() {
+//         let audioPlayer = SCNAudioPlayer(source: audioSource)
+        let gg = SCNAction.removeFromParentNode()
+        audioNode.runAction(gg)
+        sceneView.scene.rootNode.removeAllAudioPlayers()
+//
+          //  audioPlayer.stop()
+         //   audioPlayer.currentTime = 0 // I usually reset the song when I stop it. To pause it create another method and call the pause() method on the audioPlayer.
+         //   audioPlayer.prepareToPlay()
+        }
     
 }
 
