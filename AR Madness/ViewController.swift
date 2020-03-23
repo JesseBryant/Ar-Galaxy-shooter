@@ -404,11 +404,9 @@ pla()
                                                                                         messageLabel.isHidden = true
                                                                                  levelJB.text = "level 8"
                                        
-                                       //Will need to add other nodes give a more real effect. For smaller ships
+                               
                                                                                        addTargetNodesNeptune()
                            //  FsaddTargetNodes()
-                                                                                 //FsaddTargetNodes()
-                                                                                 // FsaddTargetNodes()
                                                                                        PlayInstructions()
                                                                                        //play background music
                                                                                        playBackgroundMusic()
@@ -418,7 +416,7 @@ pla()
                                                                                    print("\(score): welcome to level 8 jess")
                                                                               
                                                                              }
-      else if 807...2950 ~= score{
+      else if 807...5950 ~= score{
              sceneView.scene.rootNode.removeAllAudioPlayers()
                                                                                //  sceneView.backgroundColor = UIColor.red
                                                                                         messageLabel.isHidden = true
@@ -426,12 +424,13 @@ pla()
                                        
                                        //Will need to add other nodes give a more real effect. For smaller ships
              // FsaddTargetNodes()
-                                                                                    addTargetNodesJupitar()
+                                                                                  //  addTargetNodesJupitar()
          //   addTargetNodesSixVenus()
            // addTargetNodesNeptune()
             //addTargetNodesSaturn()
                                                                                     //addTargetNodesFive()
-                                                          // FsaddTargetNodes()
+                                                       //    FsaddTargetNodes()
+            SecaddTargetNodes()
             PlayInstructions()
                                                                                     //play background music
                                                                      //          stopBackgroundMusic()
@@ -3884,7 +3883,8 @@ pla()
           //  let frame = self.sceneView.session.currentFrame
           //  let frame = self.sceneView.
             // let mat = SCNMatrix4(frame.camera.transform)
-                    for index in 0...6 {
+                    for index in 0...9 {
+                        //first two levels solid
                         //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
                         //make node array empty in the end of the game func
                         //decent increase number of ships still seem a bit easy but that might be fine
@@ -3926,8 +3926,8 @@ pla()
           
                        if (index > 1) && (index % 3 == 0) {
                        // red
-                                      let scene = SCNScene(named: "art.scnassets/spaceARcopy.scn")
-                                     Shoonode = (scene?.rootNode.childNode(withName: "SS1redcopy", recursively: true)!)!
+                                         let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
+                                        Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                       Shoonode.scale = SCNVector3(0.03,0.03,0.03)
                                      Shoonode.name = "shark"
                                   }else{
@@ -3974,16 +3974,16 @@ pla()
     //                     Shoonode.addChildNode(b)
     //                    Shoonode.addChildNode(c)
                     //      ShoonodeSec.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5)) -0.8, max: 0.3
-                        Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                           
-                        
-                        //changed this one!!!
-                        ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
-                        
-                        
-               
-                        ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                         FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                      Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.9))
+                                               
+                                            
+                                            //changed this one!!!
+                                            ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.8))
+                                            
+                                            
+                                   
+                                            ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                                             FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.9))
                         
                         
 
@@ -4016,9 +4016,9 @@ pla()
 
                                let SecRotation = XRotation(time: 300)
                           let SecRo = XRotation(time: 6)
-                                  let sunAction = Rotation(time: 20)
+                                  let sunAction = Rotation(time: 15)
                                 let earthParentRotation = Rotation(time: 10)
-                        let VRotation = Rotation(time: 6)
+                        let VRotation = Rotation(time: 9)
                                 let venusParentRotation = XRotation(time: 20)
                                 let earthRotation = Rotation(time: 20)
                                 let moonRotation = Rotation(time: 5)
@@ -4043,7 +4043,7 @@ pla()
                         ////****** and ven name*/
                            //    earthParent.addChildNode(Shoonode)
                        // earthParent.addChildNode(ShoonodeSec)
-                        earthParent.addChildNode(ssShoonode)
+                       earth.addChildNode(ssShoonode)
                       //  ssThShoonode.addChildNode(ssShoonode)
                         earthParent.addChildNode(ssThShoonode)
                         earthParent.addChildNode(FourthShoonode)
@@ -4141,6 +4141,8 @@ pla()
                                let moonParent = SCNNode()
              
                           if (index > 1) && (index % 3 == 0) {
+                            
+                        
                           // red
                                          let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                         Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
@@ -4190,16 +4192,16 @@ pla()
        //                     Shoonode.addChildNode(b)
        //                    Shoonode.addChildNode(c)
                        //      ShoonodeSec.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5)) -0.8, max: 0.3
-                           Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                           Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
                               
                            
                            //changed this one!!!
-                           ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
+                           ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.8))
                            
                            
                   
                            ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                            FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                            FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.7))
                            
                            
 
@@ -4232,7 +4234,7 @@ pla()
 
                                   let SecRotation = XRotation(time: 300)
                              let SecRo = XRotation(time: 6)
-                                     let sunAction = Rotation(time: 20)
+                                     let sunAction = Rotation(time: 12)
                                    let earthParentRotation = Rotation(time: 10)
                            let VRotation = Rotation(time: 6)
                                    let venusParentRotation = XRotation(time: 20)
@@ -4240,7 +4242,7 @@ pla()
                                    let moonRotation = Rotation(time: 5)
                            // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                              //  make big ships spin as it Rotate
-                           Shoonode.runAction(SecRo)
+                           Shoonode.runAction(SecRotation)
        //                  //  ShoonodeSec.runAction(SecRotation)
                           ssShoonode.runAction(SecRotation)
        //                    //FourthShoonode
@@ -4258,7 +4260,7 @@ pla()
                         earthParent.addChildNode(venusParent)
                            
                            ////****** and ven name*/
-                              //    earthParent.addChildNode(Shoonode)
+                                  earth.addChildNode(Shoonode)
                           // earthParent.addChildNode(ShoonodeSec)
                            earthParent.addChildNode(ssShoonode)
                          //  ssThShoonode.addChildNode(ssShoonode)
