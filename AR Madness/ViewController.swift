@@ -2716,7 +2716,7 @@ pla()
 //                      venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
 //                          venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                                       
-                      for index in 0...1 {
+                      for index in 0...3 {
                                         //ear***
                               var Shoonode = SCNNode()
                                                
@@ -2863,8 +2863,8 @@ pla()
                                                       
                                                            
                                                            //ear
-                                                               let scene = SCNScene(named: "art.scnassets/spaceARcopy.scn")
-                                                                                        Shoonode = (scene?.rootNode.childNode(withName: "SS1redcopy", recursively: true)!)!
+                                                    let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
+                                                                                 Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                                                          Shoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                                                         Shoonode.name = "shark"
                                                             //Ven
@@ -2873,19 +2873,22 @@ pla()
 //                                                                                                                        VenShoonode.scale = SCNVector3(0.02,0.02,0.02)
 //                                                                                                                       VenShoonode.name = "shark"
                                                              //sa
-                                                             let scenea = SCNScene(named: "art.scnassets/spaceARcopy.scn")
-                                                                                                            SaShoonode = (scenea?.rootNode.childNode(withName: "SS1redcopy", recursively: true)!)!
+                                                       let scenell = SCNScene(named: "art.scnassets/spaceGreen.scn")
+                                                                                                                                           SaShoonode = (scenell?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+                                                                                                                                        
                                                                                                                                  SaShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                                                                                     SaShoonode.name = "shark"
                                                             //nep
-                                                              let scenean = SCNScene(named: "art.scnassets/spaceARcopy.scn")
-                                                                                                                                                                                  NepShoonode = (scenean?.rootNode.childNode(withName: "SS1redcopy", recursively: true)!)!
+                                                                 let scenenn = SCNScene(named: "art.scnassets/spaceGreen.scn")
+                                                                                                                                            NepShoonode = (scenenn?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+                                                                                                                                         
                                                                                                                                                                                    NepShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                                                                                                                                                   NepShoonode.name = "shark"
                                                             
                                                             
-                                                            let sceneann = SCNScene(named: "art.scnassets/spaceARcopy.scn")
-                                                                                                                                                                                                                                             JupShoonode = (sceneann?.rootNode.childNode(withName: "SS1redcopy", recursively: true)!)!
+                                                                let scenennk = SCNScene(named: "art.scnassets/spaceGreen.scn")
+                                                                                                                                                                                                       JupShoonode = (scenennk?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+                                                                                                                                       
                                                                                                                                                                                                                                               JupShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                                                                                                                                                                                                              JupShoonode.name = "shark"
                                                             
@@ -3228,7 +3231,8 @@ pla()
                                                              let SecRo = XRotation(time: 2)
                                                          let JRRotation = Rotation(time: 5)
                                                         
-                                                                     let sunAction = Rotation(time: 10)
+                                                                     let sunAction = Rotation(time: 19)
+                        // complete level 9
                          let sunActionS = Rotation(time: 12)
                                                         
                                                         
