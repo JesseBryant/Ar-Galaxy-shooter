@@ -2698,11 +2698,11 @@ pla()
         //perfect distance of planets
         earth.position = SCNVector3(1.8,0,0)
         earthParent.position = SCNVector3(1.8,0,0)
-                                    
-                         saturn.position = SCNVector3(-2.8,0,0)
-                         SaturnParent.position = SCNVector3(-2.8,0,0)
-        neptune.position = SCNVector3(0,0,3.9)
-        neptuneParent.position = SCNVector3(0,0,3.9)
+                          //better rotations..nice positions
+                         saturn.position = SCNVector3(-2.5,0,0)
+                         SaturnParent.position = SCNVector3(-2.5,0,0)
+        neptune.position = SCNVector3(0,0,3.5)
+        neptuneParent.position = SCNVector3(0,0,3.5)
         jupiter.position = SCNVector3(0,0,-2.9)
         JupitarParent.position = SCNVector3(0,0,-2.9)
 //        venusParent.position = SCNVector3(0,0,1.2)
@@ -3068,11 +3068,11 @@ pla()
                                                                                                        EarGroupNodeArray.append(neptuneParent)
 
                         
-                        Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                        Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
                                                                    
                                                                 
                                                                 //changed this one!!!
-                                                                ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.9))
+                                                                ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.9))
                                                                 
                                                                 
                                                        
@@ -3120,16 +3120,16 @@ pla()
                                                                                                                        SassThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
                                                                                                                         SaFourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
                                                           //Nep
-                                                           NepShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                                                                                                                           
-                                                                                                                        
-                                                                                                                        //changed this one!!!
-                                                                                                                        NepssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.9))
-                                                                                                                        
-                                                                                                                        
-                                                                                                               
-                                                                                                                        NepssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
-                                                                                                                         NepFourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                                                            NepShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                                                                                                                            
+                                                                                                                         
+                                                                                                                         //changed this one!!!
+                                                                                                                         NepssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.9))
+                                                                                                                         
+                                                                                                                         
+                                                                                                                
+                                                                                                                         NepssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                                                                                                                          NepFourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
                                                         
                                                                   moonParent.position = SCNVector3(0 ,0 , -1)
                                                           
@@ -3324,7 +3324,7 @@ pla()
                                                         sun.addChildNode(earth)
                                                          sun.addChildNode(earthParent)
                                                         //venusParent.addChildNode(venus)
-                                                        venusParentSun.addChildNode(venusParent)
+                                                     //   venusParentSun.addChildNode(venusParent)
                                                          
                                                         //added venus and planets
                                                      //   venusParentSun.addChildNode(venus)
