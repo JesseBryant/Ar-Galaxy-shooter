@@ -278,9 +278,6 @@ pla()
                  }
         
         
-        
-        
-        
      //   scoreL += score
         let fscre = scoreL
         //store the score in UserDefaults
@@ -299,7 +296,103 @@ pla()
     }
     
     
+    func PlanetHit() {
+
+         //        messageLabel.isHidden = false
+         //        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
+                 self.messageLabel.isHidden = false
+                        self.messageLabel.text = "You shot a planet"
+             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+                 var scoreJJ = 0
+                        let chd = "earth"
+                          let chdKK = "earthParent"
+                    
+
+
+                         let defaultss = UserDefaults.standard
+                                    if let gameScore = defaultss.value(forKey: "scoreL"){
+                                         scoreJJ = gameScore as! Int
+                                        if self.score > 90 {
+                                          //  print("\(score):score >90 welcome to level 2")
+                                        } else{
+                                           // print("\(score): score <90 still on level 1")
+                                        }
+                        //                //scoreLabel.text = "Score: \(String(score))"
+                                 }
+                        
+                        
+                     //   scoreL += score
+                let fscre = self.scoreL
+                        //store the score in UserDefaults
+                        let defaults = UserDefaults.standard
+                defaults.set(self.score, forKey: "score")
+                //        scoreL += score
+                      //  defaults.set(scoreL, forKey: "scoreL")
+                        let arrrrr = scoreJJ + fscre
+                        let defaultsJB = UserDefaults.standard
+                        defaultsJB.set(arrrrr, forKey: "scoreL")
+                        //go back to the Home View Controller
+                       // removeAud
+                        //stopBackgroundMusic()
+                        self.dismiss(animated: true, completion: nil)
+                self.stopBackgroundMus()
+                 self.messageLabel.isHidden = true
+                          })
+
+
+
+
+             }
     
+    
+    func PlanetHitMoon() {
+
+            //        messageLabel.isHidden = false
+            //        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
+                    self.messageLabel.isHidden = false
+                           self.messageLabel.text = "You shot the moon"
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+                    var scoreJJ = 0
+                           let chd = "earth"
+                             let chdKK = "earthParent"
+                       
+
+
+                            let defaultss = UserDefaults.standard
+                                       if let gameScore = defaultss.value(forKey: "scoreL"){
+                                            scoreJJ = gameScore as! Int
+                                           if self.score > 90 {
+                                             //  print("\(score):score >90 welcome to level 2")
+                                           } else{
+                                              // print("\(score): score <90 still on level 1")
+                                           }
+                           //                //scoreLabel.text = "Score: \(String(score))"
+                                    }
+                           
+                           
+                        //   scoreL += score
+                   let fscre = self.scoreL
+                           //store the score in UserDefaults
+                           let defaults = UserDefaults.standard
+                   defaults.set(self.score, forKey: "score")
+                   //        scoreL += score
+                         //  defaults.set(scoreL, forKey: "scoreL")
+                           let arrrrr = scoreJJ + fscre
+                           let defaultsJB = UserDefaults.standard
+                           defaultsJB.set(arrrrr, forKey: "scoreL")
+                           //go back to the Home View Controller
+                          // removeAud
+                           //stopBackgroundMusic()
+                           self.dismiss(animated: true, completion: nil)
+                   self.stopBackgroundMus()
+                    self.messageLabel.isHidden = true
+                             })
+
+
+
+
+                }
+       
     
     
     func pla() {
@@ -314,12 +407,14 @@ pla()
                                   //play background music
 //                            stopBackgroundMusic()
                                   playBackgroundMusic()
-                                   addTargetNodesJupitar()
+            addTargetNodesFive()
+          //  addTargetNodesFour()
+                                  // addTargetNodesJupitar()
                                   //start tinmer
                                   runTimer()
     
                             print("\(score): welcome to level 2")
-                        } else if 190...700 ~= score{
+                        } else if 190...7000 ~= score{
                           //  sceneView.backgroundColor = UIColor.red
                                    messageLabel.isHidden = true
                             levelJB.text = "level 3"
@@ -607,8 +702,8 @@ pla()
 //         earth.addChildNode(Shoonode)
         //8328579
         earN = earthParent
-          earth.name = "earth"
-         earthParent.name = "earthParent"
+          earth.name = "earthQJ"
+         earthParent.name = "earthQJ"
                                   earth.position = SCNVector3(0,0,-1)
                                    earthParent.position = SCNVector3(0,0,-1)
         earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
@@ -800,10 +895,13 @@ pla()
          let moonParent = SCNNode()
         
             let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
-           let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
+           let moonn = planet(geometry: SCNSphere(radius: 0.09), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
          //   venusParent
              earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                 earth.physicsBody?.isAffectedByGravity = false
+        moonn.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+         moonn.physicsBody?.isAffectedByGravity = false
+                                    //earth.physicsBody?.isAffectedByGravity = false
              earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                 earthParent.physicsBody?.isAffectedByGravity = false
 
@@ -819,15 +917,23 @@ pla()
     //         earth.addChildNode(Shoonode)
             //8328579
             earN = earthParent
-              earth.name = "earth"
-             earthParent.name = "earthParent"
+              earth.name = "earthQJ"
+             earthParent.name = "earthQJ"
+        moonParent.name = "moon"
+        moonn.name = "moonnn"
                                       earth.position = SCNVector3(0,0,-1)
                                        earthParent.position = SCNVector3(0,0,-1)
-         moonParent.position = SCNVector3(1.2 ,0 , 0)
+         moonParent.position = SCNVector3(0,0,-1)
+        moonn.position = SCNVector3(0,0,-0.9)
+        //moon.position = SCNVector3(0 ,0 , 1.2)
             earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
             earth.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
             earthParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
             earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+        moonn.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+        moonn.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+      //  moonParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+       // moonParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
             venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                  venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
           //  let frame = self.sceneView.session.currentFrame
@@ -865,7 +971,7 @@ pla()
                                            FourthShoonode.name = "shark"
                         
 
-                            let moonParent = SCNNode()
+                           // let moonParent = SCNNode()
           
                        if (index > 1) && (index % 3 == 0) {
                         //this good for a level 2.. speed of red shps and white hard to finish in 30 sec
@@ -900,6 +1006,11 @@ pla()
                                                               Shoonode.physicsBody?.isAffectedByGravity = false
                                            ssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                              ssShoonode.physicsBody?.isAffectedByGravity = false
+                        
+                        ssThShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                ssThShoonode.physicsBody?.isAffectedByGravity = false
+                        
+                        
                         FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                                                FourthShoonode.physicsBody?.isAffectedByGravity = false
 
@@ -949,6 +1060,7 @@ pla()
                         // -0.8
                                self.sceneView.scene.rootNode.addChildNode(earth)
                                self.sceneView.scene.rootNode.addChildNode(earthParent)
+                        self.sceneView.scene.rootNode.addChildNode(moonParent)
                                self.sceneView.scene.rootNode.addChildNode(venusParent)
 
                                self.sceneView.scene.rootNode.addChildNode(Shoonode)
@@ -966,7 +1078,7 @@ pla()
                         let VRotation = Rotation(time: 6)
                                 let venusParentRotation = XRotation(time: 20)
                                 let earthRotation = Rotation(time: 30)
-                                let moonRotation = Rotation(time: 10)
+                                let moonRotation = Rotation(time: 18)
                         // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                           //  make big ships spin as it Rotate
                         Shoonode.runAction(SecRo)
@@ -982,6 +1094,7 @@ pla()
 
                                
                                earth.runAction(sunAction)
+                        moonn.runAction(sunAction)
                        // earthParent.addChildNode(venusParent)
                         venusParent.addChildNode(Shoonode)
                         
@@ -992,9 +1105,10 @@ pla()
                       //  ssThShoonode.addChildNode(ssShoonode)
                         earthParent.addChildNode(ssThShoonode)
                         earthParent.addChildNode(FourthShoonode)
-                               earthParent.addChildNode(moonParent)
-                        earth.addChildNode(moon)
-                             moonParent.addChildNode(moon)
+                        moonParent.addChildNode(moonn)
+                             //  earthParent.addChildNode(moonParent)
+                      //  earth.addChildNode(moon)
+                            // moonParent.addChildNode(moonn)
     //                    for n in SSnodeArray {
     //                        print("\(n.name) jessss")
     //                    }
@@ -1005,6 +1119,7 @@ pla()
     func addTargetNodesFive(){
            //Need message dont shoot moon.
            //if so planet and moon destroyed
+        //wrked on level 4 and 5(migh get rid of moon)
 
                                            let venusParent = SCNNode()
                                          let sun = SCNNode(geometry: SCNSphere(radius: 0.25))
@@ -1035,10 +1150,11 @@ pla()
        //         earth.addChildNode(Shoonode)
                //8328579
                earN = earthParent
-                 earth.name = "earth"
-                earthParent.name = "earthParent"
-                                         earth.position = SCNVector3(0,0,-1)
-                                          earthParent.position = SCNVector3(0,0,-1)
+                 earth.name = "earthQJ"
+                earthParent.name = "earthQJ"
+        sun.name = "earthQJ"
+        earth.position = SCNVector3(0,0,1.8)
+        earthParent.position = SCNVector3(0,0,1.8)
             moonParent.position = SCNVector3(1.2 ,0 , 0)
                earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                earth.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
@@ -1049,9 +1165,10 @@ pla()
              //  let frame = self.sceneView.session.currentFrame
              //  let frame = self.sceneView.
                // let mat = SCNMatrix4(frame.camera.transform)
-                       for index in 0...2 {
+                       for index in 0...6 {
                           
                            var Shoonode = SCNNode()
+                        var ShoonodeG = SCNNode()
                           
                                          var ssShoonode = SCNNode()
                                        var ssThShoonode = SCNNode()
@@ -1082,10 +1199,10 @@ pla()
               
                            
                            
-                               let scene = SCNScene(named: "art.scnassets/spaceARcopy.scn")
-                                                        Shoonode = (scene?.rootNode.childNode(withName: "SS1redcopy", recursively: true)!)!
-                                                         Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                        Shoonode.name = "shark"
+                              let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
+                                                ShoonodeG = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+                                                         ShoonodeG.scale = SCNVector3(0.03,0.03,0.03)
+                                                        ShoonodeG.name = "shark"
                                      }else{
         
                           let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
@@ -1097,10 +1214,17 @@ pla()
                           
                            Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                               Shoonode.physicsBody?.isAffectedByGravity = false
+                        ShoonodeG.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                 ShoonodeG.physicsBody?.isAffectedByGravity = false
                          //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                               //ShoonodeSec.physicsBody?.isAffectedByGravity = false
-                           Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                                                                 Shoonode.physicsBody?.isAffectedByGravity = false
+                           ssThShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                 ssThShoonode.physicsBody?.isAffectedByGravity = false
+                        
+                        
+                        
+                        
+                        
                                               ssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                                 ssShoonode.physicsBody?.isAffectedByGravity = false
                            FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
@@ -1113,24 +1237,32 @@ pla()
                            SecGroupNodeArray.append(ssThShoonode)
                            EarGroupNodeArray.append(earth)
                            EarGroupNodeArray.append(earthParent)
+                        Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 1.0))
+                                                                  
+                                                               
+                        ShoonodeG.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 1.2), randomFloat(min: 0.1, max: 0.9))
+                                                                                         
+                        
+                                                               //changed this one!!!
+                        ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.9))
+                                                               
+                                                               
+                                                      
+                    ssThShoonode.position = SCNVector3(randomFloat(min: 0.8, max: 0.3),randomFloat(min: -0.8, max: 0.7), randomFloat(min: 0.1, max: 0.9))
+                FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.7), randomFloat(min: 0.1, max: 0.9))
+                                             
+                           
+                           
 
-                           Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                              
-                           //  let moonRotation = Rotation(time: 5)
-                           //changed this one!!!
-                           ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5))
-                           
-                           
-                  
-                           ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                            FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                           
-                           
-
-                                  moonParent.position = SCNVector3(0 ,0 , -1)
+                                 // moonParent.position = SCNVector3(0 ,0 , -1) ssThShoonode
                           
                            Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                  Shoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                        ShoonodeG.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                        ShoonodeG.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                        
+                        ssThShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                       ssThShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                            
                            ssShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                                     ssShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
@@ -1143,6 +1275,7 @@ pla()
                                   self.sceneView.scene.rootNode.addChildNode(venusParent)
 
                                   self.sceneView.scene.rootNode.addChildNode(Shoonode)
+                        self.sceneView.scene.rootNode.addChildNode(ShoonodeG)
                           
                         self.sceneView.scene.rootNode.addChildNode(EarParent)
                         self.sceneView.scene.rootNode.addChildNode(sun) //self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
@@ -1153,6 +1286,7 @@ pla()
           
 
                                   let SecRotation = XRotation(time: 300)
+                         let GreenSecRo = XRotation(time: 4)
                              let SecRo = XRotation(time: 6)
                                      let sunAction = Rotation(time: 20)
                                    let earthParentRotation = Rotation(time: 20)
@@ -1165,14 +1299,24 @@ pla()
                                    let earthRotation = Rotation(time: 30)
                                    let moonRotation = Rotation(time: 10)
                            // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
+//                        let sunAction = Rotation(time: 20)
+//                                               let earthParentRotation = Rotation(time: 10)
+//                                       let VRotation = Rotation(time: 6)
                              //  make big ships spin as it Rotate
-                           Shoonode.runAction(SecRo)
+                        Shoonode.runAction(SecRo)
+                        ShoonodeG.runAction(GreenSecRo)
+                          //                  //  ShoonodeSec.runAction(SecRotation)
+                                             ssShoonode.runAction(SecRotation)
+                          //                    //FourthShoonode
+                                             ssThShoonode.runAction(SecRotation)
+                                              FourthShoonode.runAction(SecRotation)
+                         //  Shoonode.runAction(SecRo)
        //                  //  ShoonodeSec.runAction(SecRotation)
-                          ssShoonode.runAction(SecRo)
+                        //  ssShoonode.runAction(SecRo)
                         EarParent.runAction(JRotation)
        //                    //FourthShoonode
-                          ssThShoonode.runAction(SecRotation)
-                           FourthShoonode.runAction(SecRotation)
+                        //  ssThShoonode.runAction(SecRotation)
+                        //   FourthShoonode.runAction(SecRotation)
        //                        ssThShoonode
                                   earthParent.runAction(earthParentRotation)
                                   venusParent.runAction(VRotation)
@@ -1190,11 +1334,12 @@ pla()
                         sun.addChildNode(earth)
                          sun.addChildNode(earthParent)
                         sun.addChildNode(EarParent)
-                         earthParent.addChildNode(Shoonode)
-                           earthParent.addChildNode(ssShoonode)
+                        // earthParent.addChildNode(Shoonode)
+                           earth.addChildNode(ssShoonode)
+                        earth.addChildNode(ShoonodeG)
                         //earth.addChildNode(EarParent)
                          //  ssThShoonode.addChildNode(ssShoonode)
-                          EarParent.addChildNode(Shoonode)
+                          earthParent.addChildNode(Shoonode)
                         earthParent.addChildNode(ssThShoonode)
                            earthParent.addChildNode(FourthShoonode)
                                   earthParent.addChildNode(moonParent)
@@ -2866,7 +3011,7 @@ pla()
                                                     let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                                                                  Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                                                          Shoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                        Shoonode.name = "shark"
+                                                                                        Shoonode.name = "ha"
                                                             //Ven
 //                                                            let scenee = SCNScene(named: "art.scnassets/spaceARcopy.scn")
 //                                                                                                                       VenShoonode = (scenee?.rootNode.childNode(withName: "SS1redcopy", recursively: true)!)!
@@ -2877,20 +3022,20 @@ pla()
                                                                                                                                            SaShoonode = (scenell?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                                                                                                         
                                                                                                                                  SaShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                                                    SaShoonode.name = "shark"
+                                                                                                                    SaShoonode.name = "ha"
                                                             //nep
                                                                  let scenenn = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                                                                                                                             NepShoonode = (scenenn?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                                                                                                          
                                                                                                                                                                                    NepShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                                                                                                                  NepShoonode.name = "shark"
+                                                                                                                                                                                  NepShoonode.name = "ha"
                                                             
                                                             
                                                                 let scenennk = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                                                                                                                                                                                        JupShoonode = (scenennk?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                                                                                                        
                                                                                                                                                                                                                                               JupShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                                                                                                                                                                             JupShoonode.name = "shark"
+                                                                                                                                                                                                                                             JupShoonode.name = "ha"
                                                             
                                                                                                     
                                                             
@@ -3179,9 +3324,9 @@ pla()
                                                                                                      
                                                                                                         NepssShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                                                                                                                  NepssShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                                                                                                        NepssThShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-                                                                                                                                                                   NepssThShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                                                                                                         NepFourthShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+        NepssThShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+    NepssThShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+        NepFourthShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                                                                                                                                                      NepFourthShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                                                   //Jup
 //                        Jupitar
@@ -3906,8 +4051,8 @@ pla()
     //         earth.addChildNode(Shoonode)
             //8328579
             earN = earthParent
-              earth.name = "earth"
-             earthParent.name = "earthParent"
+              earth.name = "earthQJ"
+             earthParent.name = "earthQJ"
                                       earth.position = SCNVector3(0,0,-1)
                                        earthParent.position = SCNVector3(0,0,-1)
             earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
@@ -4123,8 +4268,8 @@ pla()
        //         earth.addChildNode(Shoonode)
                //8328579
                earN = earthParent
-                 earth.name = "earth"
-                earthParent.name = "earthParent"
+                 earth.name = "earthQJ"
+                earthParent.name = "earthQJ"
                                          earth.position = SCNVector3(0,0,-1)
                                           earthParent.position = SCNVector3(0,0,-1)
                earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
@@ -4343,34 +4488,30 @@ pla()
         if contact.nodeA.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue
             || contact.nodeB.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue {
             
-            if (contact.nodeA.name! == "shark" || contact.nodeB.name! == "shark") {
+            if (contact.nodeA.name! == "ha" || contact.nodeB.name! == "ha") {
                 score+=5
                 scoreL+=5
                 //scoreL+=s
             } else if (contact.nodeA.name! == "earthQJ" || contact.nodeB.name! == "earthQJ") {
-            
-              //  contact.nodeA.removeFromParentNode()
-                            //  contact.nodeB.removeFromParentNode()
-               // gameOver()
-//                DispatchQueue.main.async {
-//                self.messageLabel.text = "you destroyed the earth."
+//                self.messageLabel.isHidden = false
+//                              self.messageLabel.text = "you destroyed an planet"
                 
-//                }
-                  self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                    
-                    //made 0 cz sh earh
-                    self.score=0
-                    let defaults = UserDefaults.standard
-                    defaults.set(self.score, forKey: "score")
-                    self.messageLabel.isHidden = false
-//                    self.stopBackgroundMusic()
-//                    self.messageLabel.text = "you destroyed the earth."
-                    self.sceneView.scene.rootNode.removeAllAudioPlayers()
-//                    self.dismiss(animated: true, completion: nil)
-                    self.gameOver()
-//                    self.stopBackgroundMusic()
-                })
+             DispatchQueue.main.async {
+                
+                
+                self.PlanetHit()
+                }
+                
+            
+
+            } else if (contact.nodeA.name! == "moonnn" || contact.nodeB.name! == "moonnn"){
+
+                DispatchQueue.main.async {
+                   
+                   
+                   self.PlanetHitMoon()
+                   }
+                
             }
                 else{
                 score+=1
@@ -4384,20 +4525,24 @@ pla()
                // contact.ear
                 //LETS GOOOOOOOOOOOOOOOOOO This it ******************
                 self.scoreLabel.text = String(self.score)
-                if (contact.nodeA.name! == "earth" || contact.nodeB.name! == "earth"){
+                if (contact.nodeA.name! == "mo" || contact.nodeB.name! == "mo"){
                     
 
-                    
-                    
-                    if (!self.nodeArray.isEmpty){
-                                    for r in self.nodeArray {
-//                                        if r == contact.nodeA{
+//                    DispatchQueue.main.async {
 //
-//                                        }
-                                   //     r.removeFromParentNode()
-//                                        r.childNodes.filter({ $0.name == "shark" }).forEach({ $0.removeFromParentNode() })
-                                    }
-                    }
+//
+//                    self.PlanetHitMoon()
+//                    }
+                    
+//                    if (!self.nodeArray.isEmpty){
+//                                    for r in self.nodeArray {
+////                                        if r == contact.nodeA{
+////
+////                                        }
+//                                   //     r.removeFromParentNode()
+////                                        r.childNodes.filter({ $0.name == "shark" }).forEach({ $0.removeFromParentNode() })
+//                                    }
+//                    }
                     
                 }
                 
