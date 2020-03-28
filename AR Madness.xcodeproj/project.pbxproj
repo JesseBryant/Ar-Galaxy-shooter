@@ -33,6 +33,7 @@
 		E383ABD92423822F001F79BB /* JBsmartsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD82423822E001F79BB /* JBsmartsound.mp3 */; };
 		E3BA590323F0ADE000860272 /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BA590223F0ADDF00860272 /* LevelsViewController.swift */; };
 		E3F6D5E82424D96800D19AB0 /* mViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F6D5E72424D96800D19AB0 /* mViewController.swift */; };
+		E3F8B0A2242F398C00E986B9 /* Power.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3F8B0A1242F398600E986B9 /* Power.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		E383ABD82423822E001F79BB /* JBsmartsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JBsmartsound.mp3; sourceTree = "<group>"; };
 		E3BA590223F0ADDF00860272 /* LevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
 		E3F6D5E72424D96800D19AB0 /* mViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mViewController.swift; sourceTree = "<group>"; };
+		E3F8B0A1242F398600E986B9 /* Power.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Power.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		A7216ABA20BE18C4009F6A51 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				E3F8B0A1242F398600E986B9 /* Power.mp3 */,
 				E383ABD82423822E001F79BB /* JBsmartsound.mp3 */,
 				E383ABD62423772D001F79BB /* Sleepy.mp3 */,
 				A7216AD020BE960B009F6A51 /* overtake.mp3 */,
@@ -214,6 +217,7 @@
 				E313248F23EBF94A009C648F /* Stars.scnp in Resources */,
 				E313249223EBF97A009C648F /* rain.scnp in Resources */,
 				A7216ACF20BE9313009F6A51 /* spark.png in Resources */,
+				E3F8B0A2242F398C00E986B9 /* Power.mp3 in Resources */,
 				A7216ACE20BE9313009F6A51 /* Explode.scnp in Resources */,
 				E313249423EBF9B0009C648F /* react.scnp in Resources */,
 				A73D42A820B80B4000965934 /* Main.storyboard in Resources */,

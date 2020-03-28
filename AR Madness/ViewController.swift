@@ -83,7 +83,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             }
         }
     
-
+var power = "banana"
     var score = 0
      var scoreL = 0
     var target: SCNNode?
@@ -217,7 +217,7 @@ pla()
     }
     
     @objc func handleTap(sender: UITapGestureRecognizer){
-        fireMissile(type: "banana")
+        fireMissile(type: power)
        
     }
     
@@ -397,7 +397,7 @@ pla()
     
     func pla() {
         if 90...150 ~= score {
-                      
+                      power = "banana"
                                    messageLabel.isHidden = true
                             levelJB.text = "level 9"
                                   SecaddTargetNodes()
@@ -419,6 +419,7 @@ pla()
     
                             print("\(score): welcome to level 2")
                         } else if 151...250 ~= score{
+            power = "banana"
                           //  sceneView.backgroundColor = UIColor.red
                                    messageLabel.isHidden = true
                             levelJB.text = "level 3"
@@ -436,6 +437,7 @@ pla()
               
                         }
                         else if 251...350 ~= score{
+            power = "banana"
                                           //  sceneView.backgroundColor = UIColor.red
                                                    messageLabel.isHidden = true
                                             levelJB.text = "level 4"
@@ -450,6 +452,7 @@ pla()
                                               print("\(score): welcome to level 4 jess")
                             
                                         }       else if 351...450 ~= score{
+            power = "banana"
                                                                     //  sceneView.backgroundColor = UIColor.red
                                                                              messageLabel.isHidden = true
                                                                       levelJB.text = "level 5"
@@ -468,6 +471,7 @@ pla()
                                                                         print("\(score): welcome to level 5 jess")
                                                                    //
                                                                   } else if 451...550 ~= score{
+            power = "banana"
                                                                                                           //  sceneView.backgroundColor = UIColor.red
             
              sceneView.scene.rootNode.removeAllAudioPlayers()
@@ -490,6 +494,7 @@ pla()
                         
                         //addTargetNodesSaturn()
                         else if 551...650 ~= score{
+            power = "banana"
             
              sceneView.scene.rootNode.removeAllAudioPlayers()
             
@@ -512,6 +517,7 @@ pla()
                                                                
                                                               }
                         else if 651...100000 ~= score{
+            power = "banana"
             
              sceneView.scene.rootNode.removeAllAudioPlayers()
                                                                                //  sceneView.backgroundColor = UIColor.red
@@ -567,6 +573,7 @@ pla()
       
                  
                 else{
+            power = "banana"
                   //  sceneView.backgroundColor = UIColor.red
              sceneView.scene.rootNode.removeAllAudioPlayers()
                            messageLabel.isHidden = true
@@ -632,6 +639,8 @@ pla()
     //creates nodes
     func createMissile(type : String)->SCNNode{
         var node = SCNNode(geometry: SCNSphere(radius: 0.2))
+      //  var SuperNode = SCNNode(geometry: SCNCapsule(radius: 0.2))
+        
         //get a feel for game difficulty and level base difficulty
         //next color coat ships
         //space ships around a little more..
@@ -651,10 +660,11 @@ pla()
                 node .geometry?.firstMaterial?.diffuse.contents = UIColor.red
                   node.name = "banana"
               case "axe":
+                
 //                  let scene = SCNScene(named: "art.scnassets/missile.dae")
 //                  node = (scene?.rootNode.childNode(withName: "missile", recursively: true)!)!
 //                  node.scale = SCNVector3(0.2,0.2,0.2)
-                node .geometry?.firstMaterial?.diffuse.contents = UIColor.red
+                node .geometry?.firstMaterial?.diffuse.contents = UIColor.blue
                   node.name = "bathtub"
               default:
                   node = SCNNode()
@@ -3984,7 +3994,7 @@ pla()
                                                              let SecRo = XRotation(time: 2)
                                                          let JRRotation = Rotation(time: 5)
                                                         
-                                                                     let sunAction = Rotation(time: 19)
+                                                                     let sunAction = Rotation(time: 75)
                         // complete level 9
                          let sunActionS = Rotation(time: 12)
                                                         
@@ -4032,7 +4042,7 @@ pla()
                                                                                                         NepssShoonode.runAction(SecRotation)
                                                                                                   
                                                                                     //                    //FourthShoonode
-                                                                                                        NepssThShoonode.runAction(SecRo)
+                                                                                                        NepssThShoonode.runAction(SecRotation)
                                                                                                          NepFourthShoonode.runAction(SecRotation)
                                                          //Sa
                                                          SaShoonode.runAction(SecRotation)
@@ -4097,6 +4107,7 @@ SaturnParent.addChildNode(SassThShoonode)
                                                                SaturnParentSun.addChildNode(saturn)
                                                           saturn.addChildNode(saturnRing)
                                                          //ear
+                        //nep 100
                                                         earth.addChildNode(ssShoonode)
                                                            earthParent.addChildNode(Shoonode)
                                                          //  ssThShoonode.addChildNode(ssShoonode)
@@ -5109,8 +5120,10 @@ SaturnParent.addChildNode(SassThShoonode)
             || contact.nodeB.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue {
             
             if (contact.nodeA.name! == "ha" || contact.nodeB.name! == "ha") {
+                power = "axe"
                 score+=5
                 scoreL+=5
+                            playSound(sound: "Power", format: "wav")
                 //scoreL+=s
             } else if (contact.nodeA.name! == "earthQJ" || contact.nodeB.name! == "earthQJ") {
 //                self.messageLabel.isHidden = false
