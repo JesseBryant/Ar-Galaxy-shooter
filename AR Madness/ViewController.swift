@@ -396,11 +396,11 @@ pla()
     
     
     func pla() {
-        if 90...3189 ~= score {
+        if 90...150 ~= score {
                       
                                    messageLabel.isHidden = true
                             levelJB.text = "level 9"
-                                 // SecaddTargetNodes()
+                                  SecaddTargetNodes()
 //            addTargetNodesJupitar()
              sceneView.scene.rootNode.removeAllAudioPlayers()
                                   PlayInstructions()
@@ -409,7 +409,7 @@ pla()
                                   playBackgroundMusic()
            // addTargetNodesFive()
         //addTargetNodesSixVenus()
-            addTargetNodesNeptune()
+           // addTargetNodesNeptune()
            // addTargetNodesSaturn()
             //h()
           //  addTargetNodesFour()
@@ -418,7 +418,7 @@ pla()
                                   runTimer()
     
                             print("\(score): welcome to level 2")
-                        } else if 190...7000 ~= score{
+                        } else if 151...250 ~= score{
                           //  sceneView.backgroundColor = UIColor.red
                                    messageLabel.isHidden = true
                             levelJB.text = "level 3"
@@ -435,7 +435,7 @@ pla()
                               print("\(score): welcome to level 3 jess")
               
                         }
-                        else if 700...731 ~= score{
+                        else if 251...350 ~= score{
                                           //  sceneView.backgroundColor = UIColor.red
                                                    messageLabel.isHidden = true
                                             levelJB.text = "level 4"
@@ -449,7 +449,7 @@ pla()
                                                   runTimer()
                                               print("\(score): welcome to level 4 jess")
                             
-                                        }       else if 732...750 ~= score{
+                                        }       else if 351...450 ~= score{
                                                                     //  sceneView.backgroundColor = UIColor.red
                                                                              messageLabel.isHidden = true
                                                                       levelJB.text = "level 5"
@@ -467,7 +467,7 @@ pla()
                                                                             runTimer()
                                                                         print("\(score): welcome to level 5 jess")
                                                                    //
-                                                                  } else if 751...762 ~= score{
+                                                                  } else if 451...550 ~= score{
                                                                                                           //  sceneView.backgroundColor = UIColor.red
             
              sceneView.scene.rootNode.removeAllAudioPlayers()
@@ -489,7 +489,7 @@ pla()
                                                                                                         }
                         
                         //addTargetNodesSaturn()
-                        else if 763...800 ~= score{
+                        else if 551...650 ~= score{
             
              sceneView.scene.rootNode.removeAllAudioPlayers()
             
@@ -498,7 +498,8 @@ pla()
                                                                   levelJB.text = "level 7"
                         
                         //Will need to add other nodes give a more real effect. For smaller ships
-                                                                        addTargetNodesSaturn()
+            addTargetNodesNeptune()
+                                                                        //addTargetNodesSaturn()
                                                                   //FsaddTargetNodes()
                                                                   // FsaddTargetNodes()
                                                                         PlayInstructions()
@@ -510,7 +511,7 @@ pla()
                                                                     print("\(score): welcome to level 7 jess")
                                                                
                                                               }
-                        else if 807...810 ~= score{
+                        else if 651...100000 ~= score{
             
              sceneView.scene.rootNode.removeAllAudioPlayers()
                                                                                //  sceneView.backgroundColor = UIColor.red
@@ -518,7 +519,7 @@ pla()
                                                                                  levelJB.text = "level 8"
                                        
                                
-                                                                                       addTargetNodesNeptune()
+                                                                                       addTargetNodesJupitar()
                            //  FsaddTargetNodes()
                                                                                        PlayInstructions()
                                                                                        //play background music
@@ -529,40 +530,40 @@ pla()
                                                                                    print("\(score): welcome to level 8 jess")
                                                                               
                                                                              }
-      else if 807...5950 ~= score{
-             sceneView.scene.rootNode.removeAllAudioPlayers()
-                                                                               //  sceneView.backgroundColor = UIColor.red
-                                                                                        messageLabel.isHidden = true
-                                                                                 levelJB.text = "level 1"
-                                       
-                                       //Will need to add other nodes give a more real effect. For smaller ships
-              FsaddTargetNodes()
-            
-                                                                                  //addTargetNodesJupitar()
-            
-         //   addTargetNodesSixVenus()
-           // addTargetNodesNeptune()
-            //addTargetNodesSaturn()
-            //addTargetNodes()
-            
-            //addTargetNodesFour()
-                                                                                    //addTargetNodesFive()
-                                                       //    FsaddTargetNodes()
-           // SecaddTargetNodes()
-            PlayInstructions()
-                                                                                    //play background music
-                                                                     //          stopBackgroundMusic()
-            //Sleepy
-            playBackgroundMusic()
-           // playingSoundWith(fileName: String)
-           // playingSoundWith(fileName: "Sleepy")
-                                                                                       
-                                                                                       //start tinmer
-                                                                                       runTimer()
-                                                                                   print("\(score): welcome to level 9 jess")
-           // stopBackgroundMusic()
-                                                                              
-                                                                             }
+//      else if 807...5950 ~= score{
+//             sceneView.scene.rootNode.removeAllAudioPlayers()
+//                                                                               //  sceneView.backgroundColor = UIColor.red
+//                                                                                        messageLabel.isHidden = true
+//                                                                                 levelJB.text = "level 1"
+//
+//                                       //Will need to add other nodes give a more real effect. For smaller ships
+//              FsaddTargetNodes()
+//
+//                                                                                  //addTargetNodesJupitar()
+//
+//         //   addTargetNodesSixVenus()
+//           // addTargetNodesNeptune()
+//            //addTargetNodesSaturn()
+//            //addTargetNodes()
+//
+//            //addTargetNodesFour()
+//                                                                                    //addTargetNodesFive()
+//                                                       //    FsaddTargetNodes()
+//           // SecaddTargetNodes()
+//            PlayInstructions()
+//                                                                                    //play background music
+//                                                                     //          stopBackgroundMusic()
+//            //Sleepy
+//            playBackgroundMusic()
+//           // playingSoundWith(fileName: String)
+//           // playingSoundWith(fileName: "Sleepy")
+//
+//                                                                                       //start tinmer
+//                                                                                       runTimer()
+//                                                                                   print("\(score): welcome to level 9 jess")
+//           // stopBackgroundMusic()
+//
+//                                                                             }
       
                  
                 else{
