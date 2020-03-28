@@ -396,7 +396,7 @@ pla()
     
     
     func pla() {
-        if 90...1189 ~= score {
+        if 90...3189 ~= score {
                       
                                    messageLabel.isHidden = true
                             levelJB.text = "level 9"
@@ -408,7 +408,8 @@ pla()
 //                            stopBackgroundMusic()
                                   playBackgroundMusic()
            // addTargetNodesFive()
-            addTargetNodesSixVenus()
+        addTargetNodesSixVenus()
+            //h()
           //  addTargetNodesFour()
                                   // addTargetNodesJupitar()
                                   //start tinmer
@@ -1387,8 +1388,8 @@ pla()
                    // venusParent.name = "earth"
            //         earth.addChildNode(Shoonode)
                    //8328579
-                   earN = earthParent
-                     earth.name = "earth"
+                   earN = earthParent 
+                     earth.name = "earthQJ"
                     earthParent.name = "earthParent"
         //where the relationships between earth and earthParent
                                              earth.position = SCNVector3(1.8,0,0)
@@ -1514,6 +1515,7 @@ pla()
                              //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                   //ShoonodeSec.physicsBody?.isAffectedByGravity = false
                                Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                            Shoonode.physicsBody?.isAffectedByGravity = false
                             ssThShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                                             ssThShoonode.physicsBody?.isAffectedByGravity = false
                                                    
@@ -1641,7 +1643,7 @@ pla()
                                 let JRRotation = Rotation(time: 5)
                                                                                          
                             let sunAction = Rotation(time: 29)
-                                                         // complete level 9
+                          //let venusRotation = Rotation(time: 9)                               // complete level 9 JRotation = Rotation(time: 15)
                     let sunActionS = Rotation(time: 12)
                                                                                          
                                                                                          
@@ -1679,12 +1681,14 @@ pla()
            //                        ssThShoonode
                                       earthParent.runAction(JRotation)
                                       venusParent.runAction(JRotation)
+                    
                                       moonParent.runAction(moonRotation)
                                      venus.runAction(venusRotation)
                                        //venusParent.addChildNode(venus)
-                                      earth.runAction(venusRotation)
+                                    
                             //stable rotations
                             sun.runAction(sunAction)
+                              earth.runAction(venusRotation)
                             //figured out how distribute ships will have to create more Shoonodes
                             //can be elaborate with given planets diff rotations since its
                             sun.addChildNode(earth)
@@ -1714,6 +1718,453 @@ pla()
                    
                            }
                        }
+    
+    
+    func h(){
+   
+                          
+                              //radius: 0.1
+                                    let sphere = SCNSphere(radius: 0.1)
+                // let material = planet(geometry: SCNSphere(radius: 0.1), diffuse: #imageLiteral(resourceName: "Venus Surface"), specular: nil, emission: #imageLiteral(resourceName: "Venus Atmosphere"), normal: nil, position: SCNVector3(0.5, 0, 0))
+                //#imageLiteral(resourceName: "Venus Surface")
+                 let material = SCNMaterial()
+                 material.diffuse.contents = UIImage(named: "Venus Surface")
+               // material.diffuse.contents = #imageLiteral(resourceName: "Venus Surface")
+                sphere.materials = [material]
+                                  let venusParent = SCNNode(geometry: sphere)
+                                   
+                                  let venusParentSun = SCNNode()
+                            
+                                 
+                          
+                
+                                            venusParentSun.position = SCNVector3(0,0,-1)
+                                                                                 let sun = SCNNode(geometry: SCNSphere(radius: 0.25))
+                                                sun.geometry?.firstMaterial?.diffuse.contents = #imageLiteral(resourceName: "Sun diffuse")
+                                                       sun.position = SCNVector3(0,0,-1)
+                                                         let earthParent = SCNNode()
+                                                    let moonParent = SCNNode()
+                                                   
+                                                       let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.8 ,0 , 0))
+                                            let venus = planet(geometry: SCNSphere(radius: 0.1), diffuse: #imageLiteral(resourceName: "Venus Surface"), specular: nil, emission: #imageLiteral(resourceName: "Venus Atmosphere"), normal: nil, position: SCNVector3(0.5, 0, 0))
+                                                      let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
+                                                    //   venusParent
+                                                        earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                           earth.physicsBody?.isAffectedByGravity = false
+                                                        earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                           earthParent.physicsBody?.isAffectedByGravity = false
+
+                                                       
+                                                       
+                                                       
+                                                      // venusParent
+                                                       venusParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                 venusParent.physicsBody?.isAffectedByGravity = false
+                                                         //  venusParent.position = SCNVector3(0,0,-1)
+                                                        
+                                                       // venusParent.name = "earth"
+                                               //         earth.addChildNode(Shoonode)
+                //decent rotations, maybe some could be closer. Fixed bugs with music and ships ending game!
+                                                       //8328579
+                                                       earN = earthParent
+                                                         earth.name = "earthQJ"
+                                                        earthParent.name = "earthParent"
+                                            //where the relationships between earth and earthParent
+                //perfect distance of planets
+                earth.position = SCNVector3(1.8,0,0)
+                earthParent.position = SCNVector3(1.8,0,0)
+        venusParent.position = SCNVector3(-1.7,0,0)
+        venus.position = SCNVector3(-1.7,0,0)
+                                  //better rotations..nice positions
+                             
+        //        venusParent.position = SCNVector3(0,0,1.2)
+        //        venus.position = SCNVector3(0,0,1.2)
+                
+                              moonParent.position = SCNVector3(1.2 ,0 , 0)
+                          earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                  earth.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                  earthParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                  earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+        venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                              venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+        venus.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                  venus.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+     
+                                              
+                              for index in 0...3 {
+                                                //ear***
+                                      var Shoonode = SCNNode()
+                                                       
+                                      var ssShoonode = SCNNode()
+                                      var ssThShoonode = SCNNode()
+                                      var FourthShoonode = SCNNode()
+                                                                 //ven******
+                                              var VenShoonode = SCNNode()
+        
+                                                  var VenssShoonode = SCNNode()
+                                                                                                         var VenssThShoonode = SCNNode()
+                                                                                                         var VenFourthShoonode = SCNNode()
+                                                               
+                                
+                                
+                                               //ear
+                                                                   let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                                                           ssShoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                                                                            ssShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                                                 //  ssShoonode.
+                                                                   ssShoonode.name = "shark"
+                                                                   //second one
+                                                                   
+                                                                   let Spacehscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                                                           ssThShoonode = (Spacehscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                                                                            ssThShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                                                   ssThShoonode.name = "shark"
+                                                                   // third one
+                                                                   
+                                                                   let SpacehFscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                                                                              FourthShoonode = (SpacehFscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                                                                                               FourthShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                                                                      FourthShoonode.name = "shark"
+                                                                
+                                                                
+                                                                
+                                                                //Ven
+                                                                let SpaceShscenee = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                                                                                      VenShoonode = (SpaceShscenee?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                                                                                                       VenShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                                                                              //ssShoonode.
+                                                                                              VenShoonode.name = "shark"
+                                                                                              //second one
+                                    //                                                          var VenssShoonode = SCNNode()
+                                                                
+                                                                let Spacehscenev = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                                                                                    VenssThShoonode = (Spacehscenev?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                                                                                                     VenssThShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                                                                            VenssThShoonode.name = "shark"
+                                    //                                                                                                                              var VenssThShoonode = SCNNode()
+                                    //                                                                                                                              var VenFourthShoonode = SCNNode()
+                                                                
+                                                                                              let Spacehscener = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                                                                                      VenssShoonode  = (Spacehscener?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                                                                                                       VenssShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                                                                              VenssShoonode .name = "shark"
+                                                                                              // third one
+                                                                                              
+                                                                                              let SpacehFscenea = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                                                                                                         VenFourthShoonode = (SpacehFscenea?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                                                                                                                          VenFourthShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                                                                                                 VenFourthShoonode.name = "shark"
+                                                                 //sa
+                           
+                                                                       let moonParent = SCNNode()
+                                                     
+                                                                  if (index > 1) && (index % 3 == 0) {
+                                                              
+                                                                   
+                                                                   //ear
+                                    let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
+                            Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+                                        Shoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                                                                                Shoonode.name = "ha"
+                                                                    //Ven
+                                                                    let scenee = SCNScene(named: "art.scnassets/spaceARcopy.scn")
+                                                                                                                               VenShoonode = (scenee?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+                                                                                                                                VenShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                                                                                                               VenShoonode.name = "shark"
+                                                                     //sa
+                                                                                     
+                                                                    
+                                                                             }else{
+                                                                    //ear
+                                    let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
+                    Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
+                                                            Shoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                                                                                    Shoonode.name = "SS1copy.scn"
+        //                                                            //ven
+                                                                    let scenee = SCNScene(named: "art.scnassets/missilecopy.scn")
+                                                                                                                                 VenShoonode = (scenee?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
+                                                                                                                                  VenShoonode.scale = SCNVector3(0.02,0.02,0.02)
+                                                                                                                                  VenShoonode.name = "SS1copy.scn"
+                                                                     //sa
+                                                                             }
+                                                                   
+                                                                  
+                                                                   Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                      Shoonode.physicsBody?.isAffectedByGravity = false
+                                                
+                                                                   Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                Shoonode.physicsBody?.isAffectedByGravity = false
+                            ssThShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                            ssThShoonode.physicsBody?.isAffectedByGravity = false
+                                                                                       
+                                                                                            
+                                                                                                         
+            ssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                ssShoonode.physicsBody?.isAffectedByGravity = false
+                FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                                                          FourthShoonode.physicsBody?.isAffectedByGravity = false
+                                //Jup
+                              
+                                                                 //ven
+
+                                                                  VenShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                     VenShoonode.physicsBody?.isAffectedByGravity = false
+                                                                //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                     //ShoonodeSec.physicsBody?.isAffectedByGravity = false
+                                                                  VenShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+        
+                                                                                     VenssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                                       VenssShoonode.physicsBody?.isAffectedByGravity = false
+                                                                  VenFourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                                                         VenFourthShoonode.physicsBody?.isAffectedByGravity = false
+                                                                VenssThShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                                                                    VenssThShoonode.physicsBody?.isAffectedByGravity = false
+                                                                 //sa
+                                           
+                                                                  
+                                                                  //end
+                                                              //    venusParent.addChildNode(Shoonode)
+                        earth.addChildNode(Shoonode)
+                            earth.addChildNode(ssShoonode)
+                                        earth.addChildNode(ssThShoonode)
+                                    earth.addChildNode(FourthShoonode)
+                                                                //VEN
+                                                              
+                                                                venus.addChildNode(VenShoonode)
+                                                                                                  venus.addChildNode(VenssShoonode)
+                                                                                                                  venus.addChildNode(VenssThShoonode)
+                                                                                                                  venus.addChildNode(VenFourthShoonode)
+                                        //Sa
+                                                           
+                                //                    earth.name = "earth"
+                                               //                    earthParent.name = "earthParent"
+                                                                 //  earth.addChildNode(ShoonodeSec)
+                                                                   nodeArray.append(Shoonode)
+                                                                //   nodeArray.append(ShoonodeSec)
+                                                                   ThirdGroupNodeArray.append(FourthShoonode)
+                                                                  SSnodeArray.append(ssShoonode)
+                                                                   SecGroupNodeArray.append(ssThShoonode)
+                                                                   EarGroupNodeArray.append(earth)
+                                                                   EarGroupNodeArray.append(earthParent)
+                              
+                                                                                             EarGroupNodeArray.append(earth)
+                                                                                             EarGroupNodeArray.append(earthParent)
+                                nodeArray.append(VenShoonode)
+                                                                                     //   nodeArray.append(ShoonodeSec)
+                                                                                        ThirdGroupNodeArray.append(VenFourthShoonode)
+                                                                                       SSnodeArray.append(VenssShoonode)
+                                                                                        SecGroupNodeArray.append(VenssThShoonode)
+                                                                 //sa*
+                                                            
+                                                                 // EarGroupNodeArray.append(earth)
+                                                                 // EarGroupNodeArray.append(earthParent)
+                                                                  //nep*
+                                              
+                                                                                                               
+
+                                
+                                Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
+                                                                           
+                                                                        
+                                                                        //changed this one!!!
+                            ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.9))
+                                                                        
+                                                                        
+                                                               
+                            ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                                FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                                VenShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
+                                                          //  VenShoonodeG.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.9))
+                                                                                                                                                            
+                                                                                                                                                         
+                                                                                                                                                         //changed this one!!!
+                                                               VenssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.9))
+                                                                                                                                                         
+                                                                                                                                                         
+                                                                                                                                                
+                                                           VenssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.9))
+                                                               VenFourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                                                                                               
+                                                           
+                                          
+                   
+                                                                 
+                                                                
+                                                                          moonParent.position = SCNVector3(0 ,0 , -1)
+                                                                  
+                        Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                    Shoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                                                
+                    ssShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                ssShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                    ssThShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                ssThShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                FourthShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+            FourthShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                //Jup
+                               
+                                
+        //                                                         //Ven
+                                                                VenShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                        VenShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+        
+                        VenssShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                        VenssShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                        VenssThShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                        VenssThShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                        VenFourthShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                                                VenFourthShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                                                 //sa****
+               
+                                                          //Jup
+        //                        Jupitar
+                                                                          self.sceneView.scene.rootNode.addChildNode(venusParent)
+                                self.sceneView.scene.rootNode.addChildNode(venus)
+                                self.sceneView.scene.rootNode.addChildNode(venusParentSun)
+                              
+                                          
+                                 // self.sceneView.scene.rootNode.addChildNode(JupitarParentSun)
+                                                                 // self.sceneView.scene.rootNode.addChildNode(neptune)
+                                                                 
+                                            
+
+                                        self.sceneView.scene.rootNode.addChildNode(Shoonode)
+                                                              
+                                                                  
+                                            self.sceneView.scene.rootNode.addChildNode(earthParent)
+                                            self.sceneView.scene.rootNode.addChildNode(sun)
+                                                                 //self.sceneView.scene.rootNode.addChildNode(venusParentSun)//self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
+                                                self.sceneView.scene.rootNode.addChildNode(ssShoonode)
+                                            self.sceneView.scene.rootNode.addChildNode(ssThShoonode)
+                                            self.sceneView.scene.rootNode.addChildNode(FourthShoonode)
+                                
+        //                                                         //ven
+                                                                   self.sceneView.scene.rootNode.addChildNode(VenShoonode)
+                                                                self.sceneView.scene.rootNode.addChildNode(VenssShoonode)
+                                                                                               self.sceneView.scene.rootNode.addChildNode(VenssThShoonode)
+                                                                                              self.sceneView.scene.rootNode.addChildNode(VenFourthShoonode)
+                                
+                                //Jup
+                               
+  //let venusRotation = Rotation(time: 9)                               // complete level 9 JRotation = Rotation(time: 15)
+                                                                          let SecRotation = XRotation(time: 300)
+                                                                     let SecRo = XRotation(time: 2)
+                                                                 let JRRotation = Rotation(time: 5)
+                                                                
+                                                                             let sunAction = Rotation(time: 19)
+                                // complete level 9
+                                 let sunActionS = Rotation(time: 12)
+                                                                
+                                                          let sunActionVenus = Rotation(time: 30)
+                                              //  let sunActionVenus = Rotation(time: 25)
+                                        let sunActionNep = Rotation(time: 13)
+                                    let sunActionJ = Rotation(time: 11)
+                                let sunActionEar = Rotation(time: 12)
+                                            let earthParentRotation = Rotation(time: 20)
+                                                                   let VRotation = Rotation(time: 15)
+                                                                           let venusParentRotation = XRotation(time: 30)
+                                                let earthRotation = Rotation(time: 30)
+                                                                           let moonRotation = Rotation(time: 10)
+                                                                 let venusRotation = Rotation(time: 9)
+                                                    let JupRotation = Rotation(time: 8)
+                                                                  let JRotation = Rotation(time: 15)
+                                                                   Shoonode.runAction(SecRotation)
+                                               //                  //  ShoonodeSec.runAction(SecRotation)
+                                                                  ssShoonode.runAction(SecRotation)
+                                                             
+                                               //                    //FourthShoonode
+                                                                  ssThShoonode.runAction(SecRo)
+                                                                   FourthShoonode.runAction(SecRotation)
+                                                                      
+                                //Jup
+                                                                            
+                                                                
+        //                                                        //Ven added
+                                                                 VenShoonode.runAction(SecRotation)
+                                                                //                  //  ShoonodeSec.runAction(SecRotation)
+                                                                                   VenssShoonode.runAction(SecRotation)
+        //
+        //                                                        //                    //FourthShoonode
+                                                                                   VenssThShoonode.runAction(SecRo)
+                                                                                    VenFourthShoonode.runAction(SecRotation)
+                                                                  //nep
+                                                                  
+                                
+                                
+                                
+                                //venusParent.runAction(JRotation),  venus.runAction(venusRotation)
+                                                    //venusParentSun.addChildNode(venusParent),  venusParentSun.addChildNode(venus)
+                                                    //venus.addChildNode(VenssShoonode)
+                                                  //  venus.addChildNode(VenShoonode)
+                                                                                //  ssThShoonode.addChildNode(ssShoonode)
+                                                                                  //venus.addChildNode(VenssThShoonode)
+                                                                                  //venus.addChildNode(VenFourthShoonode)
+                                
+                                                                              sun.runAction(sunAction)
+                                                                       earth.runAction(sunAction)
+                                venusParent.runAction(JRotation)
+                                 venusParentSun.runAction(sunActionVenus)
+                                                                          moonParent.runAction(moonRotation)
+                                                                         venus.runAction(venusRotation)
+                                                             
+                                
+                                                                //figured out how distribute ships will have to create more Shoonodes
+                                                                //can be elaborate with given planets diff rotations since its
+                                                                sun.addChildNode(earth)
+                                                                 sun.addChildNode(earthParent)
+                                  venusParentSun.addChildNode(venusParent)
+                                venusParentSun.addChildNode(venus)
+                                                                //venusParent.addChildNode(venus)
+                                                             //   venusParentSun.addChildNode(venusParent)
+                                                                 
+                                                                //added venus and planets
+                                                             //   venusParentSun.addChildNode(venus)
+                                                                 
+                                                                 //ear
+                                                                earth.addChildNode(ssShoonode)
+                                                                   earthParent.addChildNode(Shoonode)
+                                                                 //  ssThShoonode.addChildNode(ssShoonode)
+                                                                   earthParent.addChildNode(ssThShoonode)
+                                                                   earthParent.addChildNode(FourthShoonode)
+                                
+                                
+                                venus.addChildNode(VenssShoonode)
+                                                                                venus.addChildNode(VenShoonode)
+                                                                                                              //ssThShoonode.addChildNode(ssShoonode)
+                                                                                                              venus.addChildNode(VenssThShoonode)
+                                                                                                              venus.addChildNode(VenFourthShoonode)
+                                                            
+                                
+                                                            //Jupitar
+                                
+                                                                                    
+                                
+                                
+                                                           
+                                                                   earth.addChildNode(moon)
+                                                                        moonParent.addChildNode(moon)
+                                               //                    for n in SSnodeArray {
+                                               //                        print("\(n.name) jessss")
+                                               //                    }
+                                                       
+                                                               }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     func addTargetNodesSaturn(){
 
                                                           let venusParent = SCNNode()
