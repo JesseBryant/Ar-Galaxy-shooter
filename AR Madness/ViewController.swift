@@ -33,7 +33,7 @@
 import UIKit
 import SceneKit
 import ARKit
-
+//import SpriteKit
 enum BitMaskCategory: Int {
     case target  = 3
 }
@@ -89,6 +89,7 @@ var power = "banana"
     var target: SCNNode?
    var earN: SCNNode?
     var nodeArray : [SCNNode] = []
+     var AllnodeArray : [SCNNode] = []
     var SSnodeArray : [SCNNode] = []
     var SecGroupNodeArray : [SCNNode] = []
      var EarGroupNodeArray : [SCNNode] = []
@@ -163,7 +164,7 @@ var power = "banana"
 //                               print("Empty!!!!!!!!")
 //        }
         let defaults = UserDefaults.standard
-            if let gameScore = defaults.value(forKey: "scoreL"){
+            if let gameScore = defaults.value(forKey: "score"){
                  score = gameScore as! Int
                 print("\(score) Jesse KKKK")
                 
@@ -285,7 +286,8 @@ pla()
         defaults.set(score, forKey: "score")
 //        scoreL += score
       //  defaults.set(scoreL, forKey: "scoreL")
-        let arrrrr = scoreJJ + fscre
+       // let arrrrr = scoreJJ + fscre
+        let arrrrr = score
         let defaultsJB = UserDefaults.standard
         defaultsJB.set(arrrrr, forKey: "scoreL")
         //go back to the Home View Controller
@@ -345,6 +347,70 @@ pla()
              }
     
     
+    func BeatLevel() {
+
+         //        messageLabel.isHidden = false
+         //        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
+        
+        var counter = 0
+                 self.messageLabel.isHidden = false
+                        self.messageLabel.text = "Level Completed"
+        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+            node.removeFromParentNode()
+        }
+        
+        if counter >= scoreL {
+            score += 1
+            self.messageLabel.text = "\(score)"
+            //counter = 0
+        } else {
+            counter += 1
+        }
+             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+                 var scoreJJ = 0
+                        let chd = "earth"
+                          let chdKK = "earthParent"
+                    
+
+
+                         let defaultss = UserDefaults.standard
+                                    if let gameScore = defaultss.value(forKey: "scoreL"){
+                                         scoreJJ = gameScore as! Int
+                                        if self.score > 90 {
+                                          //  print("\(score):score >90 welcome to level 2")
+                                        } else{
+                                           // print("\(score): score <90 still on level 1")
+                                        }
+                        //                //scoreLabel.text = "Score: \(String(score))"
+                                 }
+                        
+                        
+                     //   scoreL += score
+                let fscre = self.scoreL
+                        //store the score in UserDefaults
+                        let defaults = UserDefaults.standard
+                defaults.set(self.score, forKey: "score")
+                //        scoreL += score
+                      //  defaults.set(scoreL, forKey: "scoreL")
+                        let arrrrr = scoreJJ + fscre
+                        let defaultsJB = UserDefaults.standard
+                        defaultsJB.set(arrrrr, forKey: "scoreL")
+                        //go back to the Home View Controller
+                       // removeAud
+                        //stopBackgroundMusic()
+                       // self.dismiss(animated: true, completion: nil)
+                self.stopBackgroundMus()
+                 self.messageLabel.isHidden = true
+                self.pla()
+                          })
+
+
+
+
+             }
+    
+    
+    
     func PlanetHitMoon() {
 
             //        messageLabel.isHidden = false
@@ -396,6 +462,8 @@ pla()
     
     
     func pla() {
+        resetTimer()
+        
         if 90...150 ~= score {
                       power = "banana"
                                    messageLabel.isHidden = true
@@ -516,7 +584,8 @@ pla()
                                                                     print("\(score): welcome to level 7 jess")
                                                                
                                                               }
-                        else if 651...100000 ~= score{
+                        else if 651...1320 ~= score{
+            
             power = "banana"
             
              sceneView.scene.rootNode.removeAllAudioPlayers()
@@ -526,7 +595,7 @@ pla()
                                        
                                
                                                                                        addTargetNodesJupitar()
-                           //  FsaddTargetNodes()
+                            // FsaddTargetNodes()
                                                                                        PlayInstructions()
                                                                                        //play background music
                                                                                        playBackgroundMusic()
@@ -579,11 +648,11 @@ pla()
                            messageLabel.isHidden = true
                     levelJB.text = "level 1"
                           //addTargetNodes()
-                       // FsaddTargetNodes()
+                        FsaddTargetNodes()
                           PlayInstructions()
                           //play background music
                           playBackgroundMusic()
-                          addTargetNodesJupitar()
+                        //  addTargetNodesJupitar()
                           //start tinmer
                           runTimer()
                     print("\(score): still on level 1")
@@ -3385,6 +3454,7 @@ pla()
     
     
     func addTargetNodesJupitar(){
+        
            
                           //Need message dont shoot moon.
                           //if so planet and moon destroyed
@@ -4887,7 +4957,7 @@ SaturnParent.addChildNode(SassThShoonode)
                 earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                    earthParent.physicsBody?.isAffectedByGravity = false
 
-               
+               AllnodeArray.removeAll()
                
                
               // venusParent
@@ -4912,7 +4982,7 @@ SaturnParent.addChildNode(SassThShoonode)
              //  let frame = self.sceneView.session.currentFrame
              //  let frame = self.sceneView.
                // let mat = SCNMatrix4(frame.camera.transform)
-                       for index in 0...6 {
+                       for index in 0...2 {
                            //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
                            //make node array empty in the end of the game func
                            //decent increase number of ships still seem a bit easy but that might be fine
@@ -4925,23 +4995,27 @@ SaturnParent.addChildNode(SassThShoonode)
                                        var ssThShoonode = SCNNode()
                                        var FourthShoonode = SCNNode()
        //frts one!!!
+                        var f = 0
                            let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
                                                    ssShoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                                     ssShoonode.scale = SCNVector3(0.02,0.02,0.02)
                          //  ssShoonode.
                            ssShoonode.name = "shark"
+                        
                            //second one
                            
                            let Spacehscene = SCNScene(named: "art.scnassets/SS1copy.scn")
                                                    ssThShoonode = (Spacehscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                                     ssThShoonode.scale = SCNVector3(0.02,0.02,0.02)
                            ssThShoonode.name = "sharkk"
+                        f = f+1
                            // third one
                            
                            let SpacehFscene = SCNScene(named: "art.scnassets/SS1copy.scn")
                                                                       FourthShoonode = (SpacehFscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                                                        FourthShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                               FourthShoonode.name = "shark"
+                        f = f+1
                            
                            //ThirdGroupNodeArray
                            //name
@@ -4960,12 +5034,14 @@ SaturnParent.addChildNode(SassThShoonode)
                                         Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                          Shoonode.scale = SCNVector3(0.03,0.03,0.03)
                                         Shoonode.name = "shark"
+                            f = f+1
                                      }else{
                           // blue
                                          let scene = SCNScene(named: "art.scnassets/SS1copy.scn")
                                         Shoonode = (scene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                          Shoonode.scale = SCNVector3(0.03,0.03,0.03)
                                          Shoonode.name = "SS1copy.scn"
+                            f = f+1
                                      }
                            
                           
@@ -4973,8 +5049,8 @@ SaturnParent.addChildNode(SassThShoonode)
                                               Shoonode.physicsBody?.isAffectedByGravity = false
                          //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                               //ShoonodeSec.physicsBody?.isAffectedByGravity = false
-                           Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                                                                 Shoonode.physicsBody?.isAffectedByGravity = false
+                           ssThShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                 ssThShoonode.physicsBody?.isAffectedByGravity = false
                                               ssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                                 ssShoonode.physicsBody?.isAffectedByGravity = false
                            FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
@@ -4988,13 +5064,17 @@ SaturnParent.addChildNode(SassThShoonode)
        //                     earth.name = "earth"
        //                    earthParent.name = "earthParent"
                          //  earth.addChildNode(ShoonodeSec)
-                           nodeArray.append(Shoonode)
-                        //   nodeArray.append(ShoonodeSec)
-                           ThirdGroupNodeArray.append(FourthShoonode)
-                          SSnodeArray.append(ssShoonode)
-                           SecGroupNodeArray.append(ssThShoonode)
+//                           nodeArray.append(Shoonode)
+//                        //   nodeArray.append(ShoonodeSec)
+//                           ThirdGroupNodeArray.append(FourthShoonode)
+//                          SSnodeArray.append(ssShoonode)
+//                           SecGroupNodeArray.append(ssThShoonode)
                         EarGroupNodeArray.append(earth)
                                            EarGroupNodeArray.append(earthParent)
+                        AllnodeArray.append(Shoonode)
+                         AllnodeArray.append(FourthShoonode)
+                        AllnodeArray.append(ssShoonode)
+                          AllnodeArray.append(ssThShoonode)
        //                    let r = ssShoonode
        //                     let b = ssShoonode
        //                     let c = ssShoonode
@@ -5082,6 +5162,7 @@ SaturnParent.addChildNode(SassThShoonode)
        //                    for n in SSnodeArray {
        //                        print("\(n.name) jessss")
        //                    }
+                        print("nnnnnnnnnn\(f)")
                
                        }
                    }
@@ -5119,10 +5200,26 @@ SaturnParent.addChildNode(SassThShoonode)
         if contact.nodeA.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue
             || contact.nodeB.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue {
             
+            
             if (contact.nodeA.name! == "ha" || contact.nodeB.name! == "ha") {
+//                if let Jes = self.sceneView.scene.rootNode.childNode(withName: "ha", recursively: true)
                 power = "axe"
-                score+=5
-                scoreL+=5
+                score+=3
+                              scoreL+=3
+//                 if !self.AllnodeArray.isEmpty{
+                //level 9
+//
+//                score+=5
+//                scoreL+=5
+//                     AllnodeArray.removeLast()
+//                    print("\( AllnodeArray)")
+//                    } else{
+//                    gameOver()
+//                    print("\( AllnodeArray) Over")
+//                }
+               
+              //  pla()
+                
                             playSound(sound: "Power", format: "wav")
                 //scoreL+=s
             } else if (contact.nodeA.name! == "earthQJ" || contact.nodeB.name! == "earthQJ") {
@@ -5146,10 +5243,21 @@ SaturnParent.addChildNode(SassThShoonode)
                    }
                 
             }
-                else{
-                score+=1
-                scoreL+=1
-            }
+//                else{
+//                //score+=1
+//                                                 //scoreL+=5
+////                 if !self.AllnodeArray.isEmpty{
+////
+////                                  score+=5
+////                                  scoreL+=5
+////                                       AllnodeArray.removeLast()
+////                                      print("\( AllnodeArray)")
+////                                      } else{
+////                                      gameOver()
+////                                      print("\( AllnodeArray) Over")
+////                                  }
+//            //    pla()
+//            }
             
             DispatchQueue.main.async {
                 contact.nodeA.removeFromParentNode()
@@ -5177,55 +5285,67 @@ SaturnParent.addChildNode(SassThShoonode)
 //                                    }
 //                    }
                     
+                    //level complete .....numbers add up restart VC
+                    
                 }
                 
                 else if (contact.nodeA.name! == "shark" || contact.nodeB.name! == "shark"){
-                    
-                    //SSnodeArray
-//                    if self.SSnodeArray.count > 3 {
-                      if !self.SSnodeArray.isEmpty{
-                    for r in self.SSnodeArray {
+                    if let Jes = self.sceneView.scene.rootNode.childNode(withName: "shark", recursively: true){
               
-                     //   r.removeFromParentNode()
-                     //   }
-                    //
-                                                        }
+                                                        self.score+=1
+                            self.scoreL+=1
+                           // self.AllnodeArray.removeLast()
+                            print("\(self.scoreL)")
+                           print("\(self.score)")
+                        print("\(contact.nodeA.name!)")
+                    } else{
+                        DispatchQueue.main.async {
+                                         
+                                         
+                                         self.BeatLevel()
+                                         }
+                        
                     }
-                }
+                      
+                                                        
+                    }
                 else { if  (contact.nodeA.name! == "SS1copy.scn" || contact.nodeB.name! == "SS1copy.scn"){
-                    if !self.SecGroupNodeArray.isEmpty{
-                    for r in self.SecGroupNodeArray {
-                        //    self.SSnodeArray.filter({ $0 == 4 }).forEach({ $0.removeFromParentNode() })
-                           // if r.name != "2" {
-                              //  print("\(r.name)")
-                     //   if !self.SecGroupNodeArray.isEmpty{
-                       //     r.removeFromParentNode()
-                      //  self.SecGroupNodeArray.removeAll()
-                        print("\(self.SecGroupNodeArray)SecGroupNodeArray jessssssss 2 ")
-                        }
+                          if !self.AllnodeArray.isEmpty{
+                                    
+                                                                      self.score+=1
+                                          self.scoreL+=1
+                                          self.AllnodeArray.removeLast()
+                                         // print("\( self.AllnodeArray)")
+                                                                          
                     
                     
                         } else {
-                         if !self.ThirdGroupNodeArray.isEmpty{
-                            for g in self.ThirdGroupNodeArray {
-                             //   g.removeFromParentNode()
-                             //   self.ThirdGroupNodeArray.removeAll()
-                                print("\(self.ThirdGroupNodeArray)ThirdGroupNodeArray made las jessssss3")
+                            DispatchQueue.main.async {
+                            
+                            //can easily Transition, and load level, fixed score
+                           // self.PlanetHit()
                             }
-                            
-
-                         } else if self.ThirdGroupNodeArray.isEmpty{
-                              print("Empty!!!!!!!! in level 3")
-                            
-                            
-                            
-          
-                            
-                        }
-//                         else {
+                           // self.gameOver()
+//                         if !self.ThirdGroupNodeArray.isEmpty{
+//                            for g in self.ThirdGroupNodeArray {
+//                             //   g.removeFromParentNode()
+//                             //   self.ThirdGroupNodeArray.removeAll()
+//                                print("\(self.ThirdGroupNodeArray)ThirdGroupNodeArray made las jessssss3")
+//                            }
 //
-//                            //pop
+//
+//                         } else if self.ThirdGroupNodeArray.isEmpty{
+//                              print("Empty!!!!!!!! in level 3")
+//
+//
+//
+//
+//
 //                        }
+////                         else {
+////
+////                            //pop
+////                        }
                     }
                     }
                 }
