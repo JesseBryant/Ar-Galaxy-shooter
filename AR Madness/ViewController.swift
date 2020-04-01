@@ -64,8 +64,21 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     @IBOutlet weak var messageLabel: UILabel!
     
+    @IBOutlet weak var Score: UILabel!
     
-    @IBOutlet weak var levelJB: UILabel!
+    
+    @IBOutlet weak var BesLabel: UILabel!
+    
+    @IBOutlet weak var BestScore: UILabel!
+    @IBOutlet weak var levelJB:
+    UILabel!
+    
+    
+    var trackerNode: SCNNode?
+    var foundSurface = false
+    var tracking = true
+//    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+//    }
     //used to store the scoreP:>L)_________________________________________________________________________________________________________________________[…≥π÷{{Ú∏˘::
     
     let audioNode = SCNNode()
@@ -84,8 +97,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         }
     
 var power = "banana"
-    var score = 0
-     var scoreL = 0
+    //score will be implenmented with leaderb
+    var scoreL = 0
+     var Coins = 0
+    //Coins
     var target: SCNNode?
    var earN: SCNNode?
     var nodeArray : [SCNNode] = []
@@ -98,6 +113,16 @@ var power = "banana"
     
 //   messageLabel.isHidden = true
     //MARK: - buttons
+    
+    
+    @IBAction func Restart(_ sender: Any) {
+    }
+    
+    
+    @IBAction func Revive(_ sender: Any) {
+    }
+    
+    
   //make blue and red(esp) clse!!!
     //axe button
     
@@ -147,30 +172,18 @@ var power = "banana"
         sceneView.scene.physicsWorld.contactDelegate = self
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         self.sceneView.addGestureRecognizer(gestureRecognizer)
-//        messageLabel.text = "Shoot all the spaceships. Do not shoot earth"
-//        messageLabel.isHidden = false
-//            messageLabel.text = "Shoot all the spaceships. Do not shoot earth"
-//        UIView.animate(withDuration: 2.5, animations: { () -> Void in
-//            self.messageLabel.alpha = 0
-//        })
-        //messageLabel
-        
-        //add objects to shoot at
-        //scoreL
-      //  if scoreL
-        
-        
-//        if self.nodeArray.isEmpty && self.SSnodeArray.isEmpty && self.SecGroupNodeArray.isEmpty && self.ThirdGroupNodeArray.isEmpty {
-//                               print("Empty!!!!!!!!")
-//        }
+
         let defaults = UserDefaults.standard
-            if let gameScore = defaults.value(forKey: "score"){
-                 score = gameScore as! Int
-                print("\(score) Jesse KKKK")
+            if let gameScore = defaults.value(forKey: "Coins"){
+                 Coins = gameScore as! Int
+                print("\(Coins) Jesse KKKK")
                 
                 //pla()
         }
-pla()
+       // DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.pla()
+   // })
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -188,7 +201,8 @@ pla()
 //                   }
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-        
+        //can see which phones supported ie ARWorldTrackingConfiguration.isSupported see if supported
+        //if not give them ArSessionConfiguration()
         // Run the view's session
         sceneView.session.run(configuration)
     }
@@ -270,7 +284,7 @@ pla()
          let defaultss = UserDefaults.standard
                     if let gameScore = defaultss.value(forKey: "scoreL"){
                          scoreJJ = gameScore as! Int
-                        if score > 90 {
+                        if Coins > 90 {
                           //  print("\(score):score >90 welcome to level 2")
                         } else{
                            // print("\(score): score <90 still on level 1")
@@ -283,11 +297,11 @@ pla()
         let fscre = scoreL
         //store the score in UserDefaults
         let defaults = UserDefaults.standard
-        defaults.set(score, forKey: "score")
+        defaults.set(Coins, forKey: "Coins")
 //        scoreL += score
       //  defaults.set(scoreL, forKey: "scoreL")
        // let arrrrr = scoreJJ + fscre
-        let arrrrr = score
+        let arrrrr = scoreL
         let defaultsJB = UserDefaults.standard
         defaultsJB.set(arrrrr, forKey: "scoreL")
         //go back to the Home View Controller
@@ -306,6 +320,7 @@ pla()
                         self.messageLabel.text = "You shot a planet"
              DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
                  var scoreJJ = 0
+               // self.BesLabel.text
                         let chd = "earth"
                           let chdKK = "earthParent"
                     
@@ -313,13 +328,13 @@ pla()
 
                          let defaultss = UserDefaults.standard
                                     if let gameScore = defaultss.value(forKey: "scoreL"){
-                                         scoreJJ = gameScore as! Int
-                                        if self.score > 90 {
-                                          //  print("\(score):score >90 welcome to level 2")
-                                        } else{
-                                           // print("\(score): score <90 still on level 1")
-                                        }
-                        //                //scoreLabel.text = "Score: \(String(score))"
+                                         //scoreJJ = gameScore as! Int
+//                                        if self.score > 90 {
+//                                          //  print("\(score):score >90 welcome to level 2")
+//                                        } else{
+//                                           // print("\(score): score <90 still on level 1")
+//                                        }
+//                        //                //scoreLabel.text = "Score: \(String(score))"
                                  }
                         
                         
@@ -327,10 +342,10 @@ pla()
                 let fscre = self.scoreL
                         //store the score in UserDefaults
                         let defaults = UserDefaults.standard
-                defaults.set(self.score, forKey: "score")
+                defaults.set(self.Coins, forKey: "Coins")
                 //        scoreL += score
                       //  defaults.set(scoreL, forKey: "scoreL")
-                        let arrrrr = scoreJJ + fscre
+                        let arrrrr = self.scoreL
                         let defaultsJB = UserDefaults.standard
                         defaultsJB.set(arrrrr, forKey: "scoreL")
                         //go back to the Home View Controller
@@ -347,26 +362,36 @@ pla()
              }
     
     
+//    func C() -> Int {
+//
+//    }
+    
     func BeatLevel() {
 
          //        messageLabel.isHidden = false
          //        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
+//        checkOutButtonOutlet.layer.shadowColor = UIColor.black.cgColor
+//                          checkOutButtonOutlet.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//                        checkOutButtonOutlet.layer.masksToBounds = false
+//                         checkOutButtonOutlet.layer.shadowRadius = 1.0
+//                        checkOutButtonOutlet.layer.shadowOpacity = 0.5
+//                          checkOutButtonOutlet.layer.cornerRadius = 7
+        
         
         var counter = 0
                  self.messageLabel.isHidden = false
                         self.messageLabel.text = "Level Completed"
-        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-            node.removeFromParentNode()
-        }
-        
-        if counter >= scoreL {
-            score += 1
-            self.messageLabel.text = "\(score)"
-            //counter = 0
-        } else {
-            counter += 1
-        }
+       
+                 // if let gameScore = defaults.value(forKey: "Coins"){
+                      // Coins = gameScore as! Int
+                      print("\(Coins) Jesse KKKK")
+                    self.BesLabel.text = ("+")
+                     self.BestScore.text  = "\(Coins) coins"
+
              DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+                self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                           node.removeFromParentNode()
+                       }
                  var scoreJJ = 0
                         let chd = "earth"
                           let chdKK = "earthParent"
@@ -374,9 +399,9 @@ pla()
 
 
                          let defaultss = UserDefaults.standard
-                                    if let gameScore = defaultss.value(forKey: "scoreL"){
+                                    if let gameScore = defaultss.value(forKey: "Coins"){
                                          scoreJJ = gameScore as! Int
-                                        if self.score > 90 {
+                                        if self.Coins > 90 {
                                           //  print("\(score):score >90 welcome to level 2")
                                         } else{
                                            // print("\(score): score <90 still on level 1")
@@ -389,10 +414,10 @@ pla()
                 let fscre = self.scoreL
                         //store the score in UserDefaults
                         let defaults = UserDefaults.standard
-                defaults.set(self.score, forKey: "score")
+                defaults.set(self.Coins, forKey: "Coins")
                 //        scoreL += score
                       //  defaults.set(scoreL, forKey: "scoreL")
-                        let arrrrr = scoreJJ + fscre
+                        let arrrrr = self.scoreL
                         let defaultsJB = UserDefaults.standard
                         defaultsJB.set(arrrrr, forKey: "scoreL")
                         //go back to the Home View Controller
@@ -401,6 +426,10 @@ pla()
                        // self.dismiss(animated: true, completion: nil)
                 self.stopBackgroundMus()
                  self.messageLabel.isHidden = true
+                self.BestScore.isHidden = true
+                      self.BestScore.isHidden = true
+                self.BesLabel.isHidden = true
+                
                 self.pla()
                           })
 
@@ -427,7 +456,7 @@ pla()
                             let defaultss = UserDefaults.standard
                                        if let gameScore = defaultss.value(forKey: "scoreL"){
                                             scoreJJ = gameScore as! Int
-                                           if self.score > 90 {
+                                           if self.Coins > 90 {
                                              //  print("\(score):score >90 welcome to level 2")
                                            } else{
                                               // print("\(score): score <90 still on level 1")
@@ -440,10 +469,10 @@ pla()
                    let fscre = self.scoreL
                            //store the score in UserDefaults
                            let defaults = UserDefaults.standard
-                   defaults.set(self.score, forKey: "score")
+                   defaults.set(self.Coins, forKey: "Coins")
                    //        scoreL += score
                          //  defaults.set(scoreL, forKey: "scoreL")
-                           let arrrrr = scoreJJ + fscre
+                           let arrrrr = self.scoreL
                            let defaultsJB = UserDefaults.standard
                            defaultsJB.set(arrrrr, forKey: "scoreL")
                            //go back to the Home View Controller
@@ -463,11 +492,12 @@ pla()
     
     func pla() {
         resetTimer()
-        
-        if 90...150 ~= score {
+        //this will eventually use gold!!rewarded for next level instead of score
+        //more gold they spend could go down..
+        if 7...38 ~= Coins {
                       power = "banana"
                                    messageLabel.isHidden = true
-                            levelJB.text = "level 9"
+                            levelJB.text = "level 2"
                                   SecaddTargetNodes()
 //            addTargetNodesJupitar()
              sceneView.scene.rootNode.removeAllAudioPlayers()
@@ -485,8 +515,8 @@ pla()
                                   //start tinmer
                                   runTimer()
     
-                            print("\(score): welcome to level 2")
-                        } else if 151...250 ~= score{
+                            print("\(Coins): welcome to level 2")
+                        } else if 39...66 ~= Coins{
             power = "banana"
                           //  sceneView.backgroundColor = UIColor.red
                                    messageLabel.isHidden = true
@@ -501,10 +531,10 @@ pla()
                                   
                                   //start tinmer
                                   runTimer()
-                              print("\(score): welcome to level 3 jess")
+                              print("\(Coins): welcome to level 3 jess")
               
                         }
-                        else if 251...350 ~= score{
+                        else if 67...94 ~= Coins{
             power = "banana"
                                           //  sceneView.backgroundColor = UIColor.red
                                                    messageLabel.isHidden = true
@@ -517,9 +547,9 @@ pla()
                                                   
                                                   //start tinmer
                                                   runTimer()
-                                              print("\(score): welcome to level 4 jess")
+                                              print("\(Coins): welcome to level 4 jess")
                             
-                                        }       else if 351...450 ~= score{
+                                        }       else if 95...129 ~= Coins{
             power = "banana"
                                                                     //  sceneView.backgroundColor = UIColor.red
                                                                              messageLabel.isHidden = true
@@ -536,9 +566,9 @@ pla()
                                                                            // playingSoundWith
                                                                             //start tinmer
                                                                             runTimer()
-                                                                        print("\(score): welcome to level 5 jess")
+                                                                        print("\(Coins): welcome to level 5 jess")
                                                                    //
-                                                                  } else if 451...550 ~= score{
+                                                                  } else if 130...161 ~= Coins{
             power = "banana"
                                                                                                           //  sceneView.backgroundColor = UIColor.red
             
@@ -556,12 +586,12 @@ pla()
                                                                                                                   
                                                                                                                   //start tinmer
                                                                                                                   runTimer()
-                                                                                                              print("\(score): welcome to level 6 jess")
+                                                                                                              print("\(Coins): welcome to level 6 jess")
                                                                                
                                                                                                         }
                         
                         //addTargetNodesSaturn()
-                        else if 551...650 ~= score{
+                        else if 162...209 ~= Coins{
             power = "banana"
             
              sceneView.scene.rootNode.removeAllAudioPlayers()
@@ -581,10 +611,10 @@ pla()
                                                                         
                                                                         //start tinmer
                                                                         runTimer()
-                                                                    print("\(score): welcome to level 7 jess")
+                                                                    print("\(Coins): welcome to level 7 jess")
                                                                
                                                               }
-                        else if 651...1320 ~= score{
+                        else if 209...1320 ~= Coins{
             
             power = "banana"
             
@@ -602,7 +632,7 @@ pla()
                                                                                        
                                                                                        //start tinmer
                                                                                        runTimer()
-                                                                                   print("\(score): welcome to level 8 jess")
+                                                                                   print("\(Coins): welcome to level 8 jess")
                                                                               
                                                                              }
 //      else if 807...5950 ~= score{
@@ -655,7 +685,7 @@ pla()
                         //  addTargetNodesJupitar()
                           //start tinmer
                           runTimer()
-                    print("\(score): still on level 1")
+                    print("\(Coins): still on level 1")
    
                 }
       //  stopBackgroundMusic()
@@ -669,16 +699,7 @@ pla()
             //create node
         //Finish last level, new music and new ships. Dope
             node = createMissile(type: type)
-            //fix it to where once you kill all says game won
-            //have pop ups
-            //use space ships and beam instead
-            //shoot blast that look like beams
-            //get the users position and direction
-            //my competion 3d images a bit plane
-            //pay close attention to my competion and the best levels, and growth of difficulty and difficulty
-            //add every node to an array so i can delete right ones.
-            // increase rotation speeds per level.
-            //Multy player
+   
             let (direction, position) = self.getUserVector()
             node.position = position
             var nodeDirection = SCNVector3()
@@ -727,7 +748,8 @@ pla()
 //                  node = (scene?.rootNode.childNode(withName: "missile", recursively: true)!)!
 //                  node.scale = SCNVector3(0.2,0.2,0.2)
                 node .geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                  node.name = "banana"
+                 node.name = "bathtub"
+                //  node.name = "banana"
               case "axe":
                 
 //                  let scene = SCNScene(named: "art.scnassets/missile.dae")
@@ -863,8 +885,8 @@ pla()
                                        Shoonode.physicsBody?.isAffectedByGravity = false
                   //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                        //ShoonodeSec.physicsBody?.isAffectedByGravity = false
-                    Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                                                          Shoonode.physicsBody?.isAffectedByGravity = false
+                    ssThShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                          ssThShoonode.physicsBody?.isAffectedByGravity = false
                                        ssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                          ssShoonode.physicsBody?.isAffectedByGravity = false
                     FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
@@ -1086,8 +1108,8 @@ pla()
                                            Shoonode.physicsBody?.isAffectedByGravity = false
                       //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                            //ShoonodeSec.physicsBody?.isAffectedByGravity = false
-                        Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                                                              Shoonode.physicsBody?.isAffectedByGravity = false
+                       // Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                              //Shoonode.physicsBody?.isAffectedByGravity = false
                                            ssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                              ssShoonode.physicsBody?.isAffectedByGravity = false
                         
@@ -2943,25 +2965,7 @@ pla()
                                               
                                               
                                               
-                                              
-//                                              let SpaceShscener = SCNScene(named: "art.scnassets/SS1copy.scn")
-//                                                                                                        JupssShoonode = (SpaceShscener?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
-//                                                                                                         JupssShoonode.scale = SCNVector3(0.02,0.02,0.02)
-//                                                                              //  ssShoonode.
-//                                                                                JupssShoonode.name = "shark"
-//                                                                                //second one
-//
-//                                                  let Spacehscenel = SCNScene(named: "art.scnassets/SS1copy.scn")
-//                              JupssThShoonode = (Spacehscenel?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
-//                                                      JupssThShoonode.scale = SCNVector3(0.02,0.02,0.02)
-//                                                                                JupssThShoonode.name = "shark"
-//                                                                                // third one
-//
-//                                      let SpacehFsceneah = SCNScene(named: "art.scnassets/SS1copy.scn")
-//                              JupFourthShoonode = (SpacehFsceneah?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
-//                                                              JupFourthShoonode.scale = SCNVector3(0.02,0.02,0.02)
-//                                                          JupFourthShoonode.name = "shark"
-//
+
 
                                                                                      let moonParent = SCNNode()
                                                                    
@@ -4765,7 +4769,7 @@ SaturnParent.addChildNode(SassThShoonode)
           //  let frame = self.sceneView.session.currentFrame
           //  let frame = self.sceneView.
             // let mat = SCNMatrix4(frame.camera.transform)
-                    for index in 0...9 {
+                    for index in 0...6 {
                         //first two levels solid
                         //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
                         //make node array empty in the end of the game func
@@ -4827,6 +4831,13 @@ SaturnParent.addChildNode(SassThShoonode)
                                            //ShoonodeSec.physicsBody?.isAffectedByGravity = false
                         Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                               Shoonode.physicsBody?.isAffectedByGravity = false
+                        
+                                              //Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                 //Shoonode.physicsBody?.isAffectedByGravity = false
+                                            //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                 //ShoonodeSec.physicsBody?.isAffectedByGravity = false
+                                              ssThShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                    ssThShoonode.physicsBody?.isAffectedByGravity = false
                                            ssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                              ssShoonode.physicsBody?.isAffectedByGravity = false
                         FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
@@ -5126,7 +5137,7 @@ SaturnParent.addChildNode(SassThShoonode)
 
                                   let SecRotation = XRotation(time: 300)
                              let SecRo = XRotation(time: 6)
-                                     let sunAction = Rotation(time: 12)
+                                     let sunAction = Rotation(time: 6)
                                    let earthParentRotation = Rotation(time: 10)
                            let VRotation = Rotation(time: 6)
                                    let venusParentRotation = XRotation(time: 20)
@@ -5203,9 +5214,10 @@ SaturnParent.addChildNode(SassThShoonode)
             
             if (contact.nodeA.name! == "ha" || contact.nodeB.name! == "ha") {
 //                if let Jes = self.sceneView.scene.rootNode.childNode(withName: "ha", recursively: true)
-                power = "axe"
-                score+=3
-                              scoreL+=3
+                //decided not add because this a bonus
+              //  power = "axe"
+                Coins+=4
+                              scoreL+=8
 //                 if !self.AllnodeArray.isEmpty{
                 //level 9
 //
@@ -5225,6 +5237,7 @@ SaturnParent.addChildNode(SassThShoonode)
             } else if (contact.nodeA.name! == "earthQJ" || contact.nodeB.name! == "earthQJ") {
 //                self.messageLabel.isHidden = false
 //                              self.messageLabel.text = "you destroyed an planet"
+                Coins = 0
                 
              DispatchQueue.main.async {
                 
@@ -5238,26 +5251,12 @@ SaturnParent.addChildNode(SassThShoonode)
 
                 DispatchQueue.main.async {
                    
-                   
+                    self.Coins = 0
                    self.PlanetHitMoon()
                    }
                 
             }
-//                else{
-//                //score+=1
-//                                                 //scoreL+=5
-////                 if !self.AllnodeArray.isEmpty{
-////
-////                                  score+=5
-////                                  scoreL+=5
-////                                       AllnodeArray.removeLast()
-////                                      print("\( AllnodeArray)")
-////                                      } else{
-////                                      gameOver()
-////                                      print("\( AllnodeArray) Over")
-////                                  }
-//            //    pla()
-//            }
+
             
             DispatchQueue.main.async {
                 contact.nodeA.removeFromParentNode()
@@ -5265,7 +5264,7 @@ SaturnParent.addChildNode(SassThShoonode)
                 contact.nodeB.removeFromParentNode()
                // contact.ear
                 //LETS GOOOOOOOOOOOOOOOOOO This it ******************
-                self.scoreLabel.text = String(self.score)
+              //  self.scoreLabel.text = String(self.Coins)
                 if (contact.nodeA.name! == "mo" || contact.nodeB.name! == "mo"){
                     
 
@@ -5290,13 +5289,13 @@ SaturnParent.addChildNode(SassThShoonode)
                 }
                 
                 else if (contact.nodeA.name! == "shark" || contact.nodeB.name! == "shark"){
-                    if let Jes = self.sceneView.scene.rootNode.childNode(withName: "shark", recursively: true){
+                    if let Jes = self.sceneView.scene.rootNode.childNode(withName: "shark", recursively: true) {
               
-                                                        self.score+=1
-                            self.scoreL+=1
+                                                        self.Coins+=1
+                            self.scoreL+=2
                            // self.AllnodeArray.removeLast()
-                            print("\(self.scoreL)")
-                           print("\(self.score)")
+                            print("\(self.scoreL) scoreL")
+                           print("\(self.Coins)Coins")
                         print("\(contact.nodeA.name!)")
                     } else{
                         DispatchQueue.main.async {
@@ -5307,47 +5306,15 @@ SaturnParent.addChildNode(SassThShoonode)
                         
                     }
                       
-                                                        
+                                           // SS1copy.scn
                     }
-                else { if  (contact.nodeA.name! == "SS1copy.scn" || contact.nodeB.name! == "SS1copy.scn"){
-                          if !self.AllnodeArray.isEmpty{
-                                    
-                                                                      self.score+=1
+                else { //if  (contact.nodeA.name! == "SS1copy.scn" || contact.nodeB.name! == "SS1copy.scn"){
+                        //  if !self.AllnodeArray.isEmpty{
+                          //should be blue***
+                                                                      self.Coins+=1
                                           self.scoreL+=1
-                                          self.AllnodeArray.removeLast()
-                                         // print("\( self.AllnodeArray)")
-                                                                          
-                    
-                    
-                        } else {
-                            DispatchQueue.main.async {
-                            
-                            //can easily Transition, and load level, fixed score
-                           // self.PlanetHit()
-                            }
-                           // self.gameOver()
-//                         if !self.ThirdGroupNodeArray.isEmpty{
-//                            for g in self.ThirdGroupNodeArray {
-//                             //   g.removeFromParentNode()
-//                             //   self.ThirdGroupNodeArray.removeAll()
-//                                print("\(self.ThirdGroupNodeArray)ThirdGroupNodeArray made las jessssss3")
-//                            }
-//
-//
-//                         } else if self.ThirdGroupNodeArray.isEmpty{
-//                              print("Empty!!!!!!!! in level 3")
-//
-//
-//
-//
-//
-//                        }
-////                         else {
-////
-////                            //pop
-////                        }
-                    }
-                    }
+
+                   // }
                 }
                 
                 
