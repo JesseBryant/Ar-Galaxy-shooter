@@ -218,6 +218,8 @@
                         <outlet property="Score" destination="dfD-U9-pDY" id="fWP-NU-YV0"/>
                         <outlet property="levelJB" destination="ZSy-zZ-uz3" id="9y7-C1-iB9"/>
                         <outlet property="messageLabel" destination="ZU2-qb-MzX" id="uYg-c0-rzu"/>
+                        <outlet property="r" destination="cRd-Py-Fui" id="1h2-d5-7pS"/>
+                        <outlet property="retry" destination="kwo-IE-Zkc" id="wcz-m9-P3g"/>
                         <outlet property="sceneView" destination="CA1-Ym-8qw" id="VdT-NP-AZd"/>
                         <outlet property="scoreLabel" destination="s8M-pf-58c" id="sjE-f0-CKC"/>
                         <outlet property="timerLabel" destination="oII-wX-Kk6" id="r1l-Jl-Y0R"/>
