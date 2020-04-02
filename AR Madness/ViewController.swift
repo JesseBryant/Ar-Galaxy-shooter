@@ -404,7 +404,7 @@ var power = "banana"
 
                          let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
                             //magic for
-                            
+                            //j
                             
                          })
                          alert.addAction(ok)
