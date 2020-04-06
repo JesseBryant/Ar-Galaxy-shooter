@@ -33,6 +33,7 @@
 import UIKit
 import SceneKit
 import ARKit
+import StoreKit
 //import SpriteKit
 enum BitMaskCategory: Int {
     case target  = 3
@@ -50,7 +51,7 @@ enum BitMaskCategory: Int {
 //    }
 //}
 
-class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate, SKPaymentTransactionObserver {
     
     //MARK: - variables
 
@@ -86,7 +87,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     let audioNode = SCNNode()
     let audioSource = SCNAudioSource(fileNamed: "Sleepy.mp3")!
-    
+    let productID = "Jesse_CoinsSellas"
         var audioPlayer = AVAudioPlayer()
     //Sleepy.mp3
         func playingSoundWith(fileName: String) {
@@ -173,6 +174,7 @@ var power = "banana"
     // let audioPlayer = SCNAudioPlayer(source: audioSource)
     override func viewDidLoad() {
         super.viewDidLoad()
+        SKPaymentQueue.default().add(self)
         // stopBackgroundMusic()
         // Set the view's delegate
         sceneView.delegate = self
@@ -268,6 +270,7 @@ var power = "banana"
     @objc func updateTimer() {
         if seconds == 0 {
             timer.invalidate()
+            //believe this issue because this the only place that calls  gameOver()
             gameOver()
         }else{
             seconds -= 1
@@ -380,6 +383,8 @@ var power = "banana"
              let ok = UIAlertAction(title: "10 coins", style: .default, handler: { action in
                 //remembe
                  if self.Coins>=10{
+                    //not working because coins = 0 in real physical world
+                    //will need restart here cuz planet gone
                                 print("\(self.Coins) Coins")
                                 self.Coins = self.Coins - 10
                                  print("\(self.Coins) Coins after")
@@ -403,12 +408,13 @@ var power = "banana"
                     let alert = UIAlertController(title: "Not enough coins", message: "Buy more?", preferredStyle: .alert)
 
                          let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
-                            //magic for
+                            //magic for in app purchases
                             //j
                             
                          })
                          alert.addAction(ok)
                          let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+                            //done in ph world too
                             self.Coins = 0
                             self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
                                                                               node.removeFromParentNode()
@@ -510,6 +516,72 @@ var power = "banana"
 
 
              }
+    //C
+    // MARK: - In-App Purchase Methods
+    
+    func buyPremiumQuotes() {
+        if SKPaymentQueue.canMakePayments() {
+            //Can make payments
+            
+           let paymentRequest = SKMutablePayment()
+            paymentRequest.productIdentifier = productID
+            SKPaymentQueue.default().add(paymentRequest)
+            
+            
+        } else {
+            //Can't make payments
+            print("User can't make payments")
+            
+            //add alert here
+        }
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        
+        for transaction in transactions {
+            if transaction.transactionState == .purchased {
+                
+                //User payment successful
+                print("Transaction successful!")
+                
+                showPremiumQuotes()
+                
+               
+                
+                SKPaymentQueue.default().finishTransaction(transaction)
+                
+            } else if transaction.transactionState == .failed {
+                
+                //Payment failed
+                if let error = transaction.error {
+                    let errorDescription = error.localizedDescription
+                    print("Transaction failed due to error: \(errorDescription)")
+                }
+                
+                 SKPaymentQueue.default().finishTransaction(transaction)
+                
+            } else if transaction.transactionState == .restored {
+                
+                showPremiumQuotes()
+                
+                print("Transaction restored")
+                
+                navigationItem.setRightBarButton(nil, animated: true)
+                
+                SKPaymentQueue.default().finishTransaction(transaction)
+            }
+        }
+        
+    }
+    
+    func showPremiumQuotes() {
+        
+        UserDefaults.standard.set(true, forKey: productID)
+        
+     //   quotesToShow.append(contentsOf: premiumQuotes)
+       // tableView.reloadData()
+        
+    }
     
     
 //    func C() -> Int {
@@ -526,10 +598,12 @@ var power = "banana"
 //                         checkOutButtonOutlet.layer.shadowRadius = 1.0
 //                        checkOutButtonOutlet.layer.shadowOpacity = 0.5
 //                          checkOutButtonOutlet.layer.cornerRadius = 7
+        //almost finish in-app
         
         
         var counter = 0
                  self.messageLabel.isHidden = false
+        timer.invalidate()
                         self.messageLabel.text = "Level Completed"
        
                  // if let gameScore = defaults.value(forKey: "Coins"){
@@ -537,27 +611,26 @@ var power = "banana"
                       print("\(Coins) Jesse KKKK")
                     self.BesLabel.text = ("+")
                      self.BestScore.text  = "\(Coins) coins"
+//        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+//                                  node.removeFromParentNode()
+//                              }
 
              DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
                 self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
                            node.removeFromParentNode()
                        }
-                 var scoreJJ = 0
-                        let chd = "earth"
-                          let chdKK = "earthParent"
-                    
-
+           
 
                          let defaultss = UserDefaults.standard
-                                    if let gameScore = defaultss.value(forKey: "Coins"){
-                                         scoreJJ = gameScore as! Int
-                                        if self.Coins > 90 {
-                                          //  print("\(score):score >90 welcome to level 2")
-                                        } else{
-                                           // print("\(score): score <90 still on level 1")
-                                        }
-                        //                //scoreLabel.text = "Score: \(String(score))"
-                                 }
+//                                    if let gameScore = defaultss.value(forKey: "Coins"){
+//                                         scoreJJ = gameScore as! Int
+//                                        if self.Coins > 90 {
+//                                          //  print("\(score):score >90 welcome to level 2")
+//                                        } else{
+//                                           // print("\(score): score <90 still on level 1")
+//                                        }
+//                        //                //scoreLabel.text = "Score: \(String(score))"
+//                                 }
                         
                         
                      //   scoreL += score
@@ -567,6 +640,11 @@ var power = "banana"
                 defaults.set(self.Coins, forKey: "Coins")
                 //        scoreL += score
                       //  defaults.set(scoreL, forKey: "scoreL")
+                
+                
+                
+                        //After in app purchases make this 0..so we can keep
+                        //up with best score
                         let arrrrr = self.scoreL
                         let defaultsJB = UserDefaults.standard
                         defaultsJB.set(arrrrr, forKey: "scoreL")
@@ -574,7 +652,7 @@ var power = "banana"
                        // removeAud
                         //stopBackgroundMusic()
                        // self.dismiss(animated: true, completion: nil)
-                self.stopBackgroundMus()
+                //self.stopBackgroundMus()
                  self.messageLabel.isHidden = true
                 self.BestScore.isHidden = true
                       self.BestScore.isHidden = true
@@ -641,7 +719,7 @@ var power = "banana"
     
     
     func pla() {
-        resetTimer()
+       // resetTimer()
         //this will eventually use gold!!rewarded for next level instead of score
         //more gold they spend could go down..
         if 7...38 ~= Coins {
@@ -5277,7 +5355,9 @@ SaturnParent.addChildNode(SassThShoonode)
                                   self.sceneView.scene.rootNode.addChildNode(earthParent)
                                   self.sceneView.scene.rootNode.addChildNode(venusParent)
 
-                                  self.sceneView.scene.rootNode.addChildNode(Shoonode)
+                        //com.whatever.AR-JesBrA.Coins
+                        //Jesse_CoinsSellas
+                        self.sceneView.scene.rootNode.addChildNode(Shoonode)
                            //self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
                            self.sceneView.scene.rootNode.addChildNode(ssShoonode)
                              self.sceneView.scene.rootNode.addChildNode(ssThShoonode)
@@ -5387,7 +5467,7 @@ SaturnParent.addChildNode(SassThShoonode)
             } else if (contact.nodeA.name! == "earthQJ" || contact.nodeB.name! == "earthQJ") {
 //                self.messageLabel.isHidden = false
 //                              self.messageLabel.text = "you destroyed an planet"
-                Coins = 0
+               // Coins = 0
                 
              DispatchQueue.main.async {
                 
@@ -5414,7 +5494,7 @@ SaturnParent.addChildNode(SassThShoonode)
                 contact.nodeB.removeFromParentNode()
                // contact.ear
                 //LETS GOOOOOOOOOOOOOOOOOO This it ******************
-              //  self.scoreLabel.text = String(self.Coins)
+//               self.scoreLabel.text = String(self.scoreL)
                 if (contact.nodeA.name! == "mo" || contact.nodeB.name! == "mo"){
                     
 
@@ -5449,7 +5529,7 @@ SaturnParent.addChildNode(SassThShoonode)
                         print("\(contact.nodeA.name!)")
                     } else{
                         DispatchQueue.main.async {
-                                         
+                            self.resetTimer()
                                          
                                          self.BeatLevel()
                                          }
@@ -5467,7 +5547,7 @@ SaturnParent.addChildNode(SassThShoonode)
                    // }
                 }
                 
-                
+                  self.scoreLabel.text = String(self.scoreL)
             }
 //
 //            playSound(sound: "explosion", format: "wav")
