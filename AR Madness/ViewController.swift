@@ -401,7 +401,7 @@ var power = "banana"
                                           }
                     self.pla()
                                // let fscre = self.scoreL
-                                                     //store the score in UserDefaults
+                                                     //store the score in UserDefaults and leaderboard
                                          
                 }
                  else {
@@ -410,6 +410,7 @@ var power = "banana"
                          let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
                             //magic for in app purchases
                             //j
+                            //All project 
                             
                          })
                          alert.addAction(ok)
@@ -5462,7 +5463,7 @@ SaturnParent.addChildNode(SassThShoonode)
                
               //  pla()
                 
-                            playSound(sound: "Power", format: "wav")
+                          //  playSound(sound: "Power", format: "wav")
                 //scoreL+=s
             } else if (contact.nodeA.name! == "earthQJ" || contact.nodeB.name! == "earthQJ") {
 //                self.messageLabel.isHidden = false
