@@ -410,7 +410,8 @@ var power = "banana"
                          let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
                             //magic for in app purchases
                             //j
-                            //All project 
+                            //All project
+                            self.buyPremiumQuotes()
                             
                          })
                          alert.addAction(ok)
@@ -581,7 +582,12 @@ var power = "banana"
         
      //   quotesToShow.append(contentsOf: premiumQuotes)
        // tableView.reloadData()
-        
+        //self.Coins = Coins + 10
+        //in app works... Transaction successful!
+        self.Coins+=10
+        let defaults = UserDefaults.standard
+                  defaults.set(self.Coins, forKey: "Coins")
+        print("\(self.Coins) Coins")
     }
     
     
