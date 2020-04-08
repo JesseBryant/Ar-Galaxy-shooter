@@ -584,10 +584,19 @@ var power = "banana"
        // tableView.reloadData()
         //self.Coins = Coins + 10
         //in app works... Transaction successful!
+        //need to sub or add less cuz it goes too next level
+        //well do add 5 for now.. for 1.99 look at other games in app purchases
         self.Coins+=10
         let defaults = UserDefaults.standard
                   defaults.set(self.Coins, forKey: "Coins")
         print("\(self.Coins) Coins")
+        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                                  node.removeFromParentNode()
+                              }
+        self.pla()
+        
+                  
+        
     }
     
     
