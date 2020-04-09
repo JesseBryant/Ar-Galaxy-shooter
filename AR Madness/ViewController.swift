@@ -72,7 +72,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     @IBOutlet weak var BestScore: UILabel!
     @IBOutlet weak var levelJB:UILabel!
-    
+    var Time = false
     
     
     @IBOutlet weak var retry: UIButton!
@@ -232,7 +232,7 @@ var power = "banana"
     // MARK: - timer
     
     //to store how many sceonds the game is played for
-    var seconds = 90
+    var seconds = 30
     
     //timer
     var timer = Timer()
@@ -271,7 +271,8 @@ var power = "banana"
         if seconds == 0 {
             timer.invalidate()
             //believe this issue because this the only place that calls  gameOver()
-            gameOver()
+            NeedMoreTime()
+           // gameOver()
         }else{
             seconds -= 1
             timerLabel.text = "\(seconds)"
@@ -325,59 +326,91 @@ var power = "banana"
         self.dismiss(animated: true, completion: nil)
          stopBackgroundMus()
     }
-    
+    func NeedMoreTime(){
+          
+//        var Time = false
+        timer.invalidate()
+
+        let alert = UIAlertController(title: "Need more time", message: "Continue this level?", preferredStyle: UIAlertController.Style.alert)
+
+             let ok = UIAlertAction(title: "10 coins", style: .default, handler: { action in
+                //remembe
+                 if self.Coins>=10{
+                    //not working because coins = 0 in real physical world
+                    //will need restart here cuz planet gone
+                                print("\(self.Coins) Coins")
+                                self.Coins = self.Coins - 10
+                                 print("\(self.Coins) Coins after")
+                    let defaults = UserDefaults.standard
+                                        defaults.set(self.Coins, forKey: "Coins")
+                                                   //        scoreL += score
+                                                         //  defaults.set(scoreL, forKey: "scoreL")
+                                                           let arrrrr = self.scoreL
+                                                           let defaultsJB = UserDefaults.standard
+                                                           defaultsJB.set(arrrrr, forKey: "scoreL")
+                    //since planet got hit restart with **Correct** points
+//                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+//                                              node.removeFromParentNode()
+//                                          }
+//                    self.pla()
+                   // timer
+                    //self.seconds = 90
+                    //need to make sre messgae go wi
+                    self.resetTimer()
+                    self.runTimer()
+                               // let fscre = self.scoreL
+                                                     //store the score in UserDefaults and leaderboard
+                                         
+                }
+                 else {
+                    let alert = UIAlertController(title: "Not enough coins", message: "Buy more?", preferredStyle: .alert)
+
+                         let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
+                            //magic for in app purchases
+                            //j
+                            //All project
+                            self.Time = true
+                            self.buyPremiumQuotes()
+                            
+                         })
+                         alert.addAction(ok)
+                         let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+                            //done in ph world too
+                            self.Coins = 0
+                            self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                                                                              node.removeFromParentNode()
+                                                                          }
+                                                    self.pla()
+                         })
+                         alert.addAction(cancel)
+                         DispatchQueue.main.async(execute: {
+                            self.present(alert, animated: true)
+                    })
+                    
+                }
+             })
+             alert.addAction(ok)
+             let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+                self.Coins = 0
+                self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                                                   node.removeFromParentNode()
+                                               }
+                         self.pla()
+             })
+             alert.addAction(cancel)
+             DispatchQueue.main.async(execute: {
+                self.present(alert, animated: true)
+        })
+
+
+        
+      }
     
     func PlanetHit() {
 
-         //        messageLabel.isHidden = false
-         //        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
-//        self.r.setTitle("Revive", for: .normal)
-//         self.retry.setTitle("Retry", for: .normal)
-//        // timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
-////         self.r.text = "Revive"
-////        self.r.text = "Revive"
-////                r.layer.shadowColor = UIColor.black.cgColor
-////                                r.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-////                               r.layer.masksToBounds = false
-////                                 r.layer.shadowRadius = 1.0
-////                                r.layer.shadowOpacity = 0.5
-////                                  r.layer.cornerRadius = 7
-////        retry.layer.shadowColor = UIColor.black.cgColor
-////        retry.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-////                                     retry.layer.masksToBounds = false
-////                                       retry.layer.shadowRadius = 1.0
-////                                      retry.layer.shadowOpacity = 0.5
-////                                        retry.layer.cornerRadius = 7
-//
-//                 self.messageLabel.isHidden = false
-//        self.BestScore.text = "Best \(scoreL)"
-//        scoreL = 0
-//        self.Score.text = "Score \(scoreL)"
-                      //  self.messageLabel.text = "You shot a planet"
-        //sceneView.isPaused = true
-      //  sceneView.isPlaying = false
+
         timer.invalidate()
-//             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-//                 var scoreJJ = 0
-//               // self.BesLabel.text
-//                        let chd = "earth"
-//                          let chdKK = "earthParent"
-//
-//
-//
-//                         let defaultss = UserDefaults.standard
-//                                    if let gameScore = defaultss.value(forKey: "scoreL"){
-//                                         //scoreJJ = gameScore as! Int
-////                                        if self.score > 90 {
-////                                          //  print("\(score):score >90 welcome to level 2")
-////                                        } else{
-////                                           // print("\(score): score <90 still on level 1")
-////                                        }
-////                        //                //scoreLabel.text = "Score: \(String(score))"
-//                                 }
-//
-//
-                     //   scoreL += score
+
         let alert = UIAlertController(title: "You shot a planet", message: "Continue this level?", preferredStyle: UIAlertController.Style.alert)
 
              let ok = UIAlertAction(title: "10 coins", style: .default, handler: { action in
@@ -442,77 +475,6 @@ var power = "banana"
              DispatchQueue.main.async(execute: {
                 self.present(alert, animated: true)
         })
-//        let alert = UIAlertController(title: "You shot a planet", message: "Continue this level?", preferredStyle: UIAlertController.Style.alert)
-//        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { action in
-//                   self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-//                                                         node.removeFromParentNode()
-//                                                     }
-//
-//
-//               })
-//
-//           // add the actions (buttons)
-//          // alert.addAction(UIAlertAction(title: "10 coins", style: UIAlertAction.Style.default, handler: nil))
-//        alert.addAction(UIAlertAction(title: "10 coins", style: UIAlertAction.Style.destructive, handler: { action in
-//
-//            // do something like...
-//           // self.launchMissile()
-//            if self.Coins>=10{
-//                print("\(self.Coins) Coins")
-//                self.Coins = self.Coins - 10
-//                 print("\(self.Coins) Coins after")
-//               // let fscre = self.scoreL
-//                                     //store the score in UserDefaults
-//                                     let defaults = UserDefaults.standard
-//                defaults.set(self.Coins, forKey: "Coins")
-//                           //        scoreL += score
-//                                 //  defaults.set(scoreL, forKey: "scoreL")
-//                                   let arrrrr = self.scoreL
-//                                   let defaultsJB = UserDefaults.standard
-//                                   defaultsJB.set(arrrrr, forKey: "scoreL")
-//            } else {
-//
-//
-//                let alert = UIAlertController(title: "Not enough coins", message: "Buy more?", preferredStyle: UIAlertController.Style.alert)
-//
-//                     // add the actions (buttons)
-//                     alert.addAction(UIAlertAction(title: "Continue", style: UIAlertAction.Style.default, handler: { action in
-//
-//                     }))
-//                     alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { action in
-//
-//                     // show the alert
-//                     self.present(alert, animated: true, completion: nil)
-//
-//            }))
-//
-//        }
-       
-
-           // show the alert
-         //  self.present(alert, animated: true, completion: nil)
-        
-//                let fscre = self.scoreL
-//                        //store the score in UserDefaults
-//                        let defaults = UserDefaults.standard
-//                defaults.set(self.Coins, forKey: "Coins")
-//                //        scoreL += score
-//                      //  defaults.set(scoreL, forKey: "scoreL")
-//                        let arrrrr = self.scoreL
-//                        let defaultsJB = UserDefaults.standard
-//                        defaultsJB.set(arrrrr, forKey: "scoreL")
-                        //go back to the Home View Controller
-                       // removeAud
-                        //stopBackgroundMusic()
-//                        self.dismiss(animated: true, completion: nil)
-//                self.stopBackgroundMus()
-//                 self.messageLabel.isHidden = true
-//                self.retry.isHidden = true
-//                 self.r.isHidden = true
-//                //BestScore
-//                 self.BestScore.isHidden = true
-//                self.Score.isHidden = true
-                         // }
 
 
 
@@ -575,6 +537,7 @@ var power = "banana"
         }
         
     }
+  
     
     func showPremiumQuotes() {
         
@@ -590,12 +553,25 @@ var power = "banana"
         let defaults = UserDefaults.standard
                   defaults.set(self.Coins, forKey: "Coins")
         print("\(self.Coins) Coins")
-        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                                  node.removeFromParentNode()
-                              }
-        self.pla()
+//        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+//                                  node.removeFromParentNode()
+//                              }
+        //next make sure message correspond to score probably be better to have wave that lead to next level. increase game play and help better solve issue of not having to shoot every ship. help with points because unless score met ill just keep redoing level(on average 2) and message label = wave 4 ect...or can keep simple but risk consistency...Ar shoot sim to first but even session..My solution=== reward right amount of points crete large range fr levels. Make sure with the way points rewarded user cant skip levels --leaderboard/ach ---dope ui --- bugs --approval req/doc
+        //
+        if Time {
+            self.resetTimer()
+        self.runTimer()
+        } else {
+            self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                                             node.removeFromParentNode()
+                                         }
+            //make sure cancel ends game and every scenerio
+        self.resetTimer()
         
-                  
+        self.pla()
+        }
+        
+          Time = false
         
     }
     
