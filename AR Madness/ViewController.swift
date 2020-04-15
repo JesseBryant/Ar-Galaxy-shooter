@@ -6,7 +6,7 @@
 // Created by Jesse Bryant on 4/15/20.
 //  Copyright © 2020 Jesse Bryant. All rights reserved.
 //
-
+//jj
 //get a feel for game difficulty and level base difficulty..breakfast
 //next color coat ships. 100
 //space ships around a little more..
