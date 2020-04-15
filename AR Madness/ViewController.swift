@@ -346,6 +346,76 @@ var power = "banana"
         self.dismiss(animated: true, completion: nil)
          stopBackgroundMus()
     }
+      func BeatLevel() {
+
+           
+            
+            var counter = 0
+                     self.messageLabel.isHidden = false
+            timer.invalidate()
+                            self.messageLabel.text = "Level Completed"
+           
+                     // if let gameScore = defaults.value(forKey: "Coins"){
+                          // Coins = gameScore as! Int
+                          print("\(Coins) Jesse KKKK")
+                        self.BesLabel.text = ("+")
+                         self.BestScore.text  = "\(Coins) coins"
+    //        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+    //                                  node.removeFromParentNode()
+    //                              }
+
+                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                               node.removeFromParentNode()
+                           }
+               
+
+                             let defaultss = UserDefaults.standard
+    //                                    if let gameScore = defaultss.value(forKey: "Coins"){
+    //                                         scoreJJ = gameScore as! Int
+    //                                        if self.Coins > 90 {
+    //                                          //  print("\(score):score >90 welcome to level 2")
+    //                                        } else{
+    //                                           // print("\(score): score <90 still on level 1")
+    //                                        }
+    //                        //                //scoreLabel.text = "Score: \(String(score))"
+    //                                 }
+                            
+                            
+                         //   scoreL += score
+                    let fscre = self.scoreL
+                            //store the score in UserDefaults
+                            let defaults = UserDefaults.standard
+                    defaults.set(self.Coins, forKey: "Coins")
+                   
+                    //        scoreL += score
+                          //  defaults.set(scoreL, forKey: "scoreL")
+                    
+                    
+                    
+                            //After in app purchases make this 0..so we can keep
+                            //up with best score
+                            let arrrrr = self.scoreL
+                            let defaultsJB = UserDefaults.standard
+                            defaultsJB.set(arrrrr, forKey: "scoreL")
+                    self.ReportScore(with: self.scoreL)
+                            //go back to the Home View Controller
+                           // removeAud
+                            //stopBackgroundMusic()
+                           // self.dismiss(animated: true, completion: nil)
+                    //self.stopBackgroundMus()
+                     self.messageLabel.isHidden = true
+                    self.BestScore.isHidden = true
+                          self.BestScore.isHidden = true
+                    self.BesLabel.isHidden = true
+                    
+                    self.pla()
+                              })
+
+
+
+
+                 }
     func NeedMoreTime(){
           
 //        var Time = false
@@ -601,85 +671,7 @@ var power = "banana"
 //
 //    }
     
-    func BeatLevel() {
-
-         //        messageLabel.isHidden = false
-         //        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
-//        checkOutButtonOutlet.layer.shadowColor = UIColor.black.cgColor
-//                          checkOutButtonOutlet.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-//                        checkOutButtonOutlet.layer.masksToBounds = false
-//                         checkOutButtonOutlet.layer.shadowRadius = 1.0
-//                        checkOutButtonOutlet.layer.shadowOpacity = 0.5
-//                          checkOutButtonOutlet.layer.cornerRadius = 7
-        //almost finish in-app
-        
-        
-        var counter = 0
-                 self.messageLabel.isHidden = false
-        timer.invalidate()
-                        self.messageLabel.text = "Level Completed"
-       
-                 // if let gameScore = defaults.value(forKey: "Coins"){
-                      // Coins = gameScore as! Int
-                      print("\(Coins) Jesse KKKK")
-                    self.BesLabel.text = ("+")
-                     self.BestScore.text  = "\(Coins) coins"
-//        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-//                                  node.removeFromParentNode()
-//                              }
-
-             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-                self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                           node.removeFromParentNode()
-                       }
-           
-
-                         let defaultss = UserDefaults.standard
-//                                    if let gameScore = defaultss.value(forKey: "Coins"){
-//                                         scoreJJ = gameScore as! Int
-//                                        if self.Coins > 90 {
-//                                          //  print("\(score):score >90 welcome to level 2")
-//                                        } else{
-//                                           // print("\(score): score <90 still on level 1")
-//                                        }
-//                        //                //scoreLabel.text = "Score: \(String(score))"
-//                                 }
-                        
-                        
-                     //   scoreL += score
-                let fscre = self.scoreL
-                        //store the score in UserDefaults
-                        let defaults = UserDefaults.standard
-                defaults.set(self.Coins, forKey: "Coins")
-               
-                //        scoreL += score
-                      //  defaults.set(scoreL, forKey: "scoreL")
-                
-                
-                
-                        //After in app purchases make this 0..so we can keep
-                        //up with best score
-                        let arrrrr = self.scoreL
-                        let defaultsJB = UserDefaults.standard
-                        defaultsJB.set(arrrrr, forKey: "scoreL")
-                self.ReportScore(with: self.scoreL)
-                        //go back to the Home View Controller
-                       // removeAud
-                        //stopBackgroundMusic()
-                       // self.dismiss(animated: true, completion: nil)
-                //self.stopBackgroundMus()
-                 self.messageLabel.isHidden = true
-                self.BestScore.isHidden = true
-                      self.BestScore.isHidden = true
-                self.BesLabel.isHidden = true
-                
-                self.pla()
-                          })
-
-
-
-
-             }
+  
     
     
     
@@ -5350,7 +5342,25 @@ SaturnParent.addChildNode(SassThShoonode)
                             FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.7))
                            
                            
-
+                        Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
+                                                                                   
+                                                                                
+                                                                                //changed this one!!!
+                                    ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.9))
+                                                                                
+                                                                                
+                                                                       
+                                    ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                                        FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                                                                                   
+                                        //new Jup
+                                                                                       
+                                                                                                       
+                                                                                                       //changed this one!!!
+                                          
+                        
+                        
+                        
                                   moonParent.position = SCNVector3(0 ,0 , -1)
                           
                            Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
@@ -5383,7 +5393,7 @@ SaturnParent.addChildNode(SassThShoonode)
                                   let SecRotation = XRotation(time: 300)
                              let SecRo = XRotation(time: 6)
                                      let sunAction = Rotation(time: 6)
-                                   let earthParentRotation = Rotation(time: 10)
+                                   let earthParentRotation = Rotation(time: 8)
                            let VRotation = Rotation(time: 6)
                                    let venusParentRotation = XRotation(time: 20)
                                    let earthRotation = Rotation(time: 20)
@@ -5394,7 +5404,7 @@ SaturnParent.addChildNode(SassThShoonode)
        //                  //  ShoonodeSec.runAction(SecRotation)
                           ssShoonode.runAction(SecRotation)
        //                    //FourthShoonode
-                          ssThShoonode.runAction(SecRotation)
+                          ssThShoonode.runAction(SecRo)
                            FourthShoonode.runAction(SecRotation)
        //                        ssThShoonode
                                   earthParent.runAction(earthParentRotation)
