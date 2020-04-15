@@ -34,6 +34,7 @@ import UIKit
 import SceneKit
 import ARKit
 import StoreKit
+import GameKit
 //import SpriteKit
 enum BitMaskCategory: Int {
     case target  = 3
@@ -81,6 +82,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var trackerNode: SCNNode?
     var foundSurface = false
     var tracking = true
+    let leaderboardID = "com.whatever.ARJesBrA.Scores"
 //    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
 //    }
     //used to store the scoreP:>L)_________________________________________________________________________________________________________________________[…≥π÷{{Ú∏˘::
@@ -170,6 +172,23 @@ var power = "banana"
         return (SCNVector3(0, 0, -1), SCNVector3(0, 0, -0.2))
     }
     
+    func ReportScore(with value: Int) {
+        // take score
+           let leaderboardID = "com.whatever.ARJesBrA.Scores"
+        let score = GKScore(leaderboardIdentifier: leaderboardID)
+        // set value for score
+        score.value = Int64(value)
+        // push score to Game Center
+        GKScore.report([score]) { (error) in
+            // check for errors
+            if error != nil {
+                print("Score updating -- \(error!)")
+            } else {
+                  print("Score submitted Jes")
+            }
+        }
+
+    }
     //MARK: - view functions
     // let audioPlayer = SCNAudioPlayer(source: audioSource)
     override func viewDidLoad() {
@@ -348,6 +367,7 @@ var power = "banana"
                                                            let arrrrr = self.scoreL
                                                            let defaultsJB = UserDefaults.standard
                                                            defaultsJB.set(arrrrr, forKey: "scoreL")
+                     self.ReportScore(with: arrrrr)
                     //since planet got hit restart with **Correct** points
 //                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
 //                                              node.removeFromParentNode()
@@ -630,6 +650,7 @@ var power = "banana"
                         //store the score in UserDefaults
                         let defaults = UserDefaults.standard
                 defaults.set(self.Coins, forKey: "Coins")
+               
                 //        scoreL += score
                       //  defaults.set(scoreL, forKey: "scoreL")
                 
@@ -640,6 +661,7 @@ var power = "banana"
                         let arrrrr = self.scoreL
                         let defaultsJB = UserDefaults.standard
                         defaultsJB.set(arrrrr, forKey: "scoreL")
+                self.ReportScore(with: self.scoreL)
                         //go back to the Home View Controller
                        // removeAud
                         //stopBackgroundMusic()
@@ -5522,7 +5544,7 @@ SaturnParent.addChildNode(SassThShoonode)
                     } else{
                         DispatchQueue.main.async {
                             self.resetTimer()
-                                         
+                            self.ReportScore(with: self.scoreL)
                                          self.BeatLevel()
                                          }
                         
