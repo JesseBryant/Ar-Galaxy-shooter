@@ -31,7 +31,6 @@
 		E36A07F323EC1A9B000561D6 /* Confetti.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E36A07F223EC1A9B000561D6 /* Confetti.scnp */; };
 		E383ABD724237730001F79BB /* Sleepy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD62423772D001F79BB /* Sleepy.mp3 */; };
 		E383ABD92423822F001F79BB /* JBsmartsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD82423822E001F79BB /* JBsmartsound.mp3 */; };
-		E3BA590323F0ADE000860272 /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BA590223F0ADDF00860272 /* LevelsViewController.swift */; };
 		E3F4A1602438999A00C36E91 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F4A15F2438999A00C36E91 /* StoreKit.framework */; };
 		E3F6D5E82424D96800D19AB0 /* mViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F6D5E72424D96800D19AB0 /* mViewController.swift */; };
 		E3F8B0A2242F398C00E986B9 /* Power.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3F8B0A1242F398600E986B9 /* Power.mp3 */; };
@@ -46,7 +45,7 @@
 		A7216ACD20BE9313009F6A51 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		A7216AD020BE960B009F6A51 /* overtake.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = overtake.mp3; sourceTree = "<group>"; };
 		A7216AD220BE9B72009F6A51 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		A73D429D20B80B4000965934 /* AR Madness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR Madness.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A73D429D20B80B4000965934 /* Shoot N' Guns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shoot N' Guns.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A73D42A020B80B4000965934 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A73D42A220B80B4000965934 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		A73D42A420B80B4000965934 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,7 +63,6 @@
 		E36A07F223EC1A9B000561D6 /* Confetti.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Confetti.scnp; sourceTree = "<group>"; };
 		E383ABD62423772D001F79BB /* Sleepy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sleepy.mp3; sourceTree = "<group>"; };
 		E383ABD82423822E001F79BB /* JBsmartsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JBsmartsound.mp3; sourceTree = "<group>"; };
-		E3BA590223F0ADDF00860272 /* LevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
 		E3F4A15F2438999A00C36E91 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		E3F6D5E72424D96800D19AB0 /* mViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mViewController.swift; sourceTree = "<group>"; };
 		E3F8B0A1242F398600E986B9 /* Power.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Power.mp3; sourceTree = "<group>"; };
@@ -126,7 +124,7 @@
 		A73D429E20B80B4000965934 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A73D429D20B80B4000965934 /* AR Madness.app */,
+				A73D429D20B80B4000965934 /* Shoot N' Guns.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,7 +142,6 @@
 				A73D42AB20B80B4200965934 /* LaunchScreen.storyboard */,
 				A73D42AE20B80B4200965934 /* Info.plist */,
 				A7216AD220BE9B72009F6A51 /* HomeViewController.swift */,
-				E3BA590223F0ADDF00860272 /* LevelsViewController.swift */,
 				E3F6D5E72424D96800D19AB0 /* mViewController.swift */,
 			);
 			path = "AR Madness";
@@ -161,9 +158,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A73D429C20B80B4000965934 /* AR Madness */ = {
+		A73D429C20B80B4000965934 /* Shoot N' Guns */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A73D42B120B80B4200965934 /* Build configuration list for PBXNativeTarget "AR Madness" */;
+			buildConfigurationList = A73D42B120B80B4200965934 /* Build configuration list for PBXNativeTarget "Shoot N' Guns" */;
 			buildPhases = (
 				A73D429920B80B4000965934 /* Sources */,
 				A73D429A20B80B4000965934 /* Frameworks */,
@@ -173,9 +170,9 @@
 			);
 			dependencies = (
 			);
-			name = "AR Madness";
+			name = "Shoot N' Guns";
 			productName = "AR Madness";
-			productReference = A73D429D20B80B4000965934 /* AR Madness.app */;
+			productReference = A73D429D20B80B4000965934 /* Shoot N' Guns.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +183,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = "O'Sullivan, Andy";
+				ORGANIZATIONNAME = "Jesse Bryant";
 				TargetAttributes = {
 					A73D429C20B80B4000965934 = {
 						CreatedOnToolsVersion = 9.3;
@@ -194,7 +191,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A73D429820B80B4000965934 /* Build configuration list for PBXProject "AR Madness" */;
+			buildConfigurationList = A73D429820B80B4000965934 /* Build configuration list for PBXProject "Shoot N' Guns" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -207,7 +204,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A73D429C20B80B4000965934 /* AR Madness */,
+				A73D429C20B80B4000965934 /* Shoot N' Guns */,
 			);
 		};
 /* End PBXProject section */
@@ -253,7 +250,6 @@
 				A73D42A520B80B4000965934 /* ViewController.swift in Sources */,
 				A73D42A120B80B4000965934 /* AppDelegate.swift in Sources */,
 				A7216AD320BE9B72009F6A51 /* HomeViewController.swift in Sources */,
-				E3BA590323F0ADE000860272 /* LevelsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,7 +428,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A73D429820B80B4000965934 /* Build configuration list for PBXProject "AR Madness" */ = {
+		A73D429820B80B4000965934 /* Build configuration list for PBXProject "Shoot N' Guns" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A73D42AF20B80B4200965934 /* Debug */,
@@ -441,7 +437,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A73D42B120B80B4200965934 /* Build configuration list for PBXNativeTarget "AR Madness" */ = {
+		A73D42B120B80B4200965934 /* Build configuration list for PBXNativeTarget "Shoot N' Guns" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A73D42B220B80B4200965934 /* Debug */,

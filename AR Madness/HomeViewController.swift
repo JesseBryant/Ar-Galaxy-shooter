@@ -2,8 +2,8 @@
 //  HomeViewController.swift
 //  AR Madness
 //
-//  Created by O'Sullivan, Andy on 30/05/2018.
-//  Copyright © 2018 O'Sullivan, Andy. All rights reserved.
+// Created by Jesse Bryant on 4/15/20.
+//  Copyright © 2020 Jesse Bryant. All rights reserved.
 //
 
 import UIKit
