@@ -36,6 +36,10 @@ import SceneKit
 import ARKit
 import StoreKit
 import GameKit
+//import GoogleMobileAds
+import SwiftSpinner
+import FBAudienceNetwork
+
 //import SpriteKit
 enum BitMaskCategory: Int {
     case target  = 3
@@ -54,6 +58,17 @@ enum BitMaskCategory: Int {
 //}
 
 class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate, SKPaymentTransactionObserver {
+    
+    @IBOutlet weak var bestScoreContainerView: UIView!
+    @IBOutlet weak var crossButton: UIButton!
+    @IBOutlet weak var coinsButton: UIButton!
+    @IBOutlet weak var needTimeLabel: UILabel!
+    @IBOutlet weak var buttonStackView: UIStackView!
+    
+    var isPlanetHit = false
+     var isPlanetHitORneedTime = false
+//    var interstitial: GADInterstitial!
+    var interstitial: FBInterstitialAd!
     
     //MARK: - variables
 
@@ -83,14 +98,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var trackerNode: SCNNode?
     var foundSurface = false
     var tracking = true
-    let leaderboardID = "com.whatever.ARJesBrA.Scores"
+    let leaderboardID = "Jescom.whatever.ARJesBrA.Scores"
 //    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
 //    }
     //used to store the scoreP:>L)_________________________________________________________________________________________________________________________[…≥π÷{{Ú∏˘::
     
     let audioNode = SCNNode()
     let audioSource = SCNAudioSource(fileNamed: "Sleepy.mp3")!
-    let productID = "Jesse_CoinsSellas"
+    let productID = "786978678678678"
         var audioPlayer = AVAudioPlayer()
     //Sleepy.mp3
         func playingSoundWith(fileName: String) {
@@ -123,38 +138,22 @@ var power = "banana"
     
     
     @IBAction func Restart(_ sender: Any) {
+        self.shouldShowBestScoreContainerView(state: false)
         self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                                        node.removeFromParentNode()
-                                    }
-              self.pla()
+            node.removeFromParentNode()
+        }
+        self.play()
     }
     
     
     @IBAction func Revive(_ sender: Any) {
-        
+        self.shouldShowBestScoreContainerView(state: false)
         self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                                  node.removeFromParentNode()
-                              }
-        self.pla()
+            node.removeFromParentNode()
+        }
+        self.play()
     }
-    
-    
-  //make blue and red(esp) clse!!!
-    //axe button
-    
-    
-    
-    
-//    @IBAction func onAxeButton(_ sender: Any) {
-//        fireMissile(type: "axe")
-//    }
-//    
-//    //banana button
-//    @IBAction func onBananaButton(_ sender: Any) {
-//        //the one!!!!
-//        fireMissile(type: "banana")
-//    }
-    
+
     //MARK: - maths
     
     func getUserVector() -> (SCNVector3, SCNVector3) { // (direction, position)
@@ -194,16 +193,29 @@ var power = "banana"
     // let audioPlayer = SCNAudioPlayer(source: audioSource)
     override func viewDidLoad() {
         super.viewDidLoad()
-        SKPaymentQueue.default().add(self)
-        // stopBackgroundMusic()
-        // Set the view's delegate
-        sceneView.delegate = self
+        let configuration = ARWorldTrackingConfiguration()
+        self.sceneView.session.run(configuration)
+        self.sceneView.isHidden = true
+        DispatchQueue.main.async {
+            SwiftSpinner.show("Connecting to AR Camera...")
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            self.sceneView.isHidden = false
+            SwiftSpinner.hide()
+            self.play()
+        }
+        
+        self.sceneView.delegate = self
         // let audioPlayer = SCNAudioPlayer(source: audioSource)
         // Show statistics such as fps and timing information
         //sceneView.showsStatistics = true
         
         //set the physics delegate
-        sceneView.scene.physicsWorld.contactDelegate = self
+        self.sceneView.scene.physicsWorld.contactDelegate = self
+        
+        SKPaymentQueue.default().add(self)
+        // stopBackgroundMusic()
+        // Set the view's delegate
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         self.sceneView.addGestureRecognizer(gestureRecognizer)
 
@@ -212,33 +224,13 @@ var power = "banana"
                  Coins = gameScore as! Int
                 print("\(Coins) Jesse KKKK")
                 
-                //pla()
+                //play()
         }
-       // DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            self.pla()
-   // })
-        
+//        self.play()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //stopBackgroundMusic()
-//        let defaults = UserDefaults.standard
-//                   if let gameScore = defaults.value(forKey: "scoreL"){
-//                       let score = gameScore as! Int
-//                       if score > 90 {
-//                           print("\(score): welcome to level 2")
-//                       } else{
-//                           print("\(score): still on level 1")
-//                       }
-//                       //scoreLabel.text = "Score: \(String(score))"
-//                   }
-        // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
-        //can see which phones supported ie ARWorldTrackingConfiguration.isSupported see if supported
-        //if not give them ArSessionConfiguration()
-        // Run the view's session
-        sceneView.session.run(configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -271,19 +263,15 @@ var power = "banana"
     }
     
     func PlayInstructions() {
-
-//        messageLabel.isHidden = false
-//        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
+        
+        //        messageLabel.isHidden = false
+        //        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
         self.messageLabel.isHidden = false
-               self.messageLabel.text = "Shoot all the spaceships. Do not shoot planets"
-    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-
-        self.messageLabel.isHidden = true
-                 })
-
-
-
-
+        self.messageLabel.text = "Shoot all the spaceships. Do not shoot planets"
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+            
+            self.messageLabel.isHidden = true
+        })
     }
     
     //decrements seconds by 1, updates the timerLabel and calls gameOver if seconds is 0
@@ -300,277 +288,451 @@ var power = "banana"
     }
     
     //resets the timer
-    func resetTimer(){
+    func resetTimer(time: Int){
         timer.invalidate()
-        seconds = 60
+        seconds = time
         timerLabel.text = "\(seconds)"
+    }
+    
+    func setupInterstial() {
+//        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-5764524457114749/5527500879")
+//        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-2950107663664053/5762854888")
+//        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-4371810798962800/3320803613")
+//        self.interstitial.load(GADRequest())
+//        self.interstitial.delegate = self
+//        if self.interstitial.isReady {
+//        } else {
+//            print("Ad wasn't ready")
+//        }
+        
+        self.interstitial = FBInterstitialAd.init(placementID: "229174575034368_230531631565329")
+        self.interstitial.delegate = self
+        self.interstitial.load()
+        
+//                self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+//                    node.removeFromParentNode()
+//                }
+//                self.play()
+        
     }
     
     // MARK: - game over
     
     func gameOver(){
-//        earth"
-//        earthParent.name = "earthParent
+        //        earth"
+        //        earthParent.name = "earthParent
         var scoreJJ = 0
         let chd = "earth"
-          let chdKK = "earthParent"
-    
-
-
-         let defaultss = UserDefaults.standard
-                    if let gameScore = defaultss.value(forKey: "scoreL"){
-                         scoreJJ = gameScore as! Int
-                        if Coins > 90 {
-                          //  print("\(score):score >90 welcome to level 2")
-                        } else{
-                           // print("\(score): score <90 still on level 1")
-                        }
-        //                //scoreLabel.text = "Score: \(String(score))"
-                 }
+        let chdKK = "earthParent"
         
         
-     //   scoreL += score
+        
+        let defaultss = UserDefaults.standard
+        if let gameScore = defaultss.value(forKey: "scoreL"){
+            scoreJJ = gameScore as! Int
+            if Coins > 90 {
+                //  print("\(score):score >90 welcome to level 2")
+            } else{
+                // print("\(score): score <90 still on level 1")
+            }
+            //                //scoreLabel.text = "Score: \(String(score))"
+        }
+        
+        
+        //   scoreL += score
         let fscre = scoreL
         //store the score in UserDefaults
         let defaults = UserDefaults.standard
         defaults.set(Coins, forKey: "Coins")
-//        scoreL += score
-      //  defaults.set(scoreL, forKey: "scoreL")
-       // let arrrrr = scoreJJ + fscre
+        //        scoreL += score
+        //  defaults.set(scoreL, forKey: "scoreL")
+        // let arrrrr = scoreJJ + fscre
         let arrrrr = scoreL
         let defaultsJB = UserDefaults.standard
         defaultsJB.set(arrrrr, forKey: "scoreL")
         //go back to the Home View Controller
-       // removeAud
+        // removeAud
         //stopBackgroundMusic()
         self.dismiss(animated: true, completion: nil)
-         stopBackgroundMus()
+        stopBackgroundMus()
     }
-      func BeatLevel() {
-
-           
-            
-            var counter = 0
-                     self.messageLabel.isHidden = false
-            timer.invalidate()
-                            self.messageLabel.text = "Level Completed"
-           
-                     // if let gameScore = defaults.value(forKey: "Coins"){
-                          // Coins = gameScore as! Int
-                          print("\(Coins) Jesse KKKK")
-                        self.BesLabel.text = ("+")
-                         self.BestScore.text  = "\(Coins) coins"
-    //        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-    //                                  node.removeFromParentNode()
-    //                              }
-
-                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                               node.removeFromParentNode()
-                           }
-               
-
-                             let defaultss = UserDefaults.standard
-    //                                    if let gameScore = defaultss.value(forKey: "Coins"){
-    //                                         scoreJJ = gameScore as! Int
-    //                                        if self.Coins > 90 {
-    //                                          //  print("\(score):score >90 welcome to level 2")
-    //                                        } else{
-    //                                           // print("\(score): score <90 still on level 1")
-    //                                        }
-    //                        //                //scoreLabel.text = "Score: \(String(score))"
-    //                                 }
-                            
-                            
-                         //   scoreL += score
-                    let fscre = self.scoreL
-                            //store the score in UserDefaults
-                            let defaults = UserDefaults.standard
-                    defaults.set(self.Coins, forKey: "Coins")
-                   
-                    //        scoreL += score
-                          //  defaults.set(scoreL, forKey: "scoreL")
-                    
-                    
-                    
-                            //After in app purchases make this 0..so we can keep
-                            //up with best score
-                            let arrrrr = self.scoreL
-                            let defaultsJB = UserDefaults.standard
-                            defaultsJB.set(arrrrr, forKey: "scoreL")
-                    self.ReportScore(with: self.scoreL)
-                            //go back to the Home View Controller
-                           // removeAud
-                            //stopBackgroundMusic()
-                           // self.dismiss(animated: true, completion: nil)
-                    //self.stopBackgroundMus()
-                     self.messageLabel.isHidden = true
-                    self.BestScore.isHidden = true
-                          self.BestScore.isHidden = true
-                    self.BesLabel.isHidden = true
-                    
-                    self.pla()
-                              })
-
-
-
-
-                 }
-    func NeedMoreTime(){
-          
-//        var Time = false
-        timer.invalidate()
-
-        let alert = UIAlertController(title: "Need more time", message: "Continue this level?", preferredStyle: UIAlertController.Style.alert)
-
-             let ok = UIAlertAction(title: "10 coins", style: .default, handler: { action in
-                //remembe
-                 if self.Coins>=10{
-                    //not working because coins = 0 in real physical world
-                    //will need restart here cuz planet gone
-                                print("\(self.Coins) Coins")
-                                self.Coins = self.Coins - 10
-                                 print("\(self.Coins) Coins after")
-                    let defaults = UserDefaults.standard
-                                        defaults.set(self.Coins, forKey: "Coins")
-                                                   //        scoreL += score
-                                                         //  defaults.set(scoreL, forKey: "scoreL")
-                                                           let arrrrr = self.scoreL
-                                                           let defaultsJB = UserDefaults.standard
-                                                           defaultsJB.set(arrrrr, forKey: "scoreL")
-                     self.ReportScore(with: arrrrr)
-                    //since planet got hit restart with **Correct** points
-//                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-//                                              node.removeFromParentNode()
-//                                          }
-//                    self.pla()
-                   // timer
-                    //self.seconds = 90
-                    //need to make sre messgae go wi
-                    self.resetTimer()
-                    self.runTimer()
-                               // let fscre = self.scoreL
-                                                     //store the score in UserDefaults and leaderboard
-                                         
-                }
-                 else {
-                    let alert = UIAlertController(title: "Not enough coins", message: "Buy more?", preferredStyle: .alert)
-
-                         let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
-                            //magic for in app purchases
-                            //j
-                            //All project
-                            self.Time = true
-                            self.buyPremiumQuotes()
-                            
-                         })
-                         alert.addAction(ok)
-                         let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
-                            //done in ph world too
-                            self.Coins = 0
-                            self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                                                                              node.removeFromParentNode()
-                                                                          }
-                                                    self.pla()
-                         })
-                         alert.addAction(cancel)
-                         DispatchQueue.main.async(execute: {
-                            self.present(alert, animated: true)
-                    })
-                    
-                }
-             })
-             alert.addAction(ok)
-             let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
-                self.Coins = 0
-                self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                                                   node.removeFromParentNode()
-                                               }
-                         self.pla()
-             })
-             alert.addAction(cancel)
-             DispatchQueue.main.async(execute: {
-                self.present(alert, animated: true)
-        })
-
-
+    func BeatLevel() {
         
-      }
+        var counter = 0
+        self.messageLabel.isHidden = false
+        timer.invalidate()
+        self.messageLabel.text = "Level Completed"
+        
+        // if let gameScore = defaults.value(forKey: "Coins"){
+        // Coins = gameScore as! Int
+        print("\(Coins) Jesse KKKK")
+        self.BesLabel.text = ("+")
+        self.BestScore.text  = "\(Coins) coins"
+        //        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+        //                                  node.removeFromParentNode()
+        //                              }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+            self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                node.removeFromParentNode()
+            }
+            
+            
+            let defaultss = UserDefaults.standard
+            //                                    if let gameScore = defaultss.value(forKey: "Coins"){
+            //                                         scoreJJ = gameScore as! Int
+            //                                        if self.Coins > 90 {
+            //                                          //  print("\(score):score >90 welcome to level 2")
+            //                                        } else{
+            //                                           // print("\(score): score <90 still on level 1")
+            //                                        }
+            //                        //                //scoreLabel.text = "Score: \(String(score))"
+            //                                 }
+            
+            
+            //   scoreL += score
+            let fscre = self.scoreL
+            //store the score in UserDefaults
+            let defaults = UserDefaults.standard
+            defaults.set(self.Coins, forKey: "Coins")
+            
+            //        scoreL += score
+            //  defaults.set(scoreL, forKey: "scoreL")
+            
+            
+            
+            //After in app purchases make this 0..so we can keep
+            //up with best score
+            let arrrrr = self.scoreL
+            let defaultsJB = UserDefaults.standard
+            defaultsJB.set(arrrrr, forKey: "scoreL")
+            self.ReportScore(with: self.scoreL)
+            //go back to the Home View Controller
+            // removeAud
+            //stopBackgroundMusic()
+            // self.dismiss(animated: true, completion: nil)
+            //self.stopBackgroundMus()
+            self.messageLabel.isHidden = true
+//            self.BestScore.isHidden = true
+//            self.BestScore.isHidden = true
+            self.BesLabel.isHidden = true
+            
+            self.play()
+        })
+    }
+    func shouldShowBestScoreContainerView(state: Bool) {
+        if state {
+            let bestScore = UserDefaults.standard.integer(forKey: "BestScore")
+            if let currentScore = Int(self.scoreLabel.text!) {
+                if currentScore > bestScore {
+                    self.BestScore.text = "BEST: \(currentScore)"
+                    UserDefaults.standard.set(currentScore, forKey: "BestScore")
+                    UserDefaults.standard.synchronize()
+                } else {
+                    self.BestScore.text = "BEST: \(bestScore)"
+                }
+            }
+        }
+        self.bestScoreContainerView.isHidden = !state
+        self.coinsButton.isHidden = !state
+        self.crossButton.isHidden = !state
+        self.buttonStackView.isHidden = !state
+    }
+    func NeedMoreTime(){
+        self.needTimeLabel.text = "Need more time"
+        self.isPlanetHit = false
+        self.shouldShowBestScoreContainerView(state: true)
+        
+        /*let alert = UIAlertController(title: "Need more time", message: "Continue this level?", preferredStyle: UIAlertController.Style.alert)
+        
+        let ok = UIAlertAction(title: "10 coins", style: .default, handler: { action in
+            //remembe
+            if self.Coins>=10{
+                //not working because coins = 0 in real physical world
+                //will need restart here cuz planet gone
+                print("\(self.Coins) Coins")
+                self.Coins = self.Coins - 10
+                print("\(self.Coins) Coins after")
+                let defaults = UserDefaults.standard
+                defaults.set(self.Coins, forKey: "Coins")
+                //        scoreL += score
+                //  defaults.set(scoreL, forKey: "scoreL")
+                let arrrrr = self.scoreL
+                let defaultsJB = UserDefaults.standard
+                defaultsJB.set(arrrrr, forKey: "scoreL")
+                self.ReportScore(with: arrrrr)
+                //since planet got hit restart with **Correct** points
+                //                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                //                                              node.removeFromParentNode()
+                //                                          }
+                //                    self.play()
+                // timer
+                //self.seconds = 90
+                //need to make sre messgae go wi
+                self.resetTimer()
+                self.runTimer()
+                // let fscre = self.scoreL
+                //store the score in UserDefaults and leaderboard
+                
+            }
+            else {
+                let alert = UIAlertController(title: "Not enough coins", message: "Buy more?", preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
+                    //magic for in app purchases
+                    //j
+                    //All project
+                    self.Time = true
+                    self.buyPremiumQuotes()
+                    
+                })
+                alert.addAction(ok)
+                let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+                    //done in ph world too
+                    self.Coins = 0
+                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                        node.removeFromParentNode()
+                    }
+                    self.play()
+                })
+                alert.addAction(cancel)
+                DispatchQueue.main.async(execute: {
+                    self.present(alert, animated: true)
+                })
+                
+            }
+        })
+        alert.addAction(ok)
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+            self.Coins = 0
+            self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                node.removeFromParentNode()
+            }
+            self.play()
+        })
+        alert.addAction(cancel)
+        DispatchQueue.main.async(execute: {
+            self.present(alert, animated: true)
+        })*/
+    }
+    
+    @IBAction func didTapCross() {
+        self.shouldShowBestScoreContainerView(state: false)
+        self.Coins = 0
+        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+            node.removeFromParentNode()
+        }
+        self.scoreLabel.text = "0"
+        self.scoreL = 0
+        self.levelJB.text = "Level 1"
+        self.resetTimer(time: 30)
+        
+        power = "banana"
+        //  sceneView.backgroundColor = UIColor.red
+        sceneView.scene.rootNode.removeAllAudioPlayers()
+        messageLabel.isHidden = true
+        levelJB.text = "level 1"
+        //addTargetNodes()
+        FsaddTargetNodes()
+        PlayInstructions()
+        //play background music
+        playBackgroundMusic()
+        //  addTargetNodesJupitar()
+        //start tinmer
+        runTimer()
+        print("\(Coins): still on level 1")
+    }
+    @IBAction func didTapInterestial() {
+        DispatchQueue.main.async {
+        self.shouldShowBestScoreContainerView(state: false)
+        self.setupInterstial()
+        }
+//        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+//            node.removeFromParentNode()
+//        }
+//        self.play()
+    }
+    @IBAction func didTapCoins() {
+       DispatchQueue.main.async {
+              self.shouldShowBestScoreContainerView(state: false)
+              }
+              if self.isPlanetHit {
+                  
+                  
+                  
+                  
+                  if self.Coins >= 10 {
+                      //timer fixed
+                      //not working because coins = 0 in real physical world
+                      //will need restart here cuz planet gone
+                      print("\(self.Coins) Coins")
+                      self.Coins = self.Coins - 10
+                      print("\(self.Coins) Coins after")
+                      let defaults = UserDefaults.standard
+                      defaults.set(self.Coins, forKey: "Coins")
+                      //        scoreL += score
+                      //  defaults.set(scoreL, forKey: "scoreL")
+                      let arrrrr = self.scoreL
+                      let defaultsJB = UserDefaults.standard
+                      defaultsJB.set(arrrrr, forKey: "scoreL")
+                      //since planet got hit restart with **Correct** points
+                      DispatchQueue.main.async {
+                      self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                          node.removeFromParentNode()
+                          
+                      }
+                          self.play()
+                          self.resetTimer(time: 45)
+                                         self.runTimer()
+                      }
+                      
+                      
+                      // let fscre = self.scoreL
+                      //store the score in UserDefaults and leaderboard
+                      
+                  } else {
+                      //need pop up letting user know
+                      self.buyPremiumQuotes()
+                      
+                      //done in ph world too
+                      
+                      self.Coins = 0
+                      DispatchQueue.main.async {
+                      self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                          node.removeFromParentNode()
+                      }
+                      }
+                     // if purchaseGood {
+                    //  self.play()
+                   //   }
+                  }
+                  
+              } else {
+                  if self.Coins >= 10 {
+                      //not working because coins = 0 in real physical world
+                      //will need restart here cuz planet gone
+                      self.shouldShowBestScoreContainerView(state: false)
+                      print("\(self.Coins) Coins")
+                      self.Coins = self.Coins - 10
+                      print("\(self.Coins) Coins after")
+                      let defaults = UserDefaults.standard
+                      defaults.set(self.Coins, forKey: "Coins")
+                      //        scoreL += score
+                      //  defaults.set(scoreL, forKey: "scoreL")
+                      let arrrrr = self.scoreL
+                      let defaultsJB = UserDefaults.standard
+                      defaultsJB.set(arrrrr, forKey: "scoreL")
+                      self.ReportScore(with: arrrrr)
+                      //since planet got hit restart with **Correct** points
+                      //                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                      //                                              node.removeFromParentNode()
+                      //                                          }
+                      //                    self.play()
+                      // timer
+                      //self.seconds = 90
+                      //need to make sre messgae go wi
+                      self.resetTimer(time: 45)
+                      self.runTimer()
+                      self.play()
+                      // let fscre = self.scoreL
+                      //store the score in UserDefaults and leaderboard
+                      
+                  } else {
+                      
+                      //magic for in app purchases
+                      //j
+                      //All project
+                      // timer.invalidate()
+                      self.Time = true
+                      
+                      self.buyPremiumQuotes()
+                      
+                      //done in ph world too
+                      self.Coins = 0
+                      self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                          node.removeFromParentNode()
+                      }
+                    //  if purchaseGood {
+                      // timer.invalidate()
+                     // self.play()
+                     // }
+                  }
+              }
+    }
     
     func PlanetHit() {
-
-
+        
+        
         timer.invalidate()
-
-        let alert = UIAlertController(title: "You shot a planet", message: "Continue this level?", preferredStyle: UIAlertController.Style.alert)
-
-             let ok = UIAlertAction(title: "10 coins", style: .default, handler: { action in
-                //remembe
-                 if self.Coins>=10{
-                    //not working because coins = 0 in real physical world
-                    //will need restart here cuz planet gone
-                                print("\(self.Coins) Coins")
-                                self.Coins = self.Coins - 10
-                                 print("\(self.Coins) Coins after")
-                    let defaults = UserDefaults.standard
-                                        defaults.set(self.Coins, forKey: "Coins")
-                                                   //        scoreL += score
-                                                         //  defaults.set(scoreL, forKey: "scoreL")
-                                                           let arrrrr = self.scoreL
-                                                           let defaultsJB = UserDefaults.standard
-                                                           defaultsJB.set(arrrrr, forKey: "scoreL")
-                    //since planet got hit restart with **Correct** points
-                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                                              node.removeFromParentNode()
-                                          }
-                    self.pla()
-                               // let fscre = self.scoreL
-                                                     //store the score in UserDefaults and leaderboard
-                                         
-                }
-                 else {
-                    let alert = UIAlertController(title: "Not enough coins", message: "Buy more?", preferredStyle: .alert)
-
-                         let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
-                            //magic for in app purchases
-                            //j
-                            //All project
-                            self.buyPremiumQuotes()
-                            
-                         })
-                         alert.addAction(ok)
-                         let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
-                            //done in ph world too
-                            self.Coins = 0
-                            self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                                                                              node.removeFromParentNode()
-                                                                          }
-                                                    self.pla()
-                         })
-                         alert.addAction(cancel)
-                         DispatchQueue.main.async(execute: {
-                            self.present(alert, animated: true)
-                    })
-                    
-                }
-             })
-             alert.addAction(ok)
-             let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
-                self.Coins = 0
+        self.needTimeLabel.text = "You shot a planet"
+        self.isPlanetHit = true
+        self.shouldShowBestScoreContainerView(state: true)
+        
+        /*let alert = UIAlertController(title: "You shot a planet", message: "Continue this level?", preferredStyle: UIAlertController.Style.alert)
+        
+        let ok = UIAlertAction(title: "10 coins", style: .default, handler: { action in
+            //remembe
+            if self.Coins>=10{
+                //not working because coins = 0 in real physical world
+                //will need restart here cuz planet gone
+                print("\(self.Coins) Coins")
+                self.Coins = self.Coins - 10
+                print("\(self.Coins) Coins after")
+                let defaults = UserDefaults.standard
+                defaults.set(self.Coins, forKey: "Coins")
+                //        scoreL += score
+                //  defaults.set(scoreL, forKey: "scoreL")
+                let arrrrr = self.scoreL
+                let defaultsJB = UserDefaults.standard
+                defaultsJB.set(arrrrr, forKey: "scoreL")
+                //since planet got hit restart with **Correct** points
                 self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                                                   node.removeFromParentNode()
-                                               }
-                         self.pla()
-             })
-             alert.addAction(cancel)
-             DispatchQueue.main.async(execute: {
-                self.present(alert, animated: true)
+                    node.removeFromParentNode()
+                }
+                self.play()
+                // let fscre = self.scoreL
+                //store the score in UserDefaults and leaderboard
+                
+            }
+            else {
+                let alert = UIAlertController(title: "Not enough coins", message: "Buy more?", preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
+                    //magic for in app purchases
+                    //j
+                    //All project
+                    self.buyPremiumQuotes()
+                    
+                })
+                alert.addAction(ok)
+                let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+                    //done in ph world too
+                    self.Coins = 0
+                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                        node.removeFromParentNode()
+                    }
+                    self.play()
+                })
+                alert.addAction(cancel)
+                DispatchQueue.main.async(execute: {
+                    self.present(alert, animated: true)
+                })
+                
+            }
         })
-
-
-
-
-             }
+        alert.addAction(ok)
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+            self.Coins = 0
+            self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                node.removeFromParentNode()
+            }
+            self.play()
+        })
+        alert.addAction(cancel)
+        DispatchQueue.main.async(execute: {
+            self.present(alert, animated: true)
+        })*/
+    }
     //C
     // MARK: - In-App Purchase Methods
     
@@ -593,40 +755,39 @@ var power = "banana"
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         
-        for transaction in transactions {
-            if transaction.transactionState == .purchased {
-                
-                //User payment successful
-                print("Transaction successful!")
-                
-                showPremiumQuotes()
-                
-               
-                
-                SKPaymentQueue.default().finishTransaction(transaction)
-                
-            } else if transaction.transactionState == .failed {
-                
-                //Payment failed
-                if let error = transaction.error {
-                    let errorDescription = error.localizedDescription
-                    print("Transaction failed due to error: \(errorDescription)")
-                }
-                
-                 SKPaymentQueue.default().finishTransaction(transaction)
-                
-            } else if transaction.transactionState == .restored {
-                
-                showPremiumQuotes()
-                
-                print("Transaction restored")
-                
-                navigationItem.setRightBarButton(nil, animated: true)
-                
-                SKPaymentQueue.default().finishTransaction(transaction)
-            }
-        }
-        
+       for transaction in transactions {
+                   if transaction.transactionState == .purchased {
+                       
+                       //User payment successful
+                       print("Transaction successful!")
+                       
+                       showPremiumQuotes()
+                        // self.play()
+                      self.play()
+                       //nice version
+                       SKPaymentQueue.default().finishTransaction(transaction)
+                       
+                   } else if transaction.transactionState == .failed {
+                       
+                       //Payment failed
+                       if let error = transaction.error {
+                           let errorDescription = error.localizedDescription
+                           print("Transaction failed due to error: \(errorDescription)")
+                       }
+                       self.play()
+                        SKPaymentQueue.default().finishTransaction(transaction)
+                       
+                   } else if transaction.transactionState == .restored {
+                       
+                       showPremiumQuotes()
+                       
+                       print("Transaction restored")
+                       
+                       navigationItem.setRightBarButton(nil, animated: true)
+                       
+                       SKPaymentQueue.default().finishTransaction(transaction)
+                   }
+               }
     }
   
     
@@ -634,296 +795,282 @@ var power = "banana"
         
         UserDefaults.standard.set(true, forKey: productID)
         
-     //   quotesToShow.append(contentsOf: premiumQuotes)
-       // tableView.reloadData()
+        //   quotesToShow.append(contentsOf: premiumQuotes)
+        // tableView.reloadData()
         //self.Coins = Coins + 10
         //in app works... Transaction successful!
         //need to sub or add less cuz it goes too next level
         //well do add 5 for now.. for 1.99 look at other games in app purchases
         self.Coins+=10
         let defaults = UserDefaults.standard
-                  defaults.set(self.Coins, forKey: "Coins")
+        defaults.set(self.Coins, forKey: "Coins")
         print("\(self.Coins) Coins")
-//        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-//                                  node.removeFromParentNode()
-//                              }
+        //        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+        //                                  node.removeFromParentNode()
+        //                              }
         //next make sure message correspond to score probably be better to have wave that lead to next level. increase game play and help better solve issue of not having to shoot every ship. help with points because unless score met ill just keep redoing level(on average 2) and message label = wave 4 ect...or can keep simple but risk consistency...Ar shoot sim to first but even session..My solution=== reward right amount of points crete large range fr levels. Make sure with the way points rewarded user cant skip levels --leaderboard/ach ---dope ui --- bugs --approval req/doc
         //
         if Time {
-            self.resetTimer()
-        self.runTimer()
+            self.resetTimer(time: 45)
+            self.runTimer()
         } else {
-            self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                                             node.removeFromParentNode()
-                                         }
-            //make sure cancel ends game and every scenerio
-        self.resetTimer()
-        
-        self.pla()
+//            self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+//                node.removeFromParentNode()
+//            }
+//            //make sure cancel ends game and every scenerio
+//            self.resetTimer(time: 45)
+//
+//            self.play()
         }
         
-          Time = false
+        Time = false
         
     }
-    
-    
-//    func C() -> Int {
-//
-//    }
-    
-  
-    
-    
-    
     func PlanetHitMoon() {
-
-            //        messageLabel.isHidden = false
-            //        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
-                    self.messageLabel.isHidden = false
-                           self.messageLabel.text = "You shot the moon"
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-                    var scoreJJ = 0
-                           let chd = "earth"
-                             let chdKK = "earthParent"
-                       
-
-
-                            let defaultss = UserDefaults.standard
-                                       if let gameScore = defaultss.value(forKey: "scoreL"){
-                                            scoreJJ = gameScore as! Int
-                                           if self.Coins > 90 {
-                                             //  print("\(score):score >90 welcome to level 2")
-                                           } else{
-                                              // print("\(score): score <90 still on level 1")
-                                           }
-                           //                //scoreLabel.text = "Score: \(String(score))"
-                                    }
-                           
-                           
-                        //   scoreL += score
-                   let fscre = self.scoreL
-                           //store the score in UserDefaults
-                           let defaults = UserDefaults.standard
-                   defaults.set(self.Coins, forKey: "Coins")
-                   //        scoreL += score
-                         //  defaults.set(scoreL, forKey: "scoreL")
-                           let arrrrr = self.scoreL
-                           let defaultsJB = UserDefaults.standard
-                           defaultsJB.set(arrrrr, forKey: "scoreL")
-                           //go back to the Home View Controller
-                          // removeAud
-                           //stopBackgroundMusic()
-                           self.dismiss(animated: true, completion: nil)
-                   self.stopBackgroundMus()
-                    self.messageLabel.isHidden = true
-                             })
-
-
-
-
+        self.messageLabel.isHidden = false
+        self.messageLabel.text = "You shot the moon"
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+            var scoreJJ = 0
+            let chd = "earth"
+            let chdKK = "earthParent"
+            
+            
+            
+            let defaultss = UserDefaults.standard
+            if let gameScore = defaultss.value(forKey: "scoreL"){
+                scoreJJ = gameScore as! Int
+                if self.Coins > 90 {
+                    //  print("\(score):score >90 welcome to level 2")
+                } else{
+                    // print("\(score): score <90 still on level 1")
                 }
+                //                //scoreLabel.text = "Score: \(String(score))"
+            }
+            
+            
+            //   scoreL += score
+            let fscre = self.scoreL
+            //store the score in UserDefaults
+            let defaults = UserDefaults.standard
+            defaults.set(self.Coins, forKey: "Coins")
+            //        scoreL += score
+            //  defaults.set(scoreL, forKey: "scoreL")
+            let arrrrr = self.scoreL
+            let defaultsJB = UserDefaults.standard
+            defaultsJB.set(arrrrr, forKey: "scoreL")
+            //go back to the Home View Controller
+            // removeAud
+            //stopBackgroundMusic()
+            self.dismiss(animated: true, completion: nil)
+            self.stopBackgroundMus()
+            self.messageLabel.isHidden = true
+        })
+        
+        
+        
+        
+    }
        
     
     
-    func pla() {
-       // resetTimer()
+    func play() {
+        // resetTimer()
         //this will eventually use gold!!rewarded for next level instead of score
         //more gold they spend could go down..
         if 7...38 ~= Coins {
-                      power = "banana"
-                                   messageLabel.isHidden = true
-                            levelJB.text = "level 2"
-                                  SecaddTargetNodes()
-//            addTargetNodesJupitar()
-             sceneView.scene.rootNode.removeAllAudioPlayers()
-                                  PlayInstructions()
-                                  //play background music
-//                            stopBackgroundMusic()
-                                  playBackgroundMusic()
-           // addTargetNodesFive()
-        //addTargetNodesSixVenus()
-           // addTargetNodesNeptune()
-           // addTargetNodesSaturn()
+            power = "banana"
+            messageLabel.isHidden = true
+            levelJB.text = "level 2"
+            SecaddTargetNodes()
+            //            addTargetNodesJupitar()
+            sceneView.scene.rootNode.removeAllAudioPlayers()
+            PlayInstructions()
+            //play background music
+            //                            stopBackgroundMusic()
+            playBackgroundMusic()
+            // addTargetNodesFive()
+            //addTargetNodesSixVenus()
+            // addTargetNodesNeptune()
+            // addTargetNodesSaturn()
             //h()
-          //  addTargetNodesFour()
-                                  // addTargetNodesJupitar()
-                                  //start tinmer
-                                  runTimer()
-    
-                            print("\(Coins): welcome to level 2")
-                        } else if 39...66 ~= Coins{
+            //  addTargetNodesFour()
+            // addTargetNodesJupitar()
+            //start tinmer
+            runTimer()
+            
+            print("\(Coins): welcome to level 2")
+        } else if 39...66 ~= Coins{
             power = "banana"
-                          //  sceneView.backgroundColor = UIColor.red
-                                   messageLabel.isHidden = true
-                            levelJB.text = "level 3"
-                                  addTargetNodes()
-                            //FsaddTargetNodes()
-                            // FsaddTargetNodes()
+            //  sceneView.backgroundColor = UIColor.red
+            messageLabel.isHidden = true
+            levelJB.text = "level 3"
+            addTargetNodes()
+            //FsaddTargetNodes()
+            // FsaddTargetNodes()
             // sceneView.scene.rootNode.removeAllAudioPlayers()
-                                  PlayInstructions()
-                                  //play background music
-                                  playBackgroundMusic()
-                                  
-                                  //start tinmer
-                                  runTimer()
-                              print("\(Coins): welcome to level 3 jess")
-              
-                        }
-                        else if 67...94 ~= Coins{
-            power = "banana"
-                                          //  sceneView.backgroundColor = UIColor.red
-                                                   messageLabel.isHidden = true
-                                            levelJB.text = "level 4"
-                                                  addTargetNodesFour()
-                                      //     sceneView.scene.rootNode.removeAllAudioPlayers()
-                                                  PlayInstructions()
-                                                  //play background music
-                                                  playBackgroundMusic()
-                                                  
-                                                  //start tinmer
-                                                  runTimer()
-                                              print("\(Coins): welcome to level 4 jess")
-                            
-                                        }       else if 95...129 ~= Coins{
-            power = "banana"
-                                                                    //  sceneView.backgroundColor = UIColor.red
-                                                                             messageLabel.isHidden = true
-                                                                      levelJB.text = "level 5"
-                            
-                            //Will need to add other nodes give a more real effect. For smaller ships
-                                                                            addTargetNodesFive()
-                                                                      //FsaddTargetNodes()
-                                                                      // FsaddTargetNodes()
-             //sceneView.scene.rootNode.removeAllAudioPlayers()
-                                                                            PlayInstructions()
-                                                                            //play background music
-                                                                        //    playBackgroundMusic()
-                                                                           // playingSoundWith
-                                                                            //start tinmer
-                                                                            runTimer()
-                                                                        print("\(Coins): welcome to level 5 jess")
-                                                                   //
-                                                                  } else if 130...161 ~= Coins{
-            power = "banana"
-                                                                                                          //  sceneView.backgroundColor = UIColor.red
+            PlayInstructions()
+            //play background music
+            playBackgroundMusic()
             
-             sceneView.scene.rootNode.removeAllAudioPlayers()
-                                                                                                                   messageLabel.isHidden = true
-                                                                                                            levelJB.text = "level 6"
-                                                                  
-                                                                  //Will need to add other nodes give a more real effect. For smaller ships
-                                                                                                                  addTargetNodesSixVenus()
-                                                                                                            //FsaddTargetNodes()
-                                                                                                            // FsaddTargetNodes()
-                                                                                                                  PlayInstructions()
-                                                                                                                  //play background music
-                                                                                                                  playBackgroundMusic()
-                                                                                                                  
-                                                                                                                  //start tinmer
-                                                                                                                  runTimer()
-                                                                                                              print("\(Coins): welcome to level 6 jess")
-                                                                               
-                                                                                                        }
-                        
-                        //addTargetNodesSaturn()
-                        else if 162...209 ~= Coins{
+            //start tinmer
+            runTimer()
+            print("\(Coins): welcome to level 3 jess")
+            
+        }
+        else if 67...94 ~= Coins{
+            power = "banana"
+            //  sceneView.backgroundColor = UIColor.red
+            messageLabel.isHidden = true
+            levelJB.text = "level 4"
+            addTargetNodesFour()
+            //     sceneView.scene.rootNode.removeAllAudioPlayers()
+            PlayInstructions()
+            //play background music
+            playBackgroundMusic()
+            
+            //start tinmer
+            runTimer()
+            print("\(Coins): welcome to level 4 jess")
+            
+        }       else if 95...129 ~= Coins{
+            power = "banana"
+            //  sceneView.backgroundColor = UIColor.red
+            messageLabel.isHidden = true
+            levelJB.text = "level 5"
+            
+            //Will need to add other nodes give a more real effect. For smaller ships
+            addTargetNodesFive()
+            //FsaddTargetNodes()
+            // FsaddTargetNodes()
+            //sceneView.scene.rootNode.removeAllAudioPlayers()
+            PlayInstructions()
+            //play background music
+            //    playBackgroundMusic()
+            // playingSoundWith
+            //start tinmer
+            runTimer()
+            print("\(Coins): welcome to level 5 jess")
+            //
+        } else if 130...161 ~= Coins{
+            power = "banana"
+            //  sceneView.backgroundColor = UIColor.red
+            
+            sceneView.scene.rootNode.removeAllAudioPlayers()
+            messageLabel.isHidden = true
+            levelJB.text = "level 6"
+            
+            //Will need to add other nodes give a more real effect. For smaller ships
+            addTargetNodesSixVenus()
+            //FsaddTargetNodes()
+            // FsaddTargetNodes()
+            PlayInstructions()
+            //play background music
+            playBackgroundMusic()
+            
+            //start tinmer
+            runTimer()
+            print("\(Coins): welcome to level 6 jess")
+            
+        }
+            
+            //addTargetNodesSaturn()
+        else if 162...209 ~= Coins{
             power = "banana"
             
-             sceneView.scene.rootNode.removeAllAudioPlayers()
+            sceneView.scene.rootNode.removeAllAudioPlayers()
             
-                                                                //  sceneView.backgroundColor = UIColor.red
-                                                                         messageLabel.isHidden = true
-                                                                  levelJB.text = "level 7"
-                        
-                        //Will need to add other nodes give a more real effect. For smaller ships
+            //  sceneView.backgroundColor = UIColor.red
+            messageLabel.isHidden = true
+            levelJB.text = "level 7"
+            
+            //Will need to add other nodes give a more real effect. For smaller ships
             addTargetNodesNeptune()
-                                                                        //addTargetNodesSaturn()
-                                                                  //FsaddTargetNodes()
-                                                                  // FsaddTargetNodes()
-                                                                        PlayInstructions()
-                                                                        //play background music
-                                                                        playBackgroundMusic()
-                                                                        
-                                                                        //start tinmer
-                                                                        runTimer()
-                                                                    print("\(Coins): welcome to level 7 jess")
-                                                               
-                                                              }
-                        else if 209...1320 ~= Coins{
+            //addTargetNodesSaturn()
+            //FsaddTargetNodes()
+            // FsaddTargetNodes()
+            PlayInstructions()
+            //play background music
+            playBackgroundMusic()
+            
+            //start tinmer
+            runTimer()
+            print("\(Coins): welcome to level 7 jess")
+            
+        } else if 209...1320 ~= Coins{
             
             power = "banana"
             
-             sceneView.scene.rootNode.removeAllAudioPlayers()
-                                                                               //  sceneView.backgroundColor = UIColor.red
-                                                                                        messageLabel.isHidden = true
-                                                                                 levelJB.text = "level 8"
-                                       
-                               
-                                                                                       addTargetNodesJupitar()
-                            // FsaddTargetNodes()
-                                                                                       PlayInstructions()
-                                                                                       //play background music
-                                                                                       playBackgroundMusic()
-                                                                                       
-                                                                                       //start tinmer
-                                                                                       runTimer()
-                                                                                   print("\(Coins): welcome to level 8 jess")
-                                                                              
-                                                                             }
-//      else if 807...5950 ~= score{
-//             sceneView.scene.rootNode.removeAllAudioPlayers()
-//                                                                               //  sceneView.backgroundColor = UIColor.red
-//                                                                                        messageLabel.isHidden = true
-//                                                                                 levelJB.text = "level 1"
-//
-//                                       //Will need to add other nodes give a more real effect. For smaller ships
-//              FsaddTargetNodes()
-//
-//                                                                                  //addTargetNodesJupitar()
-//
-//         //   addTargetNodesSixVenus()
-//           // addTargetNodesNeptune()
-//            //addTargetNodesSaturn()
-//            //addTargetNodes()
-//
-//            //addTargetNodesFour()
-//                                                                                    //addTargetNodesFive()
-//                                                       //    FsaddTargetNodes()
-//           // SecaddTargetNodes()
-//            PlayInstructions()
-//                                                                                    //play background music
-//                                                                     //          stopBackgroundMusic()
-//            //Sleepy
-//            playBackgroundMusic()
-//           // playingSoundWith(fileName: String)
-//           // playingSoundWith(fileName: "Sleepy")
-//
-//                                                                                       //start tinmer
-//                                                                                       runTimer()
-//                                                                                   print("\(score): welcome to level 9 jess")
-//           // stopBackgroundMusic()
-//
-//                                                                             }
-      
-                 
-                else{
+            sceneView.scene.rootNode.removeAllAudioPlayers()
+            //  sceneView.backgroundColor = UIColor.red
+            messageLabel.isHidden = true
+            levelJB.text = "level 8"
+            
+            
+            addTargetNodesJupitar()
+            // FsaddTargetNodes()
+            PlayInstructions()
+            //play background music
+            playBackgroundMusic()
+            
+            //start tinmer
+            runTimer()
+            print("\(Coins): welcome to level 8 jess")
+            
+        }
+            //      else if 807...5950 ~= score{
+            //             sceneView.scene.rootNode.removeAllAudioPlayers()
+            //                                                                               //  sceneView.backgroundColor = UIColor.red
+            //                                                                                        messageLabel.isHidden = true
+            //                                                                                 levelJB.text = "level 1"
+            //
+            //                                       //Will need to add other nodes give a more real effect. For smaller ships
+            //              FsaddTargetNodes()
+            //
+            //                                                                                  //addTargetNodesJupitar()
+            //
+            //         //   addTargetNodesSixVenus()
+            //           // addTargetNodesNeptune()
+            //            //addTargetNodesSaturn()
+            //            //addTargetNodes()
+            //
+            //            //addTargetNodesFour()
+            //                                                                                    //addTargetNodesFive()
+            //                                                       //    FsaddTargetNodes()
+            //           // SecaddTargetNodes()
+            //            PlayInstructions()
+            //                                                                                    //play background music
+            //                                                                     //          stopBackgroundMusic()
+            //            //Sleepy
+            //            playBackgroundMusic()
+            //           // playingSoundWith(fileName: String)
+            //           // playingSoundWith(fileName: "Sleepy")
+            //
+            //                                                                                       //start tinmer
+            //                                                                                       runTimer()
+            //                                                                                   print("\(score): welcome to level 9 jess")
+            //           // stopBackgroundMusic()
+            //
+            //                                                                             }
+            
+            
+        else {
             power = "banana"
-                  //  sceneView.backgroundColor = UIColor.red
-             sceneView.scene.rootNode.removeAllAudioPlayers()
-                           messageLabel.isHidden = true
-                    levelJB.text = "level 1"
-                          //addTargetNodes()
-                        FsaddTargetNodes()
-                          PlayInstructions()
-                          //play background music
-                          playBackgroundMusic()
-                        //  addTargetNodesJupitar()
-                          //start tinmer
-                          runTimer()
-                    print("\(Coins): still on level 1")
-   
-                }
-      //  stopBackgroundMusic()
+            //  sceneView.backgroundColor = UIColor.red
+            sceneView.scene.rootNode.removeAllAudioPlayers()
+            messageLabel.isHidden = true
+            levelJB.text = "level 1"
+            //addTargetNodes()
+            FsaddTargetNodes()
+            PlayInstructions()
+            //play background music
+            playBackgroundMusic()
+            //  addTargetNodesJupitar()
+            //start tinmer
+            runTimer()
+            print("\(Coins): still on level 1")
+            
+        }
+        //  stopBackgroundMusic()
     }
     
     // MARK: - missiles & targets
@@ -5449,142 +5596,134 @@ SaturnParent.addChildNode(SassThShoonode)
     // MARK: - Contact Delegate
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-//        let defaults = UserDefaults.standard
-//               if let gameScore = defaults.value(forKey: "scoreL"){
-//                   let score = gameScore as! Int
+        //        let defaults = UserDefaults.standard
+        //               if let gameScore = defaults.value(forKey: "scoreL"){
+        //                   let score = gameScore as! Int
         let nodeA = contact.nodeA
         let nodeB = contact.nodeB
         if nodeA.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue {
             self.target = nodeA
         } else
             if nodeB.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue {
-                       self.target = nodeB
+                self.target = nodeB
         }
         //can reduce by size to
-         print("** Collision!! " + contact.nodeA.name! + " hit " + contact.nodeB.name!)
+        print("** Collision!! " + contact.nodeA.name! + " hit " + contact.nodeB.name!)
         
         if contact.nodeA.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue
             || contact.nodeB.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue {
             
             
             if (contact.nodeA.name! == "ha" || contact.nodeB.name! == "ha") {
-//                if let Jes = self.sceneView.scene.rootNode.childNode(withName: "ha", recursively: true)
+                //                if let Jes = self.sceneView.scene.rootNode.childNode(withName: "ha", recursively: true)
                 //decided not add because this a bonus
-              //  power = "axe"
+                //  power = "axe"
                 Coins+=4
-                              scoreL+=8
-//                 if !self.AllnodeArray.isEmpty{
+                scoreL+=8
+                //                 if !self.AllnodeArray.isEmpty{
                 //level 9
-//
-//                score+=5
-//                scoreL+=5
-//                     AllnodeArray.removeLast()
-//                    print("\( AllnodeArray)")
-//                    } else{
-//                    gameOver()
-//                    print("\( AllnodeArray) Over")
-//                }
-               
-              //  pla()
+                //
+                //                score+=5
+                //                scoreL+=5
+                //                     AllnodeArray.removeLast()
+                //                    print("\( AllnodeArray)")
+                //                    } else{
+                //                    gameOver()
+                //                    print("\( AllnodeArray) Over")
+                //                }
                 
-                          //  playSound(sound: "Power", format: "wav")
+                //  play()
+                
+                //  playSound(sound: "Power", format: "wav")
                 //scoreL+=s
             } else if (contact.nodeA.name! == "earthQJ" || contact.nodeB.name! == "earthQJ") {
-//                self.messageLabel.isHidden = false
-//                              self.messageLabel.text = "you destroyed an planet"
-               // Coins = 0
+                //                self.messageLabel.isHidden = false
+                //                              self.messageLabel.text = "you destroyed an planet"
+                // Coins = 0
                 
-             DispatchQueue.main.async {
-                
-                
-                self.PlanetHit()
+                DispatchQueue.main.async {
+                  //  isPlanetHitORneedTime = t
+                    
+                    self.PlanetHit()
                 }
                 
-            
-
+                
+                
             } else if (contact.nodeA.name! == "moonnn" || contact.nodeB.name! == "moonnn"){
-
+                
                 DispatchQueue.main.async {
-                   
+                    
                     self.Coins = 0
-                   self.PlanetHitMoon()
-                   }
+                    self.PlanetHitMoon()
+                }
                 
             }
-
+            
             
             DispatchQueue.main.async {
                 contact.nodeA.removeFromParentNode()
-                 // contact.nodeA.removeFromParentNode()
+                // contact.nodeA.removeFromParentNode()
                 contact.nodeB.removeFromParentNode()
-               // contact.ear
+                // contact.ear
                 //LETS GOOOOOOOOOOOOOOOOOO This it ******************
-//               self.scoreLabel.text = String(self.scoreL)
+                //               self.scoreLabel.text = String(self.scoreL)
                 if (contact.nodeA.name! == "mo" || contact.nodeB.name! == "mo"){
                     
-
-//                    DispatchQueue.main.async {
-//
-//
-//                    self.PlanetHitMoon()
-//                    }
                     
-//                    if (!self.nodeArray.isEmpty){
-//                                    for r in self.nodeArray {
-////                                        if r == contact.nodeA{
-////
-////                                        }
-//                                   //     r.removeFromParentNode()
-////                                        r.childNodes.filter({ $0.name == "shark" }).forEach({ $0.removeFromParentNode() })
-//                                    }
-//                    }
+                    //                    DispatchQueue.main.async {
+                    //
+                    //
+                    //                    self.PlanetHitMoon()
+                    //                    }
+                    
+                    //                    if (!self.nodeArray.isEmpty){
+                    //                                    for r in self.nodeArray {
+                    ////                                        if r == contact.nodeA{
+                    ////
+                    ////                                        }
+                    //                                   //     r.removeFromParentNode()
+                    ////                                        r.childNodes.filter({ $0.name == "shark" }).forEach({ $0.removeFromParentNode() })
+                    //                                    }
+                    //                    }
                     
                     //level complete .....numbers add up restart VC
                     
                 }
-                
+                    
                 else if (contact.nodeA.name! == "shark" || contact.nodeB.name! == "shark"){
                     if let Jes = self.sceneView.scene.rootNode.childNode(withName: "shark", recursively: true) {
-              
-                                                        self.Coins+=1
-                            self.scoreL+=2
-                           // self.AllnodeArray.removeLast()
-                            print("\(self.scoreL) scoreL")
-                           print("\(self.Coins)Coins")
+                        
+                        self.Coins+=1
+                        self.scoreL+=2
+                        // self.AllnodeArray.removeLast()
+                        print("\(self.scoreL) scoreL")
+                        print("\(self.Coins)Coins")
                         print("\(contact.nodeA.name!)")
                     } else{
                         DispatchQueue.main.async {
-                            self.resetTimer()
+                            self.resetTimer(time: 60)
                             self.ReportScore(with: self.scoreL)
-                                         self.BeatLevel()
-                                         }
+                            self.BeatLevel()
+                        }
                         
                     }
-                      
-                                           // SS1copy.scn
-                    }
-                else { //if  (contact.nodeA.name! == "SS1copy.scn" || contact.nodeB.name! == "SS1copy.scn"){
-                        //  if !self.AllnodeArray.isEmpty{
-                          //should be blue***
-                                                                      self.Coins+=1
-                                          self.scoreL+=1
-
-                   // }
+                    
+                    // SS1copy.scn
+                }
+                else {
+                    self.Coins+=1
+                    self.scoreL+=1
                 }
                 
-                  self.scoreLabel.text = String(self.scoreL)
-            }
-//
-//            playSound(sound: "explosion", format: "wav")
-//                       let  explosion = SCNParticleSystem(named: "Fire", inDirectory: nil)
-//                       contact.nodeB.addParticleSystem(explosion!)
-            //Fire, react, star
-             let  explosion = SCNParticleSystem(named: "Fire", inDirectory: nil)
+                self.scoreLabel.text = String(self.scoreL)
 
+            }
+            let  explosion = SCNParticleSystem(named: "Fire", inDirectory: nil)
+            
             explosion?.particleLifeSpan = 4
             explosion?.emitterShape = contact.nodeB.geometry
             contact.nodeB.addParticleSystem(explosion!)
- 
+            
         }
     }
     
@@ -5674,3 +5813,113 @@ extension Int {
 fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
 	return input.rawValue
 }
+
+extension ViewController: FBInterstitialAdDelegate {
+    func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
+         DispatchQueue.main.async {
+        if let inter = self.interstitial {
+            if interstitialAd.isAdValid {
+               
+                inter.show(fromRootViewController: self)
+                }
+            }
+        }
+    }
+    func interstitialAdWillLogImpression(_ interstitialAd: FBInterstitialAd) {
+        print("user sees the add")
+    }
+    func interstitialAdDidClick(_ interstitialAd: FBInterstitialAd) {
+        print("The user clicked on the ad and will be taken to its destination")
+    }
+    func interstitialAdWillClose(_ interstitialAd: FBInterstitialAd) {
+        print("The user clicked on the close button, the ad is just about to close")
+    }
+    func interstitialAdDidClose(_ interstitialAd: FBInterstitialAd) {
+        print("Interstitial had been closed")
+        if isPlanetHit{
+                  DispatchQueue.main.async {
+                        let configuration = ARWorldTrackingConfiguration()
+                              self.sceneView.session.run(configuration)
+                          self.shouldShowBestScoreContainerView(state: false)
+                       //   self.Coins = 0
+                          //D
+                             
+                         self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                             node.removeFromParentNode()
+                         }
+                       // self.viewDidLoad()
+            //        self.play()
+                    self.play()
+                         //  self.resetTimer(time: 30)
+                          // self.runTimer()
+                    }
+            
+        } else {
+        //will need boolean to tell us to restart(planet hit) or continue(this)
+         DispatchQueue.main.async {
+            let configuration = ARWorldTrackingConfiguration()
+                  self.sceneView.session.run(configuration)
+              self.shouldShowBestScoreContainerView(state: false)
+              self.Coins = 0
+              //D
+                 
+//              self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+//                  node.removeFromParentNode()
+//              }
+           // self.viewDidLoad()
+//        self.play()
+               self.resetTimer(time: 30)
+               self.runTimer()
+        }
+            
+        }
+//        self.play()
+//        self.resetTimer(time: 30)
+//        self.runTimer()
+        isPlanetHit = false
+    }
+}
+
+/*extension ViewController: GADInterstitialDelegate {
+    /// Tells the delegate an ad request succeeded.
+    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
+      print("interstitialDidReceiveAd")
+        if let inter = self.interstitial {
+            inter.present(fromRootViewController: self)
+        }
+    }
+
+    /// Tells the delegate an ad request failed.
+    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
+      print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+
+    /// Tells the delegate that an interstitial will be presented.
+    func interstitialWillPresentScreen(_ ad: GADInterstitial) {
+      print("interstitialWillPresentScreen")
+    }
+
+    /// Tells the delegate the interstitial is to be animated off the screen.
+    func interstitialWillDismissScreen(_ ad: GADInterstitial) {
+      print("interstitialWillDismissScreen")
+    }
+
+    /// Tells the delegate the interstitial had been animated off the screen.
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        print("interstitialDidDismissScreen")
+        self.shouldShowBestScoreContainerView(state: false)
+        self.Coins = 0
+        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+            node.removeFromParentNode()
+        }
+        self.play()
+        self.resetTimer(time: 30)
+        self.runTimer()
+    }
+
+    /// Tells the delegate that a user click will open another app
+    /// (such as the App Store), backgrounding the current app.
+    func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
+      print("interstitialWillLeaveApplication")
+    }
+}*/

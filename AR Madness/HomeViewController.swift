@@ -9,11 +9,17 @@
 import UIKit
 import GameKit
 class HomeViewController: UIViewController {
+    
+    @IBOutlet weak var scoreLabel: UILabel!
+    
+    var score = Int()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 authenticateUser()
         // Do any additional setup after loading the view.
+        
+        self.scoreLabel.text = "Last Score: \(self.score)"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +54,12 @@ authenticateUser()
 
     }
     @IBAction func onPlayButton(_ sender: Any) {
-        performSegue(withIdentifier: "homeToGameSegue", sender: self)
+        //        performSegue(withIdentifier: "homeToGameSegue", sender: self)
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MainVC")
+        vc.modalPresentationStyle = .fullScreen
+        delegate.window?.rootViewController = vc
     }
     
     
@@ -56,11 +67,10 @@ authenticateUser()
         let vc = GKGameCenterViewController()
            vc.gameCenterDelegate = self
            vc.viewState = .leaderboards
-           vc.leaderboardIdentifier = "com.whatever.ARJesBrA.Scores"
+        //Jescom.whatever.ARJesBrA.Scores
+           vc.leaderboardIdentifier = "Jescom.whatever.ARJesBrA.Scores"
            present(vc, animated: true, completion: nil)
     }
-    
-    @IBOutlet weak var scoreLabel: UILabel!
     
     
 
@@ -68,23 +78,12 @@ authenticateUser()
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 extension HomeViewController: GKGameCenterControllerDelegate {
-
-  func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-    gameCenterViewController.dismiss(animated: true, completion: nil)
-  }
-
+    
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
+    }
+    
 }
