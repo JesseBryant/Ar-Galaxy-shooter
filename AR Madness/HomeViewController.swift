@@ -66,7 +66,7 @@ authenticateUser()
     @IBAction func TopPlayers(_ sender: Any) {
         let vc = GKGameCenterViewController()
            vc.gameCenterDelegate = self
-           vc.viewState = .leaderboards
+        vc.viewState = .leaderboards
         //Jescom.whatever.ARJesBrA.Scores
            vc.leaderboardIdentifier = "Jescom.whatever.ARJesBrA.Scores"
            present(vc, animated: true, completion: nil)

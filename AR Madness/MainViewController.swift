@@ -89,7 +89,7 @@ extension MainViewController {
         let vc = GKGameCenterViewController()
            vc.gameCenterDelegate = self
            vc.viewState = .leaderboards
-           vc.leaderboardIdentifier = "com.whatever.ARJesBrA.Scores"
+           vc.leaderboardIdentifier = "Jescom.whatever.ARJesBrA.Scores"
            present(vc, animated: true, completion: nil)
     }
 }

@@ -67,6 +67,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     var isPlanetHit = false
      var isPlanetHitORneedTime = false
+      var PoP = false
 //    var interstitial: GADInterstitial!
     var interstitial: FBInterstitialAd!
     
@@ -174,7 +175,7 @@ var power = "banana"
     
     func ReportScore(with value: Int) {
         // take score
-           let leaderboardID = "com.whatever.ARJesBrA.Scores"
+           let leaderboardID = "Jescom.whatever.ARJesBrA.Scores"
         let score = GKScore(leaderboardIdentifier: leaderboardID)
         // set value for score
         score.value = Int64(value)
@@ -406,7 +407,7 @@ var power = "banana"
             let arrrrr = self.scoreL
             let defaultsJB = UserDefaults.standard
             defaultsJB.set(arrrrr, forKey: "scoreL")
-            self.ReportScore(with: self.scoreL)
+            self.ReportScore(with: arrrrr)
             //go back to the Home View Controller
             // removeAud
             //stopBackgroundMusic()
@@ -422,6 +423,7 @@ var power = "banana"
     }
     func shouldShowBestScoreContainerView(state: Bool) {
         if state {
+            PoP = true
             let bestScore = UserDefaults.standard.integer(forKey: "BestScore")
             if let currentScore = Int(self.scoreLabel.text!) {
                 if currentScore > bestScore {
@@ -439,85 +441,18 @@ var power = "banana"
         self.buttonStackView.isHidden = !state
     }
     func NeedMoreTime(){
+        //only if PoP = false meaning no PoP up available so no double pop ups
+        if !PoP {
         self.needTimeLabel.text = "Need more time"
         self.isPlanetHit = false
         self.shouldShowBestScoreContainerView(state: true)
-        
-        /*let alert = UIAlertController(title: "Need more time", message: "Continue this level?", preferredStyle: UIAlertController.Style.alert)
-        
-        let ok = UIAlertAction(title: "10 coins", style: .default, handler: { action in
-            //remembe
-            if self.Coins>=10{
-                //not working because coins = 0 in real physical world
-                //will need restart here cuz planet gone
-                print("\(self.Coins) Coins")
-                self.Coins = self.Coins - 10
-                print("\(self.Coins) Coins after")
-                let defaults = UserDefaults.standard
-                defaults.set(self.Coins, forKey: "Coins")
-                //        scoreL += score
-                //  defaults.set(scoreL, forKey: "scoreL")
-                let arrrrr = self.scoreL
-                let defaultsJB = UserDefaults.standard
-                defaultsJB.set(arrrrr, forKey: "scoreL")
-                self.ReportScore(with: arrrrr)
-                //since planet got hit restart with **Correct** points
-                //                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                //                                              node.removeFromParentNode()
-                //                                          }
-                //                    self.play()
-                // timer
-                //self.seconds = 90
-                //need to make sre messgae go wi
-                self.resetTimer()
-                self.runTimer()
-                // let fscre = self.scoreL
-                //store the score in UserDefaults and leaderboard
-                
-            }
-            else {
-                let alert = UIAlertController(title: "Not enough coins", message: "Buy more?", preferredStyle: .alert)
-                
-                let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
-                    //magic for in app purchases
-                    //j
-                    //All project
-                    self.Time = true
-                    self.buyPremiumQuotes()
-                    
-                })
-                alert.addAction(ok)
-                let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
-                    //done in ph world too
-                    self.Coins = 0
-                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                        node.removeFromParentNode()
-                    }
-                    self.play()
-                })
-                alert.addAction(cancel)
-                DispatchQueue.main.async(execute: {
-                    self.present(alert, animated: true)
-                })
-                
-            }
-        })
-        alert.addAction(ok)
-        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
-            self.Coins = 0
-            self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                node.removeFromParentNode()
-            }
-            self.play()
-        })
-        alert.addAction(cancel)
-        DispatchQueue.main.async(execute: {
-            self.present(alert, animated: true)
-        })*/
+        }
+       
     }
     
     @IBAction func didTapCross() {
         self.shouldShowBestScoreContainerView(state: false)
+        PoP = false
         self.Coins = 0
         self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
             node.removeFromParentNode()
@@ -543,8 +478,10 @@ var power = "banana"
         print("\(Coins): still on level 1")
     }
     @IBAction func didTapInterestial() {
+       // PoP = false
         DispatchQueue.main.async {
         self.shouldShowBestScoreContainerView(state: false)
+            self.PoP = false
         self.setupInterstial()
         }
 //        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
@@ -555,6 +492,7 @@ var power = "banana"
     @IBAction func didTapCoins() {
        DispatchQueue.main.async {
               self.shouldShowBestScoreContainerView(state: false)
+        self.PoP = false
               }
               if self.isPlanetHit {
                   
@@ -575,6 +513,7 @@ var power = "banana"
                       let arrrrr = self.scoreL
                       let defaultsJB = UserDefaults.standard
                       defaultsJB.set(arrrrr, forKey: "scoreL")
+                     self.ReportScore(with: arrrrr)
                       //since planet got hit restart with **Correct** points
                       DispatchQueue.main.async {
                       self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
@@ -595,7 +534,7 @@ var power = "banana"
                       self.buyPremiumQuotes()
                       
                       //done in ph world too
-                      
+                     //  self.ReportScore(with: arrrrr)
                       self.Coins = 0
                       DispatchQueue.main.async {
                       self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
@@ -830,42 +769,29 @@ var power = "banana"
         self.messageLabel.isHidden = false
         self.messageLabel.text = "You shot the moon"
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-            var scoreJJ = 0
-            let chd = "earth"
-            let chdKK = "earthParent"
-            
-            
-            
-            let defaultss = UserDefaults.standard
-            if let gameScore = defaultss.value(forKey: "scoreL"){
-                scoreJJ = gameScore as! Int
-                if self.Coins > 90 {
-                    //  print("\(score):score >90 welcome to level 2")
-                } else{
-                    // print("\(score): score <90 still on level 1")
-                }
+            self.PlanetHit()
                 //                //scoreLabel.text = "Score: \(String(score))"
-            }
+            })
             
             
             //   scoreL += score
-            let fscre = self.scoreL
-            //store the score in UserDefaults
-            let defaults = UserDefaults.standard
-            defaults.set(self.Coins, forKey: "Coins")
-            //        scoreL += score
-            //  defaults.set(scoreL, forKey: "scoreL")
-            let arrrrr = self.scoreL
-            let defaultsJB = UserDefaults.standard
-            defaultsJB.set(arrrrr, forKey: "scoreL")
-            //go back to the Home View Controller
-            // removeAud
-            //stopBackgroundMusic()
-            self.dismiss(animated: true, completion: nil)
-            self.stopBackgroundMus()
-            self.messageLabel.isHidden = true
-        })
-        
+//            let fscre = self.scoreL
+//            //store the score in UserDefaults
+//            let defaults = UserDefaults.standard
+//            defaults.set(self.Coins, forKey: "Coins")
+//            //        scoreL += score
+//            //  defaults.set(scoreL, forKey: "scoreL")
+//            let arrrrr = self.scoreL
+//            let defaultsJB = UserDefaults.standard
+//            defaultsJB.set(arrrrr, forKey: "scoreL")
+//            //go back to the Home View Controller
+//            // removeAud
+//            //stopBackgroundMusic()
+//            self.dismiss(animated: true, completion: nil)
+//            self.stopBackgroundMus()
+//            self.messageLabel.isHidden = true
+//        })
+//
         
         
         
@@ -945,7 +871,7 @@ var power = "banana"
             //sceneView.scene.rootNode.removeAllAudioPlayers()
             PlayInstructions()
             //play background music
-            //    playBackgroundMusic()
+               playBackgroundMusic()
             // playingSoundWith
             //start tinmer
             runTimer()
@@ -1017,40 +943,7 @@ var power = "banana"
             print("\(Coins): welcome to level 8 jess")
             
         }
-            //      else if 807...5950 ~= score{
-            //             sceneView.scene.rootNode.removeAllAudioPlayers()
-            //                                                                               //  sceneView.backgroundColor = UIColor.red
-            //                                                                                        messageLabel.isHidden = true
-            //                                                                                 levelJB.text = "level 1"
-            //
-            //                                       //Will need to add other nodes give a more real effect. For smaller ships
-            //              FsaddTargetNodes()
-            //
-            //                                                                                  //addTargetNodesJupitar()
-            //
-            //         //   addTargetNodesSixVenus()
-            //           // addTargetNodesNeptune()
-            //            //addTargetNodesSaturn()
-            //            //addTargetNodes()
-            //
-            //            //addTargetNodesFour()
-            //                                                                                    //addTargetNodesFive()
-            //                                                       //    FsaddTargetNodes()
-            //           // SecaddTargetNodes()
-            //            PlayInstructions()
-            //                                                                                    //play background music
-            //                                                                     //          stopBackgroundMusic()
-            //            //Sleepy
-            //            playBackgroundMusic()
-            //           // playingSoundWith(fileName: String)
-            //           // playingSoundWith(fileName: "Sleepy")
-            //
-            //                                                                                       //start tinmer
-            //                                                                                       runTimer()
-            //                                                                                   print("\(score): welcome to level 9 jess")
-            //           // stopBackgroundMusic()
-            //
-            //                                                                             }
+           
             
             
         else {
@@ -5650,12 +5543,18 @@ SaturnParent.addChildNode(SassThShoonode)
                 
                 
             } else if (contact.nodeA.name! == "moonnn" || contact.nodeB.name! == "moonnn"){
-                
+//
+//                DispatchQueue.main.async {
+//
+//                   // self.Coins = 0
+//                    self.PlanetHitMoon()
+//                }
                 DispatchQueue.main.async {
-                    
-                    self.Coins = 0
-                    self.PlanetHitMoon()
-                }
+                                 //  isPlanetHitORneedTime = t
+                                   
+                                   self.PlanetHit()
+                               }
+                               
                 
             }
             
@@ -5669,24 +5568,7 @@ SaturnParent.addChildNode(SassThShoonode)
                 //               self.scoreLabel.text = String(self.scoreL)
                 if (contact.nodeA.name! == "mo" || contact.nodeB.name! == "mo"){
                     
-                    
-                    //                    DispatchQueue.main.async {
-                    //
-                    //
-                    //                    self.PlanetHitMoon()
-                    //                    }
-                    
-                    //                    if (!self.nodeArray.isEmpty){
-                    //                                    for r in self.nodeArray {
-                    ////                                        if r == contact.nodeA{
-                    ////
-                    ////                                        }
-                    //                                   //     r.removeFromParentNode()
-                    ////                                        r.childNodes.filter({ $0.name == "shark" }).forEach({ $0.removeFromParentNode() })
-                    //                                    }
-                    //                    }
-                    
-                    //level complete .....numbers add up restart VC
+              
                     
                 }
                     
@@ -5779,6 +5661,7 @@ SaturnParent.addChildNode(SassThShoonode)
         audioNode.addAudioPlayer(audioPlayer)
         
         let play = SCNAction.playAudio(audioSource, waitForCompletion: true)
+       // let play = SCNAction.pa
 //        let gg = SCNAction.removeFromParentNode()
         audioNode.runAction(play)
         
@@ -5819,14 +5702,32 @@ extension ViewController: FBInterstitialAdDelegate {
          DispatchQueue.main.async {
         if let inter = self.interstitial {
             if interstitialAd.isAdValid {
-               
+                self.stopBackgroundMus()
                 inter.show(fromRootViewController: self)
                 }
             }
         }
+        //when planet is hit and show ads music is stop and start back! keep from running out
+        //when planet is hit and show ads reload and reset time
+        //level 5 music play
+        //fix homescreen issue after moon hit
+        //leaderboard nice
+        
+        //NEED
+        //check capatibity on phone
+        //make horizontal...phone shouldnt streech
+        //perfect levels and waves
+        //need finish beat level
+        //pause button
+        //in app purchase in homescreen (and coin button)
+        //check constraint
+        //need restart score
+        //need more consitent time
+        
     }
     func interstitialAdWillLogImpression(_ interstitialAd: FBInterstitialAd) {
         print("user sees the add")
+//        stopBackgroundMus()
     }
     func interstitialAdDidClick(_ interstitialAd: FBInterstitialAd) {
         print("The user clicked on the ad and will be taken to its destination")
@@ -5836,6 +5737,10 @@ extension ViewController: FBInterstitialAdDelegate {
     }
     func interstitialAdDidClose(_ interstitialAd: FBInterstitialAd) {
         print("Interstitial had been closed")
+        let arrrrr = self.scoreL
+                         let defaultsJB = UserDefaults.standard
+                         defaultsJB.set(arrrrr, forKey: "scoreL")
+                        self.ReportScore(with: arrrrr)
         if isPlanetHit{
                   DispatchQueue.main.async {
                         let configuration = ARWorldTrackingConfiguration()
@@ -5849,12 +5754,18 @@ extension ViewController: FBInterstitialAdDelegate {
                          }
                        // self.viewDidLoad()
             //        self.play()
+                    self.resetTimer(time: 30)
+                                                            self.runTimer()
                     self.play()
                          //  self.resetTimer(time: 30)
                           // self.runTimer()
                     }
             
         } else {
+            let arrrrr = self.scoreL
+                             let defaultsJB = UserDefaults.standard
+                             defaultsJB.set(arrrrr, forKey: "scoreL")
+                            self.ReportScore(with: arrrrr)
         //will need boolean to tell us to restart(planet hit) or continue(this)
          DispatchQueue.main.async {
             let configuration = ARWorldTrackingConfiguration()
@@ -5868,6 +5779,7 @@ extension ViewController: FBInterstitialAdDelegate {
 //              }
            // self.viewDidLoad()
 //        self.play()
+            self.playBackgroundMusic()
                self.resetTimer(time: 30)
                self.runTimer()
         }
