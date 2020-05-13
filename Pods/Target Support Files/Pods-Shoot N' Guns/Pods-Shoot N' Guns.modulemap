@@ -1,0 +1,6 @@
+module Pods_Shoot_N__Guns {
+  umbrella header "Pods-Shoot N' Guns-umbrella.h"
+
+  export *
+  module * { export * }
+}
