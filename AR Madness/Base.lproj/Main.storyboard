@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SUX-J8-7Vb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SUX-J8-7Vb">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,14 +33,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leaderboard" translatesAutoresizingMaskIntoConstraints="NO" id="izY-3z-cfQ">
-                                <rect key="frame" x="83.5" y="210" width="208" height="247"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Hjc-a2-xhN">
                                 <rect key="frame" x="120" y="512" width="135" height="105"/>
                                 <subviews>
@@ -101,8 +93,6 @@
                         <constraints>
                             <constraint firstItem="fQ7-gs-McJ" firstAttribute="leading" secondItem="EMM-3e-dkp" secondAttribute="leading" id="4tK-Kb-Sf9"/>
                             <constraint firstItem="fQ7-gs-McJ" firstAttribute="top" secondItem="EMM-3e-dkp" secondAttribute="top" id="6Sl-Wh-9u2"/>
-                            <constraint firstItem="izY-3z-cfQ" firstAttribute="centerX" secondItem="fQ7-gs-McJ" secondAttribute="centerX" id="DVt-ke-EdW"/>
-                            <constraint firstItem="izY-3z-cfQ" firstAttribute="top" secondItem="agN-dv-X3R" secondAttribute="bottom" constant="33.5" id="HHy-5J-hbU"/>
                             <constraint firstItem="agN-dv-X3R" firstAttribute="centerX" secondItem="fQ7-gs-McJ" secondAttribute="centerX" id="Kyv-z2-L0D"/>
                             <constraint firstItem="Hjc-a2-xhN" firstAttribute="centerX" secondItem="fQ7-gs-McJ" secondAttribute="centerX" id="LIT-Rg-5nx"/>
                             <constraint firstItem="fQ7-gs-McJ" firstAttribute="bottom" secondItem="EMM-3e-dkp" secondAttribute="bottom" id="Ldi-pr-7z7"/>

@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
 authenticateUser()
         // Do any additional setup after loading the view.
         
-        self.scoreLabel.text = "Last Score: \(self.score)"
+        self.scoreLabel.text = "Last Score: \(0)"
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -442,11 +442,11 @@ var power = "banana"
     }
     func NeedMoreTime(){
         //only if PoP = false meaning no PoP up available so no double pop ups
-        if !PoP {
+       // if !PoP {
         self.needTimeLabel.text = "Need more time"
         self.isPlanetHit = false
         self.shouldShowBestScoreContainerView(state: true)
-        }
+       // }
        
     }
     
@@ -481,7 +481,7 @@ var power = "banana"
        // PoP = false
         DispatchQueue.main.async {
         self.shouldShowBestScoreContainerView(state: false)
-            self.PoP = false
+           // self.PoP = false
         self.setupInterstial()
         }
 //        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
@@ -601,76 +601,13 @@ var power = "banana"
     
     func PlanetHit() {
         
-        
+        //create new timer that restart level if You dont watch ad in time
         timer.invalidate()
         self.needTimeLabel.text = "You shot a planet"
         self.isPlanetHit = true
         self.shouldShowBestScoreContainerView(state: true)
         
-        /*let alert = UIAlertController(title: "You shot a planet", message: "Continue this level?", preferredStyle: UIAlertController.Style.alert)
         
-        let ok = UIAlertAction(title: "10 coins", style: .default, handler: { action in
-            //remembe
-            if self.Coins>=10{
-                //not working because coins = 0 in real physical world
-                //will need restart here cuz planet gone
-                print("\(self.Coins) Coins")
-                self.Coins = self.Coins - 10
-                print("\(self.Coins) Coins after")
-                let defaults = UserDefaults.standard
-                defaults.set(self.Coins, forKey: "Coins")
-                //        scoreL += score
-                //  defaults.set(scoreL, forKey: "scoreL")
-                let arrrrr = self.scoreL
-                let defaultsJB = UserDefaults.standard
-                defaultsJB.set(arrrrr, forKey: "scoreL")
-                //since planet got hit restart with **Correct** points
-                self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                    node.removeFromParentNode()
-                }
-                self.play()
-                // let fscre = self.scoreL
-                //store the score in UserDefaults and leaderboard
-                
-            }
-            else {
-                let alert = UIAlertController(title: "Not enough coins", message: "Buy more?", preferredStyle: .alert)
-                
-                let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
-                    //magic for in app purchases
-                    //j
-                    //All project
-                    self.buyPremiumQuotes()
-                    
-                })
-                alert.addAction(ok)
-                let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
-                    //done in ph world too
-                    self.Coins = 0
-                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                        node.removeFromParentNode()
-                    }
-                    self.play()
-                })
-                alert.addAction(cancel)
-                DispatchQueue.main.async(execute: {
-                    self.present(alert, animated: true)
-                })
-                
-            }
-        })
-        alert.addAction(ok)
-        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
-            self.Coins = 0
-            self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                node.removeFromParentNode()
-            }
-            self.play()
-        })
-        alert.addAction(cancel)
-        DispatchQueue.main.async(execute: {
-            self.present(alert, animated: true)
-        })*/
     }
     //C
     // MARK: - In-App Purchase Methods
@@ -5533,11 +5470,12 @@ SaturnParent.addChildNode(SassThShoonode)
                 //                self.messageLabel.isHidden = false
                 //                              self.messageLabel.text = "you destroyed an planet"
                 // Coins = 0
-                
+                      // self.timer.invalidate()
                 DispatchQueue.main.async {
                   //  isPlanetHitORneedTime = t
-                    
+             
                     self.PlanetHit()
+                    self.scoreL+=0
                 }
                 
                 
@@ -5549,10 +5487,12 @@ SaturnParent.addChildNode(SassThShoonode)
 //                   // self.Coins = 0
 //                    self.PlanetHitMoon()
 //                }
+                // self.timer.invalidate()
                 DispatchQueue.main.async {
                                  //  isPlanetHitORneedTime = t
-                                   
+                   
                                    self.PlanetHit()
+                    self.scoreL+=0
                                }
                                
                 
@@ -5585,6 +5525,7 @@ SaturnParent.addChildNode(SassThShoonode)
                         DispatchQueue.main.async {
                             self.resetTimer(time: 60)
                             self.ReportScore(with: self.scoreL)
+                            self.scoreL+=0
                             self.BeatLevel()
                         }
                         
@@ -5712,17 +5653,21 @@ extension ViewController: FBInterstitialAdDelegate {
         //level 5 music play
         //fix homescreen issue after moon hit
         //leaderboard nice
-        
-        //NEED
-        //check capatibity on phone
-        //make horizontal...phone shouldnt streech
-        //perfect levels and waves
-        //need finish beat level
-        //pause button
-        //in app purchase in homescreen (and coin button)
-        //check constraint
+        //made horizontal...phone shouldnt streech
+        //get rid of pic
         //need restart score
+        //**NEED**
+        //check capatibity on phone
+        
+        //perfect levels and waves
+        //need finish "beat level"
+        //pause button
+        //in app purchase in homescreen (and coin button (dont have enough time))
+        //check constraints
+        
         //need more consitent time
+        //if sun hit lost
+        
         
     }
     func interstitialAdWillLogImpression(_ interstitialAd: FBInterstitialAd) {
