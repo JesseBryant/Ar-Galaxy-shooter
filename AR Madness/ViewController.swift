@@ -490,6 +490,8 @@ var power = "banana"
         self.Coins = 0
         self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
             node.removeFromParentNode()
+           // stopBackgroundMus()
+            //Music end sometimes here
         }
         self.scoreLabel.text = "0"
         self.scoreL = 0
@@ -498,6 +500,16 @@ var power = "banana"
         
         power = "banana"
         //  sceneView.backgroundColor = UIColor.red
+     self.Coins = 0
+                             print("\(self.Coins) Coins after")
+                             let defaults = UserDefaults.standard
+                             defaults.set(self.Coins, forKey: "Coins")
+                             //        scoreL += score
+                             //  defaults.set(scoreL, forKey: "scoreL")
+                             let arrrrr = self.scoreL
+                             let defaultsJB = UserDefaults.standard
+                             defaultsJB.set(arrrrr, forKey: "scoreL")
+                            self.ReportScore(with: arrrrr)
         sceneView.scene.rootNode.removeAllAudioPlayers()
         messageLabel.isHidden = true
         levelJB.text = "level 1"
@@ -515,6 +527,7 @@ var power = "banana"
     PoP = true
         DispatchQueue.main.async {
         self.shouldShowBestScoreContainerView(state: false)
+            
            // self.PoP = false
         self.setupInterstial()
         }
@@ -522,6 +535,17 @@ var power = "banana"
 //            node.removeFromParentNode()
 //        }
 //        self.play()
+        
+        
+//        self.sceneView.isHidden = true
+//               DispatchQueue.main.async {
+//                   SwiftSpinner.show("Connecting to AR Camera...")
+//               }
+//               DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+//                   self.sceneView.isHidden = false
+//                   SwiftSpinner.hide()
+//                   self.play()
+//               }
     }
     //fixed bug that cause pop up EVEN after I tap ad button
     @IBAction func didTapCoins() {
@@ -648,30 +672,75 @@ var power = "banana"
     // MARK: - In-App Purchase Methods
     
     func buyPremiumQuotes() {
+       // self.sceneView.isHidden = true
+          SwiftSpinner.show("Loading...")
         if SKPaymentQueue.canMakePayments() {
             //Can make payments
-            
+//              DispatchQueue.main.async {
+//            self.sceneView.isHidden = false
+//            SwiftSpinner.hide()
+//            }
            let paymentRequest = SKMutablePayment()
             paymentRequest.productIdentifier = productID
+            self.sceneView.isHidden = false
+            SwiftSpinner.hide()
             SKPaymentQueue.default().add(paymentRequest)
             
             
         } else {
             //Can't make payments
+            self.sceneView.isHidden = false
+                                 SwiftSpinner.hide()
             print("User can't make payments")
+//            self.Coins = 0
+//                   self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+//                       node.removeFromParentNode()
+//                      // stopBackgroundMus()
+//                       //Music end sometimes here
+//                   }
+                  
             
             //add alert here
+//            func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
+//                self.sceneView.isHidden = true
+//                SwiftSpinner.show("Connecting to AR Camera...")
+//                 DispatchQueue.main.async {
+//                if let inter = self.interstitial {
+//                    if interstitialAd.isAdValid {
+//                         self.sceneView.isHidden = false
+//                                    SwiftSpinner.hide()
+//                        self.stopBackgroundMus()
+//                        inter.show(fromRootViewController: self)
+//                        }
+//                    }
+//                }
+                
         }
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        
+        //            func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
+        //                self.sceneView.isHidden = true
+        //                SwiftSpinner.show("Connecting to AR Camera...")
+        //                 DispatchQueue.main.async {
+        //                if let inter = self.interstitial {
+        //                    if interstitialAd.isAdValid {
+        //                         self.sceneView.isHidden = false
+        //                                    SwiftSpinner.hide()
+        //                        self.stopBackgroundMus()
+        //                        inter.show(fromRootViewController: self)
+        //                        }
+        //                    }
+        //                }
        for transaction in transactions {
+       // self.sceneView.isHidden = true
+                             //  SwiftSpinner.show("Connecting to AR Camera...")
                    if transaction.transactionState == .purchased {
                        
                        //User payment successful
                        print("Transaction successful!")
-                       
+                     //  self.sceneView.isHidden = false
+                    //  SwiftSpinner.hide()
                        showPremiumQuotes()
                         // self.play()
                       self.play()
@@ -679,13 +748,40 @@ var power = "banana"
                        SKPaymentQueue.default().finishTransaction(transaction)
                        
                    } else if transaction.transactionState == .failed {
-                       
+                    //   self.sceneView.isHidden = false
+                                        //    SwiftSpinner.hide()
                        //Payment failed
+                    self.Coins = 0
+                           self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                               node.removeFromParentNode()
+                              // stopBackgroundMus()
+                               //Music end sometimes here
+                           }
+                           self.scoreLabel.text = "0"
+                           self.scoreL = 0
+                           self.levelJB.text = "Level 1"
+                           self.resetTimer(time: 30)
+                           
+                           power = "banana"
+                           //  sceneView.backgroundColor = UIColor.red
+                           sceneView.scene.rootNode.removeAllAudioPlayers()
+                           messageLabel.isHidden = true
+                           levelJB.text = "level 1"
+                           //addTargetNodes()
+                           FsaddTargetNodes()
+                           PlayInstructions()
+                           //play background music
+                           playBackgroundMusic()
+                           //  addTargetNodesJupitar()
+                           //start tinmer
+                           runTimer()
+                           print("\(Coins): still on level 1")
                        if let error = transaction.error {
                            let errorDescription = error.localizedDescription
+                        
                            print("Transaction failed due to error: \(errorDescription)")
                        }
-                       self.play()
+                     //  self.play()
                         SKPaymentQueue.default().finishTransaction(transaction)
                        
                    } else if transaction.transactionState == .restored {
@@ -5675,14 +5771,22 @@ fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Categ
 
 extension ViewController: FBInterstitialAdDelegate {
     func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
+        //self.sceneView.isHidden = true
+        SwiftSpinner.show("Loading...")
          DispatchQueue.main.async {
         if let inter = self.interstitial {
             if interstitialAd.isAdValid {
+                 self.sceneView.isHidden = false
+                            SwiftSpinner.hide()
                 self.stopBackgroundMus()
                 inter.show(fromRootViewController: self)
                 }
             }
         }
+        //added loading to ad and in app.. also fix bug about perm..
+        //can change loading to not hide screen
+        //added code to cancel button
+        //add proper code to tappCross
         
 //        DispatchQueue.main.async {
 //            SwiftSpinner.show("Connecting to AR Camera...")
@@ -5713,6 +5817,7 @@ extension ViewController: FBInterstitialAdDelegate {
         //need more consitent time
         //if sun hit lost
         //change name
+        
         
         
     }
