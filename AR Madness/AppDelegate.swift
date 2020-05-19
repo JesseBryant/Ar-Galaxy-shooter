@@ -2,13 +2,21 @@
 //  AppDelegate.swift
 //  AR Madness
 //
-//  Created by O'Sullivan, Andy on 25/05/2018.
-//  Copyright © 2018 O'Sullivan, Andy. All rights reserved.
+// Created by Jesse Bryant on 4/15/20.
+//  Copyright © 2020 Jesse Bryant. All rights reserved.
+
 //
 
 import UIKit
 //import GoogleMobileAds
 //import Firebase
+
+
+//MARK -
+// NEED
+//watch background vid and tutorials...master it
+//lean these background func
+//use background to increase performance
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

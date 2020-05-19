@@ -195,7 +195,32 @@ var power = "banana"
     override func viewDidLoad() {
         super.viewDidLoad()
         let configuration = ARWorldTrackingConfiguration()
+        //without line below it want move
         self.sceneView.session.run(configuration)
+        
+//        func session(_ session: ARSession, didFailWithError error: Error) {
+//            // Present an error message to the user
+//            print("Session failed. Changing worldAlignment property.")
+//            print(error.localizedDescription)
+//
+//            if let arError = error as? ARError {
+//                switch arError.errorCode {
+//                case 102:
+//                    configuration.worldAlignment = .gravity
+//                    restartSessionWithoutDelete()
+//                default:
+//                    restartSessionWithoutDelete()
+//                }
+//            }
+//        }
+//        func restartSessionWithoutDelete() {
+//            // Restart session with a different worldAlignment - prevents bug from crashing app
+//            self.sceneView.session.pause()
+//
+//            self.sceneView.session.run(configuration, options: [
+//                .resetTracking,
+//                .removeExistingAnchors])
+//        }
         self.sceneView.isHidden = true
         DispatchQueue.main.async {
             SwiftSpinner.show("Connecting to AR Camera...")
@@ -230,6 +255,9 @@ var power = "banana"
 //        self.play()
     }
     
+    // MARK: Jesss
+
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -255,7 +283,10 @@ var power = "banana"
     
     //to run the timer
     func runTimer() {
+        //fixed timer bug
+        if !timer.isValid {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
+        }
     }
     
     @objc func handleTap(sender: UITapGestureRecognizer){
@@ -277,14 +308,16 @@ var power = "banana"
     
     //decrements seconds by 1, updates the timerLabel and calls gameOver if seconds is 0
     @objc func updateTimer() {
-        if seconds == 0 {
+       if PoP == false {
+        if seconds == 0  {
             timer.invalidate()
             //believe this issue because this the only place that calls  gameOver()
             NeedMoreTime()
            // gameOver()
-        }else{
+        }else {
             seconds -= 1
             timerLabel.text = "\(seconds)"
+        }
         }
     }
     
@@ -445,6 +478,7 @@ var power = "banana"
        // if !PoP {
         self.needTimeLabel.text = "Need more time"
         self.isPlanetHit = false
+        
         self.shouldShowBestScoreContainerView(state: true)
        // }
        
@@ -478,7 +512,7 @@ var power = "banana"
         print("\(Coins): still on level 1")
     }
     @IBAction func didTapInterestial() {
-       // PoP = false
+    PoP = true
         DispatchQueue.main.async {
         self.shouldShowBestScoreContainerView(state: false)
            // self.PoP = false
@@ -489,6 +523,7 @@ var power = "banana"
 //        }
 //        self.play()
     }
+    //fixed bug that cause pop up EVEN after I tap ad button
     @IBAction func didTapCoins() {
        DispatchQueue.main.async {
               self.shouldShowBestScoreContainerView(state: false)
@@ -5648,6 +5683,16 @@ extension ViewController: FBInterstitialAdDelegate {
                 }
             }
         }
+        
+//        DispatchQueue.main.async {
+//            SwiftSpinner.show("Connecting to AR Camera...")
+//        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+//            self.sceneView.isHidden = false
+//            SwiftSpinner.hide()
+//            self.play()
+//        }
+        
         //when planet is hit and show ads music is stop and start back! keep from running out
         //when planet is hit and show ads reload and reset time
         //level 5 music play
@@ -5667,6 +5712,7 @@ extension ViewController: FBInterstitialAdDelegate {
         
         //need more consitent time
         //if sun hit lost
+        //change name
         
         
     }
@@ -5702,6 +5748,7 @@ extension ViewController: FBInterstitialAdDelegate {
                     self.resetTimer(time: 30)
                                                             self.runTimer()
                     self.play()
+                    self.PoP = false
                          //  self.resetTimer(time: 30)
                           // self.runTimer()
                     }
@@ -5727,6 +5774,7 @@ extension ViewController: FBInterstitialAdDelegate {
             self.playBackgroundMusic()
                self.resetTimer(time: 30)
                self.runTimer()
+            self.PoP = false
         }
             
         }
