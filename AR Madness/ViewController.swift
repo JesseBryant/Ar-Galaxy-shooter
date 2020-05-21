@@ -123,6 +123,7 @@ var power = "banana"
     //score will be implenmented with leaderb
     var scoreL = 0
      var Coins = 0
+    var Coinse = 0
     //Coins
     var target: SCNNode?
    var earN: SCNNode?
@@ -338,10 +339,14 @@ var power = "banana"
 //        } else {
 //            print("Ad wasn't ready")
 //        }
-        
+       // DispatchQueue.main.async {
         self.interstitial = FBInterstitialAd.init(placementID: "229174575034368_230531631565329")
         self.interstitial.delegate = self
         self.interstitial.load()
+        
+        
+        
+      //  }
         
 //                self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
 //                    node.removeFromParentNode()
@@ -631,7 +636,7 @@ var power = "banana"
                       //need to make sre messgae go wi
                       self.resetTimer(time: 45)
                       self.runTimer()
-                      self.play()
+                    //  self.play()
                       // let fscre = self.scoreL
                       //store the score in UserDefaults and leaderboard
                       
@@ -742,7 +747,10 @@ var power = "banana"
                      //  self.sceneView.isHidden = false
                     //  SwiftSpinner.hide()
                        showPremiumQuotes()
+                    
                         // self.play()
+                    self.resetTimer(time: 45)
+                    self.runTimer()
                       self.play()
                        //nice version
                        SKPaymentQueue.default().finishTransaction(transaction)
@@ -871,13 +879,26 @@ var power = "banana"
         // resetTimer()
         //this will eventually use gold!!rewarded for next level instead of score
         //more gold they spend could go down..
-        if 7...38 ~= Coins {
+        print("\(self.Coins) Coins")
+                           self.scoreL = 0
+        DispatchQueue.main.async {
+         self.scoreLabel.text = String(self.scoreL)
+        }
+       // self.scoreLabel = self.scoreL
+                           //print("\(self.Coins) Coins after")
+                         //  let defaults = UserDefaults.standard
+          let defaults = UserDefaults.standard
+        let gameScoree = defaults.value(forKey: "Coins")
+        Coinse = gameScoree as! Int
+        if 7...38 ~= Coinse {
             power = "banana"
             messageLabel.isHidden = true
             levelJB.text = "level 2"
             SecaddTargetNodes()
             //            addTargetNodesJupitar()
-            sceneView.scene.rootNode.removeAllAudioPlayers()
+            DispatchQueue.main.async {
+                self.sceneView.scene.rootNode.removeAllAudioPlayers()
+            }
             PlayInstructions()
             //play background music
             //                            stopBackgroundMusic()
@@ -891,9 +912,9 @@ var power = "banana"
             // addTargetNodesJupitar()
             //start tinmer
             runTimer()
-            
+            print("\(Coinse): welcome to level Coinse 2")
             print("\(Coins): welcome to level 2")
-        } else if 39...66 ~= Coins{
+        } else if 39...66 ~= Coinse{
             power = "banana"
             //  sceneView.backgroundColor = UIColor.red
             messageLabel.isHidden = true
@@ -901,7 +922,9 @@ var power = "banana"
             addTargetNodes()
             //FsaddTargetNodes()
             // FsaddTargetNodes()
-            // sceneView.scene.rootNode.removeAllAudioPlayers()
+             DispatchQueue.main.async {
+                self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                        }
             PlayInstructions()
             //play background music
             playBackgroundMusic()
@@ -909,15 +932,18 @@ var power = "banana"
             //start tinmer
             runTimer()
             print("\(Coins): welcome to level 3 jess")
+             print("\(Coinse): welcome to level 3 Coinse jess")
             
         }
-        else if 67...94 ~= Coins{
+        else if 67...94 ~= Coinse{
             power = "banana"
             //  sceneView.backgroundColor = UIColor.red
             messageLabel.isHidden = true
             levelJB.text = "level 4"
             addTargetNodesFour()
-            //     sceneView.scene.rootNode.removeAllAudioPlayers()
+                 DispatchQueue.main.async {
+                    self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                            }
             PlayInstructions()
             //play background music
             playBackgroundMusic()
@@ -925,8 +951,9 @@ var power = "banana"
             //start tinmer
             runTimer()
             print("\(Coins): welcome to level 4 jess")
+             print("\(Coinse): welcome to level 4 Coinse jess")
             
-        }       else if 95...129 ~= Coins{
+        }       else if 95...129 ~= Coinse{
             power = "banana"
             //  sceneView.backgroundColor = UIColor.red
             messageLabel.isHidden = true
@@ -936,7 +963,9 @@ var power = "banana"
             addTargetNodesFive()
             //FsaddTargetNodes()
             // FsaddTargetNodes()
-            //sceneView.scene.rootNode.removeAllAudioPlayers()
+            DispatchQueue.main.async {
+                self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                       }
             PlayInstructions()
             //play background music
                playBackgroundMusic()
@@ -944,17 +973,21 @@ var power = "banana"
             //start tinmer
             runTimer()
             print("\(Coins): welcome to level 5 jess")
+            print("\(Coinse): welcome to level 5 Coinse jess")
             //
-        } else if 130...161 ~= Coins{
+        } else if 130...161 ~= Coinse{
             power = "banana"
             //  sceneView.backgroundColor = UIColor.red
-            
-            sceneView.scene.rootNode.removeAllAudioPlayers()
             messageLabel.isHidden = true
-            levelJB.text = "level 6"
+                       levelJB.text = "level 6"
+             addTargetNodesSixVenus()
+            DispatchQueue.main.async {
+                self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                       }
+           
             
             //Will need to add other nodes give a more real effect. For smaller ships
-            addTargetNodesSixVenus()
+           
             //FsaddTargetNodes()
             // FsaddTargetNodes()
             PlayInstructions()
@@ -964,21 +997,24 @@ var power = "banana"
             //start tinmer
             runTimer()
             print("\(Coins): welcome to level 6 jess")
+              print("\(Coinse): welcome to level 6 Coinse jess")
             
         }
             
             //addTargetNodesSaturn()
-        else if 162...209 ~= Coins{
+        else if 162...209 ~= Coinse{
             power = "banana"
-            
-            sceneView.scene.rootNode.removeAllAudioPlayers()
+            messageLabel.isHidden = true
+                     levelJB.text = "level 7"
+                     
+                     //Will need to add other nodes give a more real effect. For smaller ships
+                     addTargetNodesNeptune()
+            DispatchQueue.main.async {
+                self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                       }
             
             //  sceneView.backgroundColor = UIColor.red
-            messageLabel.isHidden = true
-            levelJB.text = "level 7"
-            
-            //Will need to add other nodes give a more real effect. For smaller ships
-            addTargetNodesNeptune()
+         
             //addTargetNodesSaturn()
             //FsaddTargetNodes()
             // FsaddTargetNodes()
@@ -989,18 +1025,21 @@ var power = "banana"
             //start tinmer
             runTimer()
             print("\(Coins): welcome to level 7 jess")
+            print("\(Coinse): welcome to level 7 jess Coinse")
             
-        } else if 209...1320 ~= Coins{
+        } else if 209...1320 ~= Coinse{
             
             power = "banana"
-            
-            sceneView.scene.rootNode.removeAllAudioPlayers()
-            //  sceneView.backgroundColor = UIColor.red
             messageLabel.isHidden = true
-            levelJB.text = "level 8"
-            
-            
-            addTargetNodesJupitar()
+                      levelJB.text = "level 8"
+                      
+                      
+                      addTargetNodesJupitar()
+           DispatchQueue.main.async {
+            self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                       }
+            //  sceneView.backgroundColor = UIColor.red
+          
             // FsaddTargetNodes()
             PlayInstructions()
             //play background music
@@ -1009,6 +1048,7 @@ var power = "banana"
             //start tinmer
             runTimer()
             print("\(Coins): welcome to level 8 jess")
+            print("\(Coinse): welcome to level 8 Coinse jess")
             
         }
            
@@ -1017,11 +1057,14 @@ var power = "banana"
         else {
             power = "banana"
             //  sceneView.backgroundColor = UIColor.red
-            sceneView.scene.rootNode.removeAllAudioPlayers()
             messageLabel.isHidden = true
             levelJB.text = "level 1"
             //addTargetNodes()
             FsaddTargetNodes()
+           DispatchQueue.main.async {
+            self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                       }
+
             PlayInstructions()
             //play background music
             playBackgroundMusic()
@@ -5836,6 +5879,8 @@ extension ViewController: FBInterstitialAdDelegate {
         let arrrrr = self.scoreL
                          let defaultsJB = UserDefaults.standard
                          defaultsJB.set(arrrrr, forKey: "scoreL")
+      //  let defaults = UserDefaults.standard
+        defaultsJB.set(self.Coins, forKey: "Coins")
                         self.ReportScore(with: arrrrr)
         if isPlanetHit{
                   DispatchQueue.main.async {
@@ -5862,6 +5907,7 @@ extension ViewController: FBInterstitialAdDelegate {
             let arrrrr = self.scoreL
                              let defaultsJB = UserDefaults.standard
                              defaultsJB.set(arrrrr, forKey: "scoreL")
+            defaultsJB.set(self.Coins, forKey: "Coins")
                             self.ReportScore(with: arrrrr)
         //will need boolean to tell us to restart(planet hit) or continue(this)
          DispatchQueue.main.async {
