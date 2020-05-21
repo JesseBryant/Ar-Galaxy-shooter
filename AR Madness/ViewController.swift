@@ -141,7 +141,7 @@ var power = "banana"
     
     @IBAction func Restart(_ sender: Any) {
         self.shouldShowBestScoreContainerView(state: false)
-        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+        self.sceneView.scene.rootNode.enumerateChildNodes {  (node, stop) in
             node.removeFromParentNode()
         }
         self.play()
@@ -301,8 +301,8 @@ var power = "banana"
         //        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
         self.messageLabel.isHidden = false
         self.messageLabel.text = "Shoot all the spaceships. Do not shoot planets"
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-            
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: { [weak self] in
+            guard let self = self else {return}
             self.messageLabel.isHidden = true
         })
     }
@@ -342,6 +342,7 @@ var power = "banana"
        // DispatchQueue.main.async {
         self.interstitial = FBInterstitialAd.init(placementID: "229174575034368_230531631565329")
         self.interstitial.delegate = self
+        
         self.interstitial.load()
         
         
@@ -410,8 +411,12 @@ var power = "banana"
         //        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
         //                                  node.removeFromParentNode()
         //                              }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: { [weak self] in
+//                   guard let self = self else {return}
+//                   self.messageLabel.isHidden = true
+//               })
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {[weak self] in
             self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
                 node.removeFromParentNode()
             }
@@ -534,6 +539,10 @@ var power = "banana"
         self.shouldShowBestScoreContainerView(state: false)
             
            // self.PoP = false
+             self.sceneView.isHidden = true
+            //        self.sceneView.isHidden = false
+            //                                   SwiftSpinner.hide()
+             SwiftSpinner.show("Loading...")
         self.setupInterstial()
         }
 //        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
@@ -887,10 +896,8 @@ var power = "banana"
        // self.scoreLabel = self.scoreL
                            //print("\(self.Coins) Coins after")
                          //  let defaults = UserDefaults.standard
-          let defaults = UserDefaults.standard
-        let gameScoree = defaults.value(forKey: "Coins")
-        Coinse = gameScoree as! Int
-        if 7...38 ~= Coinse {
+        
+        if 7...38 ~= Coins {
             power = "banana"
             messageLabel.isHidden = true
             levelJB.text = "level 2"
@@ -914,7 +921,7 @@ var power = "banana"
             runTimer()
             print("\(Coinse): welcome to level Coinse 2")
             print("\(Coins): welcome to level 2")
-        } else if 39...66 ~= Coinse{
+        } else if 39...66 ~= Coins{
             power = "banana"
             //  sceneView.backgroundColor = UIColor.red
             messageLabel.isHidden = true
@@ -935,7 +942,7 @@ var power = "banana"
              print("\(Coinse): welcome to level 3 Coinse jess")
             
         }
-        else if 67...94 ~= Coinse{
+        else if 67...94 ~= Coins{
             power = "banana"
             //  sceneView.backgroundColor = UIColor.red
             messageLabel.isHidden = true
@@ -953,7 +960,7 @@ var power = "banana"
             print("\(Coins): welcome to level 4 jess")
              print("\(Coinse): welcome to level 4 Coinse jess")
             
-        }       else if 95...129 ~= Coinse{
+        }       else if 95...129 ~= Coins{
             power = "banana"
             //  sceneView.backgroundColor = UIColor.red
             messageLabel.isHidden = true
@@ -975,7 +982,7 @@ var power = "banana"
             print("\(Coins): welcome to level 5 jess")
             print("\(Coinse): welcome to level 5 Coinse jess")
             //
-        } else if 130...161 ~= Coinse{
+        } else if 130...161 ~= Coins{
             power = "banana"
             //  sceneView.backgroundColor = UIColor.red
             messageLabel.isHidden = true
@@ -1002,7 +1009,7 @@ var power = "banana"
         }
             
             //addTargetNodesSaturn()
-        else if 162...209 ~= Coinse{
+        else if 162...209 ~= Coins{
             power = "banana"
             messageLabel.isHidden = true
                      levelJB.text = "level 7"
@@ -1027,7 +1034,7 @@ var power = "banana"
             print("\(Coins): welcome to level 7 jess")
             print("\(Coinse): welcome to level 7 jess Coinse")
             
-        } else if 209...1320 ~= Coinse{
+        } else if 209...1320 ~= Coins{
             
             power = "banana"
             messageLabel.isHidden = true
@@ -5253,18 +5260,28 @@ SaturnParent.addChildNode(SassThShoonode)
     //                     Shoonode.addChildNode(b)
     //                    Shoonode.addChildNode(c)
                     //      ShoonodeSec.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5)) -0.8, max: 0.3
-                      Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.9))
-                                               
-                                            
-                                            //changed this one!!!
-                                            ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.8))
-                                            
-                                            
-                                   
-                                            ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
-                                             FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.9))
-                        
-                        
+     Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
+                                                 
+                                              
+                                              //changed this one!!!
+    ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.8))
+                                              
+                                              
+                                     
+    ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+    FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.7))
+                                              
+                                              
+                                           Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
+                                                                                                      
+                                                                                                   
+                                                                                                   //changed this one!!!
+                                                       ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.9))
+                                                                                                   
+                                                                                                   
+                                                                                          
+                                                       ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                                                           FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
 
                                moonParent.position = SCNVector3(0 ,0 , -1)
                        
@@ -5815,22 +5832,28 @@ fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Categ
 extension ViewController: FBInterstitialAdDelegate {
     func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
         //self.sceneView.isHidden = true
-        SwiftSpinner.show("Loading...")
+       // SwiftSpinner.show("Loading...")
          DispatchQueue.main.async {
         if let inter = self.interstitial {
             if interstitialAd.isAdValid {
-                 self.sceneView.isHidden = false
-                            SwiftSpinner.hide()
+//                 self.sceneView.isHidden = false
+//                            SwiftSpinner.hide()
                 self.stopBackgroundMus()
-                inter.show(fromRootViewController: self)
+                self.sceneView.isHidden = false
+                SwiftSpinner.hide()
+             
                 }
+               inter.show(fromRootViewController: self)
             }
         }
         //added loading to ad and in app.. also fix bug about perm..
         //can change loading to not hide screen
         //added code to cancel button
         //add proper code to tappCross
-        
+//         SwiftSpinner.show("Loading...")
+//        self.sceneView.isHidden = true
+////        self.sceneView.isHidden = false
+////                                   SwiftSpinner.hide()
 //        DispatchQueue.main.async {
 //            SwiftSpinner.show("Connecting to AR Camera...")
 //        }
@@ -5865,6 +5888,8 @@ extension ViewController: FBInterstitialAdDelegate {
         
     }
     func interstitialAdWillLogImpression(_ interstitialAd: FBInterstitialAd) {
+//               self.sceneView.isHidden = false
+//                                                      SwiftSpinner.hide()
         print("user sees the add")
 //        stopBackgroundMus()
     }
