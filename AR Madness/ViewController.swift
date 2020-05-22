@@ -261,6 +261,7 @@ var power = "banana"
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //sceneView.session.run(sceneView.session.configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -417,6 +418,7 @@ var power = "banana"
 //               })
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {[weak self] in
+             guard let self = self else {return}
             self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
                 node.removeFromParentNode()
             }
@@ -498,6 +500,10 @@ var power = "banana"
         self.shouldShowBestScoreContainerView(state: false)
         PoP = false
         self.Coins = 0
+//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: { [weak self] in
+//        //                   guard let self = self else {return}
+//        //                   self.messageLabel.isHidden = true
+//        //               })
         self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
             node.removeFromParentNode()
            // stopBackgroundMus()
@@ -535,7 +541,12 @@ var power = "banana"
     }
     @IBAction func didTapInterestial() {
     PoP = true
-        DispatchQueue.main.async {
+        //            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: { [weak self] in
+        //        //                   guard let self = self else {return}
+        //        //                   self.messageLabel.isHidden = true
+        //        //               })
+        DispatchQueue.main.async { [weak self] in
+             guard let self = self else {return}
         self.shouldShowBestScoreContainerView(state: false)
             
            // self.PoP = false
@@ -563,7 +574,8 @@ var power = "banana"
     }
     //fixed bug that cause pop up EVEN after I tap ad button
     @IBAction func didTapCoins() {
-       DispatchQueue.main.async {
+       DispatchQueue.main.async { [weak self] in
+         guard let self = self else {return}
               self.shouldShowBestScoreContainerView(state: false)
         self.PoP = false
               }
@@ -588,7 +600,8 @@ var power = "banana"
                       defaultsJB.set(arrrrr, forKey: "scoreL")
                      self.ReportScore(with: arrrrr)
                       //since planet got hit restart with **Correct** points
-                      DispatchQueue.main.async {
+                      DispatchQueue.main.async { [weak self] in
+                        guard let self = self else {return}
                       self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
                           node.removeFromParentNode()
                           
@@ -609,7 +622,8 @@ var power = "banana"
                       //done in ph world too
                      //  self.ReportScore(with: arrrrr)
                       self.Coins = 0
-                      DispatchQueue.main.async {
+                      DispatchQueue.main.async {[weak self] in
+                        guard let self = self else {return}
                       self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
                           node.removeFromParentNode()
                       }
@@ -853,30 +867,15 @@ var power = "banana"
     func PlanetHitMoon() {
         self.messageLabel.isHidden = false
         self.messageLabel.text = "You shot the moon"
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: { [weak self] in
+            
+            guard let self = self else {return}
             self.PlanetHit()
                 //                //scoreLabel.text = "Score: \(String(score))"
             })
             
             
-            //   scoreL += score
-//            let fscre = self.scoreL
-//            //store the score in UserDefaults
-//            let defaults = UserDefaults.standard
-//            defaults.set(self.Coins, forKey: "Coins")
-//            //        scoreL += score
-//            //  defaults.set(scoreL, forKey: "scoreL")
-//            let arrrrr = self.scoreL
-//            let defaultsJB = UserDefaults.standard
-//            defaultsJB.set(arrrrr, forKey: "scoreL")
-//            //go back to the Home View Controller
-//            // removeAud
-//            //stopBackgroundMusic()
-//            self.dismiss(animated: true, completion: nil)
-//            self.stopBackgroundMus()
-//            self.messageLabel.isHidden = true
-//        })
-//
+
         
         
         
@@ -890,7 +889,9 @@ var power = "banana"
         //more gold they spend could go down..
         print("\(self.Coins) Coins")
                            self.scoreL = 0
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {return}
+            
          self.scoreLabel.text = String(self.scoreL)
         }
        // self.scoreLabel = self.scoreL
@@ -903,7 +904,8 @@ var power = "banana"
             levelJB.text = "level 2"
             SecaddTargetNodes()
             //            addTargetNodesJupitar()
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                  guard let self = self else {return}
                 self.sceneView.scene.rootNode.removeAllAudioPlayers()
             }
             PlayInstructions()
@@ -929,9 +931,10 @@ var power = "banana"
             addTargetNodes()
             //FsaddTargetNodes()
             // FsaddTargetNodes()
-             DispatchQueue.main.async {
-                self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                        }
+              DispatchQueue.main.async { [weak self] in
+                             guard let self = self else {return}
+                           self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                       }
             PlayInstructions()
             //play background music
             playBackgroundMusic()
@@ -948,9 +951,10 @@ var power = "banana"
             messageLabel.isHidden = true
             levelJB.text = "level 4"
             addTargetNodesFour()
-                 DispatchQueue.main.async {
-                    self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                            }
+                  DispatchQueue.main.async { [weak self] in
+                                 guard let self = self else {return}
+                               self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                           }
             PlayInstructions()
             //play background music
             playBackgroundMusic()
@@ -970,9 +974,10 @@ var power = "banana"
             addTargetNodesFive()
             //FsaddTargetNodes()
             // FsaddTargetNodes()
-            DispatchQueue.main.async {
-                self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                       }
+              DispatchQueue.main.async { [weak self] in
+                            guard let self = self else {return}
+                          self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                      }
             PlayInstructions()
             //play background music
                playBackgroundMusic()
@@ -988,9 +993,10 @@ var power = "banana"
             messageLabel.isHidden = true
                        levelJB.text = "level 6"
              addTargetNodesSixVenus()
-            DispatchQueue.main.async {
-                self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                       }
+              DispatchQueue.main.async { [weak self] in
+                            guard let self = self else {return}
+                          self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                      }
            
             
             //Will need to add other nodes give a more real effect. For smaller ships
@@ -1016,9 +1022,10 @@ var power = "banana"
                      
                      //Will need to add other nodes give a more real effect. For smaller ships
                      addTargetNodesNeptune()
-            DispatchQueue.main.async {
-                self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                       }
+             DispatchQueue.main.async { [weak self] in
+                            guard let self = self else {return}
+                          self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                      }
             
             //  sceneView.backgroundColor = UIColor.red
          
@@ -1042,9 +1049,10 @@ var power = "banana"
                       
                       
                       addTargetNodesJupitar()
-           DispatchQueue.main.async {
-            self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                       }
+             DispatchQueue.main.async { [weak self] in
+                           guard let self = self else {return}
+                         self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                     }
             //  sceneView.backgroundColor = UIColor.red
           
             // FsaddTargetNodes()
@@ -1068,9 +1076,10 @@ var power = "banana"
             levelJB.text = "level 1"
             //addTargetNodes()
             FsaddTargetNodes()
-           DispatchQueue.main.async {
-            self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                       }
+            DispatchQueue.main.async { [weak self] in
+                           guard let self = self else {return}
+                         self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                     }
 
             PlayInstructions()
             //play background music
@@ -1215,6 +1224,7 @@ var power = "banana"
       //  let frame = self.sceneView.
         // let mat = SCNMatrix4(frame.camera.transform)
                 for index in 0...6 {
+                    autoreleasepool {
                     //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
                     //make node array empty in the end of the game func
                     //decent increase number of ships still seem a bit easy but that might be fine
@@ -1378,7 +1388,7 @@ var power = "banana"
 //                    for n in SSnodeArray {
 //                        print("\(n.name) jessss")
 //                    }
-        
+                    }
                 }
             }
     
@@ -1439,6 +1449,7 @@ var power = "banana"
           //  let frame = self.sceneView.
             // let mat = SCNMatrix4(frame.camera.transform)
                     for index in 0...6 {
+                        autoreleasepool {
                         //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
                         //make node array empty in the end of the game func
                         //decent increase number of ships still seem a bit easy but that might be fine
@@ -1611,6 +1622,7 @@ var power = "banana"
     //                    for n in SSnodeArray {
     //                        print("\(n.name) jessss")
     //                    }
+                        }
             
                     }
                 }
@@ -1665,7 +1677,7 @@ var power = "banana"
              //  let frame = self.sceneView.
                // let mat = SCNMatrix4(frame.camera.transform)
                        for index in 0...6 {
-                          
+                        autoreleasepool {
                            var Shoonode = SCNNode()
                         var ShoonodeG = SCNNode()
                           
@@ -1847,7 +1859,7 @@ var power = "banana"
        //                    for n in SSnodeArray {
        //                        print("\(n.name) jessss")
        //                    }
-               
+                        }
                        }
                    }
            
@@ -1906,7 +1918,7 @@ var power = "banana"
                  //  let frame = self.sceneView.
                    // let mat = SCNMatrix4(frame.camera.transform)
                            for index in 0...3 {
-                              
+                            autoreleasepool {
                                var Shoonode = SCNNode()
                        
                                //make it to where it dont kill so many
@@ -2215,6 +2227,7 @@ var power = "banana"
                    
                            }
                        }
+    }
     
     
     func h(){
@@ -3238,6 +3251,7 @@ var power = "banana"
                       //                          venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                                                             
                                             for index in 0...3 {
+                                                autoreleasepool {
                                                               //ear***
                                                     var Shoonode = SCNNode()
                                                                      
@@ -3444,34 +3458,7 @@ var power = "banana"
                               ssShoonode.physicsBody?.isAffectedByGravity = false
                               FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                                                                                                         FourthShoonode.physicsBody?.isAffectedByGravity = false
-                                              //Jup
-//                                              JupShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-//                                                  JupShoonode.physicsBody?.isAffectedByGravity = false
-//                                              JupssThShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-//                                                  JupssThShoonode.physicsBody?.isAffectedByGravity = false
-//
-//
-//
-//                                      JupssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-//                                      JupssShoonode.physicsBody?.isAffectedByGravity = false
-//                                      JupFourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-//                                          JupFourthShoonode.physicsBody?.isAffectedByGravity = false
-//
-                                                                               //ven
-
-                      //                                                          VenShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                      //                                                                             VenShoonode.physicsBody?.isAffectedByGravity = false
-                      //                                                        //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                      //                                                                             //ShoonodeSec.physicsBody?.isAffectedByGravity = false
-                      //                                                          VenShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                      //
-                      //                                                                             VenssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                      //                                                                                               VenssShoonode.physicsBody?.isAffectedByGravity = false
-                      //                                                          VenFourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                      //                                                                                                                 VenFourthShoonode.physicsBody?.isAffectedByGravity = false
-                      //                                                        VenssThShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                      //                                                                                                                            VenssThShoonode.physicsBody?.isAffectedByGravity = false
-                                                                               //sa
+                      
                                                            SaShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                            SaShoonode.physicsBody?.isAffectedByGravity = false
                                                                                                               
@@ -3536,21 +3523,7 @@ var power = "banana"
                                                                                  SecGroupNodeArray.append(ssThShoonode)
                                                                                  EarGroupNodeArray.append(earth)
                                                                                  EarGroupNodeArray.append(earthParent)
-                                              //Jupitar
-//                                              nodeArray.append(JupShoonode)
-//                                                                                                  //   nodeArray.append(ShoonodeSec)
-//                                                                                                     ThirdGroupNodeArray.append(JupFourthShoonode)
-//                                                                                                    SSnodeArray.append(JupssShoonode)
-//                                                                                                     SecGroupNodeArray.append(JupssThShoonode)
-//                                                                                                     EarGroupNodeArray.append(jupiter)
-//                                                                                                     EarGroupNodeArray.append(JupitarParent)
-                                                                               //ven*
-                      //                                                        nodeArray.append(VenShoonode)
-                      //                                                                                  //   nodeArray.append(ShoonodeSec)
-                      //
-                      //                                                         ThirdGroupNodeArray.append(VenFourthShoonode)
-                      //                                                                                    SSnodeArray.append(VenssShoonode)
-                      //                                                                                     SecGroupNodeArray.append(VenssThShoonode)
+
                                                                                                            EarGroupNodeArray.append(earth)
                                                                                                            EarGroupNodeArray.append(earthParent)
                                                                                //sa*
@@ -3580,33 +3553,7 @@ var power = "banana"
                                           ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
                                               FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
                                                                                          
-                                              //new Jup
-//                                              JupShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-//
-//
-//                                                                                                             //changed this one!!!
-//                                                  JupssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.9))
-//
-//
-//                              JupssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
-//                                      JupFourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
-                                               
-                                              
-                                                                                 
-                                                                                 
-                                                                                   //Ven
-                                              
-                                                                              
-                      //                                                          VenShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.3))
-                      //
-                      //
-                      //                                                                                                                      //changed this one!!!
-                      //                                                                                                                      VenssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.3))
-                      //
-                      //
-                      //
-                      //                                                                                                                      VenssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.3))
-                      //                                                                                                                       VenFourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.3))
+                                         
                                                                                                             
                                                                                //Sa
                                                                                  SaShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
@@ -3684,16 +3631,7 @@ var power = "banana"
                                                           self.sceneView.scene.rootNode.addChildNode(ssThShoonode)
                                                           self.sceneView.scene.rootNode.addChildNode(FourthShoonode)
                       //                                                         //ven
-                      //                                                           self.sceneView.scene.rootNode.addChildNode(VenShoonode)
-                      //                                                        self.sceneView.scene.rootNode.addChildNode(VenssShoonode)
-                      //                                                                                       self.sceneView.scene.rootNode.addChildNode(VenssThShoonode)
-                      //                                                                                      self.sceneView.scene.rootNode.addChildNode(VenFourthShoonode)
-                                              
-                                              //Jup
-//                                              self.sceneView.scene.rootNode.addChildNode(JupShoonode)
-//                                              self.sceneView.scene.rootNode.addChildNode(JupssShoonode)
-//                                                      self.sceneView.scene.rootNode.addChildNode(JupssThShoonode)
-//                                                      self.sceneView.scene.rootNode.addChildNode(JupFourthShoonode)
+                
                                                                                        //Sa
                                                                 self.sceneView.scene.rootNode.addChildNode(SaShoonode)
                                                           self.sceneView.scene.rootNode.addChildNode(SAssShoonode)
@@ -3810,14 +3748,7 @@ var power = "banana"
                                                                                //  ssThShoonode.addChildNode(ssShoonode)
                                                                                  earthParent.addChildNode(ssThShoonode)
                                                                                  earthParent.addChildNode(FourthShoonode)
-                                                                          //Jupitar
-                                              
-//                                                                                                  jupiter.addChildNode(JupssShoonode)
-//                                                                                                        JupitarParent.addChildNode(JupShoonode)
-//                                                                                                      //  ssThShoonode.addChildNode(ssShoonode)
-//                                                                                                        JupitarParent.addChildNode(JupssThShoonode)
-//                                                                                                        JupitarParent.addChildNode(JupFourthShoonode)
-                              
+                     
                                               
                                               
                                                                               //ven
@@ -3845,6 +3776,7 @@ var power = "banana"
                                                              //                    }
                                                                      
                               }
+        }
     }
     
     
@@ -3951,6 +3883,7 @@ var power = "banana"
 //                          venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                                       
                       for index in 0...3 {
+                        autoreleasepool {
                                         //ear***
                               var Shoonode = SCNNode()
                                                
@@ -4325,19 +4258,7 @@ var power = "banana"
                         
                                                            
                                                            
-                                                             //Ven
-                        
                                                         
-//                                                          VenShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.3))
-//
-//
-//                                                                                                                      //changed this one!!!
-//                                                                                                                      VenssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.3))
-//
-//
-//
-//                                                                                                                      VenssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.3))
-//                                                                                                                       VenFourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.3))
                                                                                       
                                                          //Sa
                                                            SaShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
@@ -4382,16 +4303,7 @@ var power = "banana"
                     JupFourthShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                 JupFourthShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                         
-//                                                         //Ven
-//                                                        VenShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-//                VenShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-//
-//                VenssShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-//                VenssShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-//                VenssThShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-//                VenssThShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-//                VenFourthShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-//                                                                                        VenFourthShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+
                                                          //sa****
         SaShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
         SaShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
@@ -4615,6 +4527,7 @@ SaturnParent.addChildNode(SassThShoonode)
                                        //                    }
                                                
                                                        }
+        }
                                   }
         
     
@@ -5163,6 +5076,7 @@ SaturnParent.addChildNode(SassThShoonode)
           //  let frame = self.sceneView.
             // let mat = SCNMatrix4(frame.camera.transform)
                     for index in 0...6 {
+                        autoreleasepool {
                         //first two levels solid
                         //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
                         //make node array empty in the end of the game func
@@ -5350,6 +5264,7 @@ SaturnParent.addChildNode(SassThShoonode)
             
                     }
                 }
+    }
         
     
     
@@ -5397,6 +5312,7 @@ SaturnParent.addChildNode(SassThShoonode)
              //  let frame = self.sceneView.
                // let mat = SCNMatrix4(frame.camera.transform)
                        for index in 0...2 {
+                        autoreleasepool {
                            //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
                            //make node array empty in the end of the game func
                            //decent increase number of ships still seem a bit easy but that might be fine
@@ -5600,6 +5516,7 @@ SaturnParent.addChildNode(SassThShoonode)
                
                        }
                    }
+    }
     
     
     func sessionWasInterrupted(_ session: ARSession) {
@@ -5662,9 +5579,12 @@ SaturnParent.addChildNode(SassThShoonode)
                 //                              self.messageLabel.text = "you destroyed an planet"
                 // Coins = 0
                       // self.timer.invalidate()
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [weak self] in
                   //  isPlanetHitORneedTime = t
-             
+           //  DispatchQueue.main.async { [weak self] in
+                             guard let self = self else {return}
+                         //  self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                      // }
                     self.PlanetHit()
                     self.scoreL+=0
                 }
@@ -5679,7 +5599,10 @@ SaturnParent.addChildNode(SassThShoonode)
 //                    self.PlanetHitMoon()
 //                }
                 // self.timer.invalidate()
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [weak self] in
+                       //  isPlanetHitORneedTime = t
+                //  DispatchQueue.main.async { [weak self] in
+                                  guard let self = self else {return}
                                  //  isPlanetHitORneedTime = t
                    
                                    self.PlanetHit()
@@ -5690,7 +5613,10 @@ SaturnParent.addChildNode(SassThShoonode)
             }
             
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                       //  isPlanetHitORneedTime = t
+                //  DispatchQueue.main.async { [weak self] in
+                                  guard let self = self else {return}
                 contact.nodeA.removeFromParentNode()
                 // contact.nodeA.removeFromParentNode()
                 contact.nodeB.removeFromParentNode()
@@ -5752,6 +5678,12 @@ SaturnParent.addChildNode(SassThShoonode)
            return planet
            
        }
+//    func pauseGame() {
+//        self.isPaused = true
+//        self.physicsWorld.speed = 0
+//        self.speed = 0.0
+//        self.scene?.view?.isPaused = true
+//    }
     func Rotation(time: TimeInterval) -> SCNAction {
         //see here it rotate around the y - axis can do the same for x-axis
         //this game we save planets!! - from colorful creatures?
@@ -5833,7 +5765,7 @@ extension ViewController: FBInterstitialAdDelegate {
     func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
         //self.sceneView.isHidden = true
        // SwiftSpinner.show("Loading...")
-         DispatchQueue.main.async {
+         DispatchQueue.main.async { 
         if let inter = self.interstitial {
             if interstitialAd.isAdValid {
 //                 self.sceneView.isHidden = false
@@ -5843,7 +5775,9 @@ extension ViewController: FBInterstitialAdDelegate {
                 SwiftSpinner.hide()
              
                 }
+             DispatchQueue.main.async {
                inter.show(fromRootViewController: self)
+            }
             }
         }
         //added loading to ad and in app.. also fix bug about perm..
@@ -5939,7 +5873,7 @@ extension ViewController: FBInterstitialAdDelegate {
             let configuration = ARWorldTrackingConfiguration()
                   self.sceneView.session.run(configuration)
               self.shouldShowBestScoreContainerView(state: false)
-              self.Coins = 0
+            //  self.Coins = 0 j
               //D
                  
 //              self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
