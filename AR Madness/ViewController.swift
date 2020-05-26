@@ -195,9 +195,9 @@ var power = "banana"
     // let audioPlayer = SCNAudioPlayer(source: audioSource)
     override func viewDidLoad() {
         super.viewDidLoad()
-        let configuration = ARWorldTrackingConfiguration()
-        //without line below it want move
-        self.sceneView.session.run(configuration)
+//        let configuration = ARWorldTrackingConfiguration()
+//        //without line below it want move
+//        self.sceneView.session.run(configuration)
         
 //        func session(_ session: ARSession, didFailWithError error: Error) {
 //            // Present an error message to the user
@@ -261,7 +261,13 @@ var power = "banana"
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let configuration = ARWorldTrackingConfiguration()
+             //without line below it want move
+             self.sceneView.session.run(configuration)
+//        let configuration = ARWorldTrackingConfiguration()
+//                                    self.sceneView.session.run(configuration)
         //sceneView.session.run(sceneView.session.configuration)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -545,8 +551,8 @@ var power = "banana"
         //        //                   guard let self = self else {return}
         //        //                   self.messageLabel.isHidden = true
         //        //               })
-        DispatchQueue.main.async { [weak self] in
-             guard let self = self else {return}
+        DispatchQueue.main.async {
+            // guard let self = self else {return}
         self.shouldShowBestScoreContainerView(state: false)
             
            // self.PoP = false
@@ -1144,33 +1150,62 @@ var power = "banana"
               
               //using case statement to allow variations of scale and rotations
         
+     //   func createAndThrowFireBall() {
+            //create the fireball
+            let ball = SCNSphere(radius: 0.06)
+            var fireBall = SCNNode(geometry: ball)
+          //  fireBall.physicsBody = .dynamic()
+           // fireBall.physicsBody?.mass = 0.5
+            //add particles
+            fireBall.addParticleSystem(SCNParticleSystem(named: "fire.scnp", inDirectory: nil)!)
+            
+ 
+         //   let disapear = SCNAction.fadeOut(duration: 0.3)
+         //   fireBall.runAction(.sequence([.wait(duration: 3) ,disapear]))
+            
+ 
+
+        
               switch type {
               case "banana":
 //                  let scene = SCNScene(named: "art.scnassets/missile.dae")
 //                  node = (scene?.rootNode.childNode(withName: "missile", recursively: true)!)!
 //                  node.scale = SCNVector3(0.2,0.2,0.2)
-                node .geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                 node.name = "bathtub"
+              //  node .geometry?.firstMaterial?.diffuse.contents = UIColor.red
+                 fireBall.addParticleSystem(SCNParticleSystem(named: "fire.scnp", inDirectory: nil)!)
+                  fireBall.name = "bathtub"
                 //  node.name = "banana"
               case "axe":
                 
 //                  let scene = SCNScene(named: "art.scnassets/missile.dae")
 //                  node = (scene?.rootNode.childNode(withName: "missile", recursively: true)!)!
 //                  node.scale = SCNVector3(0.2,0.2,0.2)
-                node .geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-                  node.name = "bathtub"
+              //  node .geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+              //    node.name = "bathtub"
+
+                fireBall.addParticleSystem(SCNParticleSystem(named: "fire.scnp", inDirectory: nil)!)
+                 fireBall.name = "bathtub"
               default:
-                  node = SCNNode()
+                 // node = SCNNode()
+                
+                fireBall = SCNNode()
               }
               
               //the physics body governs how the object interacts with other objects and its environment
-              node.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-              node.physicsBody?.isAffectedByGravity = false
-              
-              //these bitmasks used to define "collisions" with other objects
-              node.physicsBody?.categoryBitMask = CollisionCategory.missileCategory.rawValue
-              node.physicsBody?.collisionBitMask = CollisionCategory.targetCategory.rawValue
-              return node
+//              node.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+//              node.physicsBody?.isAffectedByGravity = false
+//
+//              //these bitmasks used to define "collisions" with other objects
+//              node.physicsBody?.categoryBitMask = CollisionCategory.missileCategory.rawValue
+//              node.physicsBody?.collisionBitMask = CollisionCategory.targetCategory.rawValue
+        fireBall.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+            fireBall.physicsBody?.isAffectedByGravity = false
+            
+            //these bitmasks used to define "collisions" with other objects
+            fireBall.physicsBody?.categoryBitMask = CollisionCategory.missileCategory.rawValue
+            fireBall.physicsBody?.collisionBitMask = CollisionCategory.targetCategory.rawValue
+             // return node
+                    return fireBall
           }
     
     //Adds 100 objects to the scene, spins them, and places them at random positions around the player.
@@ -5656,9 +5691,10 @@ SaturnParent.addChildNode(SassThShoonode)
                 }
                 
                 self.scoreLabel.text = String(self.scoreL)
+                //added dope fireball
 
             }
-            let  explosion = SCNParticleSystem(named: "Fire", inDirectory: nil)
+            let  explosion = SCNParticleSystem(named: "fire", inDirectory: nil)
             
             explosion?.particleLifeSpan = 4
             explosion?.emitterShape = contact.nodeB.geometry

@@ -17,7 +17,6 @@
 		A7216AC020BE1957009F6A51 /* watersplash.wav in Resources */ = {isa = PBXBuildFile; fileRef = A7216ABF20BE1957009F6A51 /* watersplash.wav */; };
 		A7216AC220BE1967009F6A51 /* rooster.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7216AC120BE1967009F6A51 /* rooster.mp3 */; };
 		A7216ACE20BE9313009F6A51 /* Explode.scnp in Resources */ = {isa = PBXBuildFile; fileRef = A7216ACC20BE9313009F6A51 /* Explode.scnp */; };
-		A7216ACF20BE9313009F6A51 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = A7216ACD20BE9313009F6A51 /* spark.png */; };
 		A7216AD120BE960B009F6A51 /* overtake.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7216AD020BE960B009F6A51 /* overtake.mp3 */; };
 		A7216AD320BE9B72009F6A51 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7216AD220BE9B72009F6A51 /* HomeViewController.swift */; };
 		A73D42A120B80B4000965934 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73D42A020B80B4000965934 /* AppDelegate.swift */; };
@@ -33,6 +32,8 @@
 		E313249023EBF94A009C648F /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = E313248E23EBF94A009C648F /* star.png */; };
 		E313249223EBF97A009C648F /* rain.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313249123EBF97A009C648F /* rain.scnp */; };
 		E313249423EBF9B0009C648F /* react.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313249323EBF9B0009C648F /* react.scnp */; };
+		E338BE7F247BC4040000D2FC /* fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E338BE7D247BC4030000D2FC /* fire.scnp */; };
+		E338BE80247BC4040000D2FC /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E338BE7E247BC4040000D2FC /* spark.png */; };
 		E36A07F323EC1A9B000561D6 /* Confetti.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E36A07F223EC1A9B000561D6 /* Confetti.scnp */; };
 		E383ABD724237730001F79BB /* Sleepy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD62423772D001F79BB /* Sleepy.mp3 */; };
 		E383ABD92423822F001F79BB /* JBsmartsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD82423822E001F79BB /* JBsmartsound.mp3 */; };
@@ -54,7 +55,6 @@
 		A7216ABF20BE1957009F6A51 /* watersplash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = watersplash.wav; sourceTree = "<group>"; };
 		A7216AC120BE1967009F6A51 /* rooster.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rooster.mp3; sourceTree = "<group>"; };
 		A7216ACC20BE9313009F6A51 /* Explode.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explode.scnp; sourceTree = "<group>"; };
-		A7216ACD20BE9313009F6A51 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		A7216AD020BE960B009F6A51 /* overtake.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = overtake.mp3; sourceTree = "<group>"; };
 		A7216AD220BE9B72009F6A51 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A73D429D20B80B4000965934 /* Shoot N' Guns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shoot N' Guns.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +72,8 @@
 		E313248E23EBF94A009C648F /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		E313249123EBF97A009C648F /* rain.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = rain.scnp; sourceTree = "<group>"; };
 		E313249323EBF9B0009C648F /* react.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = react.scnp; sourceTree = "<group>"; };
+		E338BE7D247BC4030000D2FC /* fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; name = fire.scnp; path = ../../../throw/throw/fire.scnp; sourceTree = "<group>"; };
+		E338BE7E247BC4040000D2FC /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = ../../../throw/throw/spark.png; sourceTree = "<group>"; };
 		E36A07F223EC1A9B000561D6 /* Confetti.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Confetti.scnp; sourceTree = "<group>"; };
 		E383ABD62423772D001F79BB /* Sleepy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sleepy.mp3; sourceTree = "<group>"; };
 		E383ABD82423822E001F79BB /* JBsmartsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JBsmartsound.mp3; sourceTree = "<group>"; };
@@ -114,8 +116,9 @@
 		A7216AC320BE91EE009F6A51 /* Particles */ = {
 			isa = PBXGroup;
 			children = (
+				E338BE7D247BC4030000D2FC /* fire.scnp */,
+				E338BE7E247BC4040000D2FC /* spark.png */,
 				A7216ACC20BE9313009F6A51 /* Explode.scnp */,
-				A7216ACD20BE9313009F6A51 /* spark.png */,
 				E313248723EBF89E009C648F /* Fire.scnp */,
 				E313248923EBF906009C648F /* caffefe.scnp */,
 				E313248A23EBF906009C648F /* confetti.png */,
@@ -256,9 +259,9 @@
 				A73D42AD20B80B4200965934 /* LaunchScreen.storyboard in Resources */,
 				A7216ABE20BE1940009F6A51 /* monkey.mp3 in Resources */,
 				A73D42AA20B80B4200965934 /* Assets.xcassets in Resources */,
+				E338BE7F247BC4040000D2FC /* fire.scnp in Resources */,
 				E313248F23EBF94A009C648F /* Stars.scnp in Resources */,
 				E313249223EBF97A009C648F /* rain.scnp in Resources */,
-				A7216ACF20BE9313009F6A51 /* spark.png in Resources */,
 				E3F8B0A2242F398C00E986B9 /* Power.mp3 in Resources */,
 				A7216ACE20BE9313009F6A51 /* Explode.scnp in Resources */,
 				E313249423EBF9B0009C648F /* react.scnp in Resources */,
@@ -266,6 +269,7 @@
 				E383ABD92423822F001F79BB /* JBsmartsound.mp3 in Resources */,
 				E313248B23EBF906009C648F /* caffefe.scnp in Resources */,
 				A7216AC020BE1957009F6A51 /* watersplash.wav in Resources */,
+				E338BE80247BC4040000D2FC /* spark.png in Resources */,
 				188ACF9F245F0856001993EC /* GoogleService-Info.plist in Resources */,
 				A7216AC220BE1967009F6A51 /* rooster.mp3 in Resources */,
 				E383ABD724237730001F79BB /* Sleepy.mp3 in Resources */,
