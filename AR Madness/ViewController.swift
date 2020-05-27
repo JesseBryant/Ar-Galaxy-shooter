@@ -5869,14 +5869,14 @@ extension ViewController: FBInterstitialAdDelegate {
         //made horizontal...phone shouldnt streech
         //get rid of pic
         //need restart score
+        //pause button
+        
         //**NEED**
         //check capatibity on phone
-        
         //perfect levels and waves
         //need finish "beat level"
-        //pause button
         //in app purchase in homescreen (and coin button (dont have enough time))
-        //check constraints
+        //check constraints (in progreess)
         
         //need more consitent time
         //if sun hit lost
