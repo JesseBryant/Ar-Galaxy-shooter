@@ -1152,13 +1152,13 @@ var power = "banana"
         
      //   func createAndThrowFireBall() {
             //create the fireball
-            let ball = SCNSphere(radius: 0.06)
+            let ball = SCNSphere(radius: 0.2)
             var fireBall = SCNNode(geometry: ball)
           //  fireBall.physicsBody = .dynamic()
            // fireBall.physicsBody?.mass = 0.5
             //add particles
             fireBall.addParticleSystem(SCNParticleSystem(named: "fire.scnp", inDirectory: nil)!)
-            
+            //right size fireball
  
          //   let disapear = SCNAction.fadeOut(duration: 0.3)
          //   fireBall.runAction(.sequence([.wait(duration: 3) ,disapear]))
@@ -1173,6 +1173,8 @@ var power = "banana"
 //                  node.scale = SCNVector3(0.2,0.2,0.2)
               //  node .geometry?.firstMaterial?.diffuse.contents = UIColor.red
                  fireBall.addParticleSystem(SCNParticleSystem(named: "fire.scnp", inDirectory: nil)!)
+                    let disapear = SCNAction.fadeOut(duration: 0.3)
+                            fireBall.runAction(.sequence([.wait(duration: 3) ,disapear]))
                   fireBall.name = "bathtub"
                 //  node.name = "banana"
               case "axe":
