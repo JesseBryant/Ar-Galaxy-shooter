@@ -68,7 +68,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var isPlanetHit = false
      var isPlanetHitORneedTime = false
       var PoP = false
-//    var interstitial: GADInterstitial!
     var interstitial: FBInterstitialAd!
     
     //MARK: - variables
@@ -103,7 +102,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 //    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
 //    }
     //used to store the scoreP:>L)_________________________________________________________________________________________________________________________[…≥π÷{{Ú∏˘::
-     let configuration = ARWorldTrackingConfiguration()
+    
     let audioNode = SCNNode()
     let audioSource = SCNAudioSource(fileNamed: "Sleepy.mp3")!
     let productID = "786978678678678"
@@ -195,6 +194,7 @@ var power = "banana"
     // let audioPlayer = SCNAudioPlayer(source: audioSource)
     override func viewDidLoad() {
         super.viewDidLoad()
+        InterstitialAd()
 //        let configuration = ARWorldTrackingConfiguration()
 //        //without line below it want move
 //        self.sceneView.session.run(configuration)
@@ -261,7 +261,7 @@ var power = "banana"
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        let configuration = ARWorldTrackingConfiguration()
+        let configuration = ARWorldTrackingConfiguration()
              //without line below it want move
              self.sceneView.session.run(configuration)
 //        let configuration = ARWorldTrackingConfiguration()
@@ -269,43 +269,17 @@ var power = "banana"
         //sceneView.session.run(sceneView.session.configuration)
         
     }
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        print("Session failed. Changing worldAlignment property.")
-        print(error.localizedDescription)
-
-        if let arError = error as? ARError {
-            switch arError.errorCode {
-            case 102:
-                
-                configuration.worldAlignment = .gravity
-                restartSessionWithoutDelete()
-            default:
-                restartSessionWithoutDelete()
-            }
-        }
-    }
-    func restartSessionWithoutDelete() {
-        // Restart session with a different worldAlignment - prevents bug from crashing app
-       
- DispatchQueue.main.async {
-     self.sceneView.session.pause()
-    self.sceneView.session.run(self.configuration, options: [
-            .resetTracking,
-            .removeExistingAnchors])
-        }
-    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         //stopBackgroundMusic()
         // Pause the view's session
-      //  sceneView.session.pause()
+        sceneView.session.pause()
        // stopBackgroundMusic()
     }
     
     // MARK: - timer
-    //can now resume game, once it enters background the way apple reccomend
+    
     //to store how many sceonds the game is played for
     var seconds = 30
     
@@ -362,32 +336,11 @@ var power = "banana"
         timerLabel.text = "\(seconds)"
     }
     
-    func setupInterstial() {
-//        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-5764524457114749/5527500879")
-//        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-2950107663664053/5762854888")
-//        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-4371810798962800/3320803613")
-//        self.interstitial.load(GADRequest())
-//        self.interstitial.delegate = self
-//        if self.interstitial.isReady {
-//        } else {
-//            print("Ad wasn't ready")
-//        }
-       // DispatchQueue.main.async {
-        self.interstitial = FBInterstitialAd.init(placementID: "229174575034368_230531631565329")
-        self.interstitial.delegate = self
-        
-        self.interstitial.load()
-        
-        
-        
-      //  }
-        
-//                self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-//                    node.removeFromParentNode()
-//                }
-//                self.play()
-        
-    }
+    func InterstitialAd(){
+          interstitial = FBInterstitialAd(placementID: "229174575034368_230531631565329")
+          interstitial.delegate = self
+          interstitial.load()
+      }
     
     // MARK: - game over
     
@@ -572,37 +525,16 @@ var power = "banana"
         print("\(Coins): still on level 1")
     }
     @IBAction func didTapInterestial() {
-    PoP = true
-        //            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: { [weak self] in
-        //        //                   guard let self = self else {return}
-        //        //                   self.messageLabel.isHidden = true
-        //        //               })
+         PoP = true
+     
+        interstitial.show(fromRootViewController: self)
         DispatchQueue.main.async {
-            // guard let self = self else {return}
+    
         self.shouldShowBestScoreContainerView(state: false)
-            
-           // self.PoP = false
              self.sceneView.isHidden = true
-            //        self.sceneView.isHidden = false
-            //                                   SwiftSpinner.hide()
              SwiftSpinner.show("Loading...")
-        self.setupInterstial()
         }
-//        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-//            node.removeFromParentNode()
-//        }
-//        self.play()
-        
-        
-//        self.sceneView.isHidden = true
-//               DispatchQueue.main.async {
-//                   SwiftSpinner.show("Connecting to AR Camera...")
-//               }
-//               DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-//                   self.sceneView.isHidden = false
-//                   SwiftSpinner.hide()
-//                   self.play()
-//               }
+
     }
     //fixed bug that cause pop up EVEN after I tap ad button
     @IBAction func didTapCoins() {
@@ -612,9 +544,6 @@ var power = "banana"
         self.PoP = false
               }
               if self.isPlanetHit {
-                  
-                  
-                  
                   
                   if self.Coins >= 10 {
                       //timer fixed
@@ -752,46 +681,13 @@ var power = "banana"
             self.sceneView.isHidden = false
                                  SwiftSpinner.hide()
             print("User can't make payments")
-//            self.Coins = 0
-//                   self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-//                       node.removeFromParentNode()
-//                      // stopBackgroundMus()
-//                       //Music end sometimes here
-//                   }
-                  
-            
-            //add alert here
-//            func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
-//                self.sceneView.isHidden = true
-//                SwiftSpinner.show("Connecting to AR Camera...")
-//                 DispatchQueue.main.async {
-//                if let inter = self.interstitial {
-//                    if interstitialAd.isAdValid {
-//                         self.sceneView.isHidden = false
-//                                    SwiftSpinner.hide()
-//                        self.stopBackgroundMus()
-//                        inter.show(fromRootViewController: self)
-//                        }
-//                    }
-//                }
+
                 
         }
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        //            func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
-        //                self.sceneView.isHidden = true
-        //                SwiftSpinner.show("Connecting to AR Camera...")
-        //                 DispatchQueue.main.async {
-        //                if let inter = self.interstitial {
-        //                    if interstitialAd.isAdValid {
-        //                         self.sceneView.isHidden = false
-        //                                    SwiftSpinner.hide()
-        //                        self.stopBackgroundMus()
-        //                        inter.show(fromRootViewController: self)
-        //                        }
-        //                    }
-        //                }
+   
        for transaction in transactions {
        // self.sceneView.isHidden = true
                              //  SwiftSpinner.show("Connecting to AR Camera...")
@@ -5089,10 +4985,10 @@ SaturnParent.addChildNode(SassThShoonode)
     }
 */
     
-//    func session(_ session: ARSession, didFailWithError error: Error) {
-//        // Present an error message to the user
-//
-//    }
+    func session(_ session: ARSession, didFailWithError error: Error) {
+        // Present an error message to the user
+        
+    }
     
     
    func SecaddTargetNodes(){
@@ -5582,15 +5478,15 @@ SaturnParent.addChildNode(SassThShoonode)
     }
     
     
-//    func sessionWasInterrupted(_ session: ARSession) {
-//        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-//
-//    }
-//
-//    func sessionInterruptionEnded(_ session: ARSession) {
-//        // Reset tracking and/or remove existing anchors if consistent tracking is required
-//
-//    }
+    func sessionWasInterrupted(_ session: ARSession) {
+        // Inform the user that the session has been interrupted, for example, by presenting an overlay
+        
+    }
+    
+    func sessionInterruptionEnded(_ session: ARSession) {
+        // Reset tracking and/or remove existing anchors if consistent tracking is required
+        
+    }
     
     
     
@@ -5827,196 +5723,38 @@ fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Categ
 
 extension ViewController: FBInterstitialAdDelegate {
     func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
-        //self.sceneView.isHidden = true
-       // SwiftSpinner.show("Loading...")
-         DispatchQueue.main.async { 
-        if let inter = self.interstitial {
-            if interstitialAd.isAdValid {
-//                 self.sceneView.isHidden = false
-//                            SwiftSpinner.hide()
-                self.stopBackgroundMus()
-                self.sceneView.isHidden = false
-                SwiftSpinner.hide()
-             
-                }
-             DispatchQueue.main.async {
-               inter.show(fromRootViewController: self)
-            }
-            }
-        }
-        //added loading to ad and in app.. also fix bug about perm..
-        //can change loading to not hide screen
-        //added code to cancel button
-        //add proper code to tappCross
-//         SwiftSpinner.show("Loading...")
-//        self.sceneView.isHidden = true
-////        self.sceneView.isHidden = false
-////                                   SwiftSpinner.hide()
-//        DispatchQueue.main.async {
-//            SwiftSpinner.show("Connecting to AR Camera...")
-//        }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-//            self.sceneView.isHidden = false
-//            SwiftSpinner.hide()
-//            self.play()
-//        }
-        
-        //when planet is hit and show ads music is stop and start back! keep from running out
-        //when planet is hit and show ads reload and reset time
-        //level 5 music play
-        //fix homescreen issue after moon hit
-        //leaderboard nice
-        //made horizontal...phone shouldnt streech
-        //get rid of pic
-        //need restart score
-        //pause button
-        
-        //**NEED**
-        //check capatibity on phone
-        //perfect levels and waves
-        //need finish "beat level"
-        //in app purchase in homescreen (and coin button (dont have enough time))
-        //check constraints (in progreess)
-        
-        //need more consitent time
-        //if sun hit lost
-        //change name
-        
-        
-        
+        print("Ads loaded")
     }
-    func interstitialAdWillLogImpression(_ interstitialAd: FBInterstitialAd) {
-//               self.sceneView.isHidden = false
-//                                                      SwiftSpinner.hide()
-        print("user sees the add")
-//        stopBackgroundMus()
-    }
-    func interstitialAdDidClick(_ interstitialAd: FBInterstitialAd) {
-        print("The user clicked on the ad and will be taken to its destination")
-    }
+  
     func interstitialAdWillClose(_ interstitialAd: FBInterstitialAd) {
-        print("The user clicked on the close button, the ad is just about to close")
+        InterstitialAd()
     }
     func interstitialAdDidClose(_ interstitialAd: FBInterstitialAd) {
-        print("Interstitial had been closed")
-        let arrrrr = self.scoreL
-                         let defaultsJB = UserDefaults.standard
-                         defaultsJB.set(arrrrr, forKey: "scoreL")
-      //  let defaults = UserDefaults.standard
-        defaultsJB.set(self.Coins, forKey: "Coins")
-                        self.ReportScore(with: arrrrr)
-        if isPlanetHit{
-                  DispatchQueue.main.async {
-                        let configuration = ARWorldTrackingConfiguration()
-                              self.sceneView.session.run(configuration)
-                          self.shouldShowBestScoreContainerView(state: false)
-                       //   self.Coins = 0
-                          //D
-                             
-                         self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                             node.removeFromParentNode()
-                         }
-                       // self.viewDidLoad()
-            //        self.play()
-                    self.resetTimer(time: 30)
-                                                            self.runTimer()
-                    self.play()
-                    self.PoP = false
-                         //  self.resetTimer(time: 30)
-                          // self.runTimer()
-                    }
-            
-        } else {
+             print("Interstitial had been closed")
             let arrrrr = self.scoreL
                              let defaultsJB = UserDefaults.standard
                              defaultsJB.set(arrrrr, forKey: "scoreL")
             defaultsJB.set(self.Coins, forKey: "Coins")
                             self.ReportScore(with: arrrrr)
-        //will need boolean to tell us to restart(planet hit) or continue(this)
-         DispatchQueue.main.async {
             let configuration = ARWorldTrackingConfiguration()
-                  self.sceneView.session.run(configuration)
-              self.shouldShowBestScoreContainerView(state: false)
-            //  self.Coins = 0 j
-              //D
-                 
-//              self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-//                  node.removeFromParentNode()
-//              }
-           // self.viewDidLoad()
-//        self.play()
-            self.playBackgroundMusic()
-               self.resetTimer(time: 30)
-               self.runTimer()
+                            self.sceneView.session.run(configuration)
+            self.shouldShowBestScoreContainerView(state: false)
+           self.resetTimer(time: 3)
+            self.runTimer()
             self.PoP = false
-        }
-            
-        }
-//        self.play()
-//        self.resetTimer(time: 30)
-//        self.runTimer()
-        isPlanetHit = false
+            if isPlanetHit{
+                    DispatchQueue.main.async {
+                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                    node.removeFromParentNode()
+                        }
+                        self.play()
+                    }
+            } else {
+              DispatchQueue.main.async {
+                self.playBackgroundMusic()
+            }
+        
+            }
+            isPlanetHit = false
     }
-}
-
-/*extension ViewController: GADInterstitialDelegate {
-    /// Tells the delegate an ad request succeeded.
-    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-      print("interstitialDidReceiveAd")
-        if let inter = self.interstitial {
-            inter.present(fromRootViewController: self)
-        }
-    }
-
-    /// Tells the delegate an ad request failed.
-    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
-      print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
-    }
-
-    /// Tells the delegate that an interstitial will be presented.
-    func interstitialWillPresentScreen(_ ad: GADInterstitial) {
-      print("interstitialWillPresentScreen")
-    }
-
-    /// Tells the delegate the interstitial is to be animated off the screen.
-    func interstitialWillDismissScreen(_ ad: GADInterstitial) {
-      print("interstitialWillDismissScreen")
-    }
-
-    /// Tells the delegate the interstitial had been animated off the screen.
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        print("interstitialDidDismissScreen")
-        self.shouldShowBestScoreContainerView(state: false)
-        self.Coins = 0
-        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-            node.removeFromParentNode()
-        }
-        self.play()
-        self.resetTimer(time: 30)
-        self.runTimer()
-    }
-
-    /// Tells the delegate that a user click will open another app
-    /// (such as the App Store), backgrounding the current app.
-    func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
-      print("interstitialWillLeaveApplication")
-    }
-}*/
-extension ViewController: ARSKViewDelegate {
-//  func session(_ session: ARSession,
-//               didFailWithError error: Error) {
-//    print("\(error.localizedDescription)")
-//}
-//
-func sessionWasInterrupted(_ session: ARSession) {
-  print("Session interrupted")
-}
-  
-func sessionInterruptionEnded(_ session: ARSession) {
-  print("Session resumed")
-    //dispa
-  sceneView.session.run(session.configuration!,
-                        options: [.resetTracking,
-                                  .removeExistingAnchors])
- }
 }

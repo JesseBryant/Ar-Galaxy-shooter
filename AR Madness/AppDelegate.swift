@@ -10,7 +10,7 @@
 import UIKit
 //import GoogleMobileAds
 //import Firebase
-
+import FBAudienceNetwork
 
 //MARK -
 // NEED
@@ -31,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        FirebaseApp.configure()
 //        // Initialize the Google Mobile Ads SDK.
 //        GADMobileAds.sharedInstance().start(completionHandler: nil)
-        
+        FBAdSettings.addTestDevice(FBAdSettings.testDeviceHash())
+     //   FBAdSettings.clearTestDevice(FBAdSettings.testDeviceHash())
         return true
     }
 

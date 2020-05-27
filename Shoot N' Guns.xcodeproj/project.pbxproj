@@ -11,6 +11,9 @@
 		180C225424544DFE00CDFA75 /* VideoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C225324544DFE00CDFA75 /* VideoHelper.swift */; };
 		180C225624544EAC00CDFA75 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C225524544EAC00CDFA75 /* VideoCapture.swift */; };
 		188ACF9F245F0856001993EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 188ACF9E245F0856001993EC /* GoogleService-Info.plist */; };
+		3F61FE1C247E8BDC00F03975 /* fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 3F61FE1B247E8BDC00F03975 /* fire.scnp */; };
+		3F709DBE247E7A1F00A3561C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F709DBD247E7A1F00A3561C /* spark.png */; };
+		3FCBEFD6247E5BA8003E1E41 /* FBLoadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBEFD5247E5BA8003E1E41 /* FBLoadController.swift */; };
 		8EB60CDE42966BC4CE43624F /* libPods-Shoot N' Guns.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBC6E4B9EF5FB11AFED35598 /* libPods-Shoot N' Guns.a */; };
 		A7216ABC20BE1930009F6A51 /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = A7216ABB20BE1930009F6A51 /* explosion.wav */; };
 		A7216ABE20BE1940009F6A51 /* monkey.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7216ABD20BE1940009F6A51 /* monkey.mp3 */; };
@@ -32,8 +35,6 @@
 		E313249023EBF94A009C648F /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = E313248E23EBF94A009C648F /* star.png */; };
 		E313249223EBF97A009C648F /* rain.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313249123EBF97A009C648F /* rain.scnp */; };
 		E313249423EBF9B0009C648F /* react.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313249323EBF9B0009C648F /* react.scnp */; };
-		E338BE7F247BC4040000D2FC /* fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E338BE7D247BC4030000D2FC /* fire.scnp */; };
-		E338BE80247BC4040000D2FC /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E338BE7E247BC4040000D2FC /* spark.png */; };
 		E36A07F323EC1A9B000561D6 /* Confetti.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E36A07F223EC1A9B000561D6 /* Confetti.scnp */; };
 		E383ABD724237730001F79BB /* Sleepy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD62423772D001F79BB /* Sleepy.mp3 */; };
 		E383ABD92423822F001F79BB /* JBsmartsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD82423822E001F79BB /* JBsmartsound.mp3 */; };
@@ -48,6 +49,9 @@
 		180C225324544DFE00CDFA75 /* VideoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoHelper.swift; sourceTree = "<group>"; };
 		180C225524544EAC00CDFA75 /* VideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
 		188ACF9E245F0856001993EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3F61FE1B247E8BDC00F03975 /* fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; name = fire.scnp; path = ../../../fire.scnp; sourceTree = "<group>"; };
+		3F709DBD247E7A1F00A3561C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		3FCBEFD5247E5BA8003E1E41 /* FBLoadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLoadController.swift; sourceTree = "<group>"; };
 		42E9C8B5D124BCF048D1FC36 /* Pods-Shoot N' Guns.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot N' Guns.release.xcconfig"; path = "Target Support Files/Pods-Shoot N' Guns/Pods-Shoot N' Guns.release.xcconfig"; sourceTree = "<group>"; };
 		82BAF855FFEA4294DFBC2835 /* Pods-Shoot N' Guns.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot N' Guns.debug.xcconfig"; path = "Target Support Files/Pods-Shoot N' Guns/Pods-Shoot N' Guns.debug.xcconfig"; sourceTree = "<group>"; };
 		A7216ABB20BE1930009F6A51 /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
@@ -72,8 +76,6 @@
 		E313248E23EBF94A009C648F /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		E313249123EBF97A009C648F /* rain.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = rain.scnp; sourceTree = "<group>"; };
 		E313249323EBF9B0009C648F /* react.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = react.scnp; sourceTree = "<group>"; };
-		E338BE7D247BC4030000D2FC /* fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; name = fire.scnp; path = ../../../throw/throw/fire.scnp; sourceTree = "<group>"; };
-		E338BE7E247BC4040000D2FC /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = ../../../throw/throw/spark.png; sourceTree = "<group>"; };
 		E36A07F223EC1A9B000561D6 /* Confetti.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Confetti.scnp; sourceTree = "<group>"; };
 		E383ABD62423772D001F79BB /* Sleepy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sleepy.mp3; sourceTree = "<group>"; };
 		E383ABD82423822E001F79BB /* JBsmartsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JBsmartsound.mp3; sourceTree = "<group>"; };
@@ -116,8 +118,8 @@
 		A7216AC320BE91EE009F6A51 /* Particles */ = {
 			isa = PBXGroup;
 			children = (
-				E338BE7D247BC4030000D2FC /* fire.scnp */,
-				E338BE7E247BC4040000D2FC /* spark.png */,
+				3F61FE1B247E8BDC00F03975 /* fire.scnp */,
+				3F709DBD247E7A1F00A3561C /* spark.png */,
 				A7216ACC20BE9313009F6A51 /* Explode.scnp */,
 				E313248723EBF89E009C648F /* Fire.scnp */,
 				E313248923EBF906009C648F /* caffefe.scnp */,
@@ -167,6 +169,7 @@
 				E3F6D5E72424D96800D19AB0 /* mViewController.swift */,
 				180C225124544D1700CDFA75 /* MainViewController.swift */,
 				188ACF9E245F0856001993EC /* GoogleService-Info.plist */,
+				3FCBEFD5247E5BA8003E1E41 /* FBLoadController.swift */,
 			);
 			path = "AR Madness";
 			sourceTree = "<group>";
@@ -259,17 +262,17 @@
 				A73D42AD20B80B4200965934 /* LaunchScreen.storyboard in Resources */,
 				A7216ABE20BE1940009F6A51 /* monkey.mp3 in Resources */,
 				A73D42AA20B80B4200965934 /* Assets.xcassets in Resources */,
-				E338BE7F247BC4040000D2FC /* fire.scnp in Resources */,
+				3F61FE1C247E8BDC00F03975 /* fire.scnp in Resources */,
 				E313248F23EBF94A009C648F /* Stars.scnp in Resources */,
 				E313249223EBF97A009C648F /* rain.scnp in Resources */,
 				E3F8B0A2242F398C00E986B9 /* Power.mp3 in Resources */,
+				3F709DBE247E7A1F00A3561C /* spark.png in Resources */,
 				A7216ACE20BE9313009F6A51 /* Explode.scnp in Resources */,
 				E313249423EBF9B0009C648F /* react.scnp in Resources */,
 				A73D42A820B80B4000965934 /* Main.storyboard in Resources */,
 				E383ABD92423822F001F79BB /* JBsmartsound.mp3 in Resources */,
 				E313248B23EBF906009C648F /* caffefe.scnp in Resources */,
 				A7216AC020BE1957009F6A51 /* watersplash.wav in Resources */,
-				E338BE80247BC4040000D2FC /* spark.png in Resources */,
 				188ACF9F245F0856001993EC /* GoogleService-Info.plist in Resources */,
 				A7216AC220BE1967009F6A51 /* rooster.mp3 in Resources */,
 				E383ABD724237730001F79BB /* Sleepy.mp3 in Resources */,
@@ -314,6 +317,7 @@
 				A73D42A520B80B4000965934 /* ViewController.swift in Sources */,
 				A73D42A120B80B4000965934 /* AppDelegate.swift in Sources */,
 				180C225424544DFE00CDFA75 /* VideoHelper.swift in Sources */,
+				3FCBEFD6247E5BA8003E1E41 /* FBLoadController.swift in Sources */,
 				A7216AD320BE9B72009F6A51 /* HomeViewController.swift in Sources */,
 				180C225224544D1700CDFA75 /* MainViewController.swift in Sources */,
 			);
@@ -461,13 +465,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H9K35MT4VV;
+				DEVELOPMENT_TEAM = DKVBNZ87JU;
 				INFOPLIST_FILE = "AR Madness/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "JesBrggg--AR-jncjskdcjsdcjdjjdjdjd--cbdh";
+				PRODUCT_BUNDLE_IDENTIFIER = "JesBrggg--AR-jncjskdcjsdcjdjjdjdjd--cb";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -480,13 +484,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H9K35MT4VV;
+				DEVELOPMENT_TEAM = DKVBNZ87JU;
 				INFOPLIST_FILE = "AR Madness/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "JesBrggg--AR-jncjskdcjsdcjdjjdjdjd--cbdh";
+				PRODUCT_BUNDLE_IDENTIFIER = "JesBrggg--AR-jncjskdcjsdcjdjjdjdjd--cb";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
