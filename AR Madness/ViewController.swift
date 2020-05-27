@@ -103,7 +103,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 //    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
 //    }
     //used to store the scoreP:>L)_________________________________________________________________________________________________________________________[…≥π÷{{Ú∏˘::
-    
+     let configuration = ARWorldTrackingConfiguration()
     let audioNode = SCNNode()
     let audioSource = SCNAudioSource(fileNamed: "Sleepy.mp3")!
     let productID = "786978678678678"
@@ -261,7 +261,7 @@ var power = "banana"
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let configuration = ARWorldTrackingConfiguration()
+//        let configuration = ARWorldTrackingConfiguration()
              //without line below it want move
              self.sceneView.session.run(configuration)
 //        let configuration = ARWorldTrackingConfiguration()
@@ -269,17 +269,43 @@ var power = "banana"
         //sceneView.session.run(sceneView.session.configuration)
         
     }
+    func session(_ session: ARSession, didFailWithError error: Error) {
+        // Present an error message to the user
+        print("Session failed. Changing worldAlignment property.")
+        print(error.localizedDescription)
+
+        if let arError = error as? ARError {
+            switch arError.errorCode {
+            case 102:
+                
+                configuration.worldAlignment = .gravity
+                restartSessionWithoutDelete()
+            default:
+                restartSessionWithoutDelete()
+            }
+        }
+    }
+    func restartSessionWithoutDelete() {
+        // Restart session with a different worldAlignment - prevents bug from crashing app
+       
+ DispatchQueue.main.async {
+     self.sceneView.session.pause()
+    self.sceneView.session.run(self.configuration, options: [
+            .resetTracking,
+            .removeExistingAnchors])
+        }
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         //stopBackgroundMusic()
         // Pause the view's session
-        sceneView.session.pause()
+      //  sceneView.session.pause()
        // stopBackgroundMusic()
     }
     
     // MARK: - timer
-    
+    //can now resume game, once it enters background the way apple reccomend
     //to store how many sceonds the game is played for
     var seconds = 30
     
@@ -5063,10 +5089,10 @@ SaturnParent.addChildNode(SassThShoonode)
     }
 */
     
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        
-    }
+//    func session(_ session: ARSession, didFailWithError error: Error) {
+//        // Present an error message to the user
+//
+//    }
     
     
    func SecaddTargetNodes(){
@@ -5556,15 +5582,15 @@ SaturnParent.addChildNode(SassThShoonode)
     }
     
     
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
-    }
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
-    }
+//    func sessionWasInterrupted(_ session: ARSession) {
+//        // Inform the user that the session has been interrupted, for example, by presenting an overlay
+//
+//    }
+//
+//    func sessionInterruptionEnded(_ session: ARSession) {
+//        // Reset tracking and/or remove existing anchors if consistent tracking is required
+//
+//    }
     
     
     
@@ -5976,3 +6002,21 @@ extension ViewController: FBInterstitialAdDelegate {
       print("interstitialWillLeaveApplication")
     }
 }*/
+extension ViewController: ARSKViewDelegate {
+//  func session(_ session: ARSession,
+//               didFailWithError error: Error) {
+//    print("\(error.localizedDescription)")
+//}
+//
+func sessionWasInterrupted(_ session: ARSession) {
+  print("Session interrupted")
+}
+  
+func sessionInterruptionEnded(_ session: ARSession) {
+  print("Session resumed")
+    //dispa
+  sceneView.session.run(session.configuration!,
+                        options: [.resetTracking,
+                                  .removeExistingAnchors])
+ }
+}
