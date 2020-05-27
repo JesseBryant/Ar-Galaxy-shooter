@@ -1722,7 +1722,7 @@ var power = "banana"
                    venusParent.position = SCNVector3(0,0,-1)
              //   AR shooting Game
                // venusParent.name = "earth"
-       //         earth.addChildNode(Shoonode)
+       //         earth.addChildNode(Shoonode)nnn
                //8328579
                earN = earthParent
                  earth.name = "earthQJ"
