@@ -11,7 +11,7 @@
         <!--Main View Controller-->
         <scene sceneID="kLC-Jv-Zh7">
             <objects>
-                <viewController storyboardIdentifier="MainVC" id="SUX-J8-7Vb" customClass="MainViewController" customModule="Shoot_N__Guns" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainVC" id="SUX-J8-7Vb" customClass="MainViewController" customModule="AR_shooting_Game" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Y5-Nx-mP6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,10 +24,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.91764705879999997" green="0.25098039220000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shoot N Gun's AR" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agN-dv-X3R">
-                                <rect key="frame" x="112.5" y="100" width="150" height="76.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AR shooting Game" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agN-dv-X3R">
+                                <rect key="frame" x="88" y="100" width="197" height="77"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="sOb-Mo-Ps7"/>
+                                    <constraint firstAttribute="width" constant="197" id="sOb-Mo-Ps7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -93,7 +93,7 @@
                         <constraints>
                             <constraint firstItem="fQ7-gs-McJ" firstAttribute="leading" secondItem="EMM-3e-dkp" secondAttribute="leading" id="4tK-Kb-Sf9"/>
                             <constraint firstItem="fQ7-gs-McJ" firstAttribute="top" secondItem="EMM-3e-dkp" secondAttribute="top" id="6Sl-Wh-9u2"/>
-                            <constraint firstItem="agN-dv-X3R" firstAttribute="centerX" secondItem="fQ7-gs-McJ" secondAttribute="centerX" id="Kyv-z2-L0D"/>
+                            <constraint firstItem="agN-dv-X3R" firstAttribute="centerX" secondItem="fQ7-gs-McJ" secondAttribute="centerX" constant="-1" id="Kyv-z2-L0D"/>
                             <constraint firstItem="Hjc-a2-xhN" firstAttribute="centerX" secondItem="fQ7-gs-McJ" secondAttribute="centerX" id="LIT-Rg-5nx"/>
                             <constraint firstItem="fQ7-gs-McJ" firstAttribute="bottom" secondItem="EMM-3e-dkp" secondAttribute="bottom" id="Ldi-pr-7z7"/>
                             <constraint firstItem="fQ7-gs-McJ" firstAttribute="trailing" secondItem="EMM-3e-dkp" secondAttribute="trailing" id="Smj-Tl-2g3"/>
@@ -113,12 +113,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RID-OD-wJF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2882" y="-7"/>
+            <point key="canvasLocation" x="-2882.4000000000001" y="-7.6461769115442282"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="xeF-03-S6K">
             <objects>
-                <viewController storyboardIdentifier="HomeVC" id="jev-H7-hYd" customClass="HomeViewController" customModule="Shoot_N__Guns" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeVC" id="jev-H7-hYd" customClass="HomeViewController" customModule="AR_shooting_Game" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FUj-eh-Aok">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -177,7 +177,7 @@
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController storyboardIdentifier="GameVC" id="BV1-FR-VrT" customClass="ViewController" customModule="Shoot_N__Guns" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameVC" id="BV1-FR-VrT" customClass="ViewController" customModule="AR_shooting_Game" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4bO-rh-b54">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Shoot N&apos; Guns.xcodeproj">
+      location = "group:/Users/jessebryant/Downloads/Ar-Galaxy-shooter-3/AR shooting Game.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

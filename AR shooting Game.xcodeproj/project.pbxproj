@@ -57,7 +57,7 @@
 		A7216ACC20BE9313009F6A51 /* Explode.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explode.scnp; sourceTree = "<group>"; };
 		A7216AD020BE960B009F6A51 /* overtake.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = overtake.mp3; sourceTree = "<group>"; };
 		A7216AD220BE9B72009F6A51 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		A73D429D20B80B4000965934 /* Shoot N' Guns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shoot N' Guns.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A73D429D20B80B4000965934 /* AR shooting Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR shooting Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A73D42A020B80B4000965934 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A73D42A220B80B4000965934 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		A73D42A420B80B4000965934 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 		A73D429E20B80B4000965934 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A73D429D20B80B4000965934 /* Shoot N' Guns.app */,
+				A73D429D20B80B4000965934 /* AR shooting Game.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,9 +193,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A73D429C20B80B4000965934 /* Shoot N' Guns */ = {
+		A73D429C20B80B4000965934 /* AR shooting Game */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A73D42B120B80B4200965934 /* Build configuration list for PBXNativeTarget "Shoot N' Guns" */;
+			buildConfigurationList = A73D42B120B80B4200965934 /* Build configuration list for PBXNativeTarget "AR shooting Game" */;
 			buildPhases = (
 				9A54DDC11407875B539C6A57 /* [CP] Check Pods Manifest.lock */,
 				A73D429920B80B4000965934 /* Sources */,
@@ -206,9 +206,9 @@
 			);
 			dependencies = (
 			);
-			name = "Shoot N' Guns";
+			name = "AR shooting Game";
 			productName = "AR Madness";
-			productReference = A73D429D20B80B4000965934 /* Shoot N' Guns.app */;
+			productReference = A73D429D20B80B4000965934 /* AR shooting Game.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -227,7 +227,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A73D429820B80B4000965934 /* Build configuration list for PBXProject "Shoot N' Guns" */;
+			buildConfigurationList = A73D429820B80B4000965934 /* Build configuration list for PBXProject "AR shooting Game" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -240,7 +240,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A73D429C20B80B4000965934 /* Shoot N' Guns */,
+				A73D429C20B80B4000965934 /* AR shooting Game */,
 			);
 		};
 /* End PBXProject section */
@@ -496,7 +496,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A73D429820B80B4000965934 /* Build configuration list for PBXProject "Shoot N' Guns" */ = {
+		A73D429820B80B4000965934 /* Build configuration list for PBXProject "AR shooting Game" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A73D42AF20B80B4200965934 /* Debug */,
@@ -505,7 +505,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A73D42B120B80B4200965934 /* Build configuration list for PBXNativeTarget "Shoot N' Guns" */ = {
+		A73D42B120B80B4200965934 /* Build configuration list for PBXNativeTarget "AR shooting Game" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A73D42B220B80B4200965934 /* Debug */,

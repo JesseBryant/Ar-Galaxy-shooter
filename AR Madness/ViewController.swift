@@ -1712,14 +1712,15 @@ var power = "banana"
                 earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                    earthParent.physicsBody?.isAffectedByGravity = false
 
-               
-               
+               //full updated version
+               sun.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                sun.physicsBody?.isAffectedByGravity = false
                
               // venusParent
                venusParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                          venusParent.physicsBody?.isAffectedByGravity = false
                    venusParent.position = SCNVector3(0,0,-1)
-                
+             //   AR shooting Game
                // venusParent.name = "earth"
        //         earth.addChildNode(Shoonode)
                //8328579
@@ -1732,6 +1733,8 @@ var power = "banana"
             moonParent.position = SCNVector3(1.2 ,0 , 0)
                earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                earth.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+        sun.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                      sun.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                earthParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
@@ -5874,7 +5877,8 @@ extension ViewController: FBInterstitialAdDelegate {
         //**NEED**
         //check capatibity on phone
         //perfect levels and waves
-        //need finish "beat level"
+        //need finish "beat level"(best scr and coins rewarded, and current )
+        //pop up need more coins can use same pop up
         //in app purchase in homescreen (and coin button (dont have enough time))
         //check constraints (in progreess)
         
