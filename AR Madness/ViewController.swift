@@ -209,7 +209,7 @@ var power = "banana"
                   print("Score submitted Jes")
             }
         }
-//full few glitch
+//full few glitch mm
     }
     //MARK: - view functions
     // let audioPlayer = SCNAudioPlayer(source: audioSource)
