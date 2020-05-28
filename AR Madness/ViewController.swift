@@ -1054,7 +1054,7 @@ var power = "banana"
         }
         
     //creates nodes
-    var fireBall = SCNNode(geometry: SCNSphere(radius: 0.2))
+    var fireBall = SCNNode(geometry: SCNSphere(radius: 0.15))
     func createMissile(type : String)->SCNNode{
           //  fireBall.physicsBody = .dynamic()
            // fireBall.physicsBody?.mass = 0.5
@@ -1064,7 +1064,7 @@ var power = "banana"
  
          //   let disapear = SCNAction.fadeOut(duration: 0.3)
          //   fireBall.runAction(.sequence([.wait(duration: 3) ,disapear]))
-            
+            //better blasts
  
 
         
@@ -1074,8 +1074,8 @@ var power = "banana"
 //                  node = (scene?.rootNode.childNode(withName: "missile", recursively: true)!)!
 //                  node.scale = SCNVector3(0.2,0.2,0.2)
               //  node .geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                let disapear = SCNAction.fadeOut(duration: 0.3)
-                            fireBall.runAction(.sequence([.wait(duration: 3) ,disapear]))
+                let disapear = SCNAction.fadeOut(duration: 0.1)
+                            fireBall.runAction(.sequence([.wait(duration: 1) ,disapear]))
                   fireBall.name = "bathtub"
                 //  node.name = "banana"
               case "axe":
