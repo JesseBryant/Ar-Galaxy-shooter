@@ -215,11 +215,15 @@ var power = "banana"
     // let audioPlayer = SCNAudioPlayer(source: audioSource)
     override func viewDidLoad() {
         super.viewDidLoad()
-        InterstitialAd()
-
-        self.sceneView.isHidden = true
+//        InterstitialAd()
+//nice project fix issues with sound, much better fireball, less fade out.. memory leak fixed
+//       self.sceneView.isHidden = true
         DispatchQueue.main.async {
+             self.sceneView.isHidden = true
             SwiftSpinner.show("Connecting to AR Camera...")
+            self.InterstitialAd()
+
+               //   self.sceneView.isHidden = true
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
             self.sceneView.isHidden = false
@@ -522,7 +526,7 @@ var power = "banana"
     }
     @IBAction func didTapInterestial() {
          PoP = true
-     
+        self.stopBackgroundMus()
         interstitial.show(fromRootViewController: self)
         DispatchQueue.main.async {
     
@@ -5714,7 +5718,7 @@ extension ViewController: FBInterstitialAdDelegate {
                     }
             } else {
               DispatchQueue.main.async {
-               // self.playBackgroundMusic()
+                self.playBackgroundMusic()
             }
         
             }
