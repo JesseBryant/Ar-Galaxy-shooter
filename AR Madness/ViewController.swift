@@ -31,6 +31,15 @@
        //kill certain ship and certain amount of points
        //when time run out
        // message when planet destroyed
+
+//  gg.swift
+//  Shoot N' Guns
+//
+//  Created by Jesse Bryant on 5/27/20.
+//  Copyright © 2020 Jesse Bryant. All rights reserved.
+//
+
+import Foundation
 import UIKit
 import SceneKit
 import ARKit
@@ -40,22 +49,34 @@ import GameKit
 import SwiftSpinner
 import FBAudienceNetwork
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //import SpriteKit
 enum BitMaskCategory: Int {
     case target  = 3
 }
-//class AudioPlayer {
-//    var audioPlayer = AVAudioPlayer()
-//    func playingSoundWith(fileName: String) {
-//        do {
-//            audioPlayer = try AVAudioPlayer(contentsOf: Bundle.main.url(forResource: fileName, withExtension: "mp3")!)
-//            audioPlayer.prepareToPlay()
-//            audioPlayer.play()
-//        } catch {
-//            print(error)
-//        }
-//    }
-//}
 
 class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate, SKPaymentTransactionObserver {
     
@@ -68,11 +89,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var isPlanetHit = false
      var isPlanetHitORneedTime = false
       var PoP = false
-//    var interstitial: GADInterstitial!
     var interstitial: FBInterstitialAd!
     
     //MARK: - variables
-
     @IBOutlet var sceneView: ARSCNView!
     
     //used to display timer to player
@@ -99,11 +118,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var trackerNode: SCNNode?
     var foundSurface = false
     var tracking = true
-    let leaderboardID = "Jescom.whatever.ARJesBrA.Scores"
-//    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-//    }
-    //used to store the scoreP:>L)_________________________________________________________________________________________________________________________[…≥π÷{{Ú∏˘::
-     let configuration = ARWorldTrackingConfiguration()
+    let defaultss = UserDefaults.standard
+    var arrrrr : Int = 0
+  
+    let configuration = ARWorldTrackingConfiguration()
     let audioNode = SCNNode()
     let audioSource = SCNAudioSource(fileNamed: "Sleepy.mp3")!
     let productID = "786978678678678"
@@ -134,7 +152,8 @@ var power = "banana"
      var EarGroupNodeArray : [SCNNode] = []
      var ThirdGroupNodeArray : [SCNNode] = []
       var name : [String] = ["1","1","1","2"]
-    
+    let leaderboardID = "Jescom.whatever.ARJesBrA.Scores"
+    var score = GKScore()
 //   messageLabel.isHidden = true
     //MARK: - buttons
     
@@ -175,9 +194,10 @@ var power = "banana"
     }
     
     func ReportScore(with value: Int) {
+       
         // take score
-           let leaderboardID = "Jescom.whatever.ARJesBrA.Scores"
-        let score = GKScore(leaderboardIdentifier: leaderboardID)
+         
+     
         // set value for score
         score.value = Int64(value)
         // push score to Game Center
@@ -189,39 +209,14 @@ var power = "banana"
                   print("Score submitted Jes")
             }
         }
-
+//full few glitch
     }
     //MARK: - view functions
     // let audioPlayer = SCNAudioPlayer(source: audioSource)
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let configuration = ARWorldTrackingConfiguration()
-//        //without line below it want move
-//        self.sceneView.session.run(configuration)
-        
-//        func session(_ session: ARSession, didFailWithError error: Error) {
-//            // Present an error message to the user
-//            print("Session failed. Changing worldAlignment property.")
-//            print(error.localizedDescription)
-//
-//            if let arError = error as? ARError {
-//                switch arError.errorCode {
-//                case 102:
-//                    configuration.worldAlignment = .gravity
-//                    restartSessionWithoutDelete()
-//                default:
-//                    restartSessionWithoutDelete()
-//                }
-//            }
-//        }
-//        func restartSessionWithoutDelete() {
-//            // Restart session with a different worldAlignment - prevents bug from crashing app
-//            self.sceneView.session.pause()
-//
-//            self.sceneView.session.run(configuration, options: [
-//                .resetTracking,
-//                .removeExistingAnchors])
-//        }
+        InterstitialAd()
+
         self.sceneView.isHidden = true
         DispatchQueue.main.async {
             SwiftSpinner.show("Connecting to AR Camera...")
@@ -246,66 +241,64 @@ var power = "banana"
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         self.sceneView.addGestureRecognizer(gestureRecognizer)
 
-        let defaults = UserDefaults.standard
-            if let gameScore = defaults.value(forKey: "Coins"){
+      
+            if let gameScore = defaultss.value(forKey: "Coins"){
                  Coins = gameScore as! Int
                 print("\(Coins) Jesse KKKK")
                 
                 //play()
         }
+        
+         score = GKScore(leaderboardIdentifier: leaderboardID)
+    
 //        self.play()
     }
     
     // MARK: Jesss
-
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        let configuration = ARWorldTrackingConfiguration()
              //without line below it want move
              self.sceneView.session.run(configuration)
-//        let configuration = ARWorldTrackingConfiguration()
-//                                    self.sceneView.session.run(configuration)
-        //sceneView.session.run(sceneView.session.configuration)
-        
-    }
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        print("Session failed. Changing worldAlignment property.")
-        print(error.localizedDescription)
 
-        if let arError = error as? ARError {
-            switch arError.errorCode {
-            case 102:
-                
-                configuration.worldAlignment = .gravity
-                restartSessionWithoutDelete()
-            default:
-                restartSessionWithoutDelete()
-            }
-        }
+        //nice project
     }
-    func restartSessionWithoutDelete() {
-        // Restart session with a different worldAlignment - prevents bug from crashing app
-       
- DispatchQueue.main.async {
-     self.sceneView.session.pause()
-    self.sceneView.session.run(self.configuration, options: [
-            .resetTracking,
-            .removeExistingAnchors])
-        }
-    }
-    
+       func session(_ session: ARSession, didFailWithError error: Error) {
+           // Present an error message to the user
+           print("Session failed. Changing worldAlignment property.")
+           print(error.localizedDescription)
+
+           if let arError = error as? ARError {
+               switch arError.errorCode {
+               case 102:
+                   
+                   configuration.worldAlignment = .gravity
+                   restartSessionWithoutDelete()
+               default:
+                   restartSessionWithoutDelete()
+               }
+           }
+       }
+       func restartSessionWithoutDelete() {
+           // Restart session with a different worldAlignment - prevents bug from crashing app
+          
+    DispatchQueue.main.async {
+        self.sceneView.session.pause()
+       self.sceneView.session.run(self.configuration, options: [
+               .resetTracking,
+               .removeExistingAnchors])
+           }
+       }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         //stopBackgroundMusic()
         // Pause the view's session
-      //  sceneView.session.pause()
+        sceneView.session.pause()
        // stopBackgroundMusic()
     }
     
     // MARK: - timer
-    //can now resume game, once it enters background the way apple reccomend
+    
     //to store how many sceonds the game is played for
     var seconds = 30
     
@@ -362,47 +355,19 @@ var power = "banana"
         timerLabel.text = "\(seconds)"
     }
     
-    func setupInterstial() {
-//        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-5764524457114749/5527500879")
-//        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-2950107663664053/5762854888")
-//        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-4371810798962800/3320803613")
-//        self.interstitial.load(GADRequest())
-//        self.interstitial.delegate = self
-//        if self.interstitial.isReady {
-//        } else {
-//            print("Ad wasn't ready")
-//        }
-       // DispatchQueue.main.async {
-        self.interstitial = FBInterstitialAd.init(placementID: "229174575034368_230531631565329")
-        self.interstitial.delegate = self
-        
-        self.interstitial.load()
-        
-        
-        
-      //  }
-        
-//                self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-//                    node.removeFromParentNode()
-//                }
-//                self.play()
-        
-    }
+    func InterstitialAd(){
+          interstitial = FBInterstitialAd(placementID: "229174575034368_230531631565329")
+          interstitial.delegate = self
+          interstitial.load()
+      }
     
     // MARK: - game over
     
     func gameOver(){
         //        earth"
         //        earthParent.name = "earthParent
-        var scoreJJ = 0
-        let chd = "earth"
-        let chdKK = "earthParent"
-        
-        
-        
-        let defaultss = UserDefaults.standard
         if let gameScore = defaultss.value(forKey: "scoreL"){
-            scoreJJ = gameScore as! Int
+           let _ = gameScore as! Int
             if Coins > 90 {
                 //  print("\(score):score >90 welcome to level 2")
             } else{
@@ -413,16 +378,14 @@ var power = "banana"
         
         
         //   scoreL += score
-        let fscre = scoreL
         //store the score in UserDefaults
-        let defaults = UserDefaults.standard
-        defaults.set(Coins, forKey: "Coins")
+      
+        defaultss.set(Coins, forKey: "Coins")
         //        scoreL += score
         //  defaults.set(scoreL, forKey: "scoreL")
         // let arrrrr = scoreJJ + fscre
-        let arrrrr = scoreL
-        let defaultsJB = UserDefaults.standard
-        defaultsJB.set(arrrrr, forKey: "scoreL")
+         arrrrr = scoreL
+        defaultss.set(arrrrr, forKey: "scoreL")
         //go back to the Home View Controller
         // removeAud
         //stopBackgroundMusic()
@@ -430,8 +393,7 @@ var power = "banana"
         stopBackgroundMus()
     }
     func BeatLevel() {
-        
-        var counter = 0
+    
         self.messageLabel.isHidden = false
         timer.invalidate()
         self.messageLabel.text = "Level Completed"
@@ -454,25 +416,12 @@ var power = "banana"
             self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
                 node.removeFromParentNode()
             }
-            
-            
-            let defaultss = UserDefaults.standard
-            //                                    if let gameScore = defaultss.value(forKey: "Coins"){
-            //                                         scoreJJ = gameScore as! Int
-            //                                        if self.Coins > 90 {
-            //                                          //  print("\(score):score >90 welcome to level 2")
-            //                                        } else{
-            //                                           // print("\(score): score <90 still on level 1")
-            //                                        }
-            //                        //                //scoreLabel.text = "Score: \(String(score))"
-            //                                 }
-            
+    
             
             //   scoreL += score
-            let fscre = self.scoreL
+          //  let fscre = self.scoreL
             //store the score in UserDefaults
-            let defaults = UserDefaults.standard
-            defaults.set(self.Coins, forKey: "Coins")
+            self.defaultss.set(self.Coins, forKey: "Coins")
             
             //        scoreL += score
             //  defaults.set(scoreL, forKey: "scoreL")
@@ -481,10 +430,10 @@ var power = "banana"
             
             //After in app purchases make this 0..so we can keep
             //up with best score
-            let arrrrr = self.scoreL
-            let defaultsJB = UserDefaults.standard
-            defaultsJB.set(arrrrr, forKey: "scoreL")
-            self.ReportScore(with: arrrrr)
+            self.arrrrr = self.scoreL
+           
+            self.defaultss.set(self.arrrrr, forKey: "scoreL")
+            self.ReportScore(with: self.arrrrr)
             //go back to the Home View Controller
             // removeAud
             //stopBackgroundMusic()
@@ -550,13 +499,13 @@ var power = "banana"
         //  sceneView.backgroundColor = UIColor.red
      self.Coins = 0
                              print("\(self.Coins) Coins after")
-                             let defaults = UserDefaults.standard
-                             defaults.set(self.Coins, forKey: "Coins")
+                           
+                             defaultss.set(self.Coins, forKey: "Coins")
                              //        scoreL += score
                              //  defaults.set(scoreL, forKey: "scoreL")
-                             let arrrrr = self.scoreL
-                             let defaultsJB = UserDefaults.standard
-                             defaultsJB.set(arrrrr, forKey: "scoreL")
+                              arrrrr = self.scoreL
+                          
+                             defaultss.set(arrrrr, forKey: "scoreL")
                             self.ReportScore(with: arrrrr)
         sceneView.scene.rootNode.removeAllAudioPlayers()
         messageLabel.isHidden = true
@@ -572,49 +521,25 @@ var power = "banana"
         print("\(Coins): still on level 1")
     }
     @IBAction func didTapInterestial() {
-    PoP = true
-        //            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: { [weak self] in
-        //        //                   guard let self = self else {return}
-        //        //                   self.messageLabel.isHidden = true
-        //        //               })
+         PoP = true
+     
+        interstitial.show(fromRootViewController: self)
         DispatchQueue.main.async {
-            // guard let self = self else {return}
+    
         self.shouldShowBestScoreContainerView(state: false)
-            
-           // self.PoP = false
              self.sceneView.isHidden = true
-            //        self.sceneView.isHidden = false
-            //                                   SwiftSpinner.hide()
              SwiftSpinner.show("Loading...")
-        self.setupInterstial()
         }
-//        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-//            node.removeFromParentNode()
-//        }
-//        self.play()
-        
-        
-//        self.sceneView.isHidden = true
-//               DispatchQueue.main.async {
-//                   SwiftSpinner.show("Connecting to AR Camera...")
-//               }
-//               DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-//                   self.sceneView.isHidden = false
-//                   SwiftSpinner.hide()
-//                   self.play()
-//               }
+
     }
     //fixed bug that cause pop up EVEN after I tap ad button
     @IBAction func didTapCoins() {
        DispatchQueue.main.async { [weak self] in
          guard let self = self else {return}
               self.shouldShowBestScoreContainerView(state: false)
-        self.PoP = false
+          self.PoP = false
               }
               if self.isPlanetHit {
-                  
-                  
-                  
                   
                   if self.Coins >= 10 {
                       //timer fixed
@@ -623,13 +548,13 @@ var power = "banana"
                       print("\(self.Coins) Coins")
                       self.Coins = self.Coins - 10
                       print("\(self.Coins) Coins after")
-                      let defaults = UserDefaults.standard
-                      defaults.set(self.Coins, forKey: "Coins")
+                    
+                      defaultss.set(self.Coins, forKey: "Coins")
                       //        scoreL += score
                       //  defaults.set(scoreL, forKey: "scoreL")
-                      let arrrrr = self.scoreL
-                      let defaultsJB = UserDefaults.standard
-                      defaultsJB.set(arrrrr, forKey: "scoreL")
+                       arrrrr = self.scoreL
+                    
+                      defaultss.set(arrrrr, forKey: "scoreL")
                      self.ReportScore(with: arrrrr)
                       //since planet got hit restart with **Correct** points
                       DispatchQueue.main.async { [weak self] in
@@ -673,13 +598,13 @@ var power = "banana"
                       print("\(self.Coins) Coins")
                       self.Coins = self.Coins - 10
                       print("\(self.Coins) Coins after")
-                      let defaults = UserDefaults.standard
-                      defaults.set(self.Coins, forKey: "Coins")
+                    
+                      defaultss.set(self.Coins, forKey: "Coins")
                       //        scoreL += score
                       //  defaults.set(scoreL, forKey: "scoreL")
-                      let arrrrr = self.scoreL
-                      let defaultsJB = UserDefaults.standard
-                      defaultsJB.set(arrrrr, forKey: "scoreL")
+                       arrrrr = self.scoreL
+                   
+                      defaultss.set(arrrrr, forKey: "scoreL")
                       self.ReportScore(with: arrrrr)
                       //since planet got hit restart with **Correct** points
                       //                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
@@ -752,46 +677,13 @@ var power = "banana"
             self.sceneView.isHidden = false
                                  SwiftSpinner.hide()
             print("User can't make payments")
-//            self.Coins = 0
-//                   self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-//                       node.removeFromParentNode()
-//                      // stopBackgroundMus()
-//                       //Music end sometimes here
-//                   }
-                  
-            
-            //add alert here
-//            func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
-//                self.sceneView.isHidden = true
-//                SwiftSpinner.show("Connecting to AR Camera...")
-//                 DispatchQueue.main.async {
-//                if let inter = self.interstitial {
-//                    if interstitialAd.isAdValid {
-//                         self.sceneView.isHidden = false
-//                                    SwiftSpinner.hide()
-//                        self.stopBackgroundMus()
-//                        inter.show(fromRootViewController: self)
-//                        }
-//                    }
-//                }
+
                 
         }
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        //            func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
-        //                self.sceneView.isHidden = true
-        //                SwiftSpinner.show("Connecting to AR Camera...")
-        //                 DispatchQueue.main.async {
-        //                if let inter = self.interstitial {
-        //                    if interstitialAd.isAdValid {
-        //                         self.sceneView.isHidden = false
-        //                                    SwiftSpinner.hide()
-        //                        self.stopBackgroundMus()
-        //                        inter.show(fromRootViewController: self)
-        //                        }
-        //                    }
-        //                }
+   
        for transaction in transactions {
        // self.sceneView.isHidden = true
                              //  SwiftSpinner.show("Connecting to AR Camera...")
@@ -872,8 +764,7 @@ var power = "banana"
         //need to sub or add less cuz it goes too next level
         //well do add 5 for now.. for 1.99 look at other games in app purchases
         self.Coins+=10
-        let defaults = UserDefaults.standard
-        defaults.set(self.Coins, forKey: "Coins")
+        defaultss.set(self.Coins, forKey: "Coins")
         print("\(self.Coins) Coins")
         //        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
         //                                  node.removeFromParentNode()
@@ -916,211 +807,214 @@ var power = "banana"
     
     
     func play() {
-        // resetTimer()
-        //this will eventually use gold!!rewarded for next level instead of score
-        //more gold they spend could go down..
-        print("\(self.Coins) Coins")
-                           self.scoreL = 0
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {return}
+        autoreleasepool {
             
-         self.scoreLabel.text = String(self.scoreL)
-        }
-       // self.scoreLabel = self.scoreL
-                           //print("\(self.Coins) Coins after")
-                         //  let defaults = UserDefaults.standard
-        
-        if 7...38 ~= Coins {
-            power = "banana"
-            messageLabel.isHidden = true
-            levelJB.text = "level 2"
-            SecaddTargetNodes()
-            //            addTargetNodesJupitar()
+            // resetTimer()
+            //this will eventually use gold!!rewarded for next level instead of score
+            //more gold they spend could go down..
+            print("\(self.Coins) Coins")
+            self.scoreL = 0
             DispatchQueue.main.async { [weak self] in
-                  guard let self = self else {return}
-                self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                guard let self = self else {return}
+                
+                self.scoreLabel.text = String(self.scoreL)
             }
-            PlayInstructions()
-            //play background music
-            //                            stopBackgroundMusic()
-            playBackgroundMusic()
-            // addTargetNodesFive()
-            //addTargetNodesSixVenus()
-            // addTargetNodesNeptune()
-            // addTargetNodesSaturn()
-            //h()
-            //  addTargetNodesFour()
-            // addTargetNodesJupitar()
-            //start tinmer
-            runTimer()
-            print("\(Coinse): welcome to level Coinse 2")
-            print("\(Coins): welcome to level 2")
-        } else if 39...66 ~= Coins{
-            power = "banana"
-            //  sceneView.backgroundColor = UIColor.red
-            messageLabel.isHidden = true
-            levelJB.text = "level 3"
-            addTargetNodes()
-            //FsaddTargetNodes()
-            // FsaddTargetNodes()
-              DispatchQueue.main.async { [weak self] in
-                             guard let self = self else {return}
-                           self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                       }
-            PlayInstructions()
-            //play background music
-            playBackgroundMusic()
+            // self.scoreLabel = self.scoreL
+            //print("\(self.Coins) Coins after")
+            //  let defaults = UserDefaults.standard
             
-            //start tinmer
-            runTimer()
-            print("\(Coins): welcome to level 3 jess")
-             print("\(Coinse): welcome to level 3 Coinse jess")
-            
-        }
-        else if 67...94 ~= Coins{
-            power = "banana"
-            //  sceneView.backgroundColor = UIColor.red
-            messageLabel.isHidden = true
-            levelJB.text = "level 4"
-            addTargetNodesFour()
-                  DispatchQueue.main.async { [weak self] in
-                                 guard let self = self else {return}
-                               self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                           }
-            PlayInstructions()
-            //play background music
-            playBackgroundMusic()
-            
-            //start tinmer
-            runTimer()
-            print("\(Coins): welcome to level 4 jess")
-             print("\(Coinse): welcome to level 4 Coinse jess")
-            
-        }       else if 95...129 ~= Coins{
-            power = "banana"
-            //  sceneView.backgroundColor = UIColor.red
-            messageLabel.isHidden = true
-            levelJB.text = "level 5"
-            
-            //Will need to add other nodes give a more real effect. For smaller ships
-            addTargetNodesFive()
-            //FsaddTargetNodes()
-            // FsaddTargetNodes()
-              DispatchQueue.main.async { [weak self] in
-                            guard let self = self else {return}
-                          self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                      }
-            PlayInstructions()
-            //play background music
-               playBackgroundMusic()
-            // playingSoundWith
-            //start tinmer
-            runTimer()
-            print("\(Coins): welcome to level 5 jess")
-            print("\(Coinse): welcome to level 5 Coinse jess")
-            //
-        } else if 130...161 ~= Coins{
-            power = "banana"
-            //  sceneView.backgroundColor = UIColor.red
-            messageLabel.isHidden = true
-                       levelJB.text = "level 6"
-             addTargetNodesSixVenus()
-              DispatchQueue.main.async { [weak self] in
-                            guard let self = self else {return}
-                          self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                      }
-           
-            
-            //Will need to add other nodes give a more real effect. For smaller ships
-           
-            //FsaddTargetNodes()
-            // FsaddTargetNodes()
-            PlayInstructions()
-            //play background music
-            playBackgroundMusic()
-            
-            //start tinmer
-            runTimer()
-            print("\(Coins): welcome to level 6 jess")
-              print("\(Coinse): welcome to level 6 Coinse jess")
-            
-        }
-            
-            //addTargetNodesSaturn()
-        else if 162...209 ~= Coins{
-            power = "banana"
-            messageLabel.isHidden = true
-                     levelJB.text = "level 7"
-                     
-                     //Will need to add other nodes give a more real effect. For smaller ships
-                     addTargetNodesNeptune()
-             DispatchQueue.main.async { [weak self] in
-                            guard let self = self else {return}
-                          self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                      }
-            
-            //  sceneView.backgroundColor = UIColor.red
-         
-            //addTargetNodesSaturn()
-            //FsaddTargetNodes()
-            // FsaddTargetNodes()
-            PlayInstructions()
-            //play background music
-            playBackgroundMusic()
-            
-            //start tinmer
-            runTimer()
-            print("\(Coins): welcome to level 7 jess")
-            print("\(Coinse): welcome to level 7 jess Coinse")
-            
-        } else if 209...1320 ~= Coins{
-            
-            power = "banana"
-            messageLabel.isHidden = true
-                      levelJB.text = "level 8"
-                      
-                      
-                      addTargetNodesJupitar()
-             DispatchQueue.main.async { [weak self] in
-                           guard let self = self else {return}
-                         self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                     }
-            //  sceneView.backgroundColor = UIColor.red
-          
-            // FsaddTargetNodes()
-            PlayInstructions()
-            //play background music
-            playBackgroundMusic()
-            
-            //start tinmer
-            runTimer()
-            print("\(Coins): welcome to level 8 jess")
-            print("\(Coinse): welcome to level 8 Coinse jess")
-            
-        }
-           
-            
-            
-        else {
-            power = "banana"
-            //  sceneView.backgroundColor = UIColor.red
-            messageLabel.isHidden = true
-            levelJB.text = "level 1"
-            //addTargetNodes()
-            FsaddTargetNodes()
-            DispatchQueue.main.async { [weak self] in
-                           guard let self = self else {return}
-                         self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                     }
-
-            PlayInstructions()
-            //play background music
-            playBackgroundMusic()
-            //  addTargetNodesJupitar()
-            //start tinmer
-            runTimer()
-            print("\(Coins): still on level 1")
-            
+            if 7...38 ~= Coins {
+                power = "banana"
+                messageLabel.isHidden = true
+                levelJB.text = "level 2"
+                SecaddTargetNodes()
+                //            addTargetNodesJupitar()
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else {return}
+                    self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                }
+                PlayInstructions()
+                //play background music
+                //                            stopBackgroundMusic()
+                playBackgroundMusic()
+                // addTargetNodesFive()
+                //addTargetNodesSixVenus()
+                // addTargetNodesNeptune()
+                // addTargetNodesSaturn()
+                //h()
+                //  addTargetNodesFour()
+                // addTargetNodesJupitar()
+                //start tinmer
+                runTimer()
+                print("\(Coinse): welcome to level Coinse 2")
+                print("\(Coins): welcome to level 2")
+            } else if 39...66 ~= Coins{
+                power = "banana"
+                //  sceneView.backgroundColor = UIColor.red
+                messageLabel.isHidden = true
+                levelJB.text = "level 3"
+                addTargetNodes()
+                //FsaddTargetNodes()
+                // FsaddTargetNodes()
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else {return}
+                    self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                }
+                PlayInstructions()
+                //play background music
+                playBackgroundMusic()
+                
+                //start tinmer
+                runTimer()
+                print("\(Coins): welcome to level 3 jess")
+                print("\(Coinse): welcome to level 3 Coinse jess")
+                
+            }
+            else if 67...94 ~= Coins{
+                power = "banana"
+                //  sceneView.backgroundColor = UIColor.red
+                messageLabel.isHidden = true
+                levelJB.text = "level 4"
+                addTargetNodesFour()
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else {return}
+                    self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                }
+                PlayInstructions()
+                //play background music
+                playBackgroundMusic()
+                
+                //start tinmer
+                runTimer()
+                print("\(Coins): welcome to level 4 jess")
+                print("\(Coinse): welcome to level 4 Coinse jess")
+                
+            }       else if 95...129 ~= Coins{
+                power = "banana"
+                //  sceneView.backgroundColor = UIColor.red
+                messageLabel.isHidden = true
+                levelJB.text = "level 5"
+                
+                //Will need to add other nodes give a more real effect. For smaller ships
+                addTargetNodesFive()
+                //FsaddTargetNodes()
+                // FsaddTargetNodes()
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else {return}
+                    self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                }
+                PlayInstructions()
+                //play background music
+                playBackgroundMusic()
+                // playingSoundWith
+                //start tinmer
+                runTimer()
+                print("\(Coins): welcome to level 5 jess")
+                print("\(Coinse): welcome to level 5 Coinse jess")
+                //
+            } else if 130...161 ~= Coins{
+                power = "banana"
+                //  sceneView.backgroundColor = UIColor.red
+                messageLabel.isHidden = true
+                levelJB.text = "level 6"
+                addTargetNodesSixVenus()
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else {return}
+                    self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                }
+                
+                
+                //Will need to add other nodes give a more real effect. For smaller ships
+                
+                //FsaddTargetNodes()
+                // FsaddTargetNodes()
+                PlayInstructions()
+                //play background music
+                playBackgroundMusic()
+                
+                //start tinmer
+                runTimer()
+                print("\(Coins): welcome to level 6 jess")
+                print("\(Coinse): welcome to level 6 Coinse jess")
+                
+            }
+                
+                //addTargetNodesSaturn()
+            else if 162...209 ~= Coins{
+                power = "banana"
+                messageLabel.isHidden = true
+                levelJB.text = "level 7"
+                
+                //Will need to add other nodes give a more real effect. For smaller ships
+                addTargetNodesNeptune()
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else {return}
+                    self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                }
+                
+                //  sceneView.backgroundColor = UIColor.red
+                
+                //addTargetNodesSaturn()
+                //FsaddTargetNodes()
+                // FsaddTargetNodes()
+                PlayInstructions()
+                //play background music
+                playBackgroundMusic()
+                
+                //start tinmer
+                runTimer()
+                print("\(Coins): welcome to level 7 jess")
+                print("\(Coinse): welcome to level 7 jess Coinse")
+                
+            } else if 209...1320 ~= Coins{
+                
+                power = "banana"
+                messageLabel.isHidden = true
+                levelJB.text = "level 8"
+                
+                
+                addTargetNodesJupitar()
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else {return}
+                    self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                }
+                //  sceneView.backgroundColor = UIColor.red
+                
+                // FsaddTargetNodes()
+                PlayInstructions()
+                //play background music
+                playBackgroundMusic()
+                
+                //start tinmer
+                runTimer()
+                print("\(Coins): welcome to level 8 jess")
+                print("\(Coinse): welcome to level 8 Coinse jess")
+                
+            }
+                
+                
+                
+            else {
+                power = "banana"
+                //  sceneView.backgroundColor = UIColor.red
+                messageLabel.isHidden = true
+                levelJB.text = "level 1"
+                //addTargetNodes()
+                FsaddTargetNodes()
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else {return}
+                    self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                }
+                
+                PlayInstructions()
+                //play background music
+                playBackgroundMusic()
+                //  addTargetNodesJupitar()
+                //start tinmer
+                runTimer()
+                print("\(Coins): still on level 1")
+                
+            }
         }
         //  stopBackgroundMusic()
     }
@@ -1128,58 +1022,40 @@ var power = "banana"
     // MARK: - missiles & targets
     
     //creates banana or axe node and 'fires' it
+    var mnode = SCNNode()
+    var mnodeDirection = SCNVector3()
     func fireMissile(type : String){
-        var node = SCNNode()
             //create node
         //Finish last level, new music and new ships. Dope
-            node = createMissile(type: type)
+            mnode = createMissile(type: type)
    
             let (direction, position) = self.getUserVector()
-            node.position = position
-            var nodeDirection = SCNVector3()
+            mnode.position = position
             switch type {
             case "banana":
-                nodeDirection  = SCNVector3(direction.x*40,direction.y*40,direction.z*40)
-                node.physicsBody?.applyForce(nodeDirection, at: SCNVector3(0.1,0,0), asImpulse: true)
+                mnodeDirection  = SCNVector3(direction.x*40,direction.y*40,direction.z*40)
+                mnode.physicsBody?.applyForce(mnodeDirection, at: SCNVector3(0.1,0,0), asImpulse: true)
                 playSound(sound: "JBsmartsound", format: "mp3")
                 
                 //this stronger make a lot easier this should be temporary and rewarded after a certain level
                 //or destroying enemy ship/s JBsmartsound.mp3
             case "axe":
-                nodeDirection  = SCNVector3(direction.x*40,direction.y*40,direction.z*40)
-                node.physicsBody?.applyForce(SCNVector3(direction.x,direction.y,direction.z), at: SCNVector3(0,0,0.1), asImpulse: true)
+                mnodeDirection  = SCNVector3(direction.x*40,direction.y*40,direction.z*40)
+                mnode.physicsBody?.applyForce(SCNVector3(direction.x,direction.y,direction.z), at: SCNVector3(0,0,0.1), asImpulse: true)
                 playSound(sound: "JBsmartsound", format: "mp3")
             default:
-                nodeDirection = direction
+                mnodeDirection = direction
+                mnode.physicsBody?.applyForce(mnodeDirection , asImpulse: true)
             }
             
             //move node
-            node.physicsBody?.applyForce(nodeDirection , asImpulse: true)
-            
             //add node to scene
-            sceneView.scene.rootNode.addChildNode(node)
+            sceneView.scene.rootNode.addChildNode(mnode)
         }
         
     //creates nodes
+    var fireBall = SCNNode(geometry: SCNSphere(radius: 0.2))
     func createMissile(type : String)->SCNNode{
-        var node = SCNNode(geometry: SCNSphere(radius: 0.2))
-      //  var SuperNode = SCNNode(geometry: SCNCapsule(radius: 0.2))
-        
-        //get a feel for game difficulty and level base difficulty
-        //next color coat ships
-        //space ships around a little more..
-        //more elaboratle explosion!!
-        //new lasor sounds
-        //add pop ups that gives instructions(eventually AFTER ads(reward ads!!)).. for levels and coin clamage or possibly in- app
-        //next level open if win and more important coins..that can unlock new levels or just in- app
-        //two new ideas for levels.... 1) have a little faster and maybe less ships
-              
-              //using case statement to allow variations of scale and rotations
-        
-     //   func createAndThrowFireBall() {
-            //create the fireball
-            let ball = SCNSphere(radius: 0.2)
-            var fireBall = SCNNode(geometry: ball)
           //  fireBall.physicsBody = .dynamic()
            // fireBall.physicsBody?.mass = 0.5
             //add particles
@@ -1198,8 +1074,7 @@ var power = "banana"
 //                  node = (scene?.rootNode.childNode(withName: "missile", recursively: true)!)!
 //                  node.scale = SCNVector3(0.2,0.2,0.2)
               //  node .geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                 fireBall.addParticleSystem(SCNParticleSystem(named: "fire.scnp", inDirectory: nil)!)
-                    let disapear = SCNAction.fadeOut(duration: 0.3)
+                let disapear = SCNAction.fadeOut(duration: 0.3)
                             fireBall.runAction(.sequence([.wait(duration: 3) ,disapear]))
                   fireBall.name = "bathtub"
                 //  node.name = "banana"
@@ -1210,8 +1085,7 @@ var power = "banana"
 //                  node.scale = SCNVector3(0.2,0.2,0.2)
               //  node .geometry?.firstMaterial?.diffuse.contents = UIColor.blue
               //    node.name = "bathtub"
-
-                fireBall.addParticleSystem(SCNParticleSystem(named: "fire.scnp", inDirectory: nil)!)
+           //     fireBall.addParticleSystem(SCNParticleSystem(named: "fire.scnp", inDirectory: nil)!)
                  fireBall.name = "bathtub"
               default:
                  // node = SCNNode()
@@ -1226,7 +1100,7 @@ var power = "banana"
 //              //these bitmasks used to define "collisions" with other objects
 //              node.physicsBody?.categoryBitMask = CollisionCategory.missileCategory.rawValue
 //              node.physicsBody?.collisionBitMask = CollisionCategory.targetCategory.rawValue
-        fireBall.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+            fireBall.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
             fireBall.physicsBody?.isAffectedByGravity = false
             
             //these bitmasks used to define "collisions" with other objects
@@ -1250,9 +1124,8 @@ var power = "banana"
         //make blue lke small ships so it be so easy and more black and white
         //reward coins
         //add new level. (next one blue ships but a lil faster)
-
                                     let venusParent = SCNNode()
-                                  let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
+                                //  let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
           let earthParent = SCNNode()
         let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
      //   venusParent
@@ -1419,8 +1292,8 @@ var power = "banana"
                               let sunAction = Rotation(time: 20)
                             let earthParentRotation = Rotation(time: 10)
                     let VRotation = Rotation(time: 6)
-                            let venusParentRotation = XRotation(time: 20)
-                            let earthRotation = Rotation(time: 20)
+                          //  let venusParentRotation = XRotation(time: 20)
+                         //   let earthRotation = Rotation(time: 20)
                             let moonRotation = Rotation(time: 5)
                     // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                       //  make big ships spin as it Rotate
@@ -1460,9 +1333,8 @@ var power = "banana"
     func addTargetNodesFour(){
         //Need message dont shoot moon.
         //if so planet and moon destroyed
-
                                         let venusParent = SCNNode()
-                                      let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
+                         //   let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
               let earthParent = SCNNode()
          let moonParent = SCNNode()
         
@@ -1649,8 +1521,8 @@ var power = "banana"
                                   let sunAction = Rotation(time: 20)
                                 let earthParentRotation = Rotation(time: 10)
                         let VRotation = Rotation(time: 6)
-                                let venusParentRotation = XRotation(time: 20)
-                                let earthRotation = Rotation(time: 30)
+                              //  let venusParentRotation = XRotation(time: 20)
+                            //    let earthRotation = Rotation(time: 30)
                                 let moonRotation = Rotation(time: 18)
                         // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                           //  make big ships spin as it Rotate
@@ -1694,7 +1566,6 @@ var power = "banana"
            //Need message dont shoot moon.
            //if so planet and moon destroyed
         //wrked on level 4 and 5(migh get rid of moon)
-
                                            let venusParent = SCNNode()
                                          let sun = SCNNode(geometry: SCNSphere(radius: 0.25))
         sun.geometry?.firstMaterial?.diffuse.contents = #imageLiteral(resourceName: "Sun diffuse")
@@ -1712,17 +1583,16 @@ var power = "banana"
                 earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                    earthParent.physicsBody?.isAffectedByGravity = false
 
-               //full updated version
-               sun.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                                                sun.physicsBody?.isAffectedByGravity = false
+               
+               
                
               // venusParent
                venusParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                          venusParent.physicsBody?.isAffectedByGravity = false
                    venusParent.position = SCNVector3(0,0,-1)
-             //   AR shooting Game
+                
                // venusParent.name = "earth"
-       //         earth.addChildNode(Shoonode)nnn
+       //         earth.addChildNode(Shoonode)
                //8328579
                earN = earthParent
                  earth.name = "earthQJ"
@@ -1733,8 +1603,6 @@ var power = "banana"
             moonParent.position = SCNVector3(1.2 ,0 , 0)
                earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                earth.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-        sun.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-                      sun.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                earthParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
@@ -1870,10 +1738,10 @@ var power = "banana"
                         
                         let JRotation = Rotation(time: 15)
                         let JRRotation = Rotation(time: 5)
-                        let VJRotation = Rotation(time: 25)
+                      //  let VJRotation = Rotation(time: 25)
                            let VRotation = Rotation(time: 6)
-                                   let venusParentRotation = XRotation(time: 20)
-                                   let earthRotation = Rotation(time: 30)
+                        //           let venusParentRotation = XRotation(time: 20)
+                      //             let earthRotation = Rotation(time: 30)
                                    let moonRotation = Rotation(time: 10)
                            // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
 //                        let sunAction = Rotation(time: 20)
@@ -1933,7 +1801,6 @@ var power = "banana"
                //Need message dont shoot moon.
                //if so planet and moon destroyed
         //Make ships move on dif speeds llke earlter
-
                                                let venusParent = SCNNode()
                                                 let venusParentSun = SCNNode()
         venusParentSun.position = SCNVector3(0,0,-1)
@@ -1945,7 +1812,7 @@ var power = "banana"
                
                    let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.8 ,0 , 0))
          let venus = planet(geometry: SCNSphere(radius: 0.1), diffuse: #imageLiteral(resourceName: "Venus Surface"), specular: nil, emission: #imageLiteral(resourceName: "Venus Atmosphere"), normal: nil, position: SCNVector3(0.5, 0, 0))
-                  let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
+              //    let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
                 //   venusParent
                     earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                        earth.physicsBody?.isAffectedByGravity = false
@@ -2214,25 +2081,24 @@ var power = "banana"
               
 
                                          let SecRotation = XRotation(time: 300)
-                        let SecRo = XRotation(time: 2)
-                                let JRRotation = Rotation(time: 5)
+               //         let SecRo = XRotation(time: 2)
+              //                  let JRRotation = Rotation(time: 5)
                                                                                          
                             let sunAction = Rotation(time: 29)
                           //let venusRotation = Rotation(time: 9)                               // complete level 9 JRotation = Rotation(time: 15)
-                    let sunActionS = Rotation(time: 12)
+             //       let sunActionS = Rotation(time: 12)
                                                                                          
                                                                                          
                     let sunActionVenus = Rotation(time: 30)
-                        let sunActionNep = Rotation(time: 13)
-                    let sunActionJ = Rotation(time: 11)
-                                                         let sunActionEar = Rotation(time: 12)
-                                let earthParentRotation = Rotation(time: 20)
-                                    let VRotation = Rotation(time: 15)
-                                    let venusParentRotation = XRotation(time: 30)
-                                    let earthRotation = Rotation(time: 30)
+            //            let sunActionNep = Rotation(time: 13)
+              //      let sunActionJ = Rotation(time: 11)
+                         //                                let sunActionEar = Rotation(time: 12)
+                //                let earthParentRotation = Rotation(time: 20)
+              //                      let VRotation = Rotation(time: 15)
+            //                        let earthRotation = Rotation(time: 30)
                                     let moonRotation = Rotation(time: 10)
                                 let venusRotation = Rotation(time: 9)
-                                let JupRotation = Rotation(time: 8)
+          //                      let JupRotation = Rotation(time: 8)
                                                                                            let JRotation = Rotation(time: 15)
            Shoonode.runAction(SecRotation)
                             
@@ -2482,7 +2348,6 @@ var power = "banana"
                                 //Jup
                               
                                                                  //ven
-
                                                                   VenShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                                                      VenShoonode.physicsBody?.isAffectedByGravity = false
                                                                 //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
@@ -2625,24 +2490,24 @@ var power = "banana"
   //let venusRotation = Rotation(time: 9)                               // complete level 9 JRotation = Rotation(time: 15)
                                                                           let SecRotation = XRotation(time: 300)
                                                                      let SecRo = XRotation(time: 2)
-                                                                 let JRRotation = Rotation(time: 5)
+                                                 //                let JRRotation = Rotation(time: 5)
                                                                 
                                                                              let sunAction = Rotation(time: 19)
                                 // complete level 9
-                                 let sunActionS = Rotation(time: 12)
+                          //       let sunActionS = Rotation(time: 12)
                                                                 
                                                           let sunActionVenus = Rotation(time: 30)
                                               //  let sunActionVenus = Rotation(time: 25)
-                                        let sunActionNep = Rotation(time: 13)
-                                    let sunActionJ = Rotation(time: 11)
-                                let sunActionEar = Rotation(time: 12)
-                                            let earthParentRotation = Rotation(time: 20)
-                                                                   let VRotation = Rotation(time: 15)
-                                                                           let venusParentRotation = XRotation(time: 30)
-                                                let earthRotation = Rotation(time: 30)
+                         //               let sunActionNep = Rotation(time: 13)
+                        //            let sunActionJ = Rotation(time: 11)
+                        //        let sunActionEar = Rotation(time: 12)
+                                //            let earthParentRotation = Rotation(time: 20)
+                                 //                                  let VRotation = Rotation(time: 15)
+                                   //                                        let venusParentRotation = XRotation(time: 30)
+                                 //               let earthRotation = Rotation(time: 30)
                                                                            let moonRotation = Rotation(time: 10)
                                                                  let venusRotation = Rotation(time: 9)
-                                                    let JupRotation = Rotation(time: 8)
+                             //                       let JupRotation = Rotation(time: 8)
                                                                   let JRotation = Rotation(time: 15)
                                                                    Shoonode.runAction(SecRotation)
                                                //                  //  ShoonodeSec.runAction(SecRotation)
@@ -2764,7 +2629,7 @@ var power = "banana"
                                                                          
                                                                              let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.8 ,0 , 0))
                                                                    let venus = planet(geometry: SCNSphere(radius: 0.1), diffuse: #imageLiteral(resourceName: "Venus Surface"), specular: nil, emission: #imageLiteral(resourceName: "Venus Atmosphere"), normal: nil, position: SCNVector3(0.5, 0, 0))
-                                                                            let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
+                                        //let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
                                                                           //   venusParent
                                                                               earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                                                                  earth.physicsBody?.isAffectedByGravity = false
@@ -3123,24 +2988,24 @@ var power = "banana"
 
                                                                                                    let SecRotation = XRotation(time: 300)
                                                                                   let SecRo = XRotation(time: 2)
-                                                                                          let JRRotation = Rotation(time: 5)
+                                                //let JRRotation = Rotation(time: 5)
                                                                                                                                                    
                                                                                       let sunAction = Rotation(time: 29)
                                                                                     //let venusRotation = Rotation(time: 9)                               // complete level 9 JRotation = Rotation(time: 15)
-                                                                              let sunActionS = Rotation(time: 12)
+                                            //let sunActionS = Rotation(time: 12)
                                                                                                                                                    
                                                                                                                                                    
                                                                               let sunActionVenus = Rotation(time: 30)
-                                                                                  let sunActionNep = Rotation(time: 13)
-                                                                              let sunActionJ = Rotation(time: 11)
-                                                                                                                   let sunActionEar = Rotation(time: 12)
-                                                                                          let earthParentRotation = Rotation(time: 20)
-                                                                                              let VRotation = Rotation(time: 15)
-                                                                                              let venusParentRotation = XRotation(time: 30)
-                                                                                              let earthRotation = Rotation(time: 30)
+                                        //let sunActionNep = Rotation(time: 13)
+                                    ///let sunActionJ = Rotation(time: 11)
+                                    //let sunActionEar = Rotation(time: 12)
+                                    //let earthParentRotation = Rotation(time: 20)
+                                    //let VRotation = Rotation(time: 15)
+                                    //let venusParentRotation = XRotation(time: 30)
+                                    //let earthRotation = Rotation(time: 30)
                                                                                               let moonRotation = Rotation(time: 10)
                                                                                           let venusRotation = Rotation(time: 9)
-                                                                                          let JupRotation = Rotation(time: 8)
+                                    //let JupRotation = Rotation(time: 8)
                                                                                                                                                      let JRotation = Rotation(time: 15)
                                                                      Shoonode.runAction(SecRotation)
                                                                                       
@@ -3373,7 +3238,7 @@ var power = "banana"
                                                                               
                                                                               
                                                                               //Ven
-                                                                              let SpaceShscenee = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                             //                                 let SpaceShscenee = SCNScene(named: "art.scnassets/SS1copy.scn")
                       //                                                                                                              VenShoonode = (SpaceShscenee?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                                                                                                                      //VenShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                                                                           //  ssShoonode.
@@ -3381,20 +3246,20 @@ var power = "banana"
                                                                                                             //second one
                                                   //                                                          var VenssShoonode = SCNNode()
                                                                               
-                                                                              let Spacehscenev = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                               //                               let Spacehscenev = SCNScene(named: "art.scnassets/SS1copy.scn")
                                                                                                                                   //VenssThShoonode = (Spacehscenev?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                                                                                                                    //VenssThShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                                                                           //VenssThShoonode.name = "shark"
                                                   //                                                                                                                              var VenssThShoonode = SCNNode()
                                                   //                                                                                                                              var VenFourthShoonode = SCNNode()
                                                                               
-                                                                                                            let Spacehscener = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                                                                            //let Spacehscener = SCNScene(named: "art.scnassets/SS1copy.scn")
                                                                                                                                     //VenssShoonode  = (Spacehscener?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                                                                                                                      //VenssShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                                                                             //VenssShoonode .name = "shark"
                                                                                                             // third one
                                                                                                             
-                                                                                                            let SpacehFscenea = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                                                                            //let SpacehFscenea = SCNScene(named: "art.scnassets/SS1copy.scn")
                                                                                                                                                        //VenFourthShoonode = (SpacehFscenea?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                                                                                                                                         //VenFourthShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                                                                                                //VenFourthShoonode.name = "shark"
@@ -3494,7 +3359,6 @@ var power = "banana"
                                           SaShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                   SaShoonode.name = "SS1copy.scn"
                                                           //nep
-
                                               let scenebn = SCNScene(named: "art.scnassets/missilecopy.scn")
                                   NepShoonode = (scenebn?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                   NepShoonode.scale = SCNVector3(0.02,0.02,0.02)
@@ -3574,7 +3438,6 @@ var power = "banana"
                                                       neptune.addChildNode(NepssThShoonode)
                                                           neptune.addChildNode(NepFourthShoonode)
                                               //Jupiter
-
 //                                             jupiter.addChildNode(JupShoonode)
 //                                             jupiter.addChildNode(JupssShoonode)
 //                                          jupiter.addChildNode(JupssThShoonode)
@@ -3712,25 +3575,25 @@ var power = "banana"
 
                                                                                         let SecRotation = XRotation(time: 300)
                                                                                    let SecRo = XRotation(time: 2)
-                                                                               let JRRotation = Rotation(time: 5)
+                                           //                                    let JRRotation = Rotation(time: 5)
                                                 //got nep working
                                                                               
                                                                                            let sunAction = Rotation(time: 19)
                                               // complete level 9
-                                               let sunActionS = Rotation(time: 12)
+                                    //           let sunActionS = Rotation(time: 12)
                                                                               
                                                                               
-                                                              let sunActionVenus = Rotation(time: 25)
+                                   //                           let sunActionVenus = Rotation(time: 25)
                                                       let sunActionSS = Rotation(time: 19)
-                                                  let sunActionJ = Rotation(time: 11)
-                                              let sunActionEar = Rotation(time: 12)
-                                                          let earthParentRotation = Rotation(time: 20)
-                                                                                 let VRotation = Rotation(time: 15)
-                                                                                         let venusParentRotation = XRotation(time: 30)
-                                                              let earthRotation = Rotation(time: 30)
-                                                                                         let moonRotation = Rotation(time: 10)
+                                //                  let sunActionJ = Rotation(time: 11)
+                                  //            let sunActionEar = Rotation(time: 12)
+                                            //              let earthParentRotation = Rotation(time: 20)
+                                        //                                         let VRotation = Rotation(time: 15)
+                                            //let venusParentRotation = XRotation(time: 30)
+                                                          //   let earthRotation = Rotation(time: 30)
+                                        let moonRotation = Rotation(time: 10)
                                                                                let venusRotation = Rotation(time: 9)
-                                                                  let JupRotation = Rotation(time: 8)
+                                               //                   let JupRotation = Rotation(time: 8)
                                                                                 let JRotation = Rotation(time: 5)
                                                                                  Shoonode.runAction(SecRotation)
                                                              //                  //  ShoonodeSec.runAction(SecRotation)
@@ -4005,7 +3868,7 @@ var power = "banana"
                                                         
                                                         
                                                         //Ven
-                                                        let SpaceShscenee = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                            //            let SpaceShscenee = SCNScene(named: "art.scnassets/SS1copy.scn")
 //                                                                                                              VenShoonode = (SpaceShscenee?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                                                                                                //VenShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                                                     //  ssShoonode.
@@ -4013,20 +3876,20 @@ var power = "banana"
                                                                                       //second one
                             //                                                          var VenssShoonode = SCNNode()
                                                         
-                                                        let Spacehscenev = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                            //            let Spacehscenev = SCNScene(named: "art.scnassets/SS1copy.scn")
                                                                                                             //VenssThShoonode = (Spacehscenev?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                                                                                              //VenssThShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                                                     //VenssThShoonode.name = "shark"
                             //                                                                                                                              var VenssThShoonode = SCNNode()
                             //                                                                                                                              var VenFourthShoonode = SCNNode()
                                                         
-                                                                                      let Spacehscener = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                              //                                        let Spacehscener = SCNScene(named: "art.scnassets/SS1copy.scn")
                                                                                                               //VenssShoonode  = (Spacehscener?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                                                                                                //VenssShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                                                       //VenssShoonode .name = "shark"
                                                                                       // third one
                                                                                       
-                                                                                      let SpacehFscenea = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                          //                                            let SpacehFscenea = SCNScene(named: "art.scnassets/SS1copy.scn")
                                                                                                                                  //VenFourthShoonode = (SpacehFscenea?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                                                                                                                   //VenFourthShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                                                                          //VenFourthShoonode.name = "shark"
@@ -4144,7 +4007,6 @@ var power = "banana"
                     SaShoonode.scale = SCNVector3(0.02,0.02,0.02)
                             SaShoonode.name = "SS1copy.scn"
                                     //nep
-
                         let scenebn = SCNScene(named: "art.scnassets/missilecopy.scn")
             NepShoonode = (scenebn?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
             NepShoonode.scale = SCNVector3(0.02,0.02,0.02)
@@ -4188,7 +4050,6 @@ var power = "banana"
                     JupFourthShoonode.physicsBody?.isAffectedByGravity = false
                         
                                                          //ven
-
 //                                                          VenShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
 //                                                                             VenShoonode.physicsBody?.isAffectedByGravity = false
 //                                                        //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
@@ -4251,7 +4112,6 @@ var power = "banana"
                                 neptune.addChildNode(NepssThShoonode)
                                     neptune.addChildNode(NepFourthShoonode)
                         //Jupiter
-
                        jupiter.addChildNode(JupShoonode)
                        jupiter.addChildNode(JupssShoonode)
                     jupiter.addChildNode(JupssThShoonode)
@@ -4437,21 +4297,21 @@ var power = "banana"
 
                                                                   let SecRotation = XRotation(time: 300)
                                                              let SecRo = XRotation(time: 2)
-                                                         let JRRotation = Rotation(time: 5)
+                                                    //     let JRRotation = Rotation(time: 5)
                                                         
                                                                      let sunAction = Rotation(time: 75)
                         // complete level 9
-                         let sunActionS = Rotation(time: 12)
+                      //   let sunActionS = Rotation(time: 12)
                                                         
                                                         
-                                        let sunActionVenus = Rotation(time: 25)
-                                let sunActionNep = Rotation(time: 13)
-                            let sunActionJ = Rotation(time: 11)
-                        let sunActionEar = Rotation(time: 12)
-                                    let earthParentRotation = Rotation(time: 20)
-                                                           let VRotation = Rotation(time: 15)
-                                                                   let venusParentRotation = XRotation(time: 30)
-                                        let earthRotation = Rotation(time: 30)
+                        //                let sunActionVenus = Rotation(time: 25)
+                      //          let sunActionNep = Rotation(time: 13)
+                     //       let sunActionJ = Rotation(time: 11)
+                   //     let sunActionEar = Rotation(time: 12)
+                              //      let earthParentRotation = Rotation(time: 20)
+                                     //                      let VRotation = Rotation(time: 15)
+                                             //                      let venusParentRotation = XRotation(time: 30)
+                              //          let earthRotation = Rotation(time: 30)
                                                                    let moonRotation = Rotation(time: 10)
                                                          let venusRotation = Rotation(time: 9)
                                             let JupRotation = Rotation(time: 8)
@@ -4629,7 +4489,6 @@ SaturnParent.addChildNode(SassThShoonode)
                //Need message dont shoot moon.
                //if so planet and moon destroyed
         //Make ships move on dif speeds llke earlter
-
                                                let venusParent = SCNNode()
                                              let sun = SCNNode(geometry: SCNSphere(radius: 0.25))
             sun.geometry?.firstMaterial?.diffuse.contents = #imageLiteral(resourceName: "Sun diffuse")
@@ -4640,7 +4499,7 @@ SaturnParent.addChildNode(SassThShoonode)
                    let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
          let venus = planet(geometry: SCNSphere(radius: 0.1), diffuse: #imageLiteral(resourceName: "Venus Surface"), specular: nil, emission: #imageLiteral(resourceName: "Venus Atmosphere"), normal: nil, position: SCNVector3(0.7, 0, 0))
                   let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
-        let saturnRing = createRing(ringSize: 1.2)
+    //    let saturnRing = createRing(ringSize: 1.2)
                let saturn = createPlanet(radius: 0.03, image: "saturn")
                saturn.name = "saturn"
                saturn.position = SCNVector3(x:1.2 , y: 0, z: 0)
@@ -4810,8 +4669,8 @@ SaturnParent.addChildNode(SassThShoonode)
                                          let sunAction = Rotation(time: 20)
                                        let earthParentRotation = Rotation(time: 20)
                                let VRotation = Rotation(time: 6)
-                                       let venusParentRotation = XRotation(time: 30)
-                                       let earthRotation = Rotation(time: 30)
+                                   //    let venusParentRotation = XRotation(time: 30)
+                                   //    let earthRotation = Rotation(time: 30)
                                        let moonRotation = Rotation(time: 10)
                              let venusRotation = Rotation(time: 8)
                            
@@ -4853,7 +4712,7 @@ SaturnParent.addChildNode(SassThShoonode)
                            }
                        }
     
-    
+     var venusParent = SCNNode()
     func addGGTargetNodes(){
             //2nd phase
             //when points get to a certain point like 40 means 1 left and 37 means 2 may be left
@@ -4867,9 +4726,8 @@ SaturnParent.addChildNode(SassThShoonode)
             //make blue lke small ships so it be so easy and more black and white
             //reward coins
             //add new level. (next one blue ships but a lil faster)
-
-                                        let venusParent = SCNNode()
-                                      let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
+    
+                          //  let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
               let earthParent = SCNNode()
             let earth =  SCNNode(geometry: SCNSphere(radius: 0.15))
          //   venusParent
@@ -5035,8 +4893,8 @@ SaturnParent.addChildNode(SassThShoonode)
                                   let sunAction = Rotation(time: 20)
                                 let earthParentRotation = Rotation(time: 10)
                         let VRotation = Rotation(time: 6)
-                                let venusParentRotation = XRotation(time: 20)
-                                let earthRotation = Rotation(time: 20)
+                              //  let venusParentRotation = XRotation(time: 20)
+                            //    let earthRotation = Rotation(time: 20)
                                 let moonRotation = Rotation(time: 5)
                         // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                           //  make big ships spin as it Rotate
@@ -5096,7 +4954,7 @@ SaturnParent.addChildNode(SassThShoonode)
 //        // Present an error message to the user
 //
 //    }
-    
+//
     
    func SecaddTargetNodes(){
             
@@ -5105,9 +4963,8 @@ SaturnParent.addChildNode(SassThShoonode)
             //kill certain ship and certain amount of points
             //when time run out
             //next take code from here appl to brd version
-
                                         let venusParent = SCNNode()
-                                      let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
+                                  //    let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
               let earthParent = SCNNode()
             let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
          //   venusParent
@@ -5295,8 +5152,8 @@ SaturnParent.addChildNode(SassThShoonode)
                                   let sunAction = Rotation(time: 15)
                                 let earthParentRotation = Rotation(time: 10)
                         let VRotation = Rotation(time: 9)
-                                let venusParentRotation = XRotation(time: 20)
-                                let earthRotation = Rotation(time: 20)
+                             //   let venusParentRotation = XRotation(time: 20)
+                            //    let earthRotation = Rotation(time: 20)
                                 let moonRotation = Rotation(time: 5)
                         // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                           //  make big ships spin as it Rotate
@@ -5341,9 +5198,8 @@ SaturnParent.addChildNode(SassThShoonode)
                //kill certain ship and certain amount of points
                //when time run out
                //next take code from here appl to brd version
-
                                            let venusParent = SCNNode()
-                                         let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
+                                //         let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
                  let earthParent = SCNNode()
                let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
             //   venusParent
@@ -5545,8 +5401,8 @@ SaturnParent.addChildNode(SassThShoonode)
                                      let sunAction = Rotation(time: 6)
                                    let earthParentRotation = Rotation(time: 8)
                            let VRotation = Rotation(time: 6)
-                                   let venusParentRotation = XRotation(time: 20)
-                                   let earthRotation = Rotation(time: 20)
+                          //         let venusParentRotation = XRotation(time: 20)
+                              //     let earthRotation = Rotation(time: 20)
                                    let moonRotation = Rotation(time: 5)
                            // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                              //  make big ships spin as it Rotate
@@ -5585,15 +5441,15 @@ SaturnParent.addChildNode(SassThShoonode)
     }
     
     
-//    func sessionWasInterrupted(_ session: ARSession) {
-//        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-//
-//    }
-//
-//    func sessionInterruptionEnded(_ session: ARSession) {
-//        // Reset tracking and/or remove existing anchors if consistent tracking is required
-//
-//    }
+    func sessionWasInterrupted(_ session: ARSession) {
+        // Inform the user that the session has been interrupted, for example, by presenting an overlay
+        
+    }
+    
+    func sessionInterruptionEnded(_ session: ARSession) {
+        // Reset tracking and/or remove existing anchors if consistent tracking is required
+        
+    }
     
     
     
@@ -5696,7 +5552,7 @@ SaturnParent.addChildNode(SassThShoonode)
                 }
                     
                 else if (contact.nodeA.name! == "shark" || contact.nodeB.name! == "shark"){
-                    if let Jes = self.sceneView.scene.rootNode.childNode(withName: "shark", recursively: true) {
+                    if let _ = self.sceneView.scene.rootNode.childNode(withName: "shark", recursively: true) {
                         
                         self.Coins+=1
                         self.scoreL+=2
@@ -5723,7 +5579,6 @@ SaturnParent.addChildNode(SassThShoonode)
                 
                 self.scoreLabel.text = String(self.scoreL)
                 //added dope fireball
-
             }
             let  explosion = SCNParticleSystem(named: "fire", inDirectory: nil)
             
@@ -5825,202 +5680,44 @@ extension Int {
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
-	return input.rawValue
+    return input.rawValue
 }
 
 extension ViewController: FBInterstitialAdDelegate {
     func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
-        //self.sceneView.isHidden = true
-       // SwiftSpinner.show("Loading...")
-         DispatchQueue.main.async { 
-        if let inter = self.interstitial {
-            if interstitialAd.isAdValid {
-//                 self.sceneView.isHidden = false
-//                            SwiftSpinner.hide()
-                self.stopBackgroundMus()
-                self.sceneView.isHidden = false
-                SwiftSpinner.hide()
-             
-                }
-             DispatchQueue.main.async {
-               inter.show(fromRootViewController: self)
-            }
-            }
-        }
-        //added loading to ad and in app.. also fix bug about perm..
-        //can change loading to not hide screen
-        //added code to cancel button
-        //add proper code to tappCross
-//         SwiftSpinner.show("Loading...")
-//        self.sceneView.isHidden = true
-////        self.sceneView.isHidden = false
-////                                   SwiftSpinner.hide()
-//        DispatchQueue.main.async {
-//            SwiftSpinner.show("Connecting to AR Camera...")
-//        }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-//            self.sceneView.isHidden = false
-//            SwiftSpinner.hide()
-//            self.play()
-//        }
-        
-        //when planet is hit and show ads music is stop and start back! keep from running out
-        //when planet is hit and show ads reload and reset time
-        //level 5 music play
-        //fix homescreen issue after moon hit
-        //leaderboard nice
-        //made horizontal...phone shouldnt streech
-        //get rid of pic
-        //need restart score
-        //pause button
-        
-        //**NEED**
-        //check capatibity on phone
-        //perfect levels and waves
-        //need finish "beat level"(best scr and coins rewarded, and current )
-        //pop up need more coins can use same pop up
-        //in app purchase in homescreen (and coin button (dont have enough time))
-        //check constraints (in progreess)
-        
-        //need more consitent time
-        //if sun hit lost
-        //change name
-        
-        
-        
+        print("Ads loaded")
     }
-    func interstitialAdWillLogImpression(_ interstitialAd: FBInterstitialAd) {
-//               self.sceneView.isHidden = false
-//                                                      SwiftSpinner.hide()
-        print("user sees the add")
-//        stopBackgroundMus()
-    }
-    func interstitialAdDidClick(_ interstitialAd: FBInterstitialAd) {
-        print("The user clicked on the ad and will be taken to its destination")
-    }
+  
     func interstitialAdWillClose(_ interstitialAd: FBInterstitialAd) {
-        print("The user clicked on the close button, the ad is just about to close")
+        InterstitialAd()
     }
     func interstitialAdDidClose(_ interstitialAd: FBInterstitialAd) {
-        print("Interstitial had been closed")
-        let arrrrr = self.scoreL
-                         let defaultsJB = UserDefaults.standard
-                         defaultsJB.set(arrrrr, forKey: "scoreL")
-      //  let defaults = UserDefaults.standard
-        defaultsJB.set(self.Coins, forKey: "Coins")
-                        self.ReportScore(with: arrrrr)
-        if isPlanetHit{
-                  DispatchQueue.main.async {
-                        let configuration = ARWorldTrackingConfiguration()
-                              self.sceneView.session.run(configuration)
-                          self.shouldShowBestScoreContainerView(state: false)
-                       //   self.Coins = 0
-                          //D
-                             
-                         self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                             node.removeFromParentNode()
-                         }
-                       // self.viewDidLoad()
-            //        self.play()
-                    self.resetTimer(time: 30)
-                                                            self.runTimer()
-                    self.play()
-                    self.PoP = false
-                         //  self.resetTimer(time: 30)
-                          // self.runTimer()
-                    }
-            
-        } else {
-            let arrrrr = self.scoreL
-                             let defaultsJB = UserDefaults.standard
-                             defaultsJB.set(arrrrr, forKey: "scoreL")
-            defaultsJB.set(self.Coins, forKey: "Coins")
+             print("Interstitial had been closed")
+       self.sceneView.isHidden = false
+                       SwiftSpinner.hide()
+             arrrrr = self.scoreL
+                           
+                             defaultss.set(arrrrr, forKey: "scoreL")
+            defaultss.set(self.Coins, forKey: "Coins")
                             self.ReportScore(with: arrrrr)
-        //will need boolean to tell us to restart(planet hit) or continue(this)
-         DispatchQueue.main.async {
-            let configuration = ARWorldTrackingConfiguration()
-                  self.sceneView.session.run(configuration)
-              self.shouldShowBestScoreContainerView(state: false)
-            //  self.Coins = 0 j
-              //D
-                 
-//              self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-//                  node.removeFromParentNode()
-//              }
-           // self.viewDidLoad()
-//        self.play()
-            self.playBackgroundMusic()
-               self.resetTimer(time: 30)
-               self.runTimer()
+       
+            self.shouldShowBestScoreContainerView(state: false)
+           self.resetTimer(time: 30)
+            self.runTimer()
             self.PoP = false
-        }
-            
-        }
-//        self.play()
-//        self.resetTimer(time: 30)
-//        self.runTimer()
-        isPlanetHit = false
+            if isPlanetHit{
+                    DispatchQueue.main.async {
+                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                    node.removeFromParentNode()
+                        }
+                        self.play()
+                    }
+            } else {
+              DispatchQueue.main.async {
+               // self.playBackgroundMusic()
+            }
+        
+            }
+            isPlanetHit = false
     }
-}
-
-/*extension ViewController: GADInterstitialDelegate {
-    /// Tells the delegate an ad request succeeded.
-    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-      print("interstitialDidReceiveAd")
-        if let inter = self.interstitial {
-            inter.present(fromRootViewController: self)
-        }
-    }
-
-    /// Tells the delegate an ad request failed.
-    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
-      print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
-    }
-
-    /// Tells the delegate that an interstitial will be presented.
-    func interstitialWillPresentScreen(_ ad: GADInterstitial) {
-      print("interstitialWillPresentScreen")
-    }
-
-    /// Tells the delegate the interstitial is to be animated off the screen.
-    func interstitialWillDismissScreen(_ ad: GADInterstitial) {
-      print("interstitialWillDismissScreen")
-    }
-
-    /// Tells the delegate the interstitial had been animated off the screen.
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        print("interstitialDidDismissScreen")
-        self.shouldShowBestScoreContainerView(state: false)
-        self.Coins = 0
-        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-            node.removeFromParentNode()
-        }
-        self.play()
-        self.resetTimer(time: 30)
-        self.runTimer()
-    }
-
-    /// Tells the delegate that a user click will open another app
-    /// (such as the App Store), backgrounding the current app.
-    func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
-      print("interstitialWillLeaveApplication")
-    }
-}*/
-extension ViewController: ARSKViewDelegate {
-//  func session(_ session: ARSession,
-//               didFailWithError error: Error) {
-//    print("\(error.localizedDescription)")
-//}
-//
-func sessionWasInterrupted(_ session: ARSession) {
-  print("Session interrupted")
-}
-  
-func sessionInterruptionEnded(_ session: ARSession) {
-  print("Session resumed")
-    //dispa
-  sceneView.session.run(session.configuration!,
-                        options: [.resetTracking,
-                                  .removeExistingAnchors])
- }
 }
