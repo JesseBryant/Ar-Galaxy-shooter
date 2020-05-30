@@ -1163,11 +1163,12 @@ var power = "banana"
       //  let frame = self.sceneView.session.currentFrame
       //  let frame = self.sceneView.
         // let mat = SCNMatrix4(frame.camera.transform)
-                for index in 0...6 {
+                for index in 0...2 {
                     autoreleasepool {
                     //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
                     //make node array empty in the end of the game func
                     //decent increase number of ships still seem a bit easy but that might be fine
+                        //waves look better for first 4 levels
                     var Shoonode = SCNNode()
                     //make it to where it dont kill so many
                 //var ShoonodeSec = SCNNode()
@@ -1198,7 +1199,7 @@ var power = "banana"
 
                         let moonParent = SCNNode()
       
-                   if (index > 1) && (index % 3 == 0) {
+                   if (index > 1) && (index % 2 == 0) {
                     //this good for a level 2.. speed of red shps and white hard to finish in 30 sec
                    // red
 //                                  let scene = SCNScene(named: "art.scnassets/spaceARcopy.scn")
@@ -1251,16 +1252,28 @@ var power = "banana"
                     EarGroupNodeArray.append(earth)
                     EarGroupNodeArray.append(earthParent)
 
-                    Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                       
-                    
-                    //changed this one!!!
-                    ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.9))
-                    
-                    
-           
-                    ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
-                     FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                     Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
+                                                                 
+                                                              
+                                                              //changed this one!!!
+                    ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.8))
+                                                              
+                                                              
+                                                     
+                    ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+                    FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.7))
+                                                              
+                                                              
+                                                           Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
+                                                                                                                      
+                                                                                                                   
+                                                                                                                   //changed this one!!!
+                                                                       ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.9))
+                                                                                                                   
+                                                                                                                   
+                                                                                                          
+                                                                       ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                                                                           FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
                     
                     
 
@@ -1298,7 +1311,7 @@ var power = "banana"
                     let VRotation = Rotation(time: 6)
                           //  let venusParentRotation = XRotation(time: 20)
                          //   let earthRotation = Rotation(time: 20)
-                            let moonRotation = Rotation(time: 5)
+                            let moonRotation = Rotation(time: 6)
                     // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                       //  make big ships spin as it Rotate
                     Shoonode.runAction(SecRo)
@@ -1387,7 +1400,7 @@ var power = "banana"
           //  let frame = self.sceneView.session.currentFrame
           //  let frame = self.sceneView.
             // let mat = SCNMatrix4(frame.camera.transform)
-                    for index in 0...6 {
+                    for index in 0...3 {
                         autoreleasepool {
                         //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
                         //make node array empty in the end of the game func
@@ -1422,7 +1435,7 @@ var power = "banana"
 
                            // let moonParent = SCNNode()
           
-                       if (index > 1) && (index % 3 == 0) {
+                       if (index > 1) && (index % 1 == 0) {
                         //this good for a level 2.. speed of red shps and white hard to finish in 30 sec
                        // red
     //                                  let scene = SCNScene(named: "art.scnassets/spaceARcopy.scn")
@@ -1479,17 +1492,26 @@ var power = "banana"
                         EarGroupNodeArray.append(earth)
                         EarGroupNodeArray.append(earthParent)
 
-                Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                                             
-                                          
-                                          //changed this one!!!
-                                          ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.9))
-                                          
-                                          
-                                 
-                                          ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
-                                           FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
-                        
+//                Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+//
+//
+//                                          //changed this one!!!
+//                                          ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.9))
+//
+//
+//
+//                                          ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+//                                           FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                        Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
+                                                                                                                             
+                                                                                                                          
+                                                                                                                          //changed this one!!!
+                                                                              ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.9))
+                                                                                                                          
+                                                                                                                          
+                                                                                                                 
+                                                                              ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                                                                                  FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
                         
 
                                moonParent.position = SCNVector3(0 ,0 , -1)
@@ -5002,7 +5024,7 @@ SaturnParent.addChildNode(SassThShoonode)
           //  let frame = self.sceneView.session.currentFrame
           //  let frame = self.sceneView.
             // let mat = SCNMatrix4(frame.camera.transform)
-                    for index in 0...6 {
+                    for index in 0...3 {
                         autoreleasepool {
                         //first two levels solid
                         //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
@@ -5044,7 +5066,7 @@ SaturnParent.addChildNode(SassThShoonode)
     //                    name.removeAll()
                             let moonParent = SCNNode()
           
-                       if (index > 1) && (index % 3 == 0) {
+                       if (index > 1) && (index % 1 == 0) {
                        // red
                                          let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                         Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
@@ -5101,16 +5123,16 @@ SaturnParent.addChildNode(SassThShoonode)
     //                     Shoonode.addChildNode(b)
     //                    Shoonode.addChildNode(c)
                     //      ShoonodeSec.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5)) -0.8, max: 0.3
-     Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
-                                                 
-                                              
-                                              //changed this one!!!
-    ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.8))
-                                              
-                                              
-                                     
-    ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-    FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.7))
+//     Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
+//
+//
+//                                              //changed this one!!!
+//    ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.8))
+//
+//
+//
+//    ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+//    FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.7))
                                               
                                               
                                            Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
@@ -5282,7 +5304,7 @@ SaturnParent.addChildNode(SassThShoonode)
        //                    name.removeAll()
                                let moonParent = SCNNode()
              
-                          if (index > 1) && (index % 3 == 0) {
+                          if (index > 1) && (index % 2 == 0) {
                             
                         
                           // red
@@ -5340,33 +5362,43 @@ SaturnParent.addChildNode(SassThShoonode)
        //                     Shoonode.addChildNode(b)
        //                    Shoonode.addChildNode(c)
                        //      ShoonodeSec.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5)) -0.8, max: 0.3
-                           Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
-                              
-                           
-                           //changed this one!!!
-                           ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.8))
-                           
-                           
-                  
-                           ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                            FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.7))
-                           
-                           
-                        Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
-                                                                                   
-                                                                                
-                                                                                //changed this one!!!
-                                    ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.9))
-                                                                                
-                                                                                
-                                                                       
-                                    ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
-                                        FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
-                                                                                   
+//                           Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
+//
+//
+//                           //changed this one!!!
+//                           ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.8))
+//
+//
+//
+//                           ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
+//                            FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.7))
+//
+//
+//                        Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
+//
+//
+//                                                                                //changed this one!!!
+//                                    ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.9))
+//
+//
+//
+//                                    ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+//                                        FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+//
                                         //new Jup
                                                                                        
                                                                                                        
                                                                                                        //changed this one!!!
+                            Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
+                                                                                                                                 
+                                                                                                                              
+                                                                                                                              //changed this one!!!
+                                                                                  ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.9))
+                                                                                                                              
+                                                                                                                              
+                                                                                                                     
+                                                                                  ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                                                                                      FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
                                           
                         
                         
@@ -5410,6 +5442,7 @@ SaturnParent.addChildNode(SassThShoonode)
                                    let moonRotation = Rotation(time: 5)
                            // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                              //  make big ships spin as it Rotate
+                            
                            Shoonode.runAction(SecRotation)
        //                  //  ShoonodeSec.runAction(SecRotation)
                           ssShoonode.runAction(SecRotation)
