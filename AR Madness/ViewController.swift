@@ -117,6 +117,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     @IBOutlet weak var r: UIButton!
     var trackerNode: SCNNode?
     var foundSurface = false
+    var AdsLoaded = false
     var tracking = true
     let defaultss = UserDefaults.standard
     var arrrrr : Int = 0
@@ -226,9 +227,11 @@ var power = "banana"
                //   self.sceneView.isHidden = true
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+           // if self.AdsLoaded{
             self.sceneView.isHidden = false
             SwiftSpinner.hide()
             self.play()
+           // }
         }
         
         self.sceneView.delegate = self
@@ -526,10 +529,15 @@ var power = "banana"
     }
     @IBAction func didTapInterestial() {
          PoP = true
-        self.stopBackgroundMus()
-        interstitial.show(fromRootViewController: self)
+//        self.stopBackgroundMus()
+//        interstitial.show(fromRootViewController: self)
+        
         DispatchQueue.main.async {
-    
+    //interstitial.show(fromRootViewController: self)
+            
+            self.stopBackgroundMus()
+            
+            self.interstitial.show(fromRootViewController: self)
         self.shouldShowBestScoreContainerView(state: false)
              self.sceneView.isHidden = true
              SwiftSpinner.show("Loading...")
@@ -1999,7 +2007,7 @@ var power = "banana"
                                                  VenShoonode.physicsBody?.isAffectedByGravity = false
                             //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                  //ShoonodeSec.physicsBody?.isAffectedByGravity = false
-                              VenShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                            //  VenShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                                     //Shoonode.physicsBody?.isAffectedByGravity = false
                                                  VenssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                                    VenssShoonode.physicsBody?.isAffectedByGravity = false
@@ -2711,7 +2719,7 @@ var power = "banana"
                                                                            //  let frame = self.sceneView.session.currentFrame
                                                                            //  let frame = self.sceneView.
                                                                              // let mat = SCNMatrix4(frame.camera.transform)
-                                                                                     for index in 0...3 {
+                                                                                     for index in 0...2 {
                                                                                         
                                                                                          var Shoonode = SCNNode()
                                                                                  
@@ -2816,7 +2824,7 @@ var power = "banana"
 
                                                                                              let moonParent = SCNNode()
                                                                            
-                                                                                        if (index > 1) && (index % 3 == 0) {
+                                                                                        if (index > 1) && (index % 2 == 0) {
                                                                                     
                                                                                          
                                                                                          
@@ -2845,12 +2853,12 @@ var power = "banana"
                                                                                           
                                                                                           let scenee = SCNScene(named: "art.scnassets/missilecopy.scn")
                                                                                                                                                        VenShoonode = (scenee?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
-                                                                                                                                                        VenShoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                                                                                                                        VenShoonode.name = "SS1copy.scn"
+        VenShoonode.scale = SCNVector3(0.03,0.03,0.03)
+                VenShoonode.name = "SS1copy.scn"
                                                                                                    }
-                                                        let sceneb = SCNScene(named: "art.scnassets/missilecopy.scn")
+    let sceneb = SCNScene(named: "art.scnassets/missilecopy.scn")
                                                                                                            SaShoonode = (sceneb?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
-                                                                                                           SaShoonode.scale = SCNVector3(0.02,0.02,0.02)
+            SaShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                                                                                    SaShoonode.name = "SS1copy.scn"
                                                                                         
                                                                                          Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
@@ -3019,7 +3027,9 @@ var power = "banana"
                                                                                                    let SecRotation = XRotation(time: 300)
                                                                                   let SecRo = XRotation(time: 2)
                                                 //let JRRotation = Rotation(time: 5)
-                                                                                                                                                   
+                                                                                                                                  let GreenSecRo = XRotation(time: 4)
+                                                                                                                                                                 let JRRotation = Rotation(time: 5)
+                                                                                        
                                                                                       let sunAction = Rotation(time: 29)
                                                                                     //let venusRotation = Rotation(time: 9)                               // complete level 9 JRotation = Rotation(time: 15)
                                             //let sunActionS = Rotation(time: 12)
@@ -3037,31 +3047,31 @@ var power = "banana"
                                                                                           let venusRotation = Rotation(time: 9)
                                     //let JupRotation = Rotation(time: 8)
                                                                                                                                                      let JRotation = Rotation(time: 15)
-                                                                     Shoonode.runAction(SecRotation)
+                                                                     Shoonode.runAction(GreenSecRo)
                                                                                       
                                                                                                                       //                  //  ShoonodeSec.runAction(SecRotation)
                                                                                         //Sa
-                                                                                                                                           SaShoonode.runAction(SecRotation)
+                                                                                                                                           SaShoonode.runAction(GreenSecRo)
                                                                                                                                                                                 //                  //  ShoonodeSec.runAction(SecRotation)
-                                                                                                                                                                                                   SAssShoonode.runAction(SecRotation)
+                                                                                                                                                                                                   SAssShoonode.runAction(GreenSecRo)
                                                                                                                                                                                                  
                                                                                                                                                                                 //                    //FourthShoonode
-                                                                                                                                                                                                   SassThShoonode.runAction(SecRo)
-                                                                                                                                                                                                    SaFourthShoonode.runAction(SecRotation)
-                                                                      ssShoonode.runAction(SecRotation)
+                                                                                                                                                                                                   SassThShoonode.runAction(GreenSecRo)
+                                                                                                                                                                                                    SaFourthShoonode.runAction(GreenSecRo)
+                                                                      ssShoonode.runAction(GreenSecRo)
                                                                                                                                     
                                                                                                                       //                    //FourthShoonode
-                                                                      ssThShoonode.runAction(SecRotation)
-                                                                                                  FourthShoonode.runAction(SecRotation)
+                                                                      ssThShoonode.runAction(GreenSecRo)
+                                                                                                  FourthShoonode.runAction(GreenSecRo)
                                                                                          venusParentSun.runAction(sunActionVenus)
                                                                                       //Ven added
-                                                                                      VenShoonode.runAction(SecRotation)
+                                                                                      VenShoonode.runAction(GreenSecRo)
                                                                                                                                                //                  //  ShoonodeSec.runAction(SecRotation)
-                                                                                                  VenssShoonode.runAction(SecRotation)
+                                                                                                  VenssShoonode.runAction(GreenSecRo)
                                                                                        
                                                                                                                                                //                    //FourthShoonode
-                                                                                          VenssThShoonode.runAction(SecRotation)
-                                                                                      VenFourthShoonode.runAction(SecRotation)
+                                                                                          VenssThShoonode.runAction(GreenSecRo)
+                                                                                      VenFourthShoonode.runAction(GreenSecRo)
                                                                                       
                                                                                       
                                                                      //                        ssThShoonode
@@ -3069,12 +3079,12 @@ var power = "banana"
                                                                                                 venusParent.runAction(JRotation)
                                                                               
                                                                                                 moonParent.runAction(moonRotation)
-                                                                                               venus.runAction(venusRotation)
+                                                                                               venus.runAction(JRRotation)
                                                                                                  //venusParent.addChildNode(venus)
                                                                                               
                                                                                       //stable rotations
                                                                                       sun.runAction(sunAction)
-                                                                                        earth.runAction(venusRotation)
+                                                                                        earth.runAction(JRRotation)
                                                                                       //figured out how distribute ships will have to create more Shoonodes
                                                                                       //can be elaborate with given planets diff rotations since its
                                                                                       sun.addChildNode(earth)
@@ -3096,10 +3106,13 @@ var power = "banana"
                                                                                                                     venus.addChildNode(VenssThShoonode)
                                                                                                                     venus.addChildNode(VenFourthShoonode)
                                                                                              SaturnParentSun.runAction(sunAction)
-                                                                                                                SaturnParent.runAction(JRotation)
+                                                                                                                SaturnParent.runAction(JRRotation)
                                                                                                                 SaturnParentSun.addChildNode(SaturnParent)
                                                                                                             SaturnParentSun.addChildNode(saturn)
-                                                                                                        saturn.addChildNode(saturnRing)
+                                                                                        
+                                                                      saturn.runAction(JRRotation)
+                                                                                        //saturn.runAction(JRRotation)
+                                                                                        saturn.addChildNode(saturnRing)
                                                                                                         saturn.addChildNode(SAssShoonode)
                                                                                                     SaturnParent.addChildNode(SaShoonode)
                                                                                                                                                                                                     //  ssThShoonode.addChildNode(ssShoonode)
@@ -3188,7 +3201,7 @@ var power = "banana"
                                                                      //8328579
                                                                      earN = earthParent
                                                                        earth.name = "earthQJ"
-                                                                      earthParent.name = "earthParent"
+                                                                      earthParent.name = "earthQJ"
                                                           //where the relationships between earth and earthParent
                               //perfect distance of planets
                               earth.position = SCNVector3(1.8,0,0)
@@ -3211,7 +3224,7 @@ var power = "banana"
                       //                      venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                       //                          venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                                                             
-                                            for index in 0...3 {
+                                            for index in 0...1 {
                                                 autoreleasepool {
                                                               //ear***
                                                     var Shoonode = SCNNode()
@@ -3337,7 +3350,7 @@ var power = "banana"
 
                                                                                      let moonParent = SCNNode()
                                                                    
-                                                                                if (index > 1) && (index % 3 == 0) {
+                                                                                if (index > 1) && (index % 1 == 0) {
                                                                             
                                                                                  
                                                                                  //ear
@@ -3611,10 +3624,14 @@ var power = "banana"
                                                                                            let sunAction = Rotation(time: 19)
                                               // complete level 9
                                     //           let sunActionS = Rotation(time: 12)
-                                                                              
+                                                                       
+                                                    
+                                                    
+                                                    let GreenSecRo = XRotation(time: 4)
+                                                    let JRRotation = Rotation(time: 5)
                                                                               
                                    //                           let sunActionVenus = Rotation(time: 25)
-                                                      let sunActionSS = Rotation(time: 19)
+                                                      let sunActionSS = Rotation(time: 23)
                                 //                  let sunActionJ = Rotation(time: 11)
                                   //            let sunActionEar = Rotation(time: 12)
                                             //              let earthParentRotation = Rotation(time: 20)
@@ -3625,30 +3642,30 @@ var power = "banana"
                                                                                let venusRotation = Rotation(time: 9)
                                                //                   let JupRotation = Rotation(time: 8)
                                                                                 let JRotation = Rotation(time: 5)
-                                                                                 Shoonode.runAction(SecRotation)
+                                                                                 Shoonode.runAction(GreenSecRo)
                                                              //                  //  ShoonodeSec.runAction(SecRotation)
-                                                                                ssShoonode.runAction(SecRotation)
+                                                                                ssShoonode.runAction(GreenSecRo)
                                                                            
                                                              //                    //FourthShoonode
-                                                                                ssThShoonode.runAction(SecRo)
-                                                                                 FourthShoonode.runAction(SecRotation)
+                                                                                ssThShoonode.runAction(GreenSecRo)
+                                                                                 FourthShoonode.runAction(GreenSecRo)
                                                                                     
                
-                                                                                NepShoonode.runAction(SecRotation)
+                                                                                NepShoonode.runAction(GreenSecRo)
                                                                                                           //                  //  ShoonodeSec.runAction(SecRotation)
-                                                                                                                              NepssShoonode.runAction(SecRotation)
+                                                                                                                              NepssShoonode.runAction(GreenSecRo)
                                                                                                                         
                                                                                                           //                    //FourthShoonode
-                                                                                                                              NepssThShoonode.runAction(SecRo)
-                                                                                                                               NepFourthShoonode.runAction(SecRotation)
+                                                                                                                              NepssThShoonode.runAction(GreenSecRo)
+                                                                                                                               NepFourthShoonode.runAction(GreenSecRo)
                                                                                //Sa
-                                                                               SaShoonode.runAction(SecRotation)
+                                                                               SaShoonode.runAction(GreenSecRo)
                                                                                                                     //                  //  ShoonodeSec.runAction(SecRotation)
-                                                                                                                                       SAssShoonode.runAction(SecRotation)
+                                                                                                                                       SAssShoonode.runAction(GreenSecRo)
                                                                                                                                      
                                                                                                                     //                    //FourthShoonode
-                                                                                                                                       SassThShoonode.runAction(SecRo)
-                                                                                                                                        SaFourthShoonode.runAction(SecRotation)
+                                                                                                                                       SassThShoonode.runAction(GreenSecRo)
+                                                                                                                                        SaFourthShoonode.runAction(GreenSecRo)
                                                                               
                                                                               
                                                              //                        ssThShoonode
@@ -3657,7 +3674,8 @@ var power = "banana"
                                                                                                                    //SaturnParentSun.runAction(sunAction)
                                               
                                               SaturnParentSun.runAction(sunActionSS)
-                                              SaturnParent.runAction(JRotation)
+                                              SaturnParent.runAction(JRRotation)
+                                                     saturn.runAction(JRRotation)
                                               SaturnParentSun.addChildNode(SaturnParent)
                                           SaturnParentSun.addChildNode(saturn)
                                       saturn.addChildNode(saturnRing)
@@ -3668,17 +3686,17 @@ var power = "banana"
                           SaturnParent.addChildNode(SaFourthShoonode)
                                               
                                                                                 neptuneParentSun.runAction(sunAction)
-                                                                                        earthParent.runAction(JRotation)
-                                                                                      neptuneParent.runAction(JRotation)
+                                                                                        earthParent.runAction(JRRotation)
+                                                                                      neptuneParent.runAction(JRRotation)
                                                                               //JupitarParent.runAction(JRotation)
-                                                                                SaturnParent.runAction(JRotation)
-                                                                                        venusParent.runAction(JRotation)
+                                                                                SaturnParent.runAction(JRRotation)
+                                                                                        venusParent.runAction(JRRotation)
                                                                                         moonParent.runAction(moonRotation)
                                                                                        //venus.runAction(venusRotation)
-                                                                            neptune.runAction(venusRotation)
+                                                                            neptune.runAction(JRRotation)
                                                                               //jupiter.runAction(JupRotation)
                                                                                          //venusParent.addChildNode(venus)
-                                                                                        earth.runAction(sunAction)
+                                                                                        earth.runAction(JRRotation)
                                                                               sun.runAction(sunAction)
                                                                                 neptune.addChildNode(neptuneRing)
                                                                                 neptuneParentSun.addChildNode(neptuneParent)
@@ -3818,7 +3836,7 @@ var power = "banana"
                                                //8328579
                                                earN = earthParent
                                                  earth.name = "earthQJ"
-                                                earthParent.name = "earthParent"
+                                                earthParent.name = "earthQJ"
                                     //where the relationships between earth and earthParent
         //perfect distance of planets
         earth.position = SCNVector3(1.8,0,0)
@@ -3841,7 +3859,7 @@ var power = "banana"
 //                      venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
 //                          venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                                       
-                      for index in 0...3 {
+                      for index in 0...1 {
                         autoreleasepool {
                                         //ear***
                               var Shoonode = SCNNode()
@@ -3985,7 +4003,7 @@ var power = "banana"
 
                                                                let moonParent = SCNNode()
                                              
-                                                          if (index > 1) && (index % 3 == 0) {
+                                                          if (index > 1) && (index % 1 == 0) {
                                                       
                                                            
                                                            //ear
@@ -4325,6 +4343,9 @@ var power = "banana"
                             self.sceneView.scene.rootNode.addChildNode(NepssThShoonode)
                             self.sceneView.scene.rootNode.addChildNode(NepFourthShoonode)
 
+                            let GreenSecRo = XRotation(time: 4)
+                                    let JRRotation = Rotation(time: 5)
+                            
                                                                   let SecRotation = XRotation(time: 300)
                                                              let SecRo = XRotation(time: 2)
                                                     //     let JRRotation = Rotation(time: 5)
@@ -4346,22 +4367,22 @@ var power = "banana"
                                                          let venusRotation = Rotation(time: 9)
                                             let JupRotation = Rotation(time: 8)
                                                           let JRotation = Rotation(time: 5)
-                                                           Shoonode.runAction(SecRotation)
+                                                           Shoonode.runAction(GreenSecRo)
                                        //                  //  ShoonodeSec.runAction(SecRotation)
-                                                          ssShoonode.runAction(SecRotation)
+                                                          ssShoonode.runAction(GreenSecRo)
                                                      
                                        //                    //FourthShoonode
-                                                          ssThShoonode.runAction(SecRo)
-                                                           FourthShoonode.runAction(SecRotation)
+                                                          ssThShoonode.runAction(GreenSecRo)
+                                                           FourthShoonode.runAction(GreenSecRo)
                                                               
                         //Jup
-                                                                    JupShoonode.runAction(SecRotation)
+                                                                    JupShoonode.runAction(GreenSecRo)
                                                         
-                                                                        JupssShoonode.runAction(SecRotation)
+                                                                        JupssShoonode.runAction(GreenSecRo)
                                                                          
                                                            //                    //FourthShoonode
-                                                                              JupssThShoonode.runAction(SecRo)
-                                                                               JupFourthShoonode.runAction(SecRotation)
+                                                                              JupssThShoonode.runAction(GreenSecRo)
+                                                                               JupFourthShoonode.runAction(GreenSecRo)
                                                         
 //                                                        //Ven added
 //                                                         VenShoonode.runAction(SecRotation)
@@ -4372,21 +4393,21 @@ var power = "banana"
 //                                                                           VenssThShoonode.runAction(SecRo)
 //                                                                            VenFourthShoonode.runAction(SecRotation)
                                                           //nep
-                                                          NepShoonode.runAction(SecRotation)
+                                                          NepShoonode.runAction(GreenSecRo)
                                                                                     //                  //  ShoonodeSec.runAction(SecRotation)
-                                                                                                        NepssShoonode.runAction(SecRotation)
+                                                                                                        NepssShoonode.runAction(GreenSecRo)
                                                                                                   
                                                                                     //                    //FourthShoonode
-                                                                                                        NepssThShoonode.runAction(SecRotation)
-                                                                                                         NepFourthShoonode.runAction(SecRotation)
+                                                                                                        NepssThShoonode.runAction(GreenSecRo)
+                                                                                                         NepFourthShoonode.runAction(GreenSecRo)
                                                          //Sa
-                                                         SaShoonode.runAction(SecRotation)
+                                                         SaShoonode.runAction(GreenSecRo)
                                                                                               //                  //  ShoonodeSec.runAction(SecRotation)
-                                                                                                                 SAssShoonode.runAction(SecRotation)
+                                                                                                                 SAssShoonode.runAction(GreenSecRo)
                                                                                                                
                                                                                               //                    //FourthShoonode
-                                                                                                                 SassThShoonode.runAction(SecRo)
-                                                                                                                  SaFourthShoonode.runAction(SecRotation)
+                                                                                                                 SassThShoonode.runAction(GreenSecRo)
+                                                                                                                  SaFourthShoonode.runAction(GreenSecRo)
                                                         
                                                         
                                        //                        ssThShoonode
@@ -4395,7 +4416,8 @@ var power = "banana"
                                                                                              SaturnParentSun.runAction(sunAction)
                         
                         SaturnParentSun.runAction(sunAction)
-                        SaturnParent.runAction(JRotation)
+                        SaturnParent.runAction(JRRotation)
+                              saturn.runAction(JRRotation)
                         SaturnParentSun.addChildNode(SaturnParent)
                     SaturnParentSun.addChildNode(saturn)
                 saturn.addChildNode(saturnRing)
@@ -4406,17 +4428,18 @@ SaturnParent.addChildNode(SassThShoonode)
     SaturnParent.addChildNode(SaFourthShoonode)
                         
                                                           neptuneParentSun.runAction(sunAction)
-                                                                  earthParent.runAction(JRotation)
-                                                                neptuneParent.runAction(JRotation)
-                                                        JupitarParent.runAction(JRotation)
-                                                          SaturnParent.runAction(JRotation)
-                                                                  venusParent.runAction(JRotation)
+                                                                  earthParent.runAction(JRRotation)
+                                                                neptuneParent.runAction(JRRotation)
+                                                        JupitarParent.runAction(JRRotation)
+                                                          SaturnParent.runAction(JRRotation)
+                                                                  venusParent.runAction(JRRotation)
                                                                   moonParent.runAction(moonRotation)
+                            //all levels rotate right(ad mst load usall fast
                                                                  //venus.runAction(venusRotation)
                                                       neptune.runAction(venusRotation)
-                                                        jupiter.runAction(JupRotation)
+                                                        jupiter.runAction(JRRotation)
                                                                    //venusParent.addChildNode(venus)
-                                                                  earth.runAction(sunAction)
+                                                                  earth.runAction(JRRotation)
                                                         sun.runAction(sunAction)
                                                           neptune.addChildNode(neptuneRing)
                                                           neptuneParentSun.addChildNode(neptuneParent)
@@ -5703,7 +5726,8 @@ fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Categ
 
 extension ViewController: FBInterstitialAdDelegate {
     func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
-        print("Ads loaded")
+        print("Ads Loaded")
+        AdsLoaded = true
     }
   
     func interstitialAdWillClose(_ interstitialAd: FBInterstitialAd) {
