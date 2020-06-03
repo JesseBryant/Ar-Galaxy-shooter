@@ -1080,7 +1080,7 @@ var power = "banana"
           //  fireBall.physicsBody = .dynamic()
            // fireBall.physicsBody?.mass = 0.5
             //add particles
-            fireBall.addParticleSystem(SCNParticleSystem(named: "fire.scnp", inDirectory: nil)!)
+            fireBall.addParticleSystem(SCNParticleSystem(named: "gaga.scnp", inDirectory: nil)!)
             //right size fireball
  
          //   let disapear = SCNAction.fadeOut(duration: 0.3)
@@ -5621,7 +5621,7 @@ SaturnParent.addChildNode(SassThShoonode)
                 self.scoreLabel.text = String(self.scoreL)
                 //added dope fireball
             }
-            let  explosion = SCNParticleSystem(named: "fire", inDirectory: nil)
+            let  explosion = SCNParticleSystem(named: "gaga", inDirectory: nil)
             
             explosion?.particleLifeSpan = 4
             explosion?.emitterShape = contact.nodeB.geometry

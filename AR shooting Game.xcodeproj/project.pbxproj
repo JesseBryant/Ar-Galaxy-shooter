@@ -32,7 +32,7 @@
 		E313249023EBF94A009C648F /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = E313248E23EBF94A009C648F /* star.png */; };
 		E313249223EBF97A009C648F /* rain.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313249123EBF97A009C648F /* rain.scnp */; };
 		E313249423EBF9B0009C648F /* react.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313249323EBF9B0009C648F /* react.scnp */; };
-		E338BE7F247BC4040000D2FC /* fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E338BE7D247BC4030000D2FC /* fire.scnp */; };
+		E338BE7F247BC4040000D2FC /* gaga.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E338BE7D247BC4030000D2FC /* gaga.scnp */; };
 		E338BE80247BC4040000D2FC /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E338BE7E247BC4040000D2FC /* spark.png */; };
 		E36A07F323EC1A9B000561D6 /* Confetti.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E36A07F223EC1A9B000561D6 /* Confetti.scnp */; };
 		E383ABD724237730001F79BB /* Sleepy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD62423772D001F79BB /* Sleepy.mp3 */; };
@@ -72,7 +72,7 @@
 		E313248E23EBF94A009C648F /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		E313249123EBF97A009C648F /* rain.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = rain.scnp; sourceTree = "<group>"; };
 		E313249323EBF9B0009C648F /* react.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = react.scnp; sourceTree = "<group>"; };
-		E338BE7D247BC4030000D2FC /* fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; name = fire.scnp; path = ../../../throw/throw/fire.scnp; sourceTree = "<group>"; };
+		E338BE7D247BC4030000D2FC /* gaga.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; name = gaga.scnp; path = ../../../throw/throw/gaga.scnp; sourceTree = "<group>"; };
 		E338BE7E247BC4040000D2FC /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = ../../../throw/throw/spark.png; sourceTree = "<group>"; };
 		E36A07F223EC1A9B000561D6 /* Confetti.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Confetti.scnp; sourceTree = "<group>"; };
 		E383ABD62423772D001F79BB /* Sleepy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sleepy.mp3; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 		A7216AC320BE91EE009F6A51 /* Particles */ = {
 			isa = PBXGroup;
 			children = (
-				E338BE7D247BC4030000D2FC /* fire.scnp */,
+				E338BE7D247BC4030000D2FC /* gaga.scnp */,
 				E338BE7E247BC4040000D2FC /* spark.png */,
 				A7216ACC20BE9313009F6A51 /* Explode.scnp */,
 				E313248723EBF89E009C648F /* Fire.scnp */,
@@ -259,7 +259,7 @@
 				A73D42AD20B80B4200965934 /* LaunchScreen.storyboard in Resources */,
 				A7216ABE20BE1940009F6A51 /* monkey.mp3 in Resources */,
 				A73D42AA20B80B4200965934 /* Assets.xcassets in Resources */,
-				E338BE7F247BC4040000D2FC /* fire.scnp in Resources */,
+				E338BE7F247BC4040000D2FC /* gaga.scnp in Resources */,
 				E313248F23EBF94A009C648F /* Stars.scnp in Resources */,
 				E313249223EBF97A009C648F /* rain.scnp in Resources */,
 				E3F8B0A2242F398C00E986B9 /* Power.mp3 in Resources */,
