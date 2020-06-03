@@ -925,6 +925,9 @@ var power = "banana"
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else {return}
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                    self.PlayInstructions()
+                                 //play background music
+                    self.playBackgroundMusic()
                 }
                 
                 
@@ -932,9 +935,9 @@ var power = "banana"
                 
                 //FsaddTargetNodes()
                 // FsaddTargetNodes()
-                PlayInstructions()
+                //PlayInstructions()
                 //play background music
-                playBackgroundMusic()
+                //playBackgroundMusic()
                 
                 //start tinmer
                 runTimer()
@@ -954,6 +957,9 @@ var power = "banana"
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else {return}
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                    self.PlayInstructions()
+                                  //play background music
+                    self.playBackgroundMusic()
                 }
                 
                 //  sceneView.backgroundColor = UIColor.red
@@ -961,9 +967,9 @@ var power = "banana"
                 //addTargetNodesSaturn()
                 //FsaddTargetNodes()
                 // FsaddTargetNodes()
-                PlayInstructions()
-                //play background music
-                playBackgroundMusic()
+//                PlayInstructions()
+//                //play background music
+//                playBackgroundMusic()
                 
                 //start tinmer
                 runTimer()
@@ -981,13 +987,16 @@ var power = "banana"
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else {return}
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                    self.PlayInstructions()
+                                  //play background music
+                    self.playBackgroundMusic()
                 }
                 //  sceneView.backgroundColor = UIColor.red
                 
                 // FsaddTargetNodes()
-                PlayInstructions()
-                //play background music
-                playBackgroundMusic()
+//                PlayInstructions()
+//                //play background music
+//                playBackgroundMusic()
                 
                 //start tinmer
                 runTimer()
@@ -1252,28 +1261,17 @@ var power = "banana"
                     EarGroupNodeArray.append(earth)
                     EarGroupNodeArray.append(earthParent)
 
-                     Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
-                                                                 
-                                                              
-                                                              //changed this one!!!
-                    ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.8))
-                                                              
-                                                              
-                                                     
-                    ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-                    FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.7))
-                                                              
-                                                              
-                                                           Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
-                                                                                                                      
-                                                                                                                   
-                                                                                                                   //changed this one!!!
-                                                                       ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.9))
-                                                                                                                   
-                                                                                                                   
-                                                                                                          
-                                                                       ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
-                                                                           FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                     //changed this one!!!
+                        Shoonode.position = SCNVector3(randomFloat(min: 0.1, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
+                                                                                                                          
+                                                                                                                       
+                                                                                                                       //changed this one!!!
+                                                                           ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.9))
+                                                                                                                       
+                                                                                                                       
+                                                                                                              
+                                                                           ssThShoonode.position = SCNVector3(randomFloat(min: 0.1, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                                                                               FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
                     
                     
 
@@ -1303,7 +1301,8 @@ var power = "banana"
                      self.sceneView.scene.rootNode.addChildNode(FourthShoonode)
 
    
-
+                        let GreenSecRo = XRotation(time: 4)
+                        let JRRotation = Rotation(time: 5)
                            let SecRotation = XRotation(time: 300)
                       let SecRo = XRotation(time: 6)
                               let sunAction = Rotation(time: 20)
@@ -1314,15 +1313,15 @@ var power = "banana"
                             let moonRotation = Rotation(time: 6)
                     // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                       //  make big ships spin as it Rotate
-                    Shoonode.runAction(SecRo)
+                    Shoonode.runAction(GreenSecRo)
 //                  //  ShoonodeSec.runAction(SecRotation)
-                   ssShoonode.runAction(SecRotation)
+                   ssShoonode.runAction(GreenSecRo)
 //                    //FourthShoonode
-                   ssThShoonode.runAction(SecRotation)
-                    FourthShoonode.runAction(SecRotation)
+                   ssThShoonode.runAction(GreenSecRo)
+                    FourthShoonode.runAction(GreenSecRo)
 //                        ssThShoonode
-                           earthParent.runAction(earthParentRotation)
-                           venusParent.runAction(VRotation)
+                           earthParent.runAction(JRRotation)
+                           venusParent.runAction(JRRotation)
                            moonParent.runAction(moonRotation)
 
                            
@@ -1400,7 +1399,7 @@ var power = "banana"
           //  let frame = self.sceneView.session.currentFrame
           //  let frame = self.sceneView.
             // let mat = SCNMatrix4(frame.camera.transform)
-                    for index in 0...3 {
+                    for index in 0...2 {
                         autoreleasepool {
                         //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
                         //make node array empty in the end of the game func
@@ -1435,7 +1434,7 @@ var power = "banana"
 
                            // let moonParent = SCNNode()
           
-                       if (index > 1) && (index % 1 == 0) {
+                       if (index > 1) && (index % 2 == 0) {
                         //this good for a level 2.. speed of red shps and white hard to finish in 30 sec
                        // red
     //                                  let scene = SCNScene(named: "art.scnassets/spaceARcopy.scn")
@@ -1541,7 +1540,8 @@ var power = "banana"
                          self.sceneView.scene.rootNode.addChildNode(FourthShoonode)
 
        
-
+                                    let GreenSecRo = XRotation(time: 4)
+                                    let JRRotation = Rotation(time: 5)
                                let SecRotation = XRotation(time: 300)
                           let SecRo = XRotation(time: 6)
                                   let sunAction = Rotation(time: 20)
@@ -1552,15 +1552,15 @@ var power = "banana"
                                 let moonRotation = Rotation(time: 18)
                         // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                           //  make big ships spin as it Rotate
-                        Shoonode.runAction(SecRo)
+                        Shoonode.runAction(GreenSecRo)
     //                  //  ShoonodeSec.runAction(SecRotation)
-                       ssShoonode.runAction(SecRotation)
+                       ssShoonode.runAction(GreenSecRo)
     //                    //FourthShoonode
-                       ssThShoonode.runAction(SecRotation)
-                        FourthShoonode.runAction(SecRotation)
+                       ssThShoonode.runAction(GreenSecRo)
+                        FourthShoonode.runAction(GreenSecRo)
     //                        ssThShoonode
-                               earthParent.runAction(earthParentRotation)
-                               venusParent.runAction(VRotation)
+                               earthParent.runAction(JRRotation)
+                               venusParent.runAction(JRRotation)
                                moonParent.runAction(moonRotation)
 
                                
@@ -1636,7 +1636,7 @@ var power = "banana"
              //  let frame = self.sceneView.session.currentFrame
              //  let frame = self.sceneView.
                // let mat = SCNMatrix4(frame.camera.transform)
-                       for index in 0...6 {
+        for index in 0...1 {
                         autoreleasepool {
                            var Shoonode = SCNNode()
                         var ShoonodeG = SCNNode()
@@ -1666,7 +1666,7 @@ var power = "banana"
 
                                let moonParent = SCNNode()
              
-                          if (index > 1) && (index % 3 == 0) {
+                          if (index > 1) && (index % 1 == 0) {
               
                            
                            
@@ -1758,8 +1758,9 @@ var power = "banana"
 
                                   let SecRotation = XRotation(time: 300)
                          let GreenSecRo = XRotation(time: 4)
+                              //let JRRotation = Rotation(time: 5)
                              let SecRo = XRotation(time: 6)
-                                     let sunAction = Rotation(time: 20)
+                                     let sunAction = Rotation(time: 15)
                                    let earthParentRotation = Rotation(time: 20)
                         
                         let JRotation = Rotation(time: 15)
@@ -1774,13 +1775,13 @@ var power = "banana"
 //                                               let earthParentRotation = Rotation(time: 10)
 //                                       let VRotation = Rotation(time: 6)
                              //  make big ships spin as it Rotate
-                        Shoonode.runAction(SecRo)
+                        Shoonode.runAction(GreenSecRo)
                         ShoonodeG.runAction(GreenSecRo)
                           //                  //  ShoonodeSec.runAction(SecRotation)
-                                             ssShoonode.runAction(SecRotation)
+                                             ssShoonode.runAction(GreenSecRo)
                           //                    //FourthShoonode
-                                             ssThShoonode.runAction(SecRotation)
-                                              FourthShoonode.runAction(SecRotation)
+                                             ssThShoonode.runAction(GreenSecRo)
+                                              FourthShoonode.runAction(GreenSecRo)
                          //  Shoonode.runAction(SecRo)
        //                  //  ShoonodeSec.runAction(SecRotation)
                         //  ssShoonode.runAction(SecRo)
@@ -1810,10 +1811,10 @@ var power = "banana"
                         earth.addChildNode(ShoonodeG)
                         //earth.addChildNode(EarParent)
                          //  ssThShoonode.addChildNode(ssShoonode)
-                          earthParent.addChildNode(Shoonode)
-                        earthParent.addChildNode(ssThShoonode)
-                           earthParent.addChildNode(FourthShoonode)
-                                  earthParent.addChildNode(moonParent)
+                          earth.addChildNode(Shoonode)
+                        earth.addChildNode(ssThShoonode)
+                           earth.addChildNode(FourthShoonode)
+                                  earth.addChildNode(moonParent)
                            earth.addChildNode(moon)
                                 moonParent.addChildNode(moon)
        //                    for n in SSnodeArray {
@@ -1876,7 +1877,7 @@ var power = "banana"
                  //  let frame = self.sceneView.session.currentFrame
                  //  let frame = self.sceneView.
                    // let mat = SCNMatrix4(frame.camera.transform)
-                           for index in 0...3 {
+                           for index in 0...2 {
                             autoreleasepool {
                                var Shoonode = SCNNode()
                        
@@ -1946,7 +1947,7 @@ var power = "banana"
 
                                    let moonParent = SCNNode()
                  
-                              if (index > 1) && (index % 3 == 0) {
+                              if (index > 1) && (index % 2 == 0) {
                           
                                
                                
@@ -2104,7 +2105,9 @@ var power = "banana"
                                                            self.sceneView.scene.rootNode.addChildNode(VenssThShoonode)
                                                           self.sceneView.scene.rootNode.addChildNode(VenFourthShoonode)
 
-              
+               let GreenSecRo = XRotation(time: 4)
+                                      let JRRotation = Rotation(time: 5)
+                                     
 
                                          let SecRotation = XRotation(time: 300)
                //         let SecRo = XRotation(time: 2)
@@ -2126,23 +2129,24 @@ var power = "banana"
                                 let venusRotation = Rotation(time: 9)
           //                      let JupRotation = Rotation(time: 8)
                                                                                            let JRotation = Rotation(time: 15)
-           Shoonode.runAction(SecRotation)
+           Shoonode.runAction(GreenSecRo)
                             
                                                             //                  //  ShoonodeSec.runAction(SecRotation)
-            ssShoonode.runAction(SecRotation)
+            ssShoonode.runAction(GreenSecRo)
                                                                           
                                                             //                    //FourthShoonode
-            ssThShoonode.runAction(SecRotation)
-                                        FourthShoonode.runAction(SecRotation)
+            ssThShoonode.runAction(GreenSecRo)
+                                        FourthShoonode.runAction(GreenSecRo)
                                venusParentSun.runAction(sunActionVenus)
                             //Ven added
-                            VenShoonode.runAction(SecRotation)
+                            VenShoonode.runAction(GreenSecRo)
+                                //level 6 more natual waves
                                                                                      //                  //  ShoonodeSec.runAction(SecRotation)
-                                        VenssShoonode.runAction(SecRotation)
+                                        VenssShoonode.runAction(GreenSecRo)
                              
                                                                                      //                    //FourthShoonode
-                                VenssThShoonode.runAction(SecRotation)
-                            VenFourthShoonode.runAction(SecRotation)
+                                VenssThShoonode.runAction(GreenSecRo)
+                            VenFourthShoonode.runAction(GreenSecRo)
                             
                             
            //                        ssThShoonode
@@ -2150,12 +2154,12 @@ var power = "banana"
                                       venusParent.runAction(JRotation)
                     
                                       moonParent.runAction(moonRotation)
-                                     venus.runAction(venusRotation)
+                                     venus.runAction(JRRotation)
                                        //venusParent.addChildNode(venus)
                                     
                             //stable rotations
                             sun.runAction(sunAction)
-                              earth.runAction(venusRotation)
+                              earth.runAction(JRRotation)
                             //figured out how distribute ships will have to create more Shoonodes
                             //can be elaborate with given planets diff rotations since its
                             sun.addChildNode(earth)
@@ -5066,7 +5070,7 @@ SaturnParent.addChildNode(SassThShoonode)
     //                    name.removeAll()
                             let moonParent = SCNNode()
           
-                       if (index > 1) && (index % 1 == 0) {
+                       if (index > 1) && (index % 3 == 0) {
                        // red
                                          let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                         Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
@@ -5181,21 +5185,23 @@ SaturnParent.addChildNode(SassThShoonode)
                              //   let venusParentRotation = XRotation(time: 20)
                             //    let earthRotation = Rotation(time: 20)
                                 let moonRotation = Rotation(time: 5)
+                            let GreenSecRo = XRotation(time: 6)
+                                                       let JRRotation = Rotation(time: 7)
                         // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                           //  make big ships spin as it Rotate
-                        Shoonode.runAction(SecRo)
+                        Shoonode.runAction(GreenSecRo)
     //                  //  ShoonodeSec.runAction(SecRotation)
-                       ssShoonode.runAction(SecRotation)
+                       ssShoonode.runAction(GreenSecRo)
     //                    //FourthShoonode
-                       ssThShoonode.runAction(SecRotation)
-                        FourthShoonode.runAction(SecRotation)
+                       ssThShoonode.runAction(GreenSecRo)
+                        FourthShoonode.runAction(GreenSecRo)
     //                        ssThShoonode
-                               earthParent.runAction(earthParentRotation)
+                               earthParent.runAction(JRRotation)
                                venusParent.runAction(VRotation)
                                moonParent.runAction(moonRotation)
 
                                
-                               earth.runAction(sunAction)
+                               earth.runAction(JRRotation)
                        // earthParent.addChildNode(venusParent)
                         venusParent.addChildNode(Shoonode)
                         
@@ -5353,40 +5359,7 @@ SaturnParent.addChildNode(SassThShoonode)
                          AllnodeArray.append(FourthShoonode)
                         AllnodeArray.append(ssShoonode)
                           AllnodeArray.append(ssThShoonode)
-       //                    let r = ssShoonode
-       //                     let b = ssShoonode
-       //                     let c = ssShoonode
-       //                       Shoonode.addChildNode(ssShoonode)
-       //                     Shoonode.addChildNode(ssThShoonode)
-       //                    Shoonode.addChildNode(FourthShoonode)
-       //                     Shoonode.addChildNode(b)
-       //                    Shoonode.addChildNode(c)
-                       //      ShoonodeSec.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.5)) -0.8, max: 0.3
-//                           Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
-//
-//
-//                           //changed this one!!!
-//                           ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.3), randomFloat(min: -0.8, max: 0.8))
-//
-//
-//
-//                           ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.5))
-//                            FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.7))
-//
-//
-//                        Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
-//
-//
-//                                                                                //changed this one!!!
-//                                    ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: -0.8),randomFloat(min: -0.8, max: 0.9), randomFloat(min: -0.8, max: 0.9))
-//
-//
-//
-//                                    ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
-//                                        FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
-//
-                                        //new Jup
-                                                                                       
+                                         
                                                                                                        
                                                                                                        //changed this one!!!
                             Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
@@ -5431,7 +5404,8 @@ SaturnParent.addChildNode(SassThShoonode)
                             self.sceneView.scene.rootNode.addChildNode(FourthShoonode)
 
           
-
+                            let GreenSecRo = XRotation(time: 4)
+                            let JRRotation = Rotation(time: 5)
                                   let SecRotation = XRotation(time: 300)
                              let SecRo = XRotation(time: 6)
                                      let sunAction = Rotation(time: 6)
@@ -5442,16 +5416,23 @@ SaturnParent.addChildNode(SassThShoonode)
                                    let moonRotation = Rotation(time: 5)
                            // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                              //  make big ships spin as it Rotate
+                            Shoonode.runAction(GreenSecRo)
+                                         //  ShoonodeG.runAction(GreenSecRo)
+                                             //                  //  ShoonodeSec.runAction(SecRotation)
+                                                                ssShoonode.runAction(GreenSecRo)
+                                             //                    //FourthShoonode
+                                                                ssThShoonode.runAction(GreenSecRo)
+                                                                 FourthShoonode.runAction(GreenSecRo)
                             
-                           Shoonode.runAction(SecRotation)
-       //                  //  ShoonodeSec.runAction(SecRotation)
-                          ssShoonode.runAction(SecRotation)
-       //                    //FourthShoonode
-                          ssThShoonode.runAction(SecRo)
-                           FourthShoonode.runAction(SecRotation)
+//                           Shoonode.runAction(SecRotation)
+//       //                  //  ShoonodeSec.runAction(SecRotation)
+//                          ssShoonode.runAction(SecRotation)
+//       //                    //FourthShoonode
+//                          ssThShoonode.runAction(SecRo)
+//                           FourthShoonode.runAction(SecRotation)
        //                        ssThShoonode
-                                  earthParent.runAction(earthParentRotation)
-                                  venusParent.runAction(VRotation)
+                                  earthParent.runAction(JRRotation)
+                                  venusParent.runAction(JRRotation)
                                   moonParent.runAction(moonRotation)
 
                                   
