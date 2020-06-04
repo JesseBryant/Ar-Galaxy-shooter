@@ -98,6 +98,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     @IBOutlet weak var timerLabel: UILabel!
     
     //used to display score to player
+    @IBOutlet weak var CNNN: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     
     @IBOutlet weak var messageLabel: UILabel!
@@ -403,8 +404,35 @@ var power = "banana"
     
         self.messageLabel.isHidden = false
         timer.invalidate()
-        self.messageLabel.text = "Level Completed"
         
+        // timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
+       let currentScore = Coins
+        var h = 0
+           if h == Coins  {
+                timer.invalidate()
+                //believe this issue because this the only place that calls  gameOver()
+               // NeedMoreTime()
+               // gameOver()
+            }else {
+                h += 1
+                timerLabel.text = "\(seconds)"
+           self.messageLabel.text = "Score: \(currentScore) \n\(h) Coins"
+            }
+            
+        
+//
+//        //resets the timer
+//        func resetTimer(time: Int){
+//            timer.invalidate()
+//            seconds = time
+//            timerLabel.text = "\(seconds)"
+//        }
+//
+        
+       // self.messageLabel.text = "Score: \(Int(self.scoreLabel.text!))"
+        if let currentScore = Int(self.scoreLabel.text!) {
+        self.messageLabel.text = "Score: \(currentScore) \n\(Coins) Coins"
+        }
         // if let gameScore = defaults.value(forKey: "Coins"){
         // Coins = gameScore as! Int
         print("\(Coins) Jesse KKKK")
@@ -457,14 +485,20 @@ var power = "banana"
     func shouldShowBestScoreContainerView(state: Bool) {
         if state {
             PoP = true
+              let fafa = Coins
             let bestScore = UserDefaults.standard.integer(forKey: "BestScore")
             if let currentScore = Int(self.scoreLabel.text!) {
                 if currentScore > bestScore {
+                  
+                    
                     self.BestScore.text = "BEST: \(currentScore)"
+                    print("\(fafa) fafa test")
+                    self.CNNN.text = "Coins\(fafa)"
                     UserDefaults.standard.set(currentScore, forKey: "BestScore")
                     UserDefaults.standard.synchronize()
                 } else {
                     self.BestScore.text = "BEST: \(bestScore)"
+                     self.CNNN.text = "COINS: \(fafa)"
                 }
             }
         }
@@ -5723,7 +5757,7 @@ extension Int {
 fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
     return input.rawValue
 }
-
+//Finish the waves(they know its a new level by "shoot plane.."message ) and best scre and coins.. changed "fire.smsp" to gaga..need to apply memory manage to rest of code
 extension ViewController: FBInterstitialAdDelegate {
     func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
         print("Ads Loaded")
