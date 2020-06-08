@@ -846,6 +846,13 @@ var power = "banana"
   
     
     func showPremiumQuotes() {
+        //NEXT
+        //next Ar capabili
+        //master waves
+        //finish in app menu
+        //test test test( for perfec(lke bes games) and monetize
+        //APPLE approval test
+        // vid and screenshot
         
         UserDefaults.standard.set(true, forKey: productID)
         
