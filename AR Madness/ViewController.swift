@@ -239,7 +239,7 @@ var power = "banana"
         // let audioPlayer = SCNAudioPlayer(source: audioSource)
         // Show statistics such as fps and timing information
         //sceneView.showsStatistics = true
-        
+       //.com
         //set the physics delegate
         self.sceneView.scene.physicsWorld.contactDelegate = self
         
@@ -257,7 +257,7 @@ var power = "banana"
                 //play()
         }
         
-         score = GKScore(leaderboardIdentifier: leaderboardID)
+        // score = GKScore(leaderboardIdentifier: leaderboardID)
     
 //        self.play()
     }
@@ -431,7 +431,7 @@ var power = "banana"
         
        // self.messageLabel.text = "Score: \(Int(self.scoreLabel.text!))"
         if let currentScore = Int(self.scoreLabel.text!) {
-        self.messageLabel.text = "Score: \(currentScore) \n\(Coins) Coins"
+        self.messageLabel.text = "SCORE: \(currentScore) \nCOINS: \(Coins)"
         }
         // if let gameScore = defaults.value(forKey: "Coins"){
         // Coins = gameScore as! Int
@@ -465,7 +465,7 @@ var power = "banana"
             
             //After in app purchases make this 0..so we can keep
             //up with best score
-            self.arrrrr = self.scoreL
+            self.arrrrr = currentScore
            
             self.defaultss.set(self.arrrrr, forKey: "scoreL")
             self.ReportScore(with: self.arrrrr)
@@ -486,21 +486,67 @@ var power = "banana"
         if state {
             PoP = true
               let fafa = Coins
-            let bestScore = UserDefaults.standard.integer(forKey: "BestScore")
-            if let currentScore = Int(self.scoreLabel.text!) {
-                if currentScore > bestScore {
-                  
-                    
-                    self.BestScore.text = "BEST: \(currentScore)"
-                    print("\(fafa) fafa test")
-                    self.CNNN.text = "Coins\(fafa)"
-                    UserDefaults.standard.set(currentScore, forKey: "BestScore")
-                    UserDefaults.standard.synchronize()
-                } else {
-                    self.BestScore.text = "BEST: \(bestScore)"
-                     self.CNNN.text = "COINS: \(fafa)"
-                }
+    
+            //besss
+          //have coins and correct best score
+
+            if GKLocalPlayer.local.isAuthenticated {
+
+                // Initialize the leaderboard for the current local player
+                var gkLeaderboard = GKLeaderboard(players: [GKLocalPlayer.local])
+                gkLeaderboard.identifier = leaderboardID
+                gkLeaderboard.timeScope = GKLeaderboard.TimeScope.allTime
+
+                // Load the scores
+                gkLeaderboard.loadScores(completionHandler: { (scores, error) -> Void in
+
+                    // Get current score
+                    var currentScore: Int64 = 0
+                    if error == nil, let scores = scores {
+                        if (scores.count) > 0 {
+                            currentScore = (scores[0] ).value
+                            let bestScore = currentScore
+                             print("\(bestScore) besss")
+                            if let currentScore = Int(self.scoreLabel.text!) {
+                                        if currentScore > bestScore {
+                                          
+                                            DispatchQueue.main.async {
+                                            self.BestScore.text = "BEST: \(currentScore)"
+                                            print("\(fafa) fafa test")
+                                            self.CNNN.text = "Coins\(fafa)"
+                                            }
+                                            UserDefaults.standard.set(currentScore, forKey: "BestScore")
+                                            UserDefaults.standard.synchronize()
+                                        } else {
+                                            DispatchQueue.main.async {
+                                            self.BestScore.text = "BEST: \(bestScore)"
+                                             self.CNNN.text = "COINS: \(fafa)"
+                                            }
+                                        }
+                                        
+                                    }
+                            //We also want to show the best score of the user on the main screen
+//                            if self.language.contains("it"){
+//                                self.labelBestScore.text = "Miglior Punteggio: " + String(currentScore)
+//                                self.bestScore = Int(currentScore)
+////                            }else{
+//                                self.labelBestScore.text = "Your Best Score: " + String(currentScore)
+//                                self.bestScore = Int(currentScore)
+//                            }
+                            print("Jesse bestScore",currentScore)
+                        }
+                    }
+
+                })
             }
+            
+            
+            
+            
+          //  let bestScore = UserDefaults.standard.integer(forKey: "BestScore")
+//            print("\(bestScore) besss")
+           // let currentScore = Int(self.scoreLabel.text!)
+        
         }
         self.bestScoreContainerView.isHidden = !state
         self.coinsButton.isHidden = !state
@@ -573,8 +619,8 @@ var power = "banana"
             
             self.interstitial.show(fromRootViewController: self)
         self.shouldShowBestScoreContainerView(state: false)
-             self.sceneView.isHidden = true
-             SwiftSpinner.show("Loading...")
+           //  self.sceneView.isHidden = true
+           //  SwiftSpinner.show("Loading...")
         }
 
     }
@@ -1114,7 +1160,9 @@ var power = "banana"
           //  fireBall.physicsBody = .dynamic()
            // fireBall.physicsBody?.mass = 0.5
             //add particles
-            fireBall.addParticleSystem(SCNParticleSystem(named: "gaga.scnp", inDirectory: nil)!)
+          DispatchQueue.main.async {
+            self.fireBall.addParticleSystem(SCNParticleSystem(named: "gaga.scnp", inDirectory: nil)!)
+        }
             //right size fireball
  
          //   let disapear = SCNAction.fadeOut(duration: 0.3)
