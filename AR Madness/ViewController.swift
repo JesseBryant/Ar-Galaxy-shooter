@@ -994,10 +994,13 @@ var power = "banana"
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else {return}
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                    self.PlayInstructions()
+                    //play background music
+                    self.playBackgroundMusic()
                 }
-                PlayInstructions()
-                //play background music
-                playBackgroundMusic()
+//                PlayInstructions()
+//                //play background music
+//                playBackgroundMusic()
                 // playingSoundWith
                 //start tinmer
                 runTimer()
@@ -1237,7 +1240,8 @@ var power = "banana"
          earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                             earthParent.physicsBody?.isAffectedByGravity = false
 
-        
+        AllnodeArray.removeAll()
+        EarGroupNodeArray.removeAll()
         
         
        // venusParent
@@ -1343,11 +1347,11 @@ var power = "banana"
 //                     earth.name = "earth"
 //                    earthParent.name = "earthParent"
                   //  earth.addChildNode(ShoonodeSec)
-                    nodeArray.append(Shoonode)
+                    AllnodeArray.append(Shoonode)
                  //   nodeArray.append(ShoonodeSec)
-                    ThirdGroupNodeArray.append(FourthShoonode)
-                   SSnodeArray.append(ssShoonode)
-                    SecGroupNodeArray.append(ssThShoonode)
+                    AllnodeArray.append(FourthShoonode)
+                   AllnodeArray.append(ssShoonode)
+                    AllnodeArray.append(ssThShoonode)
                     EarGroupNodeArray.append(earth)
                     EarGroupNodeArray.append(earthParent)
 
@@ -1455,7 +1459,8 @@ var power = "banana"
              earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                 earthParent.physicsBody?.isAffectedByGravity = false
 
-            
+            AllnodeArray.removeAll()
+            EarGroupNodeArray.removeAll()
             
             
            // venusParent
@@ -1465,7 +1470,8 @@ var power = "banana"
              
             // venusParent.name = "earth"
     //         earth.addChildNode(Shoonode)
-            //8328579
+            //
+        
             earN = earthParent
               earth.name = "earthQJ"
              earthParent.name = "earthQJ"
@@ -1573,11 +1579,11 @@ var power = "banana"
     //                     earth.name = "earth"
     //                    earthParent.name = "earthParent"
                       //  earth.addChildNode(ShoonodeSec)
-                        nodeArray.append(Shoonode)
+                        AllnodeArray.append(Shoonode)
                      //   nodeArray.append(ShoonodeSec)
-                        ThirdGroupNodeArray.append(FourthShoonode)
-                       SSnodeArray.append(ssShoonode)
-                        SecGroupNodeArray.append(ssThShoonode)
+                        AllnodeArray.append(FourthShoonode)
+                       AllnodeArray.append(ssShoonode)
+                       AllnodeArray.append(ssThShoonode)
                         EarGroupNodeArray.append(earth)
                         EarGroupNodeArray.append(earthParent)
 
@@ -1679,6 +1685,7 @@ var power = "banana"
                 }
         
     func addTargetNodesFive(){
+        
            //Need message dont shoot moon.
            //if so planet and moon destroyed
         //wrked on level 4 and 5(migh get rid of moon)
@@ -1699,7 +1706,8 @@ var power = "banana"
                 earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                    earthParent.physicsBody?.isAffectedByGravity = false
 
-               
+               AllnodeArray.removeAll()
+               EarGroupNodeArray.removeAll()
                
                
               // venusParent
@@ -1791,11 +1799,11 @@ var power = "banana"
                            FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                                                   FourthShoonode.physicsBody?.isAffectedByGravity = false
 
-                           nodeArray.append(Shoonode)
+                           AllnodeArray.append(Shoonode)
                         //   nodeArray.append(ShoonodeSec)
-                           ThirdGroupNodeArray.append(FourthShoonode)
-                          SSnodeArray.append(ssShoonode)
-                           SecGroupNodeArray.append(ssThShoonode)
+                           AllnodeArray.append(FourthShoonode)
+                          AllnodeArray.append(ssShoonode)
+                           AllnodeArray.append(ssThShoonode)
                            EarGroupNodeArray.append(earth)
                            EarGroupNodeArray.append(earthParent)
                         Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.9),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 1.0))
@@ -1937,7 +1945,8 @@ var power = "banana"
                                        earthParent.physicsBody?.isAffectedByGravity = false
 
                    
-                   
+        AllnodeArray.removeAll()
+        EarGroupNodeArray.removeAll()
                    
                   // venusParent
                    venusParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
@@ -2114,18 +2123,18 @@ var power = "banana"
            //                     earth.name = "earth"
            //                    earthParent.name = "earthParent"
                              //  earth.addChildNode(ShoonodeSec)
-                               nodeArray.append(Shoonode)
+                               AllnodeArray.append(Shoonode)
                             //   nodeArray.append(ShoonodeSec)
-                               ThirdGroupNodeArray.append(FourthShoonode)
-                              SSnodeArray.append(ssShoonode)
-                               SecGroupNodeArray.append(ssThShoonode)
+                               AllnodeArray.append(FourthShoonode)
+                              AllnodeArray.append(ssShoonode)
+                               AllnodeArray.append(ssThShoonode)
                                EarGroupNodeArray.append(earth)
                                EarGroupNodeArray.append(earthParent)
-                            nodeArray.append(VenShoonode)
+                            AllnodeArray.append(VenShoonode)
                                                       //   nodeArray.append(ShoonodeSec)
-                                                         ThirdGroupNodeArray.append(VenFourthShoonode)
-                                                        SSnodeArray.append(VenssShoonode)
-                                                         SecGroupNodeArray.append(VenssThShoonode)
+                                                         AllnodeArray.append(VenFourthShoonode)
+                                                        AllnodeArray.append(VenssShoonode)
+                                                         AllnodeArray.append(VenssThShoonode)
                                                          EarGroupNodeArray.append(earth)
                                                          EarGroupNodeArray.append(earthParent)
                             Shoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.9), randomFloat(min: 0.1, max: 0.5))
@@ -3241,6 +3250,9 @@ var power = "banana"
                                                 let SaturnParent = SCNNode()
                                         
                                                
+        AllnodeArray.removeAll()
+        EarGroupNodeArray.removeAll()
+        
                                             let SaturnParentSun = SCNNode()
                                             let neptuneParentSun = SCNNode()
                              //  let JupitarParentSun = SCNNode()
@@ -3570,28 +3582,28 @@ var power = "banana"
                                                              //                     earth.name = "earth"
                                                              //                    earthParent.name = "earthParent"
                                                                                //  earth.addChildNode(ShoonodeSec)
-                                                                                 nodeArray.append(Shoonode)
+                                                                                 AllnodeArray.append(Shoonode)
                                                                               //   nodeArray.append(ShoonodeSec)
-                                                                                 ThirdGroupNodeArray.append(FourthShoonode)
-                                                                                SSnodeArray.append(ssShoonode)
-                                                                                 SecGroupNodeArray.append(ssThShoonode)
+                                                                                 AllnodeArray.append(FourthShoonode)
+                                                                                AllnodeArray.append(ssShoonode)
+                                                                                 AllnodeArray.append(ssThShoonode)
                                                                                  EarGroupNodeArray.append(earth)
                                                                                  EarGroupNodeArray.append(earthParent)
 
                                                                                                            EarGroupNodeArray.append(earth)
                                                                                                            EarGroupNodeArray.append(earthParent)
                                                                                //sa*
-                                                                                nodeArray.append(SaShoonode)
-                                                                               ThirdGroupNodeArray.append(SaFourthShoonode)
-                                                                               SSnodeArray.append(SAssShoonode)
-                                                                                SecGroupNodeArray.append(SassThShoonode)
+                                                                                AllnodeArray.append(SaShoonode)
+                                                                               AllnodeArray.append(SaFourthShoonode)
+                                                                               AllnodeArray.append(SAssShoonode)
+                                                                                AllnodeArray.append(SassThShoonode)
                                                                                // EarGroupNodeArray.append(earth)
                                                                                // EarGroupNodeArray.append(earthParent)
                                                                                 //nep*
-                                                                                nodeArray.append(NepShoonode)
-                                          ThirdGroupNodeArray.append(NepFourthShoonode)
-                                      SSnodeArray.append(NepssShoonode)
-                                          SecGroupNodeArray.append(NepssThShoonode)
+                                                                                AllnodeArray.append(NepShoonode)
+                                          AllnodeArray.append(NepFourthShoonode)
+                                      AllnodeArray.append(NepssShoonode)
+                                          AllnodeArray.append(NepssThShoonode)
                                       EarGroupNodeArray.append(neptune)
                                                                                                                              EarGroupNodeArray.append(neptuneParent)
 
@@ -3865,6 +3877,8 @@ var power = "banana"
                             let sphere = SCNSphere(radius: 0.1)
         // let material = planet(geometry: SCNSphere(radius: 0.1), diffuse: #imageLiteral(resourceName: "Venus Surface"), specular: nil, emission: #imageLiteral(resourceName: "Venus Atmosphere"), normal: nil, position: SCNVector3(0.5, 0, 0))
         //#imageLiteral(resourceName: "Venus Surface")
+        AllnodeArray.removeAll()
+        EarGroupNodeArray.removeAll()
          let material = SCNMaterial()
          material.diffuse.contents = UIImage(named: "Venus Surface")
        // material.diffuse.contents = #imageLiteral(resourceName: "Venus Surface")
@@ -4249,19 +4263,19 @@ var power = "banana"
                                        //                     earth.name = "earth"
                                        //                    earthParent.name = "earthParent"
                                                          //  earth.addChildNode(ShoonodeSec)
-                                                           nodeArray.append(Shoonode)
+                                                           AllnodeArray.append(Shoonode)
                                                         //   nodeArray.append(ShoonodeSec)
-                                                           ThirdGroupNodeArray.append(FourthShoonode)
-                                                          SSnodeArray.append(ssShoonode)
-                                                           SecGroupNodeArray.append(ssThShoonode)
+                                                           AllnodeArray.append(FourthShoonode)
+                                                          AllnodeArray.append(ssShoonode)
+                                                           AllnodeArray.append(ssThShoonode)
                                                            EarGroupNodeArray.append(earth)
                                                            EarGroupNodeArray.append(earthParent)
                         //Jupitar
-                        nodeArray.append(JupShoonode)
+                        AllnodeArray.append(JupShoonode)
                                                                             //   nodeArray.append(ShoonodeSec)
-                                                                               ThirdGroupNodeArray.append(JupFourthShoonode)
-                                                                              SSnodeArray.append(JupssShoonode)
-                                                                               SecGroupNodeArray.append(JupssThShoonode)
+                                                                               AllnodeArray.append(JupFourthShoonode)
+                                                                              AllnodeArray.append(JupssShoonode)
+                                                                               AllnodeArray.append(JupssThShoonode)
                                                                                EarGroupNodeArray.append(jupiter)
                                                                                EarGroupNodeArray.append(JupitarParent)
                                                          //ven*
@@ -4274,17 +4288,17 @@ var power = "banana"
                                                                                      EarGroupNodeArray.append(earth)
                                                                                      EarGroupNodeArray.append(earthParent)
                                                          //sa*
-                                                          nodeArray.append(SaShoonode)
-                                                         ThirdGroupNodeArray.append(SaFourthShoonode)
-                                                         SSnodeArray.append(SAssShoonode)
-                                                          SecGroupNodeArray.append(SassThShoonode)
+                                                          AllnodeArray.append(SaShoonode)
+                                                         AllnodeArray.append(SaFourthShoonode)
+                                                         AllnodeArray.append(SAssShoonode)
+                                                          AllnodeArray.append(SassThShoonode)
                                                          // EarGroupNodeArray.append(earth)
                                                          // EarGroupNodeArray.append(earthParent)
                                                           //nep*
-                                                          nodeArray.append(NepShoonode)
-                    ThirdGroupNodeArray.append(NepFourthShoonode)
-                SSnodeArray.append(NepssShoonode)
-                    SecGroupNodeArray.append(NepssThShoonode)
+                                                          AllnodeArray.append(NepShoonode)
+                    AllnodeArray.append(NepFourthShoonode)
+                AllnodeArray.append(NepssShoonode)
+                    AllnodeArray.append(NepssThShoonode)
                 EarGroupNodeArray.append(neptune)
                                                                                                        EarGroupNodeArray.append(neptuneParent)
 
@@ -5109,7 +5123,9 @@ SaturnParent.addChildNode(SassThShoonode)
                                 earthParent.physicsBody?.isAffectedByGravity = false
 
             
-            
+            //all needed to save on memory
+                           AllnodeArray.removeAll()
+                    EarGroupNodeArray.removeAll()
             
            // venusParent
             venusParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
@@ -5216,11 +5232,11 @@ SaturnParent.addChildNode(SassThShoonode)
     //                     earth.name = "earth"
     //                    earthParent.name = "earthParent"
                       //  earth.addChildNode(ShoonodeSec)
-                        nodeArray.append(Shoonode)
+                        AllnodeArray.append(Shoonode)
                      //   nodeArray.append(ShoonodeSec)
-                        ThirdGroupNodeArray.append(FourthShoonode)
-                       SSnodeArray.append(ssShoonode)
-                        SecGroupNodeArray.append(ssThShoonode)
+                        AllnodeArray.append(FourthShoonode)
+                       AllnodeArray.append(ssShoonode)
+                        AllnodeArray.append(ssThShoonode)
                         EarGroupNodeArray.append(earth)
                                            EarGroupNodeArray.append(earthParent)
     //                    let r = ssShoonode
@@ -5346,8 +5362,12 @@ SaturnParent.addChildNode(SassThShoonode)
                                    earthParent.physicsBody?.isAffectedByGravity = false
 
                AllnodeArray.removeAll()
-               
-               
+            EarGroupNodeArray.removeAll()
+               //all needed to save on memory
+               // AllnodeArray.removeAll()
+        
+        
+        
               // venusParent
                venusParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                          venusParent.physicsBody?.isAffectedByGravity = false
@@ -5371,6 +5391,7 @@ SaturnParent.addChildNode(SassThShoonode)
              //  let frame = self.sceneView.
                // let mat = SCNMatrix4(frame.camera.transform)
                        for index in 0...2 {
+                  
                         autoreleasepool {
                            //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
                            //make node array empty in the end of the game func
@@ -5712,7 +5733,7 @@ SaturnParent.addChildNode(SassThShoonode)
         }
     }
     
-    
+    //memory around 400-500
     func planet(geometry: SCNGeometry, diffuse: UIImage, specular: UIImage?, emission: UIImage?, normal: UIImage?, position: SCNVector3) -> SCNNode {
            let planet = SCNNode(geometry: geometry)
            planet.geometry?.firstMaterial?.diffuse.contents = diffuse

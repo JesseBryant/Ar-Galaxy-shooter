@@ -276,7 +276,7 @@
                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vahjsbxhjsbjhsbchjabchjdbcjhsdbchjdsbcjhsdbchsdbj" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="giF-5h-ARa">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="giF-5h-ARa">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
                                                         <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="17"/>
                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -284,7 +284,7 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="vahjsbxhjsbjhsbchjabch" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wo-pa-Cxp" userLabel="CNNN">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wo-pa-Cxp" userLabel="CNNN">
                                                 <rect key="frame" x="0.0" y="40" width="240" height="48"/>
                                                 <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="17"/>
                                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
