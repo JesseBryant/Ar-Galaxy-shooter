@@ -275,7 +275,7 @@ var power = "banana"
            // Present an error message to the user
            print("Session failed. Changing worldAlignment property.")
            print(error.localizedDescription)
-
+//388957d754ee91a872e49a35233fc8b48c77a4c4
            if let arError = error as? ARError {
                switch arError.errorCode {
                case 102:
@@ -1388,6 +1388,9 @@ var power = "banana"
                     ssThShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                                                ssThShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                      FourthShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                        
+                        
+                        //
                                                                                                  FourthShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                     
                     // -0.8
