@@ -105,13 +105,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     @IBOutlet weak var Score: UILabel!
     
-    
+    //timeView
     @IBOutlet weak var BesLabel: UILabel!
     
     @IBOutlet weak var BestScore: UILabel!
     @IBOutlet weak var levelJB:UILabel!
     var Time = false
     
+    @IBOutlet weak var ScView: UIStackView!
+    @IBOutlet weak var timeView: UIStackView!
+    @IBOutlet weak var targeee: UIImageView!
     
     @IBOutlet weak var retry: UIButton!
     //revve
@@ -230,6 +233,9 @@ var power = "banana"
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
            // if self.AdsLoaded{
             self.sceneView.isHidden = false
+            self.ScView.isHidden = false
+            self.timeView.isHidden = false
+            self.targeee.isHidden = false
             SwiftSpinner.hide()
             self.play()
            // }
@@ -1188,7 +1194,7 @@ var power = "banana"
 //                  node.scale = SCNVector3(0.2,0.2,0.2)
               //  node .geometry?.firstMaterial?.diffuse.contents = UIColor.red
                 let disapear = SCNAction.fadeOut(duration: 0.1)
-                            fireBall.runAction(.sequence([.wait(duration: 1) ,disapear]))
+                fireBall.runAction(.sequence([.wait(duration: 0.5) ,disapear]))
                   fireBall.name = "bathtub"
                 //  node.name = "banana"
               case "axe":
@@ -5799,11 +5805,12 @@ SaturnParent.addChildNode(SassThShoonode)
         let audioPlayer = SCNAudioPlayer(source: audioSource)
         
         audioNode.addAudioPlayer(audioPlayer)
-        
+        //arm 7, ads work, nice begining load, blast react fast, beat repeat
         let play = SCNAction.playAudio(audioSource, waitForCompletion: true)
+        let soundd = SCNAction.repeatForever(play)
        // let play = SCNAction.pa
 //        let gg = SCNAction.removeFromParentNode()
-        audioNode.runAction(play)
+        audioNode.runAction(soundd)
         
         sceneView.scene.rootNode.addChildNode(audioNode)
     }
@@ -5842,7 +5849,7 @@ extension ViewController: FBInterstitialAdDelegate {
         print("Ads Loaded")
         AdsLoaded = true
     }
-  
+  //arm 7, ads work, nice begining load, blast react fast
     func interstitialAdWillClose(_ interstitialAd: FBInterstitialAd) {
         InterstitialAd()
     }

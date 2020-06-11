@@ -186,14 +186,14 @@
                                 <rect key="frame" x="0.0" y="-20" width="375" height="707"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </arscnView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="target" translatesAutoresizingMaskIntoConstraints="NO" id="ufE-5C-HHR">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="target" translatesAutoresizingMaskIntoConstraints="NO" id="ufE-5C-HHR" userLabel="targeee">
                                 <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="BJH-I2-yt6"/>
                                     <constraint firstAttribute="width" constant="100" id="hj4-W7-0Ju"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zqc-Nn-ya7">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zqc-Nn-ya7">
                                 <rect key="frame" x="19.5" y="16" width="60" height="95"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oII-wX-Kk6">
@@ -218,7 +218,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nFh-tK-Hgc">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nFh-tK-Hgc">
                                 <rect key="frame" x="295.5" y="16" width="60" height="95"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8M-pf-58c">
@@ -474,6 +474,7 @@
                         <outlet property="BesLabel" destination="Kzc-HO-6bE" id="833-mc-GOO"/>
                         <outlet property="BestScore" destination="giF-5h-ARa" id="ssi-aN-ndf"/>
                         <outlet property="CNNN" destination="4Wo-pa-Cxp" id="9vf-z6-WIV"/>
+                        <outlet property="ScView" destination="nFh-tK-Hgc" id="onB-zX-739"/>
                         <outlet property="bestScoreContainerView" destination="IUU-i1-rI7" id="Ltc-bI-Uih"/>
                         <outlet property="buttonStackView" destination="zeD-8m-Wft" id="POZ-Md-sHU"/>
                         <outlet property="coinsButton" destination="gmc-ck-qfh" id="Uk6-hu-ghg"/>
@@ -485,6 +486,8 @@
                         <outlet property="retry" destination="kwo-IE-Zkc" id="wcz-m9-P3g"/>
                         <outlet property="sceneView" destination="CA1-Ym-8qw" id="VdT-NP-AZd"/>
                         <outlet property="scoreLabel" destination="s8M-pf-58c" id="sjE-f0-CKC"/>
+                        <outlet property="targeee" destination="ufE-5C-HHR" id="ZEQ-72-0NC"/>
+                        <outlet property="timeView" destination="zqc-Nn-ya7" id="XoE-Q9-x2u"/>
                         <outlet property="timerLabel" destination="oII-wX-Kk6" id="r1l-Jl-Y0R"/>
                     </connections>
                 </viewController>
