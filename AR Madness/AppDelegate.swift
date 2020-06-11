@@ -17,7 +17,7 @@ import UIKit
 //watch background vid and tutorials...master it
 //lean these background func
 //use background to increase performance
-
+import FBAudienceNetwork
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+         FBAdSettings.addTestDevice(FBAdSettings.testDeviceHash())
 //         Use Firebase library to configure APIs.
 //        FirebaseApp.configure()
 //        // Initialize the Google Mobile Ads SDK.
