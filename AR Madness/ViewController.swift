@@ -5122,7 +5122,7 @@ SaturnParent.addChildNode(SassThShoonode)
 //
     
    func SecaddTargetNodes(){
-            
+            //stable
             //when points get to a certain point like 40 means 1 left and 37 means 2 may be left
             //when game finish congrat them
             //kill certain ship and certain amount of points
@@ -5190,7 +5190,7 @@ SaturnParent.addChildNode(SassThShoonode)
                         let Spacehscene = SCNScene(named: "art.scnassets/SS1copy.scn")
                                                 ssThShoonode = (Spacehscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                                  ssThShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                        ssThShoonode.name = "sharkk"
+                        ssThShoonode.name = "shark"
                         // third one
                         
                         let SpacehFscene = SCNScene(named: "art.scnassets/SS1copy.scn")
@@ -5802,17 +5802,27 @@ SaturnParent.addChildNode(SassThShoonode)
     func playBackgroundMusic(){
 //        let audioNode = SCNNode()
 //        let audioSource = SCNAudioSource(fileNamed: "Sleepy.mp3")!
+//        let audioPlayer = SCNAudioPlayer(source: audioSource)
+//
+//        audioNode.addAudioPlayer(audioPlayer)
+//        //arm 7, ads work, nice begining load, blast react fast, beat repeat
+//        let play = SCNAction.playAudio(audioSource, waitForCompletion: true)
+//        let soundd = SCNAction.repeatForever(play)
+//       // let play = SCNAction.pa
+////        let gg = SCNAction.removeFromParentNode()
+//        audioNode.runAction(soundd)
+//
+//        sceneView.scene.rootNode.addChildNode(audioNode)
         let audioPlayer = SCNAudioPlayer(source: audioSource)
-        
-        audioNode.addAudioPlayer(audioPlayer)
-        //arm 7, ads work, nice begining load, blast react fast, beat repeat
-        let play = SCNAction.playAudio(audioSource, waitForCompletion: true)
-        let soundd = SCNAction.repeatForever(play)
-       // let play = SCNAction.pa
-//        let gg = SCNAction.removeFromParentNode()
-        audioNode.runAction(soundd)
-        
-        sceneView.scene.rootNode.addChildNode(audioNode)
+                    
+                    audioNode.addAudioPlayer(audioPlayer)
+                    
+                    let play = SCNAction.playAudio(audioSource, waitForCompletion: true)
+                   // let play = SCNAction.pa
+            //        let gg = SCNAction.removeFromParentNode()
+                    audioNode.runAction(play)
+                    
+                    sceneView.scene.rootNode.addChildNode(audioNode)
     }
     func stopBackgroundMus() {
 //         let audioPlayer = SCNAudioPlayer(source: audioSource)
@@ -5852,6 +5862,11 @@ extension ViewController: FBInterstitialAdDelegate {
   //arm 7, ads work, nice begining load, blast react fast
     func interstitialAdWillClose(_ interstitialAd: FBInterstitialAd) {
         InterstitialAd()
+//        DispatchQueue.main.async {
+//            self.shouldShowBestScoreContainerView(state: false)
+//           self.resetTimer(time: 30)
+//            self.runTimer()
+//        }
     }
     func interstitialAdDidClose(_ interstitialAd: FBInterstitialAd) {
              print("Interstitial had been closed")
@@ -5862,10 +5877,11 @@ extension ViewController: FBInterstitialAdDelegate {
                              defaultss.set(arrrrr, forKey: "scoreL")
             defaultss.set(self.Coins, forKey: "Coins")
                             self.ReportScore(with: arrrrr)
-       
+        DispatchQueue.main.async {
             self.shouldShowBestScoreContainerView(state: false)
            self.resetTimer(time: 30)
             self.runTimer()
+        }
             self.PoP = false
             if isPlanetHit{
                     DispatchQueue.main.async {
