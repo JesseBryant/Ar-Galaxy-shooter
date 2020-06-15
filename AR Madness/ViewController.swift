@@ -1337,7 +1337,7 @@ var power = "banana"
                    let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
                                                     Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                                      Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                     Shoonode.name = "SS1copy.scn"
+                                                     Shoonode.name = "shark"
                               }
                     
                    
@@ -1492,7 +1492,7 @@ var power = "banana"
               earth.name = "earthQJ"
              earthParent.name = "earthQJ"
         moonParent.name = "moon"
-        moonn.name = "moonnn"
+        moonn.name = "earthQJ"
                                       earth.position = SCNVector3(0,0,-1)
                                        earthParent.position = SCNVector3(0,0,-1)
          moonParent.position = SCNVector3(0,0,-1)
@@ -1567,7 +1567,7 @@ var power = "banana"
                        let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
                                                         Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                                          Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                         Shoonode.name = "SS1copy.scn"
+                                                         Shoonode.name = "shark"
                                   }
                         
                        
@@ -1793,7 +1793,7 @@ var power = "banana"
                           let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
                                                            Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                                             Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                            Shoonode.name = "SS1copy.scn"
+                                                            Shoonode.name = "shark"
                                      }
                            
                           
@@ -1904,7 +1904,7 @@ var power = "banana"
                         //  ssThShoonode.runAction(SecRotation)
                         //   FourthShoonode.runAction(SecRotation)
        //                        ssThShoonode
-                                  earthParent.runAction(earthParentRotation)
+                                  earthParent.runAction(JRRotation)
                                   venusParent.runAction(VRotation)
                                   moonParent.runAction(moonRotation)
 
@@ -1913,6 +1913,7 @@ var power = "banana"
                         sun.runAction(sunAction)
                           // earthParent.addChildNode(venusParent)
 //                           venusParent.addChildNode(Shoonode)
+                            //all are shark..level 5 bug where all ships disappear is fixed. Need to add shark to the rest
                            
                            ////****** and ven name*/
                               //    earthParent.addChildNode(Shoonode)
@@ -1921,15 +1922,15 @@ var power = "banana"
                          sun.addChildNode(earthParent)
                         sun.addChildNode(EarParent)
                         // earthParent.addChildNode(Shoonode)
-                           earth.addChildNode(ssShoonode)
-                        earth.addChildNode(ShoonodeG)
+                           earthParent.addChildNode(ssShoonode)
+                        earthParent.addChildNode(ShoonodeG)
                         //earth.addChildNode(EarParent)
                          //  ssThShoonode.addChildNode(ssShoonode)
-                          earth.addChildNode(Shoonode)
-                        earth.addChildNode(ssThShoonode)
-                           earth.addChildNode(FourthShoonode)
-                                  earth.addChildNode(moonParent)
-                           earth.addChildNode(moon)
+                          earthParent.addChildNode(Shoonode)
+                        earthParent.addChildNode(ssThShoonode)
+                           earthParent.addChildNode(FourthShoonode)
+                                  earthParent.addChildNode(moonParent)
+                           earthParent.addChildNode(moon)
                                 moonParent.addChildNode(moon)
        //                    for n in SSnodeArray {
        //                        print("\(n.name) jessss")
@@ -2049,7 +2050,7 @@ var power = "banana"
 //                                                                                                                              var VenFourthShoonode = SCNNode()
                             
                                                           let Spacehscener = SCNScene(named: "art.scnassets/SS1copy.scn")
-                                                                                  VenssShoonode  = (Spacehscener?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                    VenssShoonode  = (Spacehscener?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                                                                    VenssShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                           VenssShoonode .name = "shark"
                                                           // third one
@@ -2081,12 +2082,12 @@ var power = "banana"
                               let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
                                                                Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                                                 Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                                Shoonode.name = "SS1copy.scn"
+                                                                Shoonode.name = "shark"
                                 
                                 let scenee = SCNScene(named: "art.scnassets/missilecopy.scn")
                                                                                              VenShoonode = (scenee?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                                                                               VenShoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                                                              VenShoonode.name = "SS1copy.scn"
+                                                                                              VenShoonode.name = "shark"
                                          }
                                
                               
@@ -3467,7 +3468,7 @@ var power = "banana"
                                                   let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                           Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                       Shoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                                              Shoonode.name = "ha"
+                                                                                                              Shoonode.name = "shark"
                                                                                   //Ven
                       //                                                            let scenee = SCNScene(named: "art.scnassets/spaceARcopy.scn")
                       //                                                                                                                       VenShoonode = (scenee?.rootNode.childNode(withName: "SS1redcopy", recursively: true)!)!
@@ -3478,13 +3479,13 @@ var power = "banana"
                                   SaShoonode = (scenell?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                                                                                                                               
                                               SaShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                              SaShoonode.name = "ha"
+                                              SaShoonode.name = "shark"
                                                                                   //nep
                                               let scenenn = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                                   NepShoonode = (scenenn?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                                                                                                                                
                                                                   NepShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                                                                                                                                        NepShoonode.name = "ha"
+                                                                                                                                                                                                        NepShoonode.name = "shark"
                                                                                   
                                                                                   
 //                                                  let scenennk = SCNScene(named: "art.scnassets/spaceGreen.scn")
@@ -3500,7 +3501,7 @@ var power = "banana"
                                                   let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
                                   Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                                                           Shoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                                                  Shoonode.name = "SS1copy.scn"
+                                                                                                                  Shoonode.name = "shark"
                       //                                                            //ven
                       //                                                            let scenee = SCNScene(named: "art.scnassets/missilecopy.scn")
                       //                                                                                                                         VenShoonode = (scenee?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
@@ -3510,12 +3511,12 @@ var power = "banana"
                                                       let sceneb = SCNScene(named: "art.scnassets/missilecopy.scn")
                                           SaShoonode = (sceneb?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                           SaShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                  SaShoonode.name = "SS1copy.scn"
+                                                  SaShoonode.name = "shark"
                                                           //nep
                                               let scenebn = SCNScene(named: "art.scnassets/missilecopy.scn")
                                   NepShoonode = (scenebn?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                   NepShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                              NepShoonode.name = "SS1copy.scn"
+                                              NepShoonode.name = "shark"
                                                                                   
                                                                                   
                                                                                   
@@ -4020,9 +4021,9 @@ var power = "banana"
                                                            ssThShoonode.name = "shark"
                                                            // third one
                                                            
-                                                           let SpacehFscene = SCNScene(named: "art.scnassets/SS1copy.scn")
-                                                                                                      FourthShoonode = (SpacehFscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
-                                                                                                       FourthShoonode.scale = SCNVector3(0.02,0.02,0.02)
+        let SpacehFscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+        FourthShoonode = (SpacehFscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                FourthShoonode.scale = SCNVector3(0.02,0.02,0.02)
                                                                               FourthShoonode.name = "shark"
                                                         
                                                         
@@ -4122,7 +4123,7 @@ var power = "banana"
                             let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
                     Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                 Shoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                        Shoonode.name = "ha"
+                                                                                        Shoonode.name = "shark"
                                                             //Ven
 //                                                            let scenee = SCNScene(named: "art.scnassets/spaceARcopy.scn")
 //                                                                                                                       VenShoonode = (scenee?.rootNode.childNode(withName: "SS1redcopy", recursively: true)!)!
@@ -4139,14 +4140,14 @@ var power = "banana"
                             NepShoonode = (scenenn?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                                                                                                          
                                             NepShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                                                                                                                  NepShoonode.name = "ha"
+                                                                                                                                                                                  NepShoonode.name = "shark"
                                                             
                                                             
                             let scenennk = SCNScene(named: "art.scnassets/spaceGreen.scn")
                 JupShoonode = (scenennk?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                                                                                                        
                         JupShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                                                                                                                                                                             JupShoonode.name = "ha"
+                                                                                                                                                                                                                                             JupShoonode.name = "shark"
                                                             
                                                                                                     
                                                             
@@ -4155,7 +4156,7 @@ var power = "banana"
                             let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
             Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                                     Shoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                            Shoonode.name = "SS1copy.scn"
+                                                                                            Shoonode.name = "shark"
 //                                                            //ven
 //                                                            let scenee = SCNScene(named: "art.scnassets/missilecopy.scn")
 //                                                                                                                         VenShoonode = (scenee?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
@@ -4165,12 +4166,12 @@ var power = "banana"
                                 let sceneb = SCNScene(named: "art.scnassets/missilecopy.scn")
                     SaShoonode = (sceneb?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                     SaShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                            SaShoonode.name = "SS1copy.scn"
+                            SaShoonode.name = "shark"
                                     //nep
                         let scenebn = SCNScene(named: "art.scnassets/missilecopy.scn")
             NepShoonode = (scenebn?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
             NepShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                        NepShoonode.name = "SS1copy.scn"
+                        NepShoonode.name = "shark"
                                                             
                                                             
                                                             
@@ -4178,7 +4179,7 @@ var power = "banana"
         let scenebe = SCNScene(named: "art.scnassets/missilecopy.scn")
         JupShoonode = (scenebe?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
         JupShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                                                                                                                             JupShoonode.name = "SS1copy.scn"
+                                                                                                                                                                                             JupShoonode.name = "shark"
                                                                      }
                                                            
                                                           
@@ -5218,7 +5219,7 @@ SaturnParent.addChildNode(SassThShoonode)
                                       let scene = SCNScene(named: "art.scnassets/SS1copy.scn")
                                      Shoonode = (scene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                       Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                      Shoonode.name = "SS1copy.scn"
+                                      Shoonode.name = "shark"
                                   }
                         
                        
@@ -5433,7 +5434,7 @@ SaturnParent.addChildNode(SassThShoonode)
                            let Spacehscene = SCNScene(named: "art.scnassets/SS1copy.scn")
                                                    ssThShoonode = (Spacehscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                                     ssThShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                           ssThShoonode.name = "sharkk"
+                           ssThShoonode.name = "shark"
                         f = f+1
                            // third one
                            
@@ -5466,7 +5467,7 @@ SaturnParent.addChildNode(SassThShoonode)
                                          let scene = SCNScene(named: "art.scnassets/SS1copy.scn")
                                         Shoonode = (scene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
                                          Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                         Shoonode.name = "SS1copy.scn"
+                                         Shoonode.name = "shark"
                             f = f+1
                                      }
                            
