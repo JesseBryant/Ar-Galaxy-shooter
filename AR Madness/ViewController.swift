@@ -90,7 +90,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
      var isPlanetHitORneedTime = false
       var PoP = false
     var interstitial: FBInterstitialAd!
-    
+    var adShowFinish = false
     //MARK: - variables
     @IBOutlet var sceneView: ARSCNView!
     
@@ -223,11 +223,12 @@ var power = "banana"
 //        InterstitialAd()
 //nice project fix issues with sound, much better fireball, less fade out.. memory leak fixed
 //       self.sceneView.isHidden = true
+        //treat ADs like mainly time tickit.. Coins should manly save planets
         DispatchQueue.main.async {
              self.sceneView.isHidden = true
             SwiftSpinner.show("Connecting to AR Camera...")
             self.InterstitialAd()
-
+ 
                //   self.sceneView.isHidden = true
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
@@ -237,6 +238,7 @@ var power = "banana"
             self.timeView.isHidden = false
             self.targeee.isHidden = false
             SwiftSpinner.hide()
+            self.reseB()
             self.play()
            // }
         }
@@ -310,7 +312,11 @@ var power = "banana"
         sceneView.session.pause()
        // stopBackgroundMusic()
     }
-    
+    func reseB(){
+    view.addSubview(resetButton)
+      resetButton.anchor(nil, left: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 12, rightConstant: 0, widthConstant: resetButtonWidth, heightConstant: resetButtonWidth)
+      resetButton.anchorCenterXToSuperview()
+    }
     // MARK: - timer
     
     //to store how many sceonds the game is played for
@@ -333,6 +339,67 @@ var power = "banana"
     @objc func handleTap(sender: UITapGestureRecognizer){
         fireMissile(type: power)
        
+    }
+    
+    
+    let resetButtonWidth = ScreenSize.width * 0.1
+    lazy var resetButton: UIButton = {
+      var button = UIButton(type: .system)
+      button.setImage(#imageLiteral(resourceName: "ResetButton").withRenderingMode(.alwaysTemplate), for: .normal)
+      button.tintColor = UIColor(white: 1.0, alpha: 0.7)
+      button.layer.cornerRadius = resetButtonWidth * 0.5
+      button.layer.masksToBounds = true
+      button.addTarget(self, action: #selector(handleResetButtonTapped), for: .touchUpInside)
+      button.layer.zPosition = 1
+      button.imageView?.contentMode = .scaleAspectFill
+      return button
+    }()
+    
+    @objc func handleResetButtonTapped() {
+       print("Tapped on reset button")
+       resetScene()
+     }
+    func resetScene() {
+      sceneView.session.pause()
+        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                       node.removeFromParentNode()
+                   }
+//      sceneView.scene.rootNode.enumerateChildNodes { (node, _) in
+//        if node.name == "node" {
+//          node.removeFromParentNode()
+//        }
+//      }
+        DispatchQueue.main.async {
+                   self.shouldShowBestScoreContainerView(state: false)
+                  self.resetTimer(time: 30)
+                   self.runTimer()
+               }
+                   self.PoP = false
+                 //  if isPlanetHit{
+                           DispatchQueue.main.async {
+                           self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                           node.removeFromParentNode()
+                               }
+                               self.play()
+                            //can refresh app AND it refresh if ad wont close
+                           }
+//                   } else {
+//                     DispatchQueue.main.async {
+//                       self.playBackgroundMusic()
+//                   }
+//
+//                   }
+                   isPlanetHit = false
+         adShowFinish = false
+             // self.runTimer()
+        print("adShowFinish = false")
+     //   sceneView.setNeedsDisplay
+        self.view.setNeedsDisplay()
+      //  play()
+        
+        //viewDidLoad()
+        //set var = false ...ads
+      sceneView.session.run(configuration, options: [.removeExistingAnchors, .resetTracking])
     }
     
     func PlayInstructions() {
@@ -407,7 +474,7 @@ var power = "banana"
         stopBackgroundMus()
     }
     func BeatLevel() {
-    
+//        if adShowFinish == false {
         self.messageLabel.isHidden = false
         timer.invalidate()
         
@@ -487,6 +554,9 @@ var power = "banana"
             
             self.play()
         })
+//        } else {
+//            resetScene()
+//        }
     }
     func shouldShowBestScoreContainerView(state: Bool) {
         if state {
@@ -624,6 +694,7 @@ var power = "banana"
             self.stopBackgroundMus()
             
             self.interstitial.show(fromRootViewController: self)
+            self.adShowFinish = true
         self.shouldShowBestScoreContainerView(state: false)
            //  self.sceneView.isHidden = true
            //  SwiftSpinner.show("Loading...")
@@ -5722,11 +5793,20 @@ SaturnParent.addChildNode(SassThShoonode)
                         print("\(self.Coins)Coins")
                         print("\(contact.nodeA.name!)")
                     } else{
+                          if self.adShowFinish == false {
                         DispatchQueue.main.async {
+                          
                             self.resetTimer(time: 60)
                             self.ReportScore(with: self.scoreL)
                             self.scoreL+=0
                             self.BeatLevel()
+                            }
+                            
+                            }
+                        else {
+                            DispatchQueue.main.async {
+                            self.resetScene()
+                            }
                         }
                         
                     }
@@ -5858,6 +5938,9 @@ fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Categ
 extension ViewController: FBInterstitialAdDelegate {
     func interstitialAdDidLoad(_ interstitialAd: FBInterstitialAd) {
         print("Ads Loaded")
+        
+         print(" adShowFinish = true")
+//        adShowFinish = true
         AdsLoaded = true
     }
   //arm 7, ads work, nice begining load, blast react fast
@@ -5870,6 +5953,7 @@ extension ViewController: FBInterstitialAdDelegate {
 //        }
     }
     func interstitialAdDidClose(_ interstitialAd: FBInterstitialAd) {
+          adShowFinish = false
              print("Interstitial had been closed")
        self.sceneView.isHidden = false
                        SwiftSpinner.hide()

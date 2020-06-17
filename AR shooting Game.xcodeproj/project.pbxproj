@@ -11,7 +11,6 @@
 		180C225424544DFE00CDFA75 /* VideoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C225324544DFE00CDFA75 /* VideoHelper.swift */; };
 		180C225624544EAC00CDFA75 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C225524544EAC00CDFA75 /* VideoCapture.swift */; };
 		188ACF9F245F0856001993EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 188ACF9E245F0856001993EC /* GoogleService-Info.plist */; };
-		8EB60CDE42966BC4CE43624F /* libPods-Shoot N' Guns.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBC6E4B9EF5FB11AFED35598 /* libPods-Shoot N' Guns.a */; };
 		A7216ABC20BE1930009F6A51 /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = A7216ABB20BE1930009F6A51 /* explosion.wav */; };
 		A7216ABE20BE1940009F6A51 /* monkey.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7216ABD20BE1940009F6A51 /* monkey.mp3 */; };
 		A7216AC020BE1957009F6A51 /* watersplash.wav in Resources */ = {isa = PBXBuildFile; fileRef = A7216ABF20BE1957009F6A51 /* watersplash.wav */; };
@@ -38,9 +37,12 @@
 		E383ABD724237730001F79BB /* Sleepy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD62423772D001F79BB /* Sleepy.mp3 */; };
 		E383ABD92423822F001F79BB /* JBsmartsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD82423822E001F79BB /* JBsmartsound.mp3 */; };
 		E3F1B56C24625C000011B881 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F1B56B24625C000011B881 /* GameKit.framework */; };
+		E3F21A8B2499C048002A29A4 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F21A8A2499C03C002A29A4 /* Extension.swift */; };
+		E3F21A8D2499CA73002A29A4 /* JA.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F21A8C2499CA73002A29A4 /* JA.swift */; };
 		E3F4A1602438999A00C36E91 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F4A15F2438999A00C36E91 /* StoreKit.framework */; };
 		E3F6D5E82424D96800D19AB0 /* mViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F6D5E72424D96800D19AB0 /* mViewController.swift */; };
 		E3F8B0A2242F398C00E986B9 /* Power.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3F8B0A1242F398600E986B9 /* Power.mp3 */; };
+		FBE15BCC45154E7C82CED360 /* libPods-AR shooting Game.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B72751EF882E60CB7D024C8 /* libPods-AR shooting Game.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		180C225324544DFE00CDFA75 /* VideoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoHelper.swift; sourceTree = "<group>"; };
 		180C225524544EAC00CDFA75 /* VideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
 		188ACF9E245F0856001993EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1B72751EF882E60CB7D024C8 /* libPods-AR shooting Game.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AR shooting Game.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FD6E275E702F793BFAEA068 /* Pods-AR shooting Game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR shooting Game.release.xcconfig"; path = "Target Support Files/Pods-AR shooting Game/Pods-AR shooting Game.release.xcconfig"; sourceTree = "<group>"; };
 		42E9C8B5D124BCF048D1FC36 /* Pods-Shoot N' Guns.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot N' Guns.release.xcconfig"; path = "Target Support Files/Pods-Shoot N' Guns/Pods-Shoot N' Guns.release.xcconfig"; sourceTree = "<group>"; };
 		82BAF855FFEA4294DFBC2835 /* Pods-Shoot N' Guns.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot N' Guns.debug.xcconfig"; path = "Target Support Files/Pods-Shoot N' Guns/Pods-Shoot N' Guns.debug.xcconfig"; sourceTree = "<group>"; };
 		A7216ABB20BE1930009F6A51 /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
@@ -65,6 +69,7 @@
 		A73D42A920B80B4200965934 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A73D42AC20B80B4200965934 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A73D42AE20B80B4200965934 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9947B13249DDF6A566FEB35 /* Pods-AR shooting Game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR shooting Game.debug.xcconfig"; path = "Target Support Files/Pods-AR shooting Game/Pods-AR shooting Game.debug.xcconfig"; sourceTree = "<group>"; };
 		E313248723EBF89E009C648F /* Fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Fire.scnp; sourceTree = "<group>"; };
 		E313248923EBF906009C648F /* caffefe.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = caffefe.scnp; sourceTree = "<group>"; };
 		E313248A23EBF906009C648F /* confetti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confetti.png; sourceTree = "<group>"; };
@@ -78,10 +83,11 @@
 		E383ABD62423772D001F79BB /* Sleepy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sleepy.mp3; sourceTree = "<group>"; };
 		E383ABD82423822E001F79BB /* JBsmartsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JBsmartsound.mp3; sourceTree = "<group>"; };
 		E3F1B56B24625C000011B881 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		E3F21A8A2499C03C002A29A4 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		E3F21A8C2499CA73002A29A4 /* JA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JA.swift; sourceTree = "<group>"; };
 		E3F4A15F2438999A00C36E91 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		E3F6D5E72424D96800D19AB0 /* mViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mViewController.swift; sourceTree = "<group>"; };
 		E3F8B0A1242F398600E986B9 /* Power.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Power.mp3; sourceTree = "<group>"; };
-		EBC6E4B9EF5FB11AFED35598 /* libPods-Shoot N' Guns.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Shoot N' Guns.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +97,7 @@
 			files = (
 				E3F1B56C24625C000011B881 /* GameKit.framework in Frameworks */,
 				E3F4A1602438999A00C36E91 /* StoreKit.framework in Frameworks */,
-				8EB60CDE42966BC4CE43624F /* libPods-Shoot N' Guns.a in Frameworks */,
+				FBE15BCC45154E7C82CED360 /* libPods-AR shooting Game.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +163,7 @@
 				A73D42A020B80B4000965934 /* AppDelegate.swift */,
 				A73D42A220B80B4000965934 /* art.scnassets */,
 				A73D42A420B80B4000965934 /* ViewController.swift */,
+				E3F21A8A2499C03C002A29A4 /* Extension.swift */,
 				180C225324544DFE00CDFA75 /* VideoHelper.swift */,
 				180C225524544EAC00CDFA75 /* VideoCapture.swift */,
 				A73D42A620B80B4000965934 /* Main.storyboard */,
@@ -167,6 +174,7 @@
 				E3F6D5E72424D96800D19AB0 /* mViewController.swift */,
 				180C225124544D1700CDFA75 /* MainViewController.swift */,
 				188ACF9E245F0856001993EC /* GoogleService-Info.plist */,
+				E3F21A8C2499CA73002A29A4 /* JA.swift */,
 			);
 			path = "AR Madness";
 			sourceTree = "<group>";
@@ -176,6 +184,8 @@
 			children = (
 				82BAF855FFEA4294DFBC2835 /* Pods-Shoot N' Guns.debug.xcconfig */,
 				42E9C8B5D124BCF048D1FC36 /* Pods-Shoot N' Guns.release.xcconfig */,
+				A9947B13249DDF6A566FEB35 /* Pods-AR shooting Game.debug.xcconfig */,
+				3FD6E275E702F793BFAEA068 /* Pods-AR shooting Game.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -185,7 +195,7 @@
 			children = (
 				E3F1B56B24625C000011B881 /* GameKit.framework */,
 				E3F4A15F2438999A00C36E91 /* StoreKit.framework */,
-				EBC6E4B9EF5FB11AFED35598 /* libPods-Shoot N' Guns.a */,
+				1B72751EF882E60CB7D024C8 /* libPods-AR shooting Game.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -295,7 +305,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Shoot N' Guns-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-AR shooting Game-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -311,11 +321,13 @@
 			files = (
 				E3F6D5E82424D96800D19AB0 /* mViewController.swift in Sources */,
 				180C225624544EAC00CDFA75 /* VideoCapture.swift in Sources */,
+				E3F21A8D2499CA73002A29A4 /* JA.swift in Sources */,
 				A73D42A520B80B4000965934 /* ViewController.swift in Sources */,
 				A73D42A120B80B4000965934 /* AppDelegate.swift in Sources */,
 				180C225424544DFE00CDFA75 /* VideoHelper.swift in Sources */,
 				A7216AD320BE9B72009F6A51 /* HomeViewController.swift in Sources */,
 				180C225224544D1700CDFA75 /* MainViewController.swift in Sources */,
+				E3F21A8B2499C048002A29A4 /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,7 +469,7 @@
 		};
 		A73D42B220B80B4200965934 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82BAF855FFEA4294DFBC2835 /* Pods-Shoot N' Guns.debug.xcconfig */;
+			baseConfigurationReference = A9947B13249DDF6A566FEB35 /* Pods-AR shooting Game.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -476,7 +488,7 @@
 		};
 		A73D42B320B80B4200965934 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42E9C8B5D124BCF048D1FC36 /* Pods-Shoot N' Guns.release.xcconfig */;
+			baseConfigurationReference = 3FD6E275E702F793BFAEA068 /* Pods-AR shooting Game.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
