@@ -1051,7 +1051,7 @@ var power = "banana"
                 //score update properly, coin almost done
             else if 37...47 ~= Coins{
                 power = "banana"
-                //  sceneView.backgroundColor = UIColor.red
+                //  sceneView.backgroundColor = UIColor.red 
                 messageLabel.isHidden = true
                 levelJB.text = "level 4"
                 addTargetNodesFour()
