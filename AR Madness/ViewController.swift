@@ -551,6 +551,8 @@ var power = "banana"
 //            self.BestScore.isHidden = true
 //            self.BestScore.isHidden = true
             self.BesLabel.isHidden = true
+            self.resetTimer(time: 60)
+                                    self.ReportScore(with: self.scoreL)
             
             self.play()
         })
@@ -999,7 +1001,7 @@ var power = "banana"
             //print("\(self.Coins) Coins after")
             //  let defaults = UserDefaults.standard
             
-            if 7...38 ~= Coins {
+            if 11...25 ~= Coins {
                 power = "banana"
                 messageLabel.isHidden = true
                 levelJB.text = "level 2"
@@ -1024,7 +1026,7 @@ var power = "banana"
                 runTimer()
                 print("\(Coinse): welcome to level Coinse 2")
                 print("\(Coins): welcome to level 2")
-            } else if 39...66 ~= Coins{
+            } else if 26...36 ~= Coins{
                 power = "banana"
                 //  sceneView.backgroundColor = UIColor.red
                 messageLabel.isHidden = true
@@ -1046,7 +1048,8 @@ var power = "banana"
                 print("\(Coinse): welcome to level 3 Coinse jess")
                 
             }
-            else if 67...94 ~= Coins{
+                //score update properly, coin almost done
+            else if 37...47 ~= Coins{
                 power = "banana"
                 //  sceneView.backgroundColor = UIColor.red
                 messageLabel.isHidden = true
@@ -1065,7 +1068,9 @@ var power = "banana"
                 print("\(Coins): welcome to level 4 jess")
                 print("\(Coinse): welcome to level 4 Coinse jess")
                 
-            }       else if 95...129 ~= Coins{
+            }
+            //nexxxxx
+            else if 48...53 ~= Coins{
                 power = "banana"
                 //  sceneView.backgroundColor = UIColor.red
                 messageLabel.isHidden = true
@@ -1091,7 +1096,7 @@ var power = "banana"
                 print("\(Coins): welcome to level 5 jess")
                 print("\(Coinse): welcome to level 5 Coinse jess")
                 //
-            } else if 130...161 ~= Coins{
+            } else if 59...82 ~= Coins{
                 power = "banana"
                 //  sceneView.backgroundColor = UIColor.red
                 messageLabel.isHidden = true
@@ -1122,7 +1127,7 @@ var power = "banana"
             }
                 
                 //addTargetNodesSaturn()
-            else if 162...209 ~= Coins{
+            else if 83...106 ~= Coins{
                 power = "banana"
                 messageLabel.isHidden = true
                 levelJB.text = "level 7"
@@ -1151,7 +1156,7 @@ var power = "banana"
                 print("\(Coins): welcome to level 7 jess")
                 print("\(Coinse): welcome to level 7 jess Coinse")
                 
-            } else if 209...1320 ~= Coins{
+            } else if 107...238 ~= Coins{
                 
                 power = "banana"
                 messageLabel.isHidden = true
@@ -1562,7 +1567,7 @@ var power = "banana"
             earN = earthParent
               earth.name = "earthQJ"
              earthParent.name = "earthQJ"
-        moonParent.name = "moon"
+        moonParent.name = "earthQJ"
         moonn.name = "earthQJ"
                                       earth.position = SCNVector3(0,0,-1)
                                        earthParent.position = SCNVector3(0,0,-1)
@@ -1780,6 +1785,7 @@ var power = "banana"
                                          let sun = SCNNode(geometry: SCNSphere(radius: 0.25))
         sun.geometry?.firstMaterial?.diffuse.contents = #imageLiteral(resourceName: "Sun diffuse")
                sun.position = SCNVector3(0,0,-1)
+        sun.name = "earthQJ"
                  let earthParent = SCNNode()
             let moonParent = SCNNode()
            
@@ -2020,11 +2026,13 @@ var power = "banana"
                                              let sun = SCNNode(geometry: SCNSphere(radius: 0.25))
             sun.geometry?.firstMaterial?.diffuse.contents = #imageLiteral(resourceName: "Sun diffuse")
                    sun.position = SCNVector3(0,0,-1)
+        sun.name = "earthQJ"
                      let earthParent = SCNNode()
                 let moonParent = SCNNode()
                
                    let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.8 ,0 , 0))
          let venus = planet(geometry: SCNSphere(radius: 0.1), diffuse: #imageLiteral(resourceName: "Venus Surface"), specular: nil, emission: #imageLiteral(resourceName: "Venus Atmosphere"), normal: nil, position: SCNVector3(0.5, 0, 0))
+        venus.name = "earthQJ"
               //    let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
                 //   venusParent
                     earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
@@ -3351,18 +3359,21 @@ var power = "banana"
                                                                                                let sun = SCNNode(geometry: SCNSphere(radius: 0.25))
                                                               sun.geometry?.firstMaterial?.diffuse.contents = #imageLiteral(resourceName: "Sun diffuse")
                                                                      sun.position = SCNVector3(0,0,-1)
+        
+                                            sun.name = "earthQJ"
                                                                        let earthParent = SCNNode()
                                                                   let moonParent = SCNNode()
                                                                  
                                                                      let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.8 ,0 , 0))
                                                let saturnRing = createRing(ringSize: 0.3)
                                                      let saturn = createPlanet(radius: 0.2, image: "saturn")
-                                                     saturn.name = "saturn"
+                                                     saturn.name = "earthQJ"
                                                saturn.position = SCNVector3(2.5,0,0)
                                                      rotateObject(rotation: 0.1, planet: saturn, duration: 0.4)
                                                      rotateObject(rotation: 0.1, planet: saturnRing, duration: 1)
                       //                                     let venus = planet(geometry: SCNSphere(radius: 0.1), diffuse: #imageLiteral(resourceName: "Venus Surface"), specular: nil, emission: #imageLiteral(resourceName: "Venus Atmosphere"), normal: nil, position: SCNVector3(0.5, 0, 0))
                                                                     let moon = planet(geometry: SCNSphere(radius: 0.05), diffuse: #imageLiteral(resourceName: "moon Diffuse"), specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,-0.3))
+                                                    moon.name = "earthQJ"
                                                                   //   venusParent
                                                                       earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                                                          earth.physicsBody?.isAffectedByGravity = false
@@ -3393,6 +3404,7 @@ var power = "banana"
                                                SaturnParent.position = SCNVector3(-2.5,0,0)
                               neptune.position = SCNVector3(0,0,3.5)
                               neptuneParent.position = SCNVector3(0,0,3.5)
+                                neptune.name = "earthQJ"
 //                              jupiter.position = SCNVector3(0,0,-2.9)
 //                              JupitarParent.position = SCNVector3(0,0,-2.9)
                       //        venusParent.position = SCNVector3(0,0,1.2)
@@ -3949,14 +3961,15 @@ var power = "banana"
                    //Make ships move on dif speeds llke earlter
               let JupitarRing = createRing(ringSize: 0.3)
                               let jupiter = createPlanet(radius: 0.33, image: "jupiter")
-                                         jupiter.name = "zoom"
+        
+                                         jupiter.name = "earthQJ"
                              jupiter.position = SCNVector3(x:1.6 , y: 0, z: 0)
                               rotateObject(rotation: 0.01, planet:  jupiter, duration: 0.4)
                               rotateObject(rotation: 0.01, planet: JupitarRing, duration: 1)
                   
                   let neptuneRing = createRing(ringSize: 0.3)
                          let neptune = createPlanet(radius: 0.23, image: "neptune")
-                         neptune.name = "neptune"
+                         neptune.name = "earthQJ"
                          neptune.position = SCNVector3(x:1.6 , y: 0, z: 0)
                          rotateObject(rotation: 0.01, planet: neptune, duration: 0.4)
                          rotateObject(rotation: 0.01, planet: neptuneRing, duration: 1)
@@ -3988,13 +4001,15 @@ var power = "banana"
                                                                          let sun = SCNNode(geometry: SCNSphere(radius: 0.25))
                                         sun.geometry?.firstMaterial?.diffuse.contents = #imageLiteral(resourceName: "Sun diffuse")
                                                sun.position = SCNVector3(0,0,-1)
+                                            sun.name = "earthQJ"
                                                  let earthParent = SCNNode()
                                             let moonParent = SCNNode()
                                            
                                                let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.8 ,0 , 0))
                          let saturnRing = createRing(ringSize: 0.3)
                                let saturn = createPlanet(radius: 0.2, image: "saturn")
-                               saturn.name = "saturn"
+                               saturn.name = "earthQJ"
+       // sun.name = "earthQJ"
                          saturn.position = SCNVector3(2.5,0,0)
                                rotateObject(rotation: 0.1, planet: saturn, duration: 0.4)
                                rotateObject(rotation: 0.1, planet: saturnRing, duration: 1)
@@ -5784,20 +5799,24 @@ SaturnParent.addChildNode(SassThShoonode)
                 }
                     
                 else if (contact.nodeA.name! == "shark" || contact.nodeB.name! == "shark"){
+                    // var r = 0
                     if let _ = self.sceneView.scene.rootNode.childNode(withName: "shark", recursively: true) {
-                        
+                           
                         self.Coins+=1
                         self.scoreL+=2
                         // self.AllnodeArray.removeLast()
                         print("\(self.scoreL) scoreL")
                         print("\(self.Coins)Coins")
                         print("\(contact.nodeA.name!)")
+                            
+                       // r = r + 1
+                         print("\(self.r!) scoreL")
                     } else{
                           if self.adShowFinish == false {
                         DispatchQueue.main.async {
                           
-                            self.resetTimer(time: 60)
-                            self.ReportScore(with: self.scoreL)
+//                            self.resetTimer(time: 60)
+//                            self.ReportScore(with: self.scoreL)
                             self.scoreL+=0
                             self.BeatLevel()
                             }
