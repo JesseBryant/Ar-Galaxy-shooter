@@ -1051,7 +1051,8 @@ var power = "banana"
                 //score update properly, coin almost done
             else if 37...47 ~= Coins{
                 power = "banana"
-                //  sceneView.backgroundColor = UIColor.red 
+                //  sceneView.backgroundColor = UIColor.red
+                
                 messageLabel.isHidden = true
                 levelJB.text = "level 4"
                 addTargetNodesFour()
@@ -1063,7 +1064,7 @@ var power = "banana"
                 //play background music
                 playBackgroundMusic()
                 
-                //start tinmer
+                //start tinmerjzxbjkcsbckj
                 runTimer()
                 print("\(Coins): welcome to level 4 jess")
                 print("\(Coinse): welcome to level 4 Coinse jess")
