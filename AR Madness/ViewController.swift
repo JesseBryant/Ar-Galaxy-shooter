@@ -1064,7 +1064,7 @@ var power = "banana"
                 //play background music
                 playBackgroundMusic()
                 
-                //start tinmerjzxbjkcsbckj
+                //start 
                 runTimer()
                 print("\(Coins): welcome to level 4 jess")
                 print("\(Coinse): welcome to level 4 Coinse jess")
