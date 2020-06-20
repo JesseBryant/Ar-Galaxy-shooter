@@ -91,6 +91,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
       var PoP = false
     var interstitial: FBInterstitialAd!
     var adShowFinish = false
+
     //MARK: - variables
     @IBOutlet var sceneView: ARSCNView!
     
@@ -125,7 +126,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var tracking = true
     let defaultss = UserDefaults.standard
     var arrrrr : Int = 0
-  
+    var cc = 0
     let configuration = ARWorldTrackingConfiguration()
     let audioNode = SCNNode()
     let audioSource = SCNAudioSource(fileNamed: "Sleepy.mp3")!
@@ -145,7 +146,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 var power = "banana"
     //score will be implenmented with leaderb
     var scoreL = 0
-     var Coins = 0
+    var Coins = 0
+     var CoinsAva = 0
     var Coinse = 0
     //Coins
     var target: SCNNode?
@@ -481,7 +483,7 @@ var power = "banana"
         // timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
        let currentScore = Coins
         var h = 0
-           if h == Coins  {
+           if h == CoinsAva  {
                 timer.invalidate()
                 //believe this issue because this the only place that calls  gameOver()
                // NeedMoreTime()
@@ -504,13 +506,14 @@ var power = "banana"
         
        // self.messageLabel.text = "Score: \(Int(self.scoreLabel.text!))"
         if let currentScore = Int(self.scoreLabel.text!) {
-        self.messageLabel.text = "SCORE: \(currentScore) \nCOINS: \(Coins)"
+        self.messageLabel.text = "SCORE: \(currentScore) \nCOINS: \(CoinsAva)"
         }
         // if let gameScore = defaults.value(forKey: "Coins"){
-        // Coins = gameScore as! Int
-        print("\(Coins) Jesse KKKK")
+        // Coins = gameScore as! Int CoinsAva
+        print("\(Coins) Jesse Coins")
+         print("\(CoinsAva) Jesse KKKK")
         self.BesLabel.text = ("+")
-        self.BestScore.text  = "\(Coins) coins"
+        self.BestScore.text  = "\(CoinsAva) coins"
         //        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
         //                                  node.removeFromParentNode()
         //                              }
@@ -530,9 +533,10 @@ var power = "banana"
           //  let fscre = self.scoreL
             //store the score in UserDefaults
             self.defaultss.set(self.Coins, forKey: "Coins")
+            self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
             
             //        scoreL += score
-            //  defaults.set(scoreL, forKey: "scoreL")
+            //  defaults.set(scoreL, forKey: "scoreL")CoinsAva
             
             
             
@@ -563,8 +567,8 @@ var power = "banana"
     func shouldShowBestScoreContainerView(state: Bool) {
         if state {
             PoP = true
-              let fafa = Coins
-    
+            //  let fafa = Coins
+        let fafa = CoinsAva
             //besss
           //have coins and correct best score
 
@@ -712,15 +716,15 @@ var power = "banana"
               }
               if self.isPlanetHit {
                   
-                  if self.Coins >= 10 {
+                  if self.CoinsAva >= 3 {
                       //timer fixed
                       //not working because coins = 0 in real physical world
                       //will need restart here cuz planet gone
-                      print("\(self.Coins) Coins")
-                      self.Coins = self.Coins - 10
-                      print("\(self.Coins) Coins after")
+                      print("\(self.CoinsAva) Coins")
+                      self.CoinsAva = self.CoinsAva - 5
+                      print("\(self.CoinsAva) Coins after")
                     
-                      defaultss.set(self.Coins, forKey: "Coins")
+                      defaultss.set(self.CoinsAva, forKey: "CoinsAva")
                       //        scoreL += score
                       //  defaults.set(scoreL, forKey: "scoreL")
                        arrrrr = self.scoreL
@@ -762,15 +766,15 @@ var power = "banana"
                   }
                   
               } else {
-                  if self.Coins >= 10 {
+                  if self.CoinsAva >= 10 {
                       //not working because coins = 0 in real physical world
                       //will need restart here cuz planet gone
                       self.shouldShowBestScoreContainerView(state: false)
                       print("\(self.Coins) Coins")
-                      self.Coins = self.Coins - 10
-                      print("\(self.Coins) Coins after")
+                      self.CoinsAva = self.CoinsAva - 5
+                      print("\(self.CoinsAva) Coins after")
                     
-                      defaultss.set(self.Coins, forKey: "Coins")
+                      defaultss.set(self.CoinsAva, forKey: "CoinsAva")
                       //        scoreL += score
                       //  defaults.set(scoreL, forKey: "scoreL")
                        arrrrr = self.scoreL
@@ -877,7 +881,7 @@ var power = "banana"
                     //   self.sceneView.isHidden = false
                                         //    SwiftSpinner.hide()
                        //Payment failed
-                    self.Coins = 0
+                    self.CoinsAva = 0
                            self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
                                node.removeFromParentNode()
                               // stopBackgroundMus()
@@ -941,9 +945,9 @@ var power = "banana"
         //in app works... Transaction successful!
         //need to sub or add less cuz it goes too next level
         //well do add 5 for now.. for 1.99 look at other games in app purchases
-        self.Coins+=10
+        self.CoinsAva+=10
         defaultss.set(self.Coins, forKey: "Coins")
-        print("\(self.Coins) Coins")
+        print("\(self.CoinsAva) Coins")
         //        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
         //                                  node.removeFromParentNode()
         //                              }
@@ -1064,14 +1068,14 @@ var power = "banana"
                 //play background music
                 playBackgroundMusic()
                 
-                //start 
+                //start
                 runTimer()
                 print("\(Coins): welcome to level 4 jess")
                 print("\(Coinse): welcome to level 4 Coinse jess")
                 
             }
             //nexxxxx
-            else if 48...53 ~= Coins{
+            else if 48...55 ~= Coins{
                 power = "banana"
                 //  sceneView.backgroundColor = UIColor.red
                 messageLabel.isHidden = true
@@ -1097,7 +1101,7 @@ var power = "banana"
                 print("\(Coins): welcome to level 5 jess")
                 print("\(Coinse): welcome to level 5 Coinse jess")
                 //
-            } else if 59...82 ~= Coins{
+            } else if 55...78 ~= Coins{
                 power = "banana"
                 //  sceneView.backgroundColor = UIColor.red
                 messageLabel.isHidden = true
@@ -1128,7 +1132,7 @@ var power = "banana"
             }
                 
                 //addTargetNodesSaturn()
-            else if 83...106 ~= Coins{
+            else if 79...102 ~= Coins{
                 power = "banana"
                 messageLabel.isHidden = true
                 levelJB.text = "level 7"
@@ -1157,7 +1161,7 @@ var power = "banana"
                 print("\(Coins): welcome to level 7 jess")
                 print("\(Coinse): welcome to level 7 jess Coinse")
                 
-            } else if 107...238 ~= Coins{
+            } else if 103...238 ~= Coins{
                 
                 power = "banana"
                 messageLabel.isHidden = true
@@ -5802,16 +5806,29 @@ SaturnParent.addChildNode(SassThShoonode)
                 else if (contact.nodeA.name! == "shark" || contact.nodeB.name! == "shark"){
                     // var r = 0
                     if let _ = self.sceneView.scene.rootNode.childNode(withName: "shark", recursively: true) {
-                           
+                     //   let rrr = (self.timerLabel.text)
+                        if self.seconds < 60 && self.seconds > 50 {
+                            self.CoinsAva+=3
+                            print("Jess annnnnnnnnnnnnnnnnnnnnnnnnn")
+                        } else if self.seconds < 40 && self.seconds > 49 {
+                            self.CoinsAva+=2
+                            print("Jess annnnnnnnnnnnnnnnnnnnnnnnnn")
+                        }
+                        else if self.seconds < 20 && self.seconds > 39 {
+                            self.CoinsAva+=2
+                                                   print("Jess annnnnnnnnnnnnnnnnnnnnnnnnn")
+                                               }
+                        
                         self.Coins+=1
                         self.scoreL+=2
                         // self.AllnodeArray.removeLast()
                         print("\(self.scoreL) scoreL")
                         print("\(self.Coins)Coins")
                         print("\(contact.nodeA.name!)")
+                      //  print("\(self.timer)")
                             
                        // r = r + 1
-                         print("\(self.r!) scoreL")
+                      //  print("\(self.timerLabel.text) scoreL")
                     } else{
                           if self.adShowFinish == false {
                         DispatchQueue.main.async {

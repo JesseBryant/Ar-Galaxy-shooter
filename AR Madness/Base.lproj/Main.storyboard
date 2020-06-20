@@ -410,7 +410,7 @@
                                             <constraint firstAttribute="width" constant="90" id="usC-DN-xOl"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="17"/>
-                                        <state key="normal" title="10 coins">
+                                        <state key="normal" title="3 coins">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
