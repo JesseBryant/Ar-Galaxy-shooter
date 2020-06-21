@@ -227,6 +227,19 @@ var power = "banana"
 //       self.sceneView.isHidden = true
         //treat ADs like mainly time tickit.. Coins should manly save planets
         DispatchQueue.main.async {
+            if let gameScore = self.defaultss.value(forKey: "Coins"){
+                self.Coins = gameScore as! Int
+                print("\(self.Coins) Jesse KKKK")
+                    
+                    //play()
+            }
+            
+            if let gameScoree = self.defaultss.value(forKey: "CoinsAva"){
+                self.CoinsAva = gameScoree as! Int
+                print("\(self.CoinsAva) Jesse Ava has uploaded")
+                      
+                      //play()
+              }
              self.sceneView.isHidden = true
             SwiftSpinner.show("Connecting to AR Camera...")
             self.InterstitialAd()
@@ -260,12 +273,7 @@ var power = "banana"
         self.sceneView.addGestureRecognizer(gestureRecognizer)
 
       
-            if let gameScore = defaultss.value(forKey: "Coins"){
-                 Coins = gameScore as! Int
-                print("\(Coins) Jesse KKKK")
-                
-                //play()
-        }
+            
         
         // score = GKScore(leaderboardIdentifier: leaderboardID)
     
@@ -322,7 +330,7 @@ var power = "banana"
     // MARK: - timer
     
     //to store how many sceonds the game is played for
-    var seconds = 30
+    var seconds = 60
     
     //timer
     var timer = Timer()
@@ -481,19 +489,19 @@ var power = "banana"
         timer.invalidate()
         
         // timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
-       let currentScore = Coins
-        var h = 0
-           if h == CoinsAva  {
-                timer.invalidate()
-                //believe this issue because this the only place that calls  gameOver()
-               // NeedMoreTime()
-               // gameOver()
-            }else {
-                h += 1
-                timerLabel.text = "\(seconds)"
-           self.messageLabel.text = "Score: \(currentScore) \n\(h) Coins"
-            }
-            
+        let currentScore = self.scoreL
+       // var h = 0
+//           if h == CoinsAva  {
+//                timer.invalidate()
+//                //believe this issue because this the only place that calls  gameOver()
+//               // NeedMoreTime()
+//               // gameOver()
+//            }else {
+//                h += 1
+//                timerLabel.text = "\(seconds)"
+//           self.messageLabel.text = "SCORE: \(currentScore) \n\(h) Coins"
+//            }
+//
         
 //
 //        //resets the timer
@@ -505,7 +513,7 @@ var power = "banana"
 //
         
        // self.messageLabel.text = "Score: \(Int(self.scoreLabel.text!))"
-        if let currentScore = Int(self.scoreLabel.text!) {
+        if let currentScore = self.scoreLabel.text {
         self.messageLabel.text = "SCORE: \(currentScore) \nCOINS: \(CoinsAva)"
         }
         // if let gameScore = defaults.value(forKey: "Coins"){
@@ -568,7 +576,7 @@ var power = "banana"
         if state {
             PoP = true
             //  let fafa = Coins
-        let fafa = CoinsAva
+        let fafa =  CoinsAva
             //besss
           //have coins and correct best score
 
@@ -595,14 +603,14 @@ var power = "banana"
                                             DispatchQueue.main.async {
                                             self.BestScore.text = "BEST: \(currentScore)"
                                             print("\(fafa) fafa test")
-                                            self.CNNN.text = "Coins\(fafa)"
+                                            self.CNNN.text = "Coins\(abs(fafa))"
                                             }
                                             UserDefaults.standard.set(currentScore, forKey: "BestScore")
                                             UserDefaults.standard.synchronize()
                                         } else {
                                             DispatchQueue.main.async {
                                             self.BestScore.text = "BEST: \(bestScore)"
-                                             self.CNNN.text = "COINS: \(fafa)"
+                                             self.CNNN.text = "COINS: \(abs(fafa))"
                                             }
                                         }
                                         
@@ -670,6 +678,7 @@ var power = "banana"
                              print("\(self.Coins) Coins after")
                            
                              defaultss.set(self.Coins, forKey: "Coins")
+           defaultss.set(self.CoinsAva, forKey: "Coins")
                              //        scoreL += score
                              //  defaults.set(scoreL, forKey: "scoreL")
                               arrrrr = self.scoreL
@@ -721,7 +730,7 @@ var power = "banana"
                       //not working because coins = 0 in real physical world
                       //will need restart here cuz planet gone
                       print("\(self.CoinsAva) Coins")
-                      self.CoinsAva = self.CoinsAva - 5
+                      self.CoinsAva = self.CoinsAva - 3
                       print("\(self.CoinsAva) Coins after")
                     
                       defaultss.set(self.CoinsAva, forKey: "CoinsAva")
@@ -771,7 +780,7 @@ var power = "banana"
                       //will need restart here cuz planet gone
                       self.shouldShowBestScoreContainerView(state: false)
                       print("\(self.Coins) Coins")
-                      self.CoinsAva = self.CoinsAva - 5
+                      self.CoinsAva = self.CoinsAva - 3
                       print("\(self.CoinsAva) Coins after")
                     
                       defaultss.set(self.CoinsAva, forKey: "CoinsAva")
@@ -946,7 +955,8 @@ var power = "banana"
         //need to sub or add less cuz it goes too next level
         //well do add 5 for now.. for 1.99 look at other games in app purchases
         self.CoinsAva+=10
-        defaultss.set(self.Coins, forKey: "Coins")
+        //defaultss.set(self.Coins, forKey: "Coins")
+        defaultss.set(self.CoinsAva, forKey: "CoinsAva")
         print("\(self.CoinsAva) Coins")
         //        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
         //                                  node.removeFromParentNode()
@@ -1197,8 +1207,9 @@ var power = "banana"
                 //  sceneView.backgroundColor = UIColor.red
                 messageLabel.isHidden = true
                 levelJB.text = "level 1"
-                //addTargetNodes()
+               
                 FsaddTargetNodes()
+          
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else {return}
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
@@ -1494,11 +1505,11 @@ var power = "banana"
    
                         let GreenSecRo = XRotation(time: 4)
                         let JRRotation = Rotation(time: 5)
-                           let SecRotation = XRotation(time: 300)
-                      let SecRo = XRotation(time: 6)
+//                           let SecRotation = XRotation(time: 300)
+                 //     let SecRo = XRotation(time: 6)
                               let sunAction = Rotation(time: 20)
-                            let earthParentRotation = Rotation(time: 10)
-                    let VRotation = Rotation(time: 6)
+                          //  let earthParentRotation = Rotation(time: 10)
+                   // let VRotation = Rotation(time: 6)
                           //  let venusParentRotation = XRotation(time: 20)
                          //   let earthRotation = Rotation(time: 20)
                             let moonRotation = Rotation(time: 6)
@@ -1735,11 +1746,11 @@ var power = "banana"
        
                                     let GreenSecRo = XRotation(time: 4)
                                     let JRRotation = Rotation(time: 5)
-                               let SecRotation = XRotation(time: 300)
-                          let SecRo = XRotation(time: 6)
+                            //   let SecRotation = XRotation(time: 300)
+                        //  let SecRo = XRotation(time: 6)
                                   let sunAction = Rotation(time: 20)
-                                let earthParentRotation = Rotation(time: 10)
-                        let VRotation = Rotation(time: 6)
+                              //  let earthParentRotation = Rotation(time: 10)
+                        //let VRotation = Rotation(time: 6)
                               //  let venusParentRotation = XRotation(time: 20)
                             //    let earthRotation = Rotation(time: 30)
                                 let moonRotation = Rotation(time: 18)
@@ -1801,6 +1812,11 @@ var power = "banana"
             //   venusParent
                 earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                    earth.physicsBody?.isAffectedByGravity = false
+        
+        sun.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+        sun.physicsBody?.isAffectedByGravity = false
+        sun.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                  sun.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                 earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                    earthParent.physicsBody?.isAffectedByGravity = false
 
@@ -1952,12 +1968,12 @@ var power = "banana"
 
           
 
-                                  let SecRotation = XRotation(time: 300)
+                                //  let SecRotation = XRotation(time: 300)
                          let GreenSecRo = XRotation(time: 4)
                               //let JRRotation = Rotation(time: 5)
-                             let SecRo = XRotation(time: 6)
+                          //   let SecRo = XRotation(time: 6)
                                      let sunAction = Rotation(time: 15)
-                                   let earthParentRotation = Rotation(time: 20)
+                                 //  let earthParentRotation = Rotation(time: 20)
                         
                         let JRotation = Rotation(time: 15)
                         let JRRotation = Rotation(time: 5)
@@ -2044,7 +2060,10 @@ var power = "banana"
                                        earth.physicsBody?.isAffectedByGravity = false
                     earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                        earthParent.physicsBody?.isAffectedByGravity = false
-
+        sun.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+             sun.physicsBody?.isAffectedByGravity = false
+             sun.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                       sun.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                    
         AllnodeArray.removeAll()
         EarGroupNodeArray.removeAll()
@@ -2309,7 +2328,7 @@ var power = "banana"
                                       let JRRotation = Rotation(time: 5)
                                      
 
-                                         let SecRotation = XRotation(time: 300)
+                                       //  let SecRotation = XRotation(time: 300)
                //         let SecRo = XRotation(time: 2)
               //                  let JRRotation = Rotation(time: 5)
                                                                                          
@@ -2326,7 +2345,7 @@ var power = "banana"
               //                      let VRotation = Rotation(time: 15)
             //                        let earthRotation = Rotation(time: 30)
                                     let moonRotation = Rotation(time: 10)
-                                let venusRotation = Rotation(time: 9)
+                                //let venusRotation = Rotation(time: 9)
           //                      let JupRotation = Rotation(time: 8)
                                                                                            let JRotation = Rotation(time: 15)
            Shoonode.runAction(GreenSecRo)
@@ -3216,8 +3235,8 @@ var power = "banana"
 
                                                                         
 
-                                                                                                   let SecRotation = XRotation(time: 300)
-                                                                                  let SecRo = XRotation(time: 2)
+                                                                                                 //  let SecRotation = XRotation(time: 300)
+                                                                                //  let SecRo = XRotation(time: 2)
                                                 //let JRRotation = Rotation(time: 5)
                                                                                                                                   let GreenSecRo = XRotation(time: 4)
                                                                                                                                                                  let JRRotation = Rotation(time: 5)
@@ -3236,7 +3255,7 @@ var power = "banana"
                                     //let venusParentRotation = XRotation(time: 30)
                                     //let earthRotation = Rotation(time: 30)
                                                                                               let moonRotation = Rotation(time: 10)
-                                                                                          let venusRotation = Rotation(time: 9)
+                                                                                        //  let venusRotation = Rotation(time: 9)
                                     //let JupRotation = Rotation(time: 8)
                                                                                                                                                      let JRotation = Rotation(time: 15)
                                                                      Shoonode.runAction(GreenSecRo)
@@ -3396,7 +3415,9 @@ var power = "banana"
                                                                      // venusParent.name = "earth"
                                                              //         earth.addChildNode(Shoonode)
                               //decent rotations, maybe some could be closer. Fixed bugs with music and ships ending game!
-                                                                     //8328579
+                                                                     //
+        
+        
                                                                      earN = earthParent
                                                                        earth.name = "earthQJ"
                                                                       earthParent.name = "earthQJ"
@@ -3422,7 +3443,15 @@ var power = "banana"
                                                 earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                       //                      venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                       //                          venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                                                            
+                                                          sun.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                   sun.physicsBody?.isAffectedByGravity = false
+                                                                   sun.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                             sun.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+        neptune.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                          neptune.physicsBody?.isAffectedByGravity = false
+                                                                          neptune.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                                    neptune.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+        
                                             for index in 0...1 {
                                                 autoreleasepool {
                                                               //ear***
@@ -3815,8 +3844,8 @@ var power = "banana"
                                                   self.sceneView.scene.rootNode.addChildNode(NepssThShoonode)
                                                   self.sceneView.scene.rootNode.addChildNode(NepFourthShoonode)
 
-                                                                                        let SecRotation = XRotation(time: 300)
-                                                                                   let SecRo = XRotation(time: 2)
+                                                                                      //  let SecRotation = XRotation(time: 300)
+                                                                                 //  let SecRo = XRotation(time: 2)
                                            //                                    let JRRotation = Rotation(time: 5)
                                                 //got nep working
                                                                               
@@ -3838,9 +3867,9 @@ var power = "banana"
                                             //let venusParentRotation = XRotation(time: 30)
                                                           //   let earthRotation = Rotation(time: 30)
                                         let moonRotation = Rotation(time: 10)
-                                                                               let venusRotation = Rotation(time: 9)
+                                                                              // let venusRotation = Rotation(time: 9)
                                                //                   let JupRotation = Rotation(time: 8)
-                                                                                let JRotation = Rotation(time: 5)
+                                                                              //  let JRotation = Rotation(time: 5)
                                                                                  Shoonode.runAction(GreenSecRo)
                                                              //                  //  ShoonodeSec.runAction(SecRotation)
                                                                                 ssShoonode.runAction(GreenSecRo)
@@ -4051,6 +4080,7 @@ var power = "banana"
         neptune.position = SCNVector3(0,0,3.5)
         neptuneParent.position = SCNVector3(0,0,3.5)
         jupiter.position = SCNVector3(0,0,-2.9)
+         jupiter.name = "earthQJ"
         JupitarParent.position = SCNVector3(0,0,-2.9)
 //        venusParent.position = SCNVector3(0,0,1.2)
 //        venus.position = SCNVector3(0,0,1.2)
@@ -4062,7 +4092,26 @@ var power = "banana"
                           earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
 //                      venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
 //                          venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                                      
+                                      sun.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                                        sun.physicsBody?.isAffectedByGravity = false
+                                                                                                        sun.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                                                                  sun.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+        jupiter.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                               jupiter.physicsBody?.isAffectedByGravity = false
+                                                                               jupiter.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                                         jupiter.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+        
+        //ssss
+        saturn.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+        //new best score and coin system, planets all destroy, lesss build
+                                                                                      saturn.physicsBody?.isAffectedByGravity = false
+                                                                                      saturn.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                                                saturn.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+        neptune.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                               neptune.physicsBody?.isAffectedByGravity = false
+                                                                               neptune.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                                         neptune.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+        
                       for index in 0...1 {
                         autoreleasepool {
                                         //ear***
@@ -4550,8 +4599,8 @@ var power = "banana"
                             let GreenSecRo = XRotation(time: 4)
                                     let JRRotation = Rotation(time: 5)
                             
-                                                                  let SecRotation = XRotation(time: 300)
-                                                             let SecRo = XRotation(time: 2)
+                                                                //  let SecRotation = XRotation(time: 300)
+                                                            // let SecRo = XRotation(time: 2)
                                                     //     let JRRotation = Rotation(time: 5)
                                                         
                                                                      let sunAction = Rotation(time: 75)
@@ -4569,8 +4618,8 @@ var power = "banana"
                               //          let earthRotation = Rotation(time: 30)
                                                                    let moonRotation = Rotation(time: 10)
                                                          let venusRotation = Rotation(time: 9)
-                                            let JupRotation = Rotation(time: 8)
-                                                          let JRotation = Rotation(time: 5)
+                                           // let JupRotation = Rotation(time: 8)
+                                                        //  let JRotation = Rotation(time: 5)
                                                            Shoonode.runAction(GreenSecRo)
                                        //                  //  ShoonodeSec.runAction(SecRotation)
                                                           ssShoonode.runAction(GreenSecRo)
@@ -5406,10 +5455,10 @@ SaturnParent.addChildNode(SassThShoonode)
 
        
 
-                               let SecRotation = XRotation(time: 300)
-                          let SecRo = XRotation(time: 6)
-                                  let sunAction = Rotation(time: 15)
-                                let earthParentRotation = Rotation(time: 10)
+                             //  let SecRotation = XRotation(time: 300)
+                          //let SecRo = XRotation(time: 6)
+                               //   let sunAction = Rotation(time: 15)
+                             //   let earthParentRotation = Rotation(time: 10)
                         let VRotation = Rotation(time: 9)
                              //   let venusParentRotation = XRotation(time: 20)
                             //    let earthRotation = Rotation(time: 20)
@@ -5640,11 +5689,11 @@ SaturnParent.addChildNode(SassThShoonode)
           
                             let GreenSecRo = XRotation(time: 4)
                             let JRRotation = Rotation(time: 5)
-                                  let SecRotation = XRotation(time: 300)
-                             let SecRo = XRotation(time: 6)
+                               //   let SecRotation = XRotation(time: 300)
+                          //   let SecRo = XRotation(time: 6)
                                      let sunAction = Rotation(time: 6)
-                                   let earthParentRotation = Rotation(time: 8)
-                           let VRotation = Rotation(time: 6)
+                                 //  let earthParentRotation = Rotation(time: 8)
+                         //  let VRotation = Rotation(time: 6)
                           //         let venusParentRotation = XRotation(time: 20)
                               //     let earthRotation = Rotation(time: 20)
                                    let moonRotation = Rotation(time: 5)
@@ -5807,23 +5856,34 @@ SaturnParent.addChildNode(SassThShoonode)
                     // var r = 0
                     if let _ = self.sceneView.scene.rootNode.childNode(withName: "shark", recursively: true) {
                      //   let rrr = (self.timerLabel.text)
+                        self.scoreL+=1
+                        self.Coins+=1
                         if self.seconds < 60 && self.seconds > 50 {
                             self.CoinsAva+=3
+//                            self.scoreL+=3
+//                             self.Coins+=1
                             print("Jess annnnnnnnnnnnnnnnnnnnnnnnnn")
                         } else if self.seconds < 40 && self.seconds > 49 {
                             self.CoinsAva+=2
+//                            self.scoreL+=2
+//                             self.Coins+=1
                             print("Jess annnnnnnnnnnnnnnnnnnnnnnnnn")
                         }
-                        else if self.seconds < 20 && self.seconds > 39 {
+                        else if self.seconds > 20 && self.seconds < 39 {
                             self.CoinsAva+=2
+//                            self.scoreL+=1
+//                             self.Coins+=1
                                                    print("Jess annnnnnnnnnnnnnnnnnnnnnnnnn")
                                                }
-                        
-                        self.Coins+=1
-                        self.scoreL+=2
+//                        else if self.seconds > 0 && self.seconds < 20 {
+//                            self.Coins+=1
+//                                                self.scoreL+=2
+//                        }
+                       
                         // self.AllnodeArray.removeLast()
                         print("\(self.scoreL) scoreL")
                         print("\(self.Coins)Coins")
+                            print("\(self.CoinsAva)CoinsAvaAva Jeeeserdckhghk")
                         print("\(contact.nodeA.name!)")
                       //  print("\(self.timer)")
                             
@@ -5853,6 +5913,9 @@ SaturnParent.addChildNode(SassThShoonode)
                 else {
                     self.Coins+=1
                     self.scoreL+=1
+                    print("\(self.Coins)Coins else else")
+                                              print("\(self.CoinsAva)CoinsAvaAva else else")
+                     print("\(self.scoreL)scoreL else else")
                 }
                 
                 self.scoreLabel.text = String(self.scoreL)
@@ -5998,6 +6061,7 @@ extension ViewController: FBInterstitialAdDelegate {
                            
                              defaultss.set(arrrrr, forKey: "scoreL")
             defaultss.set(self.Coins, forKey: "Coins")
+         defaultss.set(self.CoinsAva, forKey: "CoinsAva")
                             self.ReportScore(with: arrrrr)
         DispatchQueue.main.async {
             self.shouldShowBestScoreContainerView(state: false)
