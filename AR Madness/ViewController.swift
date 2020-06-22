@@ -676,9 +676,9 @@ var power = "banana"
         //  sceneView.backgroundColor = UIColor.red
      self.Coins = 0
                              print("\(self.Coins) Coins after")
-                           
+                            // if let gameScore = self.defaultss.value(forKey: "Coins")
                              defaultss.set(self.Coins, forKey: "Coins")
-           defaultss.set(self.CoinsAva, forKey: "Coins")
+           defaultss.set(self.CoinsAva, forKey: "CoinsAva")
                              //        scoreL += score
                              //  defaults.set(scoreL, forKey: "scoreL")
                               arrrrr = self.scoreL
@@ -1207,9 +1207,11 @@ var power = "banana"
                 //  sceneView.backgroundColor = UIColor.red
                 messageLabel.isHidden = true
                 levelJB.text = "level 1"
-               
-                FsaddTargetNodes()
-          
+               addTargetNodesJupitar()
+             //   FsaddTargetNodes()
+         //addTargetNodesNeptune()
+                //addTargetNodesFive()
+                //addTargetNodesSixVenus()
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else {return}
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
@@ -2064,6 +2066,10 @@ var power = "banana"
              sun.physicsBody?.isAffectedByGravity = false
              sun.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                        sun.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+        venus.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                  venus.physicsBody?.isAffectedByGravity = false
+                  venus.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                            venus.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                    
         AllnodeArray.removeAll()
         EarGroupNodeArray.removeAll()
@@ -4075,8 +4081,8 @@ var power = "banana"
         earth.position = SCNVector3(1.8,0,0)
         earthParent.position = SCNVector3(1.8,0,0)
                           //better rotations..nice positions
-                         saturn.position = SCNVector3(-2.5,0,0)
-                         SaturnParent.position = SCNVector3(-2.5,0,0)
+                         saturn.position = SCNVector3(-1.8,0,0)
+                         SaturnParent.position = SCNVector3(-1.8,0,0)
         neptune.position = SCNVector3(0,0,3.5)
         neptuneParent.position = SCNVector3(0,0,3.5)
         jupiter.position = SCNVector3(0,0,-2.9)
@@ -4603,10 +4609,10 @@ var power = "banana"
                                                             // let SecRo = XRotation(time: 2)
                                                     //     let JRRotation = Rotation(time: 5)
                                                         
-                                                                     let sunAction = Rotation(time: 75)
+                                                                     let sunAction = Rotation(time: 42)
                         // complete level 9
                       //   let sunActionS = Rotation(time: 12)
-                                                        
+                                             //fixed rotation around planets! all planet rotations look nice
                                                         
                         //                let sunActionVenus = Rotation(time: 25)
                       //          let sunActionNep = Rotation(time: 13)
@@ -4617,7 +4623,7 @@ var power = "banana"
                                              //                      let venusParentRotation = XRotation(time: 30)
                               //          let earthRotation = Rotation(time: 30)
                                                                    let moonRotation = Rotation(time: 10)
-                                                         let venusRotation = Rotation(time: 9)
+//                                                         let venusRotation = Rotation(time: 9)
                                            // let JupRotation = Rotation(time: 8)
                                                         //  let JRotation = Rotation(time: 5)
                                                            Shoonode.runAction(GreenSecRo)
@@ -4689,33 +4695,37 @@ SaturnParent.addChildNode(SassThShoonode)
                                                                   moonParent.runAction(moonRotation)
                             //all levels rotate right(ad mst load usall fast
                                                                  //venus.runAction(venusRotation)
-                                                      neptune.runAction(venusRotation)
+                                                      neptune.runAction(JRRotation)
                                                         jupiter.runAction(JRRotation)
                                                                    //venusParent.addChildNode(venus)
                                                                   earth.runAction(JRRotation)
                                                         sun.runAction(sunAction)
                                                           neptune.addChildNode(neptuneRing)
-                                                          neptuneParentSun.addChildNode(neptuneParent)
-                                                          neptuneParentSun.addChildNode(neptune)
+                                                          
                                                                     
                         
                                                                     //Jupitar
                         
-                                                            JupitarParentSun.addChildNode(jupiter)
-                                                        JupitarParentSun.addChildNode(JupitarParent)
+                                                            sun.addChildNode(jupiter)
+                                                        sun.addChildNode(JupitarParent)
+                           sun.addChildNode(neptuneParent)
+                            sun.addChildNode(neptune)
+                           sun.addChildNode(SaturnParent)
+                                                sun.addChildNode(saturn)
+                            sun.addChildNode(earth)
+                                                                                   sun.addChildNode(earthParent)
+                            
                                                     jupiter.addChildNode(JupitarRing)
                         
                                                         //figured out how distribute ships will have to create more Shoonodes
                                                         //can be elaborate with given planets diff rotations since its
-                                                        sun.addChildNode(earth)
-                                                         sun.addChildNode(earthParent)
+                                                      
                                                         //venusParent.addChildNode(venus)
                                                      //   venusParentSun.addChildNode(venusParent)
                                                          
                                                         //added venus and planets
                                                      //   venusParentSun.addChildNode(venus)
-                                                         SaturnParentSun.addChildNode(SaturnParent)
-                                                               SaturnParentSun.addChildNode(saturn)
+                                                      
                                                           saturn.addChildNode(saturnRing)
                                                          //ear
                         //nep 100
