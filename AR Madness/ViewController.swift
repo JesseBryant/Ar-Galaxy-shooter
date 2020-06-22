@@ -227,19 +227,7 @@ var power = "banana"
 //       self.sceneView.isHidden = true
         //treat ADs like mainly time tickit.. Coins should manly save planets
         DispatchQueue.main.async {
-            if let gameScore = self.defaultss.value(forKey: "Coins"){
-                self.Coins = gameScore as! Int
-                print("\(self.Coins) Jesse KKKK")
-                    
-                    //play()
-            }
-            
-            if let gameScoree = self.defaultss.value(forKey: "CoinsAva"){
-                self.CoinsAva = gameScoree as! Int
-                print("\(self.CoinsAva) Jesse Ava has uploaded")
-                      
-                      //play()
-              }
+       
              self.sceneView.isHidden = true
             SwiftSpinner.show("Connecting to AR Camera...")
             self.InterstitialAd()
@@ -272,7 +260,19 @@ var power = "banana"
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         self.sceneView.addGestureRecognizer(gestureRecognizer)
 
-      
+      if let gameScore = self.defaultss.value(forKey: "Coins"){
+                 self.Coins = gameScore as! Int
+                 print("\(self.Coins) Jesse KKKK")
+                     
+                     //play()
+             }
+             
+             if let gameScoree = self.defaultss.value(forKey: "CoinsAva"){
+                 self.CoinsAva = gameScoree as! Int
+                 print("\(self.CoinsAva) Jesse Ava has uploaded")
+                       
+                       //play()
+               }
             
         
         // score = GKScore(leaderboardIdentifier: leaderboardID)
@@ -381,7 +381,7 @@ var power = "banana"
 //      }
         DispatchQueue.main.async {
                    self.shouldShowBestScoreContainerView(state: false)
-                  self.resetTimer(time: 30)
+                  self.resetTimer(time: 60)
                    self.runTimer()
                }
                    self.PoP = false
@@ -447,9 +447,12 @@ var power = "banana"
     }
     
     func InterstitialAd(){
+         autoreleasepool {
           interstitial = FBInterstitialAd(placementID: "229174575034368_230531631565329")
+       // interstitial = FBInterstitialAd.
           interstitial.delegate = self
           interstitial.load()
+        }
       }
     
     // MARK: - game over
@@ -485,6 +488,7 @@ var power = "banana"
     }
     func BeatLevel() {
 //        if adShowFinish == false {
+        stopBackgroundMus()
         self.messageLabel.isHidden = false
         timer.invalidate()
         
@@ -646,6 +650,7 @@ var power = "banana"
     func NeedMoreTime(){
         //only if PoP = false meaning no PoP up available so no double pop ups
        // if !PoP {
+        self.resetButton.isHidden = false
         self.needTimeLabel.text = "Need more time"
         self.isPlanetHit = false
         
@@ -658,6 +663,7 @@ var power = "banana"
         self.shouldShowBestScoreContainerView(state: false)
         PoP = false
         self.Coins = 0
+      //  self.CoinsAva = 0
 //            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: { [weak self] in
 //        //                   guard let self = self else {return}
 //        //                   self.messageLabel.isHidden = true
@@ -689,10 +695,11 @@ var power = "banana"
         messageLabel.isHidden = true
         levelJB.text = "level 1"
         //addTargetNodes()
+          self.resetButton.isHidden = false
         FsaddTargetNodes()
         PlayInstructions()
         //play background music
-        playBackgroundMusic()
+       // playBackgroundMusic()
         //  addTargetNodesJupitar()
         //start tinmer
         runTimer()
@@ -702,18 +709,22 @@ var power = "banana"
          PoP = true
 //        self.stopBackgroundMus()
 //        interstitial.show(fromRootViewController: self)
-        
+        self.resetButton.isHidden = false
         DispatchQueue.main.async {
     //interstitial.show(fromRootViewController: self)
-            
+            // autoreleasepool {
             self.stopBackgroundMus()
+            //self.interstitial.
+            // autoreleasepool {
             
             self.interstitial.show(fromRootViewController: self)
+            
             self.adShowFinish = true
         self.shouldShowBestScoreContainerView(state: false)
            //  self.sceneView.isHidden = true
            //  SwiftSpinner.show("Loading...")
         }
+      //  }
 
     }
     //fixed bug that cause pop up EVEN after I tap ad button
@@ -725,12 +736,12 @@ var power = "banana"
               }
               if self.isPlanetHit {
                   
-                  if self.CoinsAva >= 3 {
+                  if self.CoinsAva >= 20 {
                       //timer fixed
                       //not working because coins = 0 in real physical world
                       //will need restart here cuz planet gone
                       print("\(self.CoinsAva) Coins")
-                      self.CoinsAva = self.CoinsAva - 3
+                      self.CoinsAva = self.CoinsAva - 20
                       print("\(self.CoinsAva) Coins after")
                     
                       defaultss.set(self.CoinsAva, forKey: "CoinsAva")
@@ -747,6 +758,7 @@ var power = "banana"
                           node.removeFromParentNode()
                           
                       }
+                          self.resetButton.isHidden = false
                           self.play()
                           self.resetTimer(time: 45)
                                          self.runTimer()
@@ -775,12 +787,12 @@ var power = "banana"
                   }
                   
               } else {
-                  if self.CoinsAva >= 10 {
+                  if self.CoinsAva >= 20 {
                       //not working because coins = 0 in real physical world
                       //will need restart here cuz planet gone
                       self.shouldShowBestScoreContainerView(state: false)
                       print("\(self.Coins) Coins")
-                      self.CoinsAva = self.CoinsAva - 3
+                      self.CoinsAva = self.CoinsAva - 20
                       print("\(self.CoinsAva) Coins after")
                     
                       defaultss.set(self.CoinsAva, forKey: "CoinsAva")
@@ -833,6 +845,7 @@ var power = "banana"
         timer.invalidate()
         self.needTimeLabel.text = "You shot a planet"
         self.isPlanetHit = true
+        self.resetButton.isHidden = true
         self.shouldShowBestScoreContainerView(state: true)
         
         
@@ -882,6 +895,7 @@ var power = "banana"
                         // self.play()
                     self.resetTimer(time: 45)
                     self.runTimer()
+                    //  self.resetButton.isHidden = false
                       self.play()
                        //nice version
                        SKPaymentQueue.default().finishTransaction(transaction)
@@ -999,6 +1013,7 @@ var power = "banana"
     
     
     func play() {
+          self.resetButton.isHidden = false
         autoreleasepool {
             
             // resetTimer()
@@ -1028,7 +1043,7 @@ var power = "banana"
                 PlayInstructions()
                 //play background music
                 //                            stopBackgroundMusic()
-                playBackgroundMusic()
+//                playBackgroundMusic()
                 // addTargetNodesFive()
                 //addTargetNodesSixVenus()
                 // addTargetNodesNeptune()
@@ -1054,7 +1069,7 @@ var power = "banana"
                 }
                 PlayInstructions()
                 //play background music
-                playBackgroundMusic()
+              //  playBackgroundMusic()
                 
                 //start tinmer
                 runTimer()
@@ -1076,7 +1091,7 @@ var power = "banana"
                 }
                 PlayInstructions()
                 //play background music
-                playBackgroundMusic()
+              //  playBackgroundMusic()
                 
                 //start
                 runTimer()
@@ -1100,7 +1115,7 @@ var power = "banana"
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
                     self.PlayInstructions()
                     //play background music
-                    self.playBackgroundMusic()
+                 //   self.playBackgroundMusic()
                 }
 //                PlayInstructions()
 //                //play background music
@@ -1120,9 +1135,9 @@ var power = "banana"
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else {return}
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                    self.PlayInstructions()
+                  //  self.PlayInstructions()
                                  //play background music
-                    self.playBackgroundMusic()
+                  //  self.playBackgroundMusic()
                 }
                 
                 
@@ -1154,7 +1169,7 @@ var power = "banana"
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
                     self.PlayInstructions()
                                   //play background music
-                    self.playBackgroundMusic()
+                   // self.playBackgroundMusic()
                 }
                 
                 //  sceneView.backgroundColor = UIColor.red
@@ -1184,7 +1199,7 @@ var power = "banana"
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
                     self.PlayInstructions()
                                   //play background music
-                    self.playBackgroundMusic()
+                 //   self.playBackgroundMusic()
                 }
                 //  sceneView.backgroundColor = UIColor.red
                 
@@ -1207,8 +1222,8 @@ var power = "banana"
                 //  sceneView.backgroundColor = UIColor.red
                 messageLabel.isHidden = true
                 levelJB.text = "level 1"
-               addTargetNodesJupitar()
-             //   FsaddTargetNodes()
+               //addTargetNodesJupitar()
+               FsaddTargetNodes()
          //addTargetNodesNeptune()
                 //addTargetNodesFive()
                 //addTargetNodesSixVenus()
@@ -1216,10 +1231,10 @@ var power = "banana"
                     guard let self = self else {return}
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
                 }
-                
+                //background music fine! ad much better, 20 per mess up
                 PlayInstructions()
                 //play background music
-                playBackgroundMusic()
+             //   playBackgroundMusic()
                 //  addTargetNodesJupitar()
                 //start tinmer
                 runTimer()
@@ -1325,6 +1340,7 @@ var power = "banana"
     
     //Adds 100 objects to the scene, spins them, and places them at random positions around the player.
     func addTargetNodes(){
+           playBackgroundMusic()
         //2nd phase
         //when points get to a certain point like 40 means 1 left and 37 means 2 may be left
         //when game finish congrat them
@@ -1551,6 +1567,7 @@ var power = "banana"
     
     
     func addTargetNodesFour(){
+           playBackgroundMusic()
         //Need message dont shoot moon.
         //if so planet and moon destroyed
                                         let venusParent = SCNNode()
@@ -1795,6 +1812,7 @@ var power = "banana"
                 }
         
     func addTargetNodesFive(){
+           playBackgroundMusic()
         
            //Need message dont shoot moon.
            //if so planet and moon destroyed
@@ -2040,6 +2058,7 @@ var power = "banana"
                    }
            
     func addTargetNodesSixVenus(){
+           playBackgroundMusic()
                //Need message dont shoot moon.
                //if so planet and moon destroyed
         //Make ships move on dif speeds llke earlter
@@ -3346,6 +3365,7 @@ var power = "banana"
                           }
     
     func addTargetNodesNeptune(){
+           playBackgroundMusic()
        
                      // let JupitarRing = createRing(ringSize: 0.3)
                                                    // let jupiter = createPlanet(radius: 0.33, image: "jupiter")
@@ -3994,6 +4014,7 @@ var power = "banana"
     
     
     func addTargetNodesJupitar(){
+           playBackgroundMusic()
         
            
                           //Need message dont shoot moon.
@@ -5273,6 +5294,7 @@ SaturnParent.addChildNode(SassThShoonode)
 //
     
    func SecaddTargetNodes(){
+       playBackgroundMusic()
             //stable
             //when points get to a certain point like 40 means 1 left and 37 means 2 may be left
             //when game finish congrat them
@@ -5512,7 +5534,7 @@ SaturnParent.addChildNode(SassThShoonode)
     
     
     func FsaddTargetNodes(){
-               
+                  playBackgroundMusic()
                //when points get to a certain point like 40 means 1 left and 37 means 2 may be left
                //when game finish congrat them
                //kill certain ship and certain amount of points
@@ -5870,18 +5892,18 @@ SaturnParent.addChildNode(SassThShoonode)
                         self.Coins+=1
                         if self.seconds < 60 && self.seconds > 50 {
                             self.CoinsAva+=3
-//                            self.scoreL+=3
+                            self.scoreL+=3
 //                             self.Coins+=1
                             print("Jess annnnnnnnnnnnnnnnnnnnnnnnnn")
                         } else if self.seconds < 40 && self.seconds > 49 {
                             self.CoinsAva+=2
-//                            self.scoreL+=2
+                            self.scoreL+=2
 //                             self.Coins+=1
                             print("Jess annnnnnnnnnnnnnnnnnnnnnnnnn")
                         }
                         else if self.seconds > 20 && self.seconds < 39 {
-                            self.CoinsAva+=2
-//                            self.scoreL+=1
+                          //  self.CoinsAva+=2
+                            self.scoreL+=1
 //                             self.Coins+=1
                                                    print("Jess annnnnnnnnnnnnnnnnnnnnnnnnn")
                                                }
@@ -6063,6 +6085,7 @@ extension ViewController: FBInterstitialAdDelegate {
 //        }
     }
     func interstitialAdDidClose(_ interstitialAd: FBInterstitialAd) {
+         self.resetButton.isHidden = false
           adShowFinish = false
              print("Interstitial had been closed")
        self.sceneView.isHidden = false
