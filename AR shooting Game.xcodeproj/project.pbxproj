@@ -33,6 +33,11 @@
 		E313249423EBF9B0009C648F /* react.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313249323EBF9B0009C648F /* react.scnp */; };
 		E338BE7F247BC4040000D2FC /* gaga.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E338BE7D247BC4030000D2FC /* gaga.scnp */; };
 		E338BE80247BC4040000D2FC /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E338BE7E247BC4040000D2FC /* spark.png */; };
+		E34EF92824A2B59C00522DA3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34EF92324A2B59A00522DA3 /* DetailViewController.swift */; };
+		E34EF92924A2B59C00522DA3 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34EF92424A2B59A00522DA3 /* IAPHelper.swift */; };
+		E34EF92A24A2B59C00522DA3 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34EF92524A2B59A00522DA3 /* MasterViewController.swift */; };
+		E34EF92B24A2B59C00522DA3 /* RazeFaceProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34EF92624A2B59B00522DA3 /* RazeFaceProducts.swift */; };
+		E34EF92C24A2B59C00522DA3 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34EF92724A2B59B00522DA3 /* ProductCell.swift */; };
 		E36A07F323EC1A9B000561D6 /* Confetti.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E36A07F223EC1A9B000561D6 /* Confetti.scnp */; };
 		E383ABD724237730001F79BB /* Sleepy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD62423772D001F79BB /* Sleepy.mp3 */; };
 		E383ABD92423822F001F79BB /* JBsmartsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD82423822E001F79BB /* JBsmartsound.mp3 */; };
@@ -79,6 +84,11 @@
 		E313249323EBF9B0009C648F /* react.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = react.scnp; sourceTree = "<group>"; };
 		E338BE7D247BC4030000D2FC /* gaga.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; name = gaga.scnp; path = ../../../throw/throw/gaga.scnp; sourceTree = "<group>"; };
 		E338BE7E247BC4040000D2FC /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = ../../../throw/throw/spark.png; sourceTree = "<group>"; };
+		E34EF92324A2B59A00522DA3 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		E34EF92424A2B59A00522DA3 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		E34EF92524A2B59A00522DA3 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		E34EF92624A2B59B00522DA3 /* RazeFaceProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RazeFaceProducts.swift; sourceTree = "<group>"; };
+		E34EF92724A2B59B00522DA3 /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		E36A07F223EC1A9B000561D6 /* Confetti.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Confetti.scnp; sourceTree = "<group>"; };
 		E383ABD62423772D001F79BB /* Sleepy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sleepy.mp3; sourceTree = "<group>"; };
 		E383ABD82423822E001F79BB /* JBsmartsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JBsmartsound.mp3; sourceTree = "<group>"; };
@@ -158,6 +168,11 @@
 		A73D429F20B80B4000965934 /* AR Madness */ = {
 			isa = PBXGroup;
 			children = (
+				E34EF92324A2B59A00522DA3 /* DetailViewController.swift */,
+				E34EF92424A2B59A00522DA3 /* IAPHelper.swift */,
+				E34EF92524A2B59A00522DA3 /* MasterViewController.swift */,
+				E34EF92724A2B59B00522DA3 /* ProductCell.swift */,
+				E34EF92624A2B59B00522DA3 /* RazeFaceProducts.swift */,
 				A7216AC320BE91EE009F6A51 /* Particles */,
 				A7216ABA20BE18C4009F6A51 /* Sounds */,
 				A73D42A020B80B4000965934 /* AppDelegate.swift */,
@@ -319,13 +334,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E34EF92924A2B59C00522DA3 /* IAPHelper.swift in Sources */,
+				E34EF92B24A2B59C00522DA3 /* RazeFaceProducts.swift in Sources */,
 				E3F6D5E82424D96800D19AB0 /* mViewController.swift in Sources */,
 				180C225624544EAC00CDFA75 /* VideoCapture.swift in Sources */,
 				E3F21A8D2499CA73002A29A4 /* JA.swift in Sources */,
+				E34EF92C24A2B59C00522DA3 /* ProductCell.swift in Sources */,
 				A73D42A520B80B4000965934 /* ViewController.swift in Sources */,
 				A73D42A120B80B4000965934 /* AppDelegate.swift in Sources */,
 				180C225424544DFE00CDFA75 /* VideoHelper.swift in Sources */,
 				A7216AD320BE9B72009F6A51 /* HomeViewController.swift in Sources */,
+				E34EF92A24A2B59C00522DA3 /* MasterViewController.swift in Sources */,
+				E34EF92824A2B59C00522DA3 /* DetailViewController.swift in Sources */,
 				180C225224544D1700CDFA75 /* MainViewController.swift in Sources */,
 				E3F21A8B2499C048002A29A4 /* Extension.swift in Sources */,
 			);

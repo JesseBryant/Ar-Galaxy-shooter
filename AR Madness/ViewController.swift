@@ -87,11 +87,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     @IBOutlet weak var buttonStackView: UIStackView!
     
     var isPlanetHit = false
+    var it = false
      var isPlanetHitORneedTime = false
       var PoP = false
     var interstitial: FBInterstitialAd!
     var adShowFinish = false
 
+    @IBOutlet weak var CoinBttn: UIButton!
     //MARK: - variables
     @IBOutlet var sceneView: ARSCNView!
     
@@ -577,10 +579,14 @@ var power = "banana"
 //        }
     }
     func shouldShowBestScoreContainerView(state: Bool) {
+       if SKPaymentQueue.canMakePayments() {
+        
+          if self.CoinsAva >= 20 {
         if state {
             PoP = true
             //  let fafa = Coins
         let fafa =  CoinsAva
+            CoinsAvaa = CoinsAva
             //besss
           //have coins and correct best score
 
@@ -607,7 +613,7 @@ var power = "banana"
                                             DispatchQueue.main.async {
                                             self.BestScore.text = "BEST: \(currentScore)"
                                             print("\(fafa) fafa test")
-                                            self.CNNN.text = "Coins\(abs(fafa))"
+                                            self.CNNN.text = "COINS: \(abs(fafa))"
                                             }
                                             UserDefaults.standard.set(currentScore, forKey: "BestScore")
                                             UserDefaults.standard.synchronize()
@@ -633,7 +639,7 @@ var power = "banana"
 
                 })
             }
-            
+            }
             
             
             
@@ -641,11 +647,165 @@ var power = "banana"
 //            print("\(bestScore) besss")
            // let currentScore = Int(self.scoreLabel.text!)
         
-        }
+          
         self.bestScoreContainerView.isHidden = !state
         self.coinsButton.isHidden = !state
         self.crossButton.isHidden = !state
         self.buttonStackView.isHidden = !state
+        }
+        else {
+                   //self.needTimeLabel.text = "not enough coins"
+            if state {
+                        PoP = true
+                        //  let fafa = Coins
+                    let fafa =  CoinsAva
+                        CoinsAvaa = CoinsAva
+                        //besss
+                      //have coins and correct best score
+
+                        if GKLocalPlayer.local.isAuthenticated {
+
+                            // Initialize the leaderboard for the current local player
+                            var gkLeaderboard = GKLeaderboard(players: [GKLocalPlayer.local])
+                            gkLeaderboard.identifier = leaderboardID
+                            gkLeaderboard.timeScope = GKLeaderboard.TimeScope.allTime
+
+                            // Load the scores
+                            gkLeaderboard.loadScores(completionHandler: { (scores, error) -> Void in
+
+                                // Get current score
+                                var currentScore: Int64 = 0
+                                if error == nil, let scores = scores {
+                                    if (scores.count) > 0 {
+                                        currentScore = (scores[0] ).value
+                                        let bestScore = currentScore
+                                         print("\(bestScore) besss")
+                                        if let currentScore = Int(self.scoreLabel.text!) {
+                                                    if currentScore > bestScore {
+                                                      
+                                                        DispatchQueue.main.async {
+                                                        self.BestScore.text = "BEST: \(currentScore)"
+                                                        print("\(fafa) fafa test")
+                                                        self.CNNN.text = "COINS: \(abs(fafa))"
+                                                        }
+                                                        UserDefaults.standard.set(currentScore, forKey: "BestScore")
+                                                        UserDefaults.standard.synchronize()
+                                                    } else {
+                                                        DispatchQueue.main.async {
+                                                        self.BestScore.text = "BEST: \(bestScore)"
+                                                         self.CNNN.text = "COINS: \(abs(fafa))"
+                                                            self.needTimeLabel.text = "not enough coins"
+                                                            self.CoinBttn.setTitle("Buy", for: .normal)
+                                                        }
+                                                    }
+                                                    
+                                                }
+                                        //We also want to show the best score of the user on the main screen
+            //                            if self.language.contains("it"){
+            //                                self.labelBestScore.text = "Miglior Punteggio: " + String(currentScore)
+            //                                self.bestScore = Int(currentScore)
+            ////                            }else{
+            //                                self.labelBestScore.text = "Your Best Score: " + String(currentScore)
+            //                                self.bestScore = Int(currentScore)
+            //                            }
+                                        print("Jesse bestScore",currentScore)
+                                    }
+                                }
+
+                            })
+                        }
+                        }
+                        
+                        
+                        
+                      //  let bestScore = UserDefaults.standard.integer(forKey: "BestScore")
+            //            print("\(bestScore) besss")
+                       // let currentScore = Int(self.scoreLabel.text!)
+                    
+                      
+                    self.bestScoreContainerView.isHidden = !state
+                    self.coinsButton.isHidden = !state
+                    self.crossButton.isHidden = !state
+                    self.buttonStackView.isHidden = !state
+               }
+        
+        
+        
+        
+        
+    }
+        else{
+              if state {
+                        PoP = true
+                        //  let fafa = Coins
+                    let fafa =  CoinsAva
+                        //besss
+                      //have coins and correct best score
+
+                        if GKLocalPlayer.local.isAuthenticated {
+
+                            // Initialize the leaderboard for the current local player
+                            var gkLeaderboard = GKLeaderboard(players: [GKLocalPlayer.local])
+                            gkLeaderboard.identifier = leaderboardID
+                            gkLeaderboard.timeScope = GKLeaderboard.TimeScope.allTime
+
+                            // Load the scores
+                            gkLeaderboard.loadScores(completionHandler: { (scores, error) -> Void in
+
+                                // Get current score
+                                var currentScore: Int64 = 0
+                                if error == nil, let scores = scores {
+                                    if (scores.count) > 0 {
+                                        currentScore = (scores[0] ).value
+                                        let bestScore = currentScore
+                                         print("\(bestScore) besss")
+                                        if let currentScore = Int(self.scoreLabel.text!) {
+                                                    if currentScore > bestScore {
+                                                      
+                                                        DispatchQueue.main.async {
+                                                        self.BestScore.text = "BEST: \(currentScore)"
+                                                        print("\(fafa) fafa test")
+                                                        self.CNNN.text = "COINS: \(abs(fafa))"
+                                                        }
+                                                        UserDefaults.standard.set(currentScore, forKey: "BestScore")
+                                                        UserDefaults.standard.synchronize()
+                                                    } else {
+                                                        DispatchQueue.main.async {
+                                                        self.BestScore.text = "BEST: \(bestScore)"
+                                                         self.CNNN.text = "COINS: \(abs(fafa))"
+                                                        }
+                                                    }
+                                                    
+                                                }
+                                        //We also want to show the best score of the user on the main screen
+            //                            if self.language.contains("it"){
+            //                                self.labelBestScore.text = "Miglior Punteggio: " + String(currentScore)
+            //                                self.bestScore = Int(currentScore)
+            ////                            }else{
+            //                                self.labelBestScore.text = "Your Best Score: " + String(currentScore)
+            //                                self.bestScore = Int(currentScore)
+            //                            }
+                                        print("Jesse bestScore",currentScore)
+                                    }
+                                }
+
+                            })
+                        }
+                        
+                        
+                        
+                        
+                      //  let bestScore = UserDefaults.standard.integer(forKey: "BestScore")
+            //            print("\(bestScore) besss")
+                       // let currentScore = Int(self.scoreLabel.text!)
+                    
+                    }
+                    self.bestScoreContainerView.isHidden = !state
+                    self.coinsButton.isHidden = !state
+                    self.crossButton.isHidden = !state
+                    self.buttonStackView.isHidden = !state
+        }
+        
     }
     func NeedMoreTime(){
         //only if PoP = false meaning no PoP up available so no double pop ups
@@ -769,6 +929,9 @@ var power = "banana"
                       //store the score in UserDefaults and leaderboard
                       
                   } else {
+                    
+                    if SKPaymentQueue.canMakePayments() {
+                 
                       //need pop up letting user know
                       self.buyPremiumQuotes()
                       
@@ -784,6 +947,27 @@ var power = "banana"
                      // if purchaseGood {
                     //  self.play()
                    //   }
+                     } else {
+                        var refreshAlert = UIAlertController(title: "Coins", message: "You dont have enough coins", preferredStyle: UIAlertController.Style.alert)
+
+                        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                            DispatchQueue.main.async {
+                                                                    self.Coins = 0
+                                                                    self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                                                                        node.removeFromParentNode()
+                                                                    }
+                                                  self.play()
+                                              }
+                          print("Handle Ok logic here")
+                          }))
+
+                        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                          print("Handle Cancel Logic here")
+                          }))
+
+                        present(refreshAlert, animated: true, completion: nil)
+                    }
+                    
                   }
                   
               } else {
@@ -817,13 +1001,15 @@ var power = "banana"
                       //store the score in UserDefaults and leaderboard
                       
                   } else {
+                    
                       
                       //magic for in app purchases
                       //j
                       //All project
                       // timer.invalidate()
-                      self.Time = true
                       
+                     if SKPaymentQueue.canMakePayments() {
+                        self.Time = true
                       self.buyPremiumQuotes()
                       
                       //done in ph world too
@@ -836,6 +1022,29 @@ var power = "banana"
                      // self.play()
                      // }
                   }
+                      else {
+                        var refreshAlert = UIAlertController(title: "Coins", message: "You dont have enough coins", preferredStyle: UIAlertController.Style.alert)
+
+                        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                            //done in ph world too
+                             DispatchQueue.main.async {
+                                              self.Coins = 0
+                                              self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                                                  node.removeFromParentNode()
+                                              }
+                            self.play()
+                        }
+                          print("Handle Ok logic here")
+                          }))
+
+                        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                          print("Handle Cancel Logic here")
+                          }))
+
+                        present(refreshAlert, animated: true, completion: nil)
+                    }
+                    
+                }
               }
     }
     
@@ -857,6 +1066,7 @@ var power = "banana"
        // self.sceneView.isHidden = true
           SwiftSpinner.show("Loading...")
         if SKPaymentQueue.canMakePayments() {
+            // if they cant say not enogh coins
             //Can make payments
 //              DispatchQueue.main.async {
 //            self.sceneView.isHidden = false
@@ -878,20 +1088,24 @@ var power = "banana"
                 
         }
     }
-    
+    //Place all this in diff file have it like ole g
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
    
        for transaction in transactions {
        // self.sceneView.isHidden = true
+        let h = transaction.payment.productIdentifier
                              //  SwiftSpinner.show("Connecting to AR Camera...")
                    if transaction.transactionState == .purchased {
-                       
+                       //if product key is for 1.99 call showPremiumQuotes( self.resetTimer(time: 45)
+                                         //self.runTimer()
+                                         //  self.resetButton.isHidden = false
+                                           //self.play() ect product key  will be saved once hit table did sele
                        //User payment successful
-                       print("Transaction successful!")
+                       print("Transaction successful! \(h)")
                      //  self.sceneView.isHidden = false
                     //  SwiftSpinner.hide()
                        showPremiumQuotes()
-                    
+                    self.CoinBttn.setTitle("20 coins", for: .normal)
                         // self.play()
                     self.resetTimer(time: 45)
                     self.runTimer()
@@ -931,7 +1145,7 @@ var power = "banana"
                            print("\(Coins): still on level 1")
                        if let error = transaction.error {
                            let errorDescription = error.localizedDescription
-                        
+                        self.CoinBttn.setTitle("20 coins", for: .normal)
                            print("Transaction failed due to error: \(errorDescription)")
                        }
                      //  self.play()
@@ -950,7 +1164,8 @@ var power = "banana"
                }
     }
   
-    
+    //got it where it only let make paymen if canmake work other wise you get
+    //alerted that you dont have enough, if you 0 buy appear 
     func showPremiumQuotes() {
         //NEXT
         //next Ar capabili
@@ -968,7 +1183,7 @@ var power = "banana"
         //in app works... Transaction successful!
         //need to sub or add less cuz it goes too next level
         //well do add 5 for now.. for 1.99 look at other games in app purchases
-        self.CoinsAva+=10
+        self.CoinsAva+=600
         //defaultss.set(self.Coins, forKey: "Coins")
         defaultss.set(self.CoinsAva, forKey: "CoinsAva")
         print("\(self.CoinsAva) Coins")

@@ -113,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RID-OD-wJF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2882.4000000000001" y="-7.6461769115442282"/>
+            <point key="canvasLocation" x="-3190" y="-5"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="xeF-03-S6K">
@@ -474,6 +474,7 @@
                         <outlet property="BesLabel" destination="Kzc-HO-6bE" id="833-mc-GOO"/>
                         <outlet property="BestScore" destination="giF-5h-ARa" id="ssi-aN-ndf"/>
                         <outlet property="CNNN" destination="4Wo-pa-Cxp" id="9vf-z6-WIV"/>
+                        <outlet property="CoinBttn" destination="gmc-ck-qfh" id="2qp-0I-qE1"/>
                         <outlet property="ScView" destination="nFh-tK-Hgc" id="onB-zX-739"/>
                         <outlet property="bestScoreContainerView" destination="IUU-i1-rI7" id="Ltc-bI-Uih"/>
                         <outlet property="buttonStackView" destination="zeD-8m-Wft" id="POZ-Md-sHU"/>
@@ -493,7 +494,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2337" y="-236"/>
+            <point key="canvasLocation" x="-2170" y="-6"/>
         </scene>
     </scenes>
     <resources>
