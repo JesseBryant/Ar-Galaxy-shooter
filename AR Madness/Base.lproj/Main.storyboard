@@ -22,86 +22,80 @@
                             </view>
                             <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6y-cu-ias">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="0.91764705879999997" green="0.25098039220000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AR shooting Game" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agN-dv-X3R">
-                                <rect key="frame" x="88" y="100" width="197" height="76.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="197" id="sOb-Mo-Ps7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="32"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Hjc-a2-xhN">
-                                <rect key="frame" x="120" y="512" width="135" height="105"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tat-3e-Rv4">
-                                        <rect key="frame" x="7.5" y="0.0" width="120" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="AKe-f7-BKk"/>
-                                            <constraint firstAttribute="height" constant="40" id="aXd-Bd-iem"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="20"/>
-                                        <state key="normal" title="Start Now">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="didTapStart" destination="SUX-J8-7Vb" eventType="touchUpInside" id="BKQ-4k-vwE"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DgD-vN-KBx">
-                                        <rect key="frame" x="0.0" y="65" width="135" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="135" id="EqK-EV-K8q"/>
-                                            <constraint firstAttribute="height" constant="40" id="biJ-EQ-1h2"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="20"/>
-                                        <state key="normal" title="Top Players">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="TopPlayers:" destination="SUX-J8-7Vb" eventType="touchUpInside" id="b9o-nu-KIx"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Hjc-a2-xhN">
+                                        <rect key="frame" x="120" y="281" width="135" height="105"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tat-3e-Rv4">
+                                                <rect key="frame" x="7.5" y="0.0" width="120" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="120" id="AKe-f7-BKk"/>
+                                                    <constraint firstAttribute="height" constant="40" id="aXd-Bd-iem"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="20"/>
+                                                <state key="normal" title="Start Now">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapStart" destination="SUX-J8-7Vb" eventType="touchUpInside" id="BKQ-4k-vwE"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DgD-vN-KBx">
+                                                <rect key="frame" x="0.0" y="65" width="135" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="135" id="EqK-EV-K8q"/>
+                                                    <constraint firstAttribute="height" constant="40" id="biJ-EQ-1h2"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="20"/>
+                                                <state key="normal" title="Top Players">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="TopPlayers:" destination="SUX-J8-7Vb" eventType="touchUpInside" id="b9o-nu-KIx"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" red="0.91764705879999997" green="0.25098039220000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Hjc-a2-xhN" firstAttribute="centerY" secondItem="L6y-cu-ias" secondAttribute="centerY" id="bMx-ck-4VL"/>
+                                    <constraint firstAttribute="trailing" secondItem="Hjc-a2-xhN" secondAttribute="trailing" constant="120" id="tPo-pa-Ahl"/>
+                                    <constraint firstItem="Hjc-a2-xhN" firstAttribute="leading" secondItem="L6y-cu-ias" secondAttribute="leading" constant="120" id="yGK-aj-e3i"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="fQ7-gs-McJ" firstAttribute="leading" secondItem="EMM-3e-dkp" secondAttribute="leading" id="4tK-Kb-Sf9"/>
                             <constraint firstItem="fQ7-gs-McJ" firstAttribute="top" secondItem="EMM-3e-dkp" secondAttribute="top" id="6Sl-Wh-9u2"/>
-                            <constraint firstItem="agN-dv-X3R" firstAttribute="centerX" secondItem="fQ7-gs-McJ" secondAttribute="centerX" constant="-1" id="Kyv-z2-L0D"/>
-                            <constraint firstItem="Hjc-a2-xhN" firstAttribute="centerX" secondItem="fQ7-gs-McJ" secondAttribute="centerX" id="LIT-Rg-5nx"/>
                             <constraint firstItem="fQ7-gs-McJ" firstAttribute="bottom" secondItem="EMM-3e-dkp" secondAttribute="bottom" id="Ldi-pr-7z7"/>
                             <constraint firstItem="fQ7-gs-McJ" firstAttribute="trailing" secondItem="EMM-3e-dkp" secondAttribute="trailing" id="Smj-Tl-2g3"/>
                             <constraint firstItem="L6y-cu-ias" firstAttribute="top" secondItem="fQ7-gs-McJ" secondAttribute="top" id="ZoV-dz-DdJ"/>
                             <constraint firstItem="fQ7-gs-McJ" firstAttribute="bottom" secondItem="L6y-cu-ias" secondAttribute="bottom" id="aT7-X4-OB5"/>
-                            <constraint firstItem="fQ7-gs-McJ" firstAttribute="bottom" secondItem="Hjc-a2-xhN" secondAttribute="bottom" constant="50" id="awJ-xy-PtV"/>
                             <constraint firstItem="fQ7-gs-McJ" firstAttribute="trailing" secondItem="L6y-cu-ias" secondAttribute="trailing" id="bSw-EP-h37"/>
-                            <constraint firstItem="agN-dv-X3R" firstAttribute="top" secondItem="fQ7-gs-McJ" secondAttribute="top" constant="100" id="i7O-KX-LaS"/>
                             <constraint firstItem="L6y-cu-ias" firstAttribute="leading" secondItem="fQ7-gs-McJ" secondAttribute="leading" id="r93-zh-uFf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fQ7-gs-McJ"/>
@@ -113,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RID-OD-wJF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3190" y="-5"/>
+            <point key="canvasLocation" x="-3225" y="30"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="xeF-03-S6K">
@@ -494,7 +488,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2170" y="-6"/>
+            <point key="canvasLocation" x="-2860" y="-175"/>
         </scene>
     </scenes>
     <resources>

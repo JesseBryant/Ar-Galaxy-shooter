@@ -383,7 +383,7 @@ var power = "banana"
 //      }
         DispatchQueue.main.async {
                    self.shouldShowBestScoreContainerView(state: false)
-                  self.resetTimer(time: 60)
+                  self.resetTimer(time: 30)
                    self.runTimer()
                }
                    self.PoP = false
@@ -425,6 +425,17 @@ var power = "banana"
             self.messageLabel.isHidden = true
         })
     }
+    func PlayInstructionsLight() {
+           
+           //        messageLabel.isHidden = false
+           //        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
+           self.messageLabel.isHidden = false
+           self.messageLabel.text = "Place the device in an area where there is ligh"
+           DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: { [weak self] in
+               guard let self = self else {return}
+               self.messageLabel.isHidden = true
+           })
+       }
     
     //decrements seconds by 1, updates the timerLabel and calls gameOver if seconds is 0
     @objc func updateTimer() {
@@ -586,7 +597,7 @@ var power = "banana"
             PoP = true
             //  let fafa = Coins
         let fafa =  CoinsAva
-            CoinsAvaa = CoinsAva
+//            CoinsAvaa = CoinsAva
             //besss
           //have coins and correct best score
 
@@ -659,7 +670,7 @@ var power = "banana"
                         PoP = true
                         //  let fafa = Coins
                     let fafa =  CoinsAva
-                        CoinsAvaa = CoinsAva
+                    //    CoinsAvaa = CoinsAva
                         //besss
                       //have coins and correct best score
 
@@ -1081,8 +1092,7 @@ var power = "banana"
             
         } else {
             //Can't make payments
-            self.sceneView.isHidden = false
-                                 SwiftSpinner.hide()
+          
             print("User can't make payments")
 
                 
@@ -1090,7 +1100,7 @@ var power = "banana"
     }
     //Place all this in diff file have it like ole g
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-   
+ 
        for transaction in transactions {
        // self.sceneView.isHidden = true
         let h = transaction.payment.productIdentifier
@@ -1107,9 +1117,11 @@ var power = "banana"
                        showPremiumQuotes()
                     self.CoinBttn.setTitle("20 coins", for: .normal)
                         // self.play()
+                
                     self.resetTimer(time: 45)
                     self.runTimer()
                     //  self.resetButton.isHidden = false
+                    
                       self.play()
                        //nice version
                        SKPaymentQueue.default().finishTransaction(transaction)
@@ -1124,6 +1136,8 @@ var power = "banana"
                               // stopBackgroundMus()
                                //Music end sometimes here
                            }
+//                    self.sceneView.isHidden = false
+//                                                   SwiftSpinner.hide()
                            self.scoreLabel.text = "0"
                            self.scoreL = 0
                            self.levelJB.text = "Level 1"
@@ -1135,10 +1149,12 @@ var power = "banana"
                            messageLabel.isHidden = true
                            levelJB.text = "level 1"
                            //addTargetNodes()
+                    self.sceneView.isHidden = false
+                                                                      SwiftSpinner.hide()
                            FsaddTargetNodes()
                            PlayInstructions()
                            //play background music
-                           playBackgroundMusic()
+                         //  playBackgroundMusic()
                            //  addTargetNodesJupitar()
                            //start tinmer
                            runTimer()
@@ -1228,6 +1244,8 @@ var power = "banana"
     
     
     func play() {
+        self.sceneView.isHidden = false
+                                                       SwiftSpinner.hide()
           self.resetButton.isHidden = false
         autoreleasepool {
             
@@ -6026,7 +6044,7 @@ SaturnParent.addChildNode(SassThShoonode)
                 //                if let Jes = self.sceneView.scene.rootNode.childNode(withName: "ha", recursively: true)
                 //decided not add because this a bonus
                 //  power = "axe"
-                Coins+=4
+             //   Coins+=4
                 scoreL+=8
                 //                 if !self.AllnodeArray.isEmpty{
                 //level 9
