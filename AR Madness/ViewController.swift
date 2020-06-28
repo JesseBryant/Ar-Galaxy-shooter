@@ -427,7 +427,7 @@ var power = "banana"
     }
     func PlayInstructionsLight() {
            
-           //        messageLabel.isHidden = false
+           //        messageLabel.isHidden = false Quick time Player
            //        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
            self.messageLabel.isHidden = false
            self.messageLabel.text = "Place the device in an area where there is ligh"
@@ -1267,13 +1267,14 @@ var power = "banana"
                 power = "banana"
                 messageLabel.isHidden = true
                 levelJB.text = "level 2"
-                SecaddTargetNodes()
+                addTargetNodesNeptune()
+                //SecaddTargetNodes()
                 //            addTargetNodesJupitar()
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else {return}
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
                 }
-                PlayInstructions()
+               // PlayInstructions()
                 //play background music
                 //                            stopBackgroundMusic()
 //                playBackgroundMusic()
@@ -1300,7 +1301,7 @@ var power = "banana"
                     guard let self = self else {return}
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
                 }
-                PlayInstructions()
+              //  PlayInstructions()
                 //play background music
               //  playBackgroundMusic()
                 
@@ -1322,7 +1323,7 @@ var power = "banana"
                     guard let self = self else {return}
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
                 }
-                PlayInstructions()
+               // PlayInstructions()
                 //play background music
               //  playBackgroundMusic()
                 
@@ -1346,7 +1347,7 @@ var power = "banana"
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else {return}
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                    self.PlayInstructions()
+                  //  self.PlayInstructions()
                     //play background music
                  //   self.playBackgroundMusic()
                 }
@@ -1390,17 +1391,19 @@ var power = "banana"
             }
                 
                 //addTargetNodesSaturn()
-            else if 79...102 ~= Coins{
+            else if 79...93 ~= Coins{
                 power = "banana"
                 messageLabel.isHidden = true
                 levelJB.text = "level 7"
                 
                 //Will need to add other nodes give a more real effect. For smaller ships
+               
                 addTargetNodesNeptune()
+              
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else {return}
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                    self.PlayInstructions()
+                  //  self.PlayInstructions()
                                   //play background music
                    // self.playBackgroundMusic()
                 }
@@ -1419,7 +1422,7 @@ var power = "banana"
                 print("\(Coins): welcome to level 7 jess")
                 print("\(Coinse): welcome to level 7 jess Coinse")
                 
-            } else if 103...238 ~= Coins{
+            } else if 94...50000 ~= Coins{
                 
                 power = "banana"
                 messageLabel.isHidden = true
@@ -1427,10 +1430,11 @@ var power = "banana"
                 
                 
                 addTargetNodesJupitar()
+               // fix crash(fireball) and level 4, level 7, Play instructions play once
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else {return}
                     self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                    self.PlayInstructions()
+                   // self.PlayInstructions()
                                   //play background music
                  //   self.playBackgroundMusic()
                 }
@@ -1519,7 +1523,7 @@ var power = "banana"
            // fireBall.physicsBody?.mass = 0.5
             //add particles
           DispatchQueue.main.async {
-            self.fireBall.addParticleSystem(SCNParticleSystem(named: "gaga.scnp", inDirectory: nil)!)
+            self.fireBall.addParticleSystem(SCNParticleSystem(named: "Fire.scnp", inDirectory: nil)!)
         }
             //right size fireball
  
@@ -1837,6 +1841,7 @@ var power = "banana"
              earthParent.name = "earthQJ"
         moonParent.name = "earthQJ"
         moonn.name = "earthQJ"
+        venusParent.name = "earthQJ"
                                       earth.position = SCNVector3(0,0,-1)
                                        earthParent.position = SCNVector3(0,0,-1)
          moonParent.position = SCNVector3(0,0,-1)
@@ -4129,112 +4134,147 @@ var power = "banana"
                                                                               // let venusRotation = Rotation(time: 9)
                                                //                   let JupRotation = Rotation(time: 8)
                                                                               //  let JRotation = Rotation(time: 5)
-                                                                                 Shoonode.runAction(GreenSecRo)
-                                                             //                  //  ShoonodeSec.runAction(SecRotation)
-                                                                                ssShoonode.runAction(GreenSecRo)
-                                                                           
-                                                             //                    //FourthShoonode
-                                                                                ssThShoonode.runAction(GreenSecRo)
-                                                                                 FourthShoonode.runAction(GreenSecRo)
-                                                                                    
-               
-                                                                                NepShoonode.runAction(GreenSecRo)
-                                                                                                          //                  //  ShoonodeSec.runAction(SecRotation)
-                                                                                                                              NepssShoonode.runAction(GreenSecRo)
-                                                                                                                        
-                                                                                                          //                    //FourthShoonode
-                                                                                                                              NepssThShoonode.runAction(GreenSecRo)
-                                                                                                                               NepFourthShoonode.runAction(GreenSecRo)
-                                                                               //Sa
-                                                                               SaShoonode.runAction(GreenSecRo)
-                                                                                                                    //                  //  ShoonodeSec.runAction(SecRotation)
-                                                                                                                                       SAssShoonode.runAction(GreenSecRo)
-                                                                                                                                     
-                                                                                                                    //                    //FourthShoonode
-                                                                                                                                       SassThShoonode.runAction(GreenSecRo)
-                                                                                                                                        SaFourthShoonode.runAction(GreenSecRo)
-                                                                              
-                                                                              
-                                                             //                        ssThShoonode
-                                             // JupitarParentSun.runAction(sunAction)
-                                                                               venusParentSun.runAction(sunAction)
-                                                                                                                   //SaturnParentSun.runAction(sunAction)
-                                              
-                                              SaturnParentSun.runAction(sunActionSS)
-                                              SaturnParent.runAction(JRRotation)
-                                                     saturn.runAction(JRRotation)
-                                              SaturnParentSun.addChildNode(SaturnParent)
-                                          SaturnParentSun.addChildNode(saturn)
-                                      saturn.addChildNode(saturnRing)
-                                      saturn.addChildNode(SAssShoonode)
-                                  SaturnParent.addChildNode(SaShoonode)
-                                                                                                                                  //  ssThShoonode.addChildNode(ssShoonode)
-                      SaturnParent.addChildNode(SassThShoonode)
-                          SaturnParent.addChildNode(SaFourthShoonode)
-                                              
-                                                                                neptuneParentSun.runAction(sunAction)
-                                                                                        earthParent.runAction(JRRotation)
-                                                                                      neptuneParent.runAction(JRRotation)
-                                                                              //JupitarParent.runAction(JRotation)
-                                                                                SaturnParent.runAction(JRRotation)
-                                                                                        venusParent.runAction(JRRotation)
-                                                                                        moonParent.runAction(moonRotation)
-                                                                                       //venus.runAction(venusRotation)
-                                                                            neptune.runAction(JRRotation)
-                                                                              //jupiter.runAction(JupRotation)
-                                                                                         //venusParent.addChildNode(venus)
-                                                                                        earth.runAction(JRRotation)
-                                                                              sun.runAction(sunAction)
-                                                                                neptune.addChildNode(neptuneRing)
-                                                                                neptuneParentSun.addChildNode(neptuneParent)
-                                                                                neptuneParentSun.addChildNode(neptune)
-                                                                                          
-                                              
-                                                                                          //Jupitar
-                                              
-                                                                                  
-                                              
-                                                                              //figured out how distribute ships will have to create more Shoonodes
-                                                                              //can be elaborate with given planets diff rotations since its
-                                                                              sun.addChildNode(earth)
-                                                                               sun.addChildNode(earthParent)
-                                                                              //venusParent.addChildNode(venus)
-                                                                           //   venusParentSun.addChildNode(venusParent)
-                                                                               
-                                                                              //added venus and planets
-                                                                           //   venusParentSun.addChildNode(venus)
-                                                                               SaturnParentSun.addChildNode(SaturnParent)
-                                                                                     SaturnParentSun.addChildNode(saturn)
-                                                                                saturn.addChildNode(saturnRing)
-                                                                               //ear
-                                                                              earth.addChildNode(ssShoonode)
-                                                                                 earthParent.addChildNode(Shoonode)
-                                                                               //  ssThShoonode.addChildNode(ssShoonode)
-                                                                                 earthParent.addChildNode(ssThShoonode)
-                                                                                 earthParent.addChildNode(FourthShoonode)
-                     
-                                              
-                                              
-                                                                              //ven
-                                                                          //    venus.addChildNode(VenssShoonode)
-                                                                           //   venusParent.addChildNode(VenShoonode)
-                                                                                                          //  ssThShoonode.addChildNode(ssShoonode)
-                                                                                                            //venusParent.addChildNode(VenssThShoonode)
-                                                                                                            //venusParent.addChildNode(VenFourthShoonode)
-                                                                               //sa
-                                                                               saturn.addChildNode(SAssShoonode)
-                                                                                                                     SaturnParent.addChildNode(SaShoonode)
-                                                                                                                   //  ssThShoonode.addChildNode(ssShoonode)
-                                                                                                                     SaturnParent.addChildNode(SassThShoonode)
-                                                                                                                     SaturnParent.addChildNode(SaFourthShoonode)
-                                                                               // nep //added neptune :))
-                                                                                neptune.addChildNode(NepssShoonode)
-                                                                                 neptuneParent.addChildNode(NepShoonode)
-                                                                              neptuneParent.addChildNode(NepssThShoonode)
-                                                                                neptuneParent.addChildNode(NepFourthShoonode)
-                                                                                        //earthParent.addChildNode(moonParent)
-                                                                                 earth.addChildNode(moon)
-                                                                                      moonParent.addChildNode(moon)
+                                                    
+                                                       // Rotation(time: 5)
+                                                                                                                                            Shoonode.runAction(GreenSecRo)
+                                                                                                                        //                  //  ShoonodeSec.runAction(SecRotation)
+                                                                                                                                           ssShoonode.runAction(GreenSecRo)
+                                                                                                                                      
+                                                                                                                        //                    //FourthShoonode
+                                                                                                                                           ssThShoonode.runAction(GreenSecRo)
+                                                                                                                                            FourthShoonode.runAction(GreenSecRo)
+                                                                                                                                               
+                                                                                                         //Jup
+//                                                                                                                                                     JupShoonode.runAction(GreenSecRo)
+//
+//                                                                                                                                                         JupssShoonode.runAction(GreenSecRo)
+//
+//                                                                                                                                            //                    //FourthShoonode
+//                                                                                                                                                               JupssThShoonode.runAction(GreenSecRo)
+//                                                                                                                                                                JupFourthShoonode.runAction(GreenSecRo)
+//
+                                                                                 //                                                        //Ven added
+                                                                                 //                                                         VenShoonode.runAction(SecRotation)
+                                                                                 //                                                        //                  //  ShoonodeSec.runAction(SecRotation)
+                                                                                 //                                                                           VenssShoonode.runAction(SecRotation)
+                                                                                 //
+                                                                                 //                                                        //                    //FourthShoonode
+                                                                                 //                                                                           VenssThShoonode.runAction(SecRo)
+                                                                                 //                                                                            VenFourthShoonode.runAction(SecRotation)
+                                                                                                                                           //nep
+                                                                                                                                           NepShoonode.runAction(GreenSecRo)
+                                                                                                                                                                     //                  //  ShoonodeSec.runAction(SecRotation)
+                                                                                                                                                                                         NepssShoonode.runAction(GreenSecRo)
+                                                                                                                                                                                   
+                                                                                                                                                                     //                    //FourthShoonode
+                                                                                                                                                                                         NepssThShoonode.runAction(GreenSecRo)
+                                                                                                                                                                                          NepFourthShoonode.runAction(GreenSecRo)
+                                                                                                                                          //Sa
+                                                                                                                                          SaShoonode.runAction(GreenSecRo)
+                                                                                                                                                                               //                  //  ShoonodeSec.runAction(SecRotation)
+                                                                                                                                                                                                  SAssShoonode.runAction(GreenSecRo)
+                                                                                                                                                                                                
+                                                                                                                                                                               //                    //FourthShoonode
+                                                                                                                                                                                                  SassThShoonode.runAction(GreenSecRo)
+                                                                                                                                                                                                   SaFourthShoonode.runAction(GreenSecRo)
+                                                                                                                                         
+                                                                                                                                         
+                                                                                                                        //                        ssThShoonode
+//                                                                                                         JupitarParentSun.runAction(sunAction)
+                                                                                                                                          venusParentSun.runAction(sunAction)
+                                                                                                                                                                              SaturnParentSun.runAction(sunAction)
+                                                                                                         
+                                                                                                         SaturnParentSun.runAction(sunAction)
+                                                                                                         SaturnParent.runAction(JRRotation)
+                                                                                                               saturn.runAction(JRRotation)
+                                                                                                         SaturnParentSun.addChildNode(SaturnParent)
+                                                                                                     SaturnParentSun.addChildNode(saturn)
+                                                                                                 saturn.addChildNode(saturnRing)
+                                                                                                 saturn.addChildNode(SAssShoonode)
+                                                                                             SaturnParent.addChildNode(SaShoonode)
+                                                                                                                                                                                             //  ssThShoonode.addChildNode(ssShoonode)
+                                                                                 SaturnParent.addChildNode(SassThShoonode)
+                                                                                     SaturnParent.addChildNode(SaFourthShoonode)
+                                                                                                         
+                                                                                                                                           neptuneParentSun.runAction(sunAction)
+                                                                                                                                                   earthParent.runAction(JRRotation)
+                                                                                                                                                 neptuneParent.runAction(JRRotation)
+//                                                                                                                                         JupitarParent.runAction(JRRotation)
+                                                                                                                                           SaturnParent.runAction(JRRotation)
+                                                                                                                                                   venusParent.runAction(JRRotation)
+                                                                                                                                                   moonParent.runAction(moonRotation)
+                                                                                                             //all levels rotate right(ad mst load usall fast
+                                                                                                                                                  //venus.runAction(venusRotation)
+                                                                                                                                       neptune.runAction(JRRotation)
+//                                                                                                                                         jupiter.runAction(JRRotation)
+                                                                                                                                                    //venusParent.addChildNode(venus)
+                                                                                                                                                   earth.runAction(JRRotation)
+                                                                                                                                         sun.runAction(sunAction)
+                                                                                                                                           neptune.addChildNode(neptuneRing)
+                                                                                                                                           
+                                                                                                                                                     
+                                                                                                         
+                                                                                                                                                     //Jupitar
+                                                                                                         
+//                                                                                                                                             sun.addChildNode(jupiter)
+//                                                                                                                                         sun.addChildNode(JupitarParent)
+                                                                                                            sun.addChildNode(neptuneParent)
+                                                                                                             sun.addChildNode(neptune)
+                                                                                                            sun.addChildNode(SaturnParent)
+                                                                                                                                 sun.addChildNode(saturn)
+                                                                                                             sun.addChildNode(earth)
+                                                                                                                                                                    sun.addChildNode(earthParent)
+                                                                                                             
+//                                                                                                                                     jupiter.addChildNode(JupitarRing)
+                                                                                                         
+                                                                                                                                         //figured out how distribute ships will have to create more Shoonodes
+                                                                                                                                         //can be elaborate with given planets diff rotations since its
+                                                                                                                                       
+                                                                                                                                         //venusParent.addChildNode(venus)
+                                                                                                                                      //   venusParentSun.addChildNode(venusParent)
+                                                                                                                                          
+                                                                                                                                         //added venus and planets
+                                                                                                                                      //   venusParentSun.addChildNode(venus)
+                                                                                                                                       
+                                                                                                                                           saturn.addChildNode(saturnRing)
+                                                                                                                                          //ear
+                                                                                                         //nep 100
+                                                                                                                                         earth.addChildNode(ssShoonode)
+                                                                                                                                            earthParent.addChildNode(Shoonode)
+                                                                                                                                          //  ssThShoonode.addChildNode(ssShoonode)
+                                                                                                                                            earthParent.addChildNode(ssThShoonode)
+                                                                                                                                            earthParent.addChildNode(FourthShoonode)
+                                                                                                                                     //Jupitar
+                                                                                                         
+//                                                                                                                                                             jupiter.addChildNode(JupssShoonode)
+//                                                                                                                                                                   JupitarParent.addChildNode(JupShoonode)
+//                                                                                                                                                                 //  ssThShoonode.addChildNode(ssShoonode)
+//                                                                                                                                                                   JupitarParent.addChildNode(JupssThShoonode)
+//                                                                                                                                                                   JupitarParent.addChildNode(JupFourthShoonode)
+//
+                                                                                                         
+                                                                                                         
+                                                                                                                                         //ven
+                                                                                                                                     //    venus.addChildNode(VenssShoonode)
+                                                                                                                                      //   venusParent.addChildNode(VenShoonode)
+                                                                                                                                                                     //  ssThShoonode.addChildNode(ssShoonode)
+                                                                                                                                                                       //venusParent.addChildNode(VenssThShoonode)
+                                                                                                                                                                       //venusParent.addChildNode(VenFourthShoonode)
+                                                                                                                                          //sa
+                                                                                                                                          saturn.addChildNode(SAssShoonode)
+                                                                                                                                                                                SaturnParent.addChildNode(SaShoonode)
+                                                                                                                                                                              //  ssThShoonode.addChildNode(ssShoonode)
+                                                                                                                                                                                SaturnParent.addChildNode(SassThShoonode)
+                                                                                                                                                                                SaturnParent.addChildNode(SaFourthShoonode)
+                                                                                                                                          // nep //added neptune :))
+                                                                                                                                           neptune.addChildNode(NepssShoonode)
+                                                                                                                                            neptuneParent.addChildNode(NepShoonode)
+                                                                                                                                         neptuneParent.addChildNode(NepssThShoonode)
+                                                                                                                                           neptuneParent.addChildNode(NepFourthShoonode)
+                                                                                                                                                   //earthParent.addChildNode(moonParent)
+                                                                                                                                            earth.addChildNode(moon)
+                                                                                                                                                 moonParent.addChildNode(moon)
+                                                                                                                        //                    for n in SSnodeA
                                                              //                    for n in SSnodeArray {
                                                              //                        print("\(n.name) jessss")
                                                              //                    }
@@ -6126,17 +6166,23 @@ SaturnParent.addChildNode(SassThShoonode)
                         if self.seconds < 60 && self.seconds > 50 {
                             self.CoinsAva+=3
                             self.scoreL+=3
+                            self.defaultss.set(self.Coins, forKey: "Coins")
+                                                           self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
 //                             self.Coins+=1
                             print("Jess annnnnnnnnnnnnnnnnnnnnnnnnn")
                         } else if self.seconds < 40 && self.seconds > 49 {
                             self.CoinsAva+=2
                             self.scoreL+=2
+                            self.defaultss.set(self.Coins, forKey: "Coins")
+                                                           self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
 //                             self.Coins+=1
                             print("Jess annnnnnnnnnnnnnnnnnnnnnnnnn")
                         }
                         else if self.seconds > 20 && self.seconds < 39 {
                           //  self.CoinsAva+=2
                             self.scoreL+=1
+                            self.defaultss.set(self.Coins, forKey: "Coins")
+                                                           self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
 //                             self.Coins+=1
                                                    print("Jess annnnnnnnnnnnnnnnnnnnnnnnnn")
                                                }
@@ -6150,8 +6196,10 @@ SaturnParent.addChildNode(SassThShoonode)
                         print("\(self.Coins)Coins")
                             print("\(self.CoinsAva)CoinsAvaAva Jeeeserdckhghk")
                         print("\(contact.nodeA.name!)")
+                     
                       //  print("\(self.timer)")
-                            
+                            self.defaultss.set(self.Coins, forKey: "Coins")
+                                                           self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
                        // r = r + 1
                       //  print("\(self.timerLabel.text) scoreL")
                     } else{
@@ -6181,6 +6229,8 @@ SaturnParent.addChildNode(SassThShoonode)
                     print("\(self.Coins)Coins else else")
                                               print("\(self.CoinsAva)CoinsAvaAva else else")
                      print("\(self.scoreL)scoreL else else")
+                    self.defaultss.set(self.Coins, forKey: "Coins")
+                              self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
                 }
                 
                 self.scoreLabel.text = String(self.scoreL)
