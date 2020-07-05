@@ -58,11 +58,14 @@ import FBAudienceNetwork
 
 
 
-
-
-
-
-
+//
+//final class GameCenterHelper: NSObject {
+//  typealias CompletionBlock = (Error?) -> Void
+//    static let helper = GameCenterHelper()
+//
+//    // 2
+//
+//}
 
 
 
@@ -79,6 +82,10 @@ enum BitMaskCategory: Int {
 }
 
 class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate, SKPaymentTransactionObserver {
+//    static let helper = GameCenterHelper()
+//
+//    // 2
+   var viewController: UIViewController?
     
     @IBOutlet weak var bestScoreContainerView: UIView!
     @IBOutlet weak var crossButton: UIButton!
@@ -224,58 +231,72 @@ var power = "banana"
     // let audioPlayer = SCNAudioPlayer(source: audioSource)
     override func viewDidLoad() {
         super.viewDidLoad()
+        GKLocalPlayer.local.authenticateHandler = { gcAuthVC, error in
+           if GKLocalPlayer.local.isAuthenticated {
+             
+                 //make sure they  sign
+             print("Authenticated to Game Center!")
+           } else if let vc = gcAuthVC {
+             self.viewController?.present(vc, animated: true)
+         //   GameCenterHelper.helper.viewController = self
+           }
+           else {
+             print("Error authentication to GameCenter: " +
+               "\(error?.localizedDescription ?? "none")")
+           }
+         }
+        DispatchQueue.main.async {
+              
+                    self.sceneView.isHidden = true
+                   SwiftSpinner.show("Connecting to AR Camera...")
+                   self.InterstitialAd()
+        
+                      //   self.sceneView.isHidden = true
+               }
+               DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                  // if self.AdsLoaded{
+                   self.sceneView.isHidden = false
+                   self.ScView.isHidden = false
+                   self.timeView.isHidden = false
+                   self.targeee.isHidden = false
+                   SwiftSpinner.hide()
+                   self.reseB()
+                   self.play()
+                  // }
+               }
+               
+               self.sceneView.delegate = self
+               // let audioPlayer = SCNAudioPlayer(source: audioSource)
+               // Show statistics such as fps and timing information
+               //sceneView.showsStatistics = true
+              //.com
+               //set the physics delegate
+               self.sceneView.scene.physicsWorld.contactDelegate = self
+               
+               SKPaymentQueue.default().add(self)
+               // stopBackgroundMusic()
+               // Set the view's delegate
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
+               self.sceneView.addGestureRecognizer(gestureRecognizer)
+
+             if let gameScore = self.defaultss.value(forKey: "Coins"){
+                        self.Coins = gameScore as! Int
+                        print("\(self.Coins) Jesse KKKK")
+                            
+                            //play()
+                    }
+                    
+                    if let gameScoree = self.defaultss.value(forKey: "CoinsAva"){
+                        self.CoinsAva = gameScoree as! Int
+                        print("\(self.CoinsAva) Jesse Ava has uploaded")
+                              
+                              //play()
+                      }
 //        InterstitialAd()
 //nice project fix issues with sound, much better fireball, less fade out.. memory leak fixed
 //       self.sceneView.isHidden = true
         //treat ADs like mainly time tickit.. Coins should manly save planets
-        DispatchQueue.main.async {
-       
-             self.sceneView.isHidden = true
-            SwiftSpinner.show("Connecting to AR Camera...")
-            self.InterstitialAd()
- 
-               //   self.sceneView.isHidden = true
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-           // if self.AdsLoaded{
-            self.sceneView.isHidden = false
-            self.ScView.isHidden = false
-            self.timeView.isHidden = false
-            self.targeee.isHidden = false
-            SwiftSpinner.hide()
-            self.reseB()
-            self.play()
-           // }
-        }
-        
-        self.sceneView.delegate = self
-        // let audioPlayer = SCNAudioPlayer(source: audioSource)
-        // Show statistics such as fps and timing information
-        //sceneView.showsStatistics = true
-       //.com
-        //set the physics delegate
-        self.sceneView.scene.physicsWorld.contactDelegate = self
-        
-        SKPaymentQueue.default().add(self)
-        // stopBackgroundMusic()
-        // Set the view's delegate
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
-        self.sceneView.addGestureRecognizer(gestureRecognizer)
-
-      if let gameScore = self.defaultss.value(forKey: "Coins"){
-                 self.Coins = gameScore as! Int
-                 print("\(self.Coins) Jesse KKKK")
-                     
-                     //play()
-             }
-             
-             if let gameScoree = self.defaultss.value(forKey: "CoinsAva"){
-                 self.CoinsAva = gameScoree as! Int
-                 print("\(self.CoinsAva) Jesse Ava has uploaded")
-                       
-                       //play()
-               }
-            
+      
         
         // score = GKScore(leaderboardIdentifier: leaderboardID)
     
@@ -1527,7 +1548,7 @@ var power = "banana"
        //   DispatchQueue.main.async {
             self.fireBall.addParticleSystem(SCNParticleSystem(named: "Fire.scnp", inDirectory: nil)!)
      //   }
-            //right size fireball
+            //right size fireball  devarslan@icloud.com
  
          //   let disapear = SCNAction.fadeOut(duration: 0.3)
          //   fireBall.runAction(.sequence([.wait(duration: 3) ,disapear]))
