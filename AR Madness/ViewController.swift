@@ -716,6 +716,8 @@ var power = "banana"
                                         let scoreee : GKScore = gkLeaderboard.localPlayerScore!
 
                                                                                  let rank : NSInteger = scoreee.rank
+                                //get total number of ranks/people...take individual ranks test if that # is in
+                                //top 20 percent..if so it should say 80% higher than others
                                 // Get current score
                                 var currentScore: Int64 = 0
                                 if error == nil, let scores = scores {
