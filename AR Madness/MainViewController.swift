@@ -13,14 +13,27 @@ import GameKit
 import SwiftSpinner
 
 class MainViewController: UIViewController {
-    
+    var viewController: UIViewController?
     @IBOutlet weak var videoPreview: UIView!
     // MARK: - AV Property
     var videoCapture: VideoCapture!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        GKLocalPlayer.local.authenticateHandler = { gcAuthVC, error in
+                  if GKLocalPlayer.local.isAuthenticated {
+                    
+                        //make sure they  sign
+                    print("Authenticated to Game Center!")
+                  } else if let vc = gcAuthVC {
+                    self.viewController?.present(vc, animated: true)
+                //   GameCenterHelper.helper.viewController = self
+                  }
+                  else {
+                    print("Error authentication to GameCenter: " +
+                      "\(error?.localizedDescription ?? "none")")
+                  }
+                }
         // Do any additional setup after loading the view.
         self.authenticateUser()
         self.setUpCamera()

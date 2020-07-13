@@ -628,11 +628,16 @@ var power = "banana"
                 var gkLeaderboard = GKLeaderboard(players: [GKLocalPlayer.local])
                 gkLeaderboard.identifier = leaderboardID
                 gkLeaderboard.timeScope = GKLeaderboard.TimeScope.allTime
-
+                gkLeaderboard.range = NSMakeRange(1, 1)
                 // Load the scores
                 gkLeaderboard.loadScores(completionHandler: { (scores, error) -> Void in
 
                     // Get current score
+                    //added code
+                    let scoreee : GKScore = gkLeaderboard.localPlayerScore!
+
+                    let rank : NSInteger = scoreee.rank
+                    
                     var currentScore: Int64 = 0
                     if error == nil, let scores = scores {
                         if (scores.count) > 0 {
@@ -641,18 +646,20 @@ var power = "banana"
                              print("\(bestScore) besss")
                             if let currentScore = Int(self.scoreLabel.text!) {
                                         if currentScore > bestScore {
-                                          
+                                         
                                             DispatchQueue.main.async {
-                                            self.BestScore.text = "BEST: \(currentScore)"
+                                            self.BestScore.text = "BEST: \(bestScore) \n\nRANK: \(rank)"
                                             print("\(fafa) fafa test")
+                                                 print("\(rank) rank test")
                                             self.CNNN.text = "COINS: \(abs(fafa))"
                                             }
                                             UserDefaults.standard.set(currentScore, forKey: "BestScore")
                                             UserDefaults.standard.synchronize()
                                         } else {
                                             DispatchQueue.main.async {
-                                            self.BestScore.text = "BEST: \(bestScore)"
+                                            self.BestScore.text = "BEST: \(bestScore) \n\nRANK: \(rank)"
                                              self.CNNN.text = "COINS: \(abs(fafa))"
+                                                print("\(rank) rank test")
                                             }
                                         }
                                         
@@ -701,10 +708,14 @@ var power = "banana"
                             var gkLeaderboard = GKLeaderboard(players: [GKLocalPlayer.local])
                             gkLeaderboard.identifier = leaderboardID
                             gkLeaderboard.timeScope = GKLeaderboard.TimeScope.allTime
-
+                            gkLeaderboard.range = NSMakeRange(1, 1)
+                            
+                       
                             // Load the scores
                             gkLeaderboard.loadScores(completionHandler: { (scores, error) -> Void in
+                                        let scoreee : GKScore = gkLeaderboard.localPlayerScore!
 
+                                                                                 let rank : NSInteger = scoreee.rank
                                 // Get current score
                                 var currentScore: Int64 = 0
                                 if error == nil, let scores = scores {
@@ -716,7 +727,7 @@ var power = "banana"
                                                     if currentScore > bestScore {
                                                       
                                                         DispatchQueue.main.async {
-                                                        self.BestScore.text = "BEST: \(currentScore)"
+                                                        self.BestScore.text = "BEST: \(bestScore) \n\nRANK: \(rank)"
                                                         print("\(fafa) fafa test")
                                                         self.CNNN.text = "COINS: \(abs(fafa))"
                                                         }
@@ -724,7 +735,8 @@ var power = "banana"
                                                         UserDefaults.standard.synchronize()
                                                     } else {
                                                         DispatchQueue.main.async {
-                                                        self.BestScore.text = "BEST: \(bestScore)"
+                                                             self.BestScore.text = "BEST: \(bestScore) \n\nRANK: \(rank)"
+                                                      
                                                          self.CNNN.text = "COINS: \(abs(fafa))"
                                                             self.needTimeLabel.text = "not enough coins"
                                                             self.CoinBttn.setTitle("Buy", for: .normal)
