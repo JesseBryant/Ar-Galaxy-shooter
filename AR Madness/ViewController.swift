@@ -222,11 +222,12 @@ var power = "banana"
             if error != nil {
                 print("Score updating -- \(error!)")
             } else {
-                  print("Score submitted Jes")
+                print("Score  submitted")
             }
         }
 //full few glitch mmmn
     }
+     
     //MARK: - view functions
     // let audioPlayer = SCNAudioPlayer(source: audioSource)
     override func viewDidLoad() {
@@ -412,6 +413,7 @@ var power = "banana"
                            DispatchQueue.main.async {
                            self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
                            node.removeFromParentNode()
+                            
                                }
                                self.play()
                             //can refresh app AND it refresh if ad wont close
@@ -610,9 +612,13 @@ var power = "banana"
 //            resetScene()
 //        }
     }
+    //HERE Must change Buy back to 20... its only 20 by default!! look below and make
+         //sure its back 20
+    //make ships shoot blast at camera maybe
     func shouldShowBestScoreContainerView(state: Bool) {
        if SKPaymentQueue.canMakePayments() {
-        
+             //HERE Must change Buy back to 20... its only 20 by default!! look below and make
+        //sure its back 20
           if self.CoinsAva >= 20 {
         if state {
             PoP = true
@@ -652,6 +658,7 @@ var power = "banana"
                                             print("\(fafa) fafa test")
                                                  print("\(rank) rank test")
                                             self.CNNN.text = "COINS: \(abs(fafa))"
+                                                 self.CoinBttn.setTitle("20 coins", for: .normal)
                                             }
                                             UserDefaults.standard.set(currentScore, forKey: "BestScore")
                                             UserDefaults.standard.synchronize()
@@ -660,6 +667,7 @@ var power = "banana"
                                             self.BestScore.text = "BEST: \(bestScore) \n\nRANK: \(rank)"
                                              self.CNNN.text = "COINS: \(abs(fafa))"
                                                 print("\(rank) rank test")
+                                                self.CoinBttn.setTitle("20 coins", for: .normal)
                                             }
                                         }
                                         
@@ -685,7 +693,7 @@ var power = "banana"
           //  let bestScore = UserDefaults.standard.integer(forKey: "BestScore")
 //            print("\(bestScore) besss")
            // let currentScore = Int(self.scoreLabel.text!)
-        
+   
           
         self.bestScoreContainerView.isHidden = !state
         self.coinsButton.isHidden = !state
@@ -732,6 +740,7 @@ var power = "banana"
                                                         self.BestScore.text = "BEST: \(bestScore) \n\nRANK: \(rank)"
                                                         print("\(fafa) fafa test")
                                                         self.CNNN.text = "COINS: \(abs(fafa))"
+                                                             self.CoinBttn.setTitle("Buy", for: .normal)
                                                         }
                                                         UserDefaults.standard.set(currentScore, forKey: "BestScore")
                                                         UserDefaults.standard.synchronize()
@@ -1496,6 +1505,7 @@ var power = "banana"
                 levelJB.text = "level 1"
                //addTargetNodesJupitar()
                FsaddTargetNodes()
+              //  addTargetNodesNeptune()
                //  addTargetNodesFour()
          //addTargetNodesNeptune()
                 //addTargetNodesFive()
