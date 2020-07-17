@@ -622,10 +622,11 @@ var power = "banana"
           if self.CoinsAva >= 20 {
         if state {
             PoP = true
+            
             //  let fafa = Coins
         let fafa =  CoinsAva
 //            CoinsAvaa = CoinsAva
-            //besss
+            //besss b
           //have coins and correct best score
 
             if GKLocalPlayer.local.isAuthenticated {
