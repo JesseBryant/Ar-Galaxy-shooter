@@ -25,6 +25,7 @@
 		A73D42AA20B80B4200965934 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A73D42A920B80B4200965934 /* Assets.xcassets */; };
 		A73D42AD20B80B4200965934 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A73D42AB20B80B4200965934 /* LaunchScreen.storyboard */; };
 		E3107D8724CAC08C00F885C2 /* JafFire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E3107D8624CAC08B00F885C2 /* JafFire.scnp */; };
+		E3107D8924CAC1B300F885C2 /* green.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E3107D8824CAC1B300F885C2 /* green.scnp */; };
 		E313248823EBF89E009C648F /* Fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313248723EBF89E009C648F /* Fire.scnp */; };
 		E313248B23EBF906009C648F /* caffefe.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313248923EBF906009C648F /* caffefe.scnp */; };
 		E313248C23EBF906009C648F /* confetti.png in Resources */ = {isa = PBXBuildFile; fileRef = E313248A23EBF906009C648F /* confetti.png */; };
@@ -72,6 +73,7 @@
 		A73D42AE20B80B4200965934 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9947B13249DDF6A566FEB35 /* Pods-AR shooting Game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR shooting Game.debug.xcconfig"; path = "Target Support Files/Pods-AR shooting Game/Pods-AR shooting Game.debug.xcconfig"; sourceTree = "<group>"; };
 		E3107D8624CAC08B00F885C2 /* JafFire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = JafFire.scnp; sourceTree = "<group>"; };
+		E3107D8824CAC1B300F885C2 /* green.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = green.scnp; sourceTree = "<group>"; };
 		E313248723EBF89E009C648F /* Fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Fire.scnp; sourceTree = "<group>"; };
 		E313248923EBF906009C648F /* caffefe.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = caffefe.scnp; sourceTree = "<group>"; };
 		E313248A23EBF906009C648F /* confetti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confetti.png; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 		A7216AC320BE91EE009F6A51 /* Particles */ = {
 			isa = PBXGroup;
 			children = (
+				E3107D8824CAC1B300F885C2 /* green.scnp */,
 				E3107D8624CAC08B00F885C2 /* JafFire.scnp */,
 				E314896924A782610030B9D6 /* gaga.scnp */,
 				E338BE7E247BC4040000D2FC /* spark.png */,
@@ -276,6 +279,7 @@
 				E313248F23EBF94A009C648F /* Stars.scnp in Resources */,
 				E313249223EBF97A009C648F /* rain.scnp in Resources */,
 				E3F8B0A2242F398C00E986B9 /* Power.mp3 in Resources */,
+				E3107D8924CAC1B300F885C2 /* green.scnp in Resources */,
 				E314896A24A782630030B9D6 /* gaga.scnp in Resources */,
 				A7216ACE20BE9313009F6A51 /* Explode.scnp in Resources */,
 				E313249423EBF9B0009C648F /* react.scnp in Resources */,
