@@ -36,6 +36,7 @@
 		E314896A24A782630030B9D6 /* gaga.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E314896924A782610030B9D6 /* gaga.scnp */; };
 		E338BE80247BC4040000D2FC /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E338BE7E247BC4040000D2FC /* spark.png */; };
 		E36A07F323EC1A9B000561D6 /* Confetti.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E36A07F223EC1A9B000561D6 /* Confetti.scnp */; };
+		E383248D24E2F88B004F0593 /* greenFlame.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E383248C24E2F88A004F0593 /* greenFlame.scnp */; };
 		E383ABD724237730001F79BB /* Sleepy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD62423772D001F79BB /* Sleepy.mp3 */; };
 		E383ABD92423822F001F79BB /* JBsmartsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E383ABD82423822E001F79BB /* JBsmartsound.mp3 */; };
 		E3F1B56C24625C000011B881 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F1B56B24625C000011B881 /* GameKit.framework */; };
@@ -84,6 +85,7 @@
 		E314896924A782610030B9D6 /* gaga.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = gaga.scnp; sourceTree = "<group>"; };
 		E338BE7E247BC4040000D2FC /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = ../../../throw/throw/spark.png; sourceTree = "<group>"; };
 		E36A07F223EC1A9B000561D6 /* Confetti.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Confetti.scnp; sourceTree = "<group>"; };
+		E383248C24E2F88A004F0593 /* greenFlame.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = greenFlame.scnp; sourceTree = "<group>"; };
 		E383ABD62423772D001F79BB /* Sleepy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sleepy.mp3; sourceTree = "<group>"; };
 		E383ABD82423822E001F79BB /* JBsmartsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JBsmartsound.mp3; sourceTree = "<group>"; };
 		E3F1B56B24625C000011B881 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -126,6 +128,7 @@
 		A7216AC320BE91EE009F6A51 /* Particles */ = {
 			isa = PBXGroup;
 			children = (
+				E383248C24E2F88A004F0593 /* greenFlame.scnp */,
 				E3107D8824CAC1B300F885C2 /* green.scnp */,
 				E3107D8624CAC08B00F885C2 /* JafFire.scnp */,
 				E314896924A782610030B9D6 /* gaga.scnp */,
@@ -165,16 +168,16 @@
 			isa = PBXGroup;
 			children = (
 				A7216AC320BE91EE009F6A51 /* Particles */,
+				A73D42A920B80B4200965934 /* Assets.xcassets */,
 				A7216ABA20BE18C4009F6A51 /* Sounds */,
 				A73D42A020B80B4000965934 /* AppDelegate.swift */,
-				A73D42A220B80B4000965934 /* art.scnassets */,
 				A73D42A420B80B4000965934 /* ViewController.swift */,
 				E3F21A8A2499C03C002A29A4 /* Extension.swift */,
 				180C225324544DFE00CDFA75 /* VideoHelper.swift */,
 				180C225524544EAC00CDFA75 /* VideoCapture.swift */,
 				A73D42A620B80B4000965934 /* Main.storyboard */,
-				A73D42A920B80B4200965934 /* Assets.xcassets */,
 				A73D42AB20B80B4200965934 /* LaunchScreen.storyboard */,
+				A73D42A220B80B4000965934 /* art.scnassets */,
 				A73D42AE20B80B4200965934 /* Info.plist */,
 				A7216AD220BE9B72009F6A51 /* HomeViewController.swift */,
 				E3F6D5E72424D96800D19AB0 /* mViewController.swift */,
@@ -281,6 +284,7 @@
 				E3F8B0A2242F398C00E986B9 /* Power.mp3 in Resources */,
 				E3107D8924CAC1B300F885C2 /* green.scnp in Resources */,
 				E314896A24A782630030B9D6 /* gaga.scnp in Resources */,
+				E383248D24E2F88B004F0593 /* greenFlame.scnp in Resources */,
 				A7216ACE20BE9313009F6A51 /* Explode.scnp in Resources */,
 				E313249423EBF9B0009C648F /* react.scnp in Resources */,
 				A73D42A820B80B4000965934 /* Main.storyboard in Resources */,

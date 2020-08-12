@@ -133,6 +133,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var foundSurface = false
     var AdsLoaded = false
     var tracking = true
+     var timeOut = false
+    
+    var GreenBlast = false
+    
+    var SuperBlast = false
     let defaultss = UserDefaults.standard
     var arrrrr : Int = 0
     var cc = 0
@@ -153,6 +158,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         }
     
 var power = "banana"
+    var BlastColor = "orig"
     //score will be implenmented with leaderb
     var scoreL = 0
     var Coins = 0
@@ -355,9 +361,11 @@ var power = "banana"
     
     //to store how many sceonds the game is played for
     var seconds = 60
+     var secondsB = 5
     
     //timer
     var timer = Timer()
+     var rr = 5
     
     //to keep track of whether the timer is on
     var isTimerRunning = false
@@ -369,9 +377,15 @@ var power = "banana"
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
         }
     }
+    func runTimerBlassss() {
+           //fixed timer bug
+           if !timer.isValid {
+           timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimerB)), userInfo: nil, repeats: true)
+           }
+       }
     
     @objc func handleTap(sender: UITapGestureRecognizer){
-        fireMissile(type: power)
+        fireMissile(type: power, Jestype: BlastColor)
        
     }
     
@@ -475,6 +489,26 @@ var power = "banana"
         }
     }
     
+    @objc func updateTimerB() {
+          if PoP == false {
+           if secondsB == 0  {
+             BlastColor = "o"
+               timer.invalidate()
+           
+              print("still .... green  timer.invalidate()" )
+               //believe this issue because this the only place that calls  gameOver()
+             //  NeedMoreTime()
+              // gameOver()
+           }else {
+            BlastColor = "green"
+            print("still color green" )
+               seconds -= 1
+            // BlastColor = "o"
+              // timerLabel.text = "\(seconds)"
+           }
+           }
+       }
+    
     //resets the timer
     func resetTimer(time: Int){
         timer.invalidate()
@@ -527,7 +561,7 @@ var power = "banana"
         stopBackgroundMus()
         self.messageLabel.isHidden = false
         timer.invalidate()
-        
+        BlastColor = "original"
         // timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
         let currentScore = self.scoreL
        // var h = 0
@@ -907,13 +941,14 @@ var power = "banana"
                           
                              defaultss.set(arrrrr, forKey: "scoreL")
                             self.ReportScore(with: arrrrr)
-        sceneView.scene.rootNode.removeAllAudioPlayers()
+       // sceneView.scene.rootNode.removeAllAudioPlayers()
         messageLabel.isHidden = true
         levelJB.text = "level 1"
         //addTargetNodes()
+        //super blast added! crash after beat level sometime(strongly believe it crash after report score(check if succes if not still restart))! add more force too blast! and boss ship.. mars 
           self.resetButton.isHidden = false
         FsaddTargetNodes()
-        PlayInstructions()
+      //  PlayInstructions()
         //play background music
        // playBackgroundMusic()
         //  addTargetNodesJupitar()
@@ -1290,7 +1325,7 @@ var power = "banana"
     
     func play() {
         self.sceneView.isHidden = false
-                                                       SwiftSpinner.hide()
+                                                SwiftSpinner.hide()
           self.resetButton.isHidden = false
         autoreleasepool {
             
@@ -1312,7 +1347,7 @@ var power = "banana"
                 power = "banana"
                 messageLabel.isHidden = true
                 levelJB.text = "level 2"
-                
+                GreenBlast = false
                 SecaddTargetNodes()
                 //            addTargetNodesJupitar()
                 DispatchQueue.main.async { [weak self] in
@@ -1534,10 +1569,10 @@ var power = "banana"
     //creates banana or axe node and 'fires' it
     var mnode = SCNNode()
     var mnodeDirection = SCNVector3()
-    func fireMissile(type : String){
+    func fireMissile(type : String, Jestype : String){
             //create node
         //Finish last level, new music and new ships. Dope
-            mnode = createMissile(type: type)
+        mnode = createMissile(type: type, h: Jestype)
    
             let (direction, position) = self.getUserVector()
             mnode.position = position
@@ -1545,14 +1580,21 @@ var power = "banana"
             case "banana":
                 mnodeDirection  = SCNVector3(direction.x*40,direction.y*40,direction.z*40)
                 mnode.physicsBody?.applyForce(mnodeDirection, at: SCNVector3(0.1,0,0), asImpulse: true)
+                //mnode.physicsBody?.applyForce(SCNVector3(direction.x,direction.y,direction.z), at: SCNVector3(0.1,0,0), asImpulse: true)
                 playSound(sound: "JBsmartsound", format: "mp3")
                 
                 //this stronger make a lot easier this should be temporary and rewarded after a certain level
                 //or destroying enemy ship/s JBsmartsound.mp3
             case "axe":
-                mnodeDirection  = SCNVector3(direction.x*40,direction.y*40,direction.z*40)
-                mnode.physicsBody?.applyForce(SCNVector3(direction.x,direction.y,direction.z), at: SCNVector3(0,0,0.1), asImpulse: true)
-                playSound(sound: "JBsmartsound", format: "mp3")
+               mnodeDirection  = SCNVector3(direction.x*80,direction.y*80,direction.z*80)
+                      mnode.physicsBody?.applyForce(mnodeDirection, at: SCNVector3(0.1,0,0), asImpulse: true)
+                      //mnode.physicsBody?.applyForce(SCNVector3(direction.x,direction.y,direction.z), at: SCNVector3(0.1,0,0), asImpulse: true)
+                      playSound(sound: "JBsmartsound", format: "mp3")
+                case "Super":
+                            mnodeDirection  = SCNVector3(direction.x*100,direction.y*100,direction.z*100)
+                                   mnode.physicsBody?.applyForce(mnodeDirection, at: SCNVector3(0.1,0,0), asImpulse: true)
+                                   //mnode.physicsBody?.applyForce(SCNVector3(direction.x,direction.y,direction.z), at: SCNVector3(0.1,0,0), asImpulse: true)
+                                   playSound(sound: "Power", format: "mp3")
             default:
                 mnodeDirection = direction
                 mnode.physicsBody?.applyForce(mnodeDirection , asImpulse: true)
@@ -1565,13 +1607,56 @@ var power = "banana"
         
     //creates nodes
 
-    var fireBall = SCNNode(geometry: SCNSphere(radius: 0.15))
-    func createMissile(type : String)->SCNNode{
+//    var fireBall = SCNNode(geometry: SCNSphere(radius: 0.15))
+    func createMissile(type : String, h : String)->SCNNode{
+        var fireBall = SCNNode(geometry: SCNSphere(radius: 0.15))
+      
           //  fireBall.physicsBody = .dynamic()
            // fireBall.physicsBody?.mass = 0.5
             //add particles
        //   DispatchQueue.main.async {
-            self.fireBall.addParticleSystem(SCNParticleSystem(named: "Fire.scnp", inDirectory: nil)!)
+        if  timeOut {
+            if rr != 0 {
+                if h == "green" {
+                  fireBall.addParticleSystem(SCNParticleSystem(named: "green.scnp", inDirectory: nil)!)
+                    rr = rr-1
+                                   print("\(rr) r-1")
+                }
+                else if h == "SuperBlue" {
+                    fireBall.addParticleSystem(SCNParticleSystem(named: "gaga.scnp", inDirectory: nil)!)
+                            //  print
+                    rr = rr-1
+                                   print("\(rr) r-1")
+                }
+           
+            } else {
+               fireBall.addParticleSystem(SCNParticleSystem(named: "Fire.scnp", inDirectory: nil)!)
+                          print("reg blast \(BlastColor) now false also back at 5 Fire....")
+                power = "banana"
+                BlastColor = "original"
+                timeOut = false
+                
+                rr = 5
+            }
+        }
+//        if r == 0 {
+//            fireBall.addParticleSystem(SCNParticleSystem(named: "Fire.scnp", inDirectory: nil)!)
+//            print("reg blast \(BlastColor)")
+//        }
+       else if h == "green" {
+            
+           fireBall.addParticleSystem(SCNParticleSystem(named: "green.scnp", inDirectory: nil)!)
+          //  print
+          print("BlastColor = green")
+        } else if h == "SuperBlue" {
+            fireBall.addParticleSystem(SCNParticleSystem(named: "gaga.scnp", inDirectory: nil)!)
+                    //  print
+        }
+        else {
+              fireBall.addParticleSystem(SCNParticleSystem(named: "Fire.scnp", inDirectory: nil)!)
+                print("reg blast \(BlastColor)")
+        }
+          
      //   }
             //right size fireball  devarslan@icloud.com
  
@@ -1587,19 +1672,34 @@ var power = "banana"
 //                  node = (scene?.rootNode.childNode(withName: "missile", recursively: true)!)!
 //                  node.scale = SCNVector3(0.2,0.2,0.2)
               //  node .geometry?.firstMaterial?.diffuse.contents = UIColor.red
-                let disapear = SCNAction.fadeOut(duration: 0.1)
+                //CAN MAKE BLAS FADE Out HERE
+                let disapear = SCNAction.fadeOut(duration: 4)
                 fireBall.runAction(.sequence([.wait(duration: 0.5) ,disapear]))
                   fireBall.name = "bathtub"
                 //  node.name = "banana"
               case "axe":
                 
 //                  let scene = SCNScene(named: "art.scnassets/missile.dae")
-//                  node = (scene?.rootNode.childNode(withName: "missile", recursively: true)!)!
+//                  node = (scene?.rootNode.childNode(withName: "missile", recursively: true)!)! 
 //                  node.scale = SCNVector3(0.2,0.2,0.2)
               //  node .geometry?.firstMaterial?.diffuse.contents = UIColor.blue
               //    node.name = "bathtub"
            //     fireBall.addParticleSystem(SCNParticleSystem(named: "fire.scnp", inDirectory: nil)!)
-                 fireBall.name = "bathtub"
+                 let disapear = SCNAction.fadeOut(duration: 20)
+                           fireBall.runAction(.sequence([.wait(duration: 8) ,disapear]))
+                             fireBall.name = "bathtub"
+                 case "Super":
+                   //  power = "Super"
+                                
+                //                  let scene = SCNScene(named: "art.scnassets/missile.dae")
+                //                  node = (scene?.rootNode.childNode(withName: "missile", recursively: true)!)!
+                //                  node.scale = SCNVector3(0.2,0.2,0.2)
+                              //  node .geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+                              //    node.name = "bathtub"
+                           //     fireBall.addParticleSystem(SCNParticleSystem(named: "fire.scnp", inDirectory: nil)!)
+                                 let disapear = SCNAction.fadeOut(duration: 50)
+                                           fireBall.runAction(.sequence([.wait(duration: 18) ,disapear]))
+                                             fireBall.name = "bathtub"
               default:
                  // node = SCNNode()
                 
@@ -1722,7 +1822,7 @@ var power = "banana"
                    let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                                             Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                   Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                 Shoonode.name = "shark"
+                                                 Shoonode.name = "ha"
                               }else{
                    // blue
 //                                  let scene = SCNScene(named: "art.scnassets/SS1copy.scn")
@@ -1732,7 +1832,7 @@ var power = "banana"
                    let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
                                                     Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                                      Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                     Shoonode.name = "shark"
+                                                     Shoonode.name = "mo"
                               }
                     
                    
@@ -1954,7 +2054,7 @@ var power = "banana"
                    let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
                     Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                       Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                     Shoonode.name = "shark"
+                                                     Shoonode.name = "ha"
                                   }else{
                        // blue
     //                                  let scene = SCNScene(named: "art.scnassets/SS1copy.scn")
@@ -1964,7 +2064,7 @@ var power = "banana"
                        let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
                                                         Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                                          Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                         Shoonode.name = "shark"
+                                                         Shoonode.name = "mo"
                                   }
                         
                        
@@ -2191,13 +2291,13 @@ var power = "banana"
                               let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                                 ShoonodeG = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                          ShoonodeG.scale = SCNVector3(0.03,0.03,0.03)
-                                                        ShoonodeG.name = "shark"
+                                                        ShoonodeG.name = "ha"
                                      }else{
         
                           let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
                                                            Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                                             Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                            Shoonode.name = "shark"
+                                                            Shoonode.name = "mo"
                                      }
                            
                           
@@ -2484,24 +2584,24 @@ var power = "banana"
                                  let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                                                                   Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                              Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                            Shoonode.name = "shark"
+                                                            Shoonode.name = "ha"
                                 
                                 let scenee = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                                                                                                VenShoonode = (scenee?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                                                             VenShoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                                                           VenShoonode.name = "shark"
+                                                                                           VenShoonode.name = "ha"
                                 
                                          }else{
      
                               let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
                                                                Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                                                 Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                                Shoonode.name = "shark"
+                                                                Shoonode.name = "mo"
                                 
                                 let scenee = SCNScene(named: "art.scnassets/missilecopy.scn")
                                                                                              VenShoonode = (scenee?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                                                                               VenShoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                                                                              VenShoonode.name = "shark"
+                                                                                              VenShoonode.name = "mo"
                                          }
                                
                               
@@ -3897,7 +3997,7 @@ var power = "banana"
                                                   let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                           Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                       Shoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                                              Shoonode.name = "shark"
+                                                                                                              Shoonode.name = "ha"
                                                                                   //Ven
                       //                                                            let scenee = SCNScene(named: "art.scnassets/spaceARcopy.scn")
                       //                                                                                                                       VenShoonode = (scenee?.rootNode.childNode(withName: "SS1redcopy", recursively: true)!)!
@@ -3908,13 +4008,13 @@ var power = "banana"
                                   SaShoonode = (scenell?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                                                                                                                               
                                               SaShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                              SaShoonode.name = "shark"
+                                              SaShoonode.name = "ha"
                                                                                   //nep
                                               let scenenn = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                                   NepShoonode = (scenenn?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                                                                                                                                
                                                                   NepShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                                                                                                                                        NepShoonode.name = "shark"
+                                                                                                                                                                                                        NepShoonode.name = "ha"
                                                                                   
                                                                                   
 //                                                  let scenennk = SCNScene(named: "art.scnassets/spaceGreen.scn")
@@ -3930,7 +4030,7 @@ var power = "banana"
                                                   let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
                                   Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                                                           Shoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                                                  Shoonode.name = "shark"
+                                                                                                                  Shoonode.name = "mo"
                       //                                                            //ven
                       //                                                            let scenee = SCNScene(named: "art.scnassets/missilecopy.scn")
                       //                                                                                                                         VenShoonode = (scenee?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
@@ -3940,12 +4040,12 @@ var power = "banana"
                                                       let sceneb = SCNScene(named: "art.scnassets/missilecopy.scn")
                                           SaShoonode = (sceneb?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                           SaShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                  SaShoonode.name = "shark"
+                                                  SaShoonode.name = "mo"
                                                           //nep
                                               let scenebn = SCNScene(named: "art.scnassets/missilecopy.scn")
                                   NepShoonode = (scenebn?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                   NepShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                              NepShoonode.name = "shark"
+                                              NepShoonode.name = "mo"
                                                                                   
                                                                                   
                                                                                   
@@ -4560,7 +4660,7 @@ var power = "banana"
                             let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
                     Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                 Shoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                        Shoonode.name = "shark"
+                                                                                        Shoonode.name = "ha"
                                                             //Ven
 //                                                            let scenee = SCNScene(named: "art.scnassets/spaceARcopy.scn")
 //                                                                                                                       VenShoonode = (scenee?.rootNode.childNode(withName: "SS1redcopy", recursively: true)!)!
@@ -4577,14 +4677,14 @@ var power = "banana"
                             NepShoonode = (scenenn?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                                                                                                          
                                             NepShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                                                                                                                  NepShoonode.name = "shark"
+                                                                                                                                                                                  NepShoonode.name = "ha"
                                                             
                                                             
                             let scenennk = SCNScene(named: "art.scnassets/spaceGreen.scn")
                 JupShoonode = (scenennk?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                                                                                                                        
                         JupShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                                                                                                                                                                             JupShoonode.name = "shark"
+                                                                                                                                                                                                                                             JupShoonode.name = "ha"
                                                             
                                                                                                     
                                                             
@@ -4593,7 +4693,7 @@ var power = "banana"
                             let scene = SCNScene(named: "art.scnassets/missilecopy.scn")
             Shoonode = (scene?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                                                     Shoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                            Shoonode.name = "shark"
+                                                                                            Shoonode.name = "mo"
 //                                                            //ven
 //                                                            let scenee = SCNScene(named: "art.scnassets/missilecopy.scn")
 //                                                                                                                         VenShoonode = (scenee?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
@@ -4603,12 +4703,12 @@ var power = "banana"
                                 let sceneb = SCNScene(named: "art.scnassets/missilecopy.scn")
                     SaShoonode = (sceneb?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
                     SaShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                            SaShoonode.name = "shark"
+                            SaShoonode.name = "mo"
                                     //nep
                         let scenebn = SCNScene(named: "art.scnassets/missilecopy.scn")
             NepShoonode = (scenebn?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
             NepShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                        NepShoonode.name = "shark"
+                        NepShoonode.name = "mo"
                                                             
                                                             
                                                             
@@ -4616,7 +4716,7 @@ var power = "banana"
         let scenebe = SCNScene(named: "art.scnassets/missilecopy.scn")
         JupShoonode = (scenebe?.rootNode.childNode(withName: "SS1Bcopy", recursively: true)!)!
         JupShoonode.scale = SCNVector3(0.02,0.02,0.02)
-                                                                                                                                                                                             JupShoonode.name = "shark"
+                                                                                                                                                                                             JupShoonode.name = "mo"
                                                                      }
                                                            
                                                           
@@ -5657,7 +5757,7 @@ SaturnParent.addChildNode(SassThShoonode)
                                          let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                         Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                       Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                     Shoonode.name = "shark"
+                                     Shoonode.name = "ha"
                                   }else{
                        // blue
                                       let scene = SCNScene(named: "art.scnassets/SS1copy.scn")
@@ -5851,6 +5951,16 @@ SaturnParent.addChildNode(SassThShoonode)
              //  let frame = self.sceneView.session.currentFrame
              //  let frame = self.sceneView.
                // let mat = SCNMatrix4(frame.camera.transform)
+        
+        //**********define boss ship here*********
+        var BossShoonode = SCNNode()
+        let SpaceShscene = SCNScene(named: "art.scnassets/spaceARnn.scn")
+                                  BossShoonode = (SpaceShscene?.rootNode.childNode(withName: "Jes", recursively: true)!)!
+                                  BossShoonode.scale = SCNVector3(0.08,0.08,0.08)
+        //  ssShoonode.
+          BossShoonode.name = "shark"
+        
+        
                        for index in 0...2 {
                   
                         autoreleasepool {
@@ -5901,11 +6011,17 @@ SaturnParent.addChildNode(SassThShoonode)
                             
                         
                           // red
+                                 //  fireBall.addParticleSystem(SCNParticleSystem(named: "green.scnp", inDirectory: nil)!
                                          let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
                                         Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
                                          Shoonode.scale = SCNVector3(0.03,0.03,0.03)
-                                        Shoonode.name = "shark"
-                            f = f+1
+                            
+                                        Shoonode.name = "ha"
+                            
+                           // Shoonode.addParticleSystem(SCNParticleSystem(named: "green.scnp", inDirectory: nil)!
+                             Shoonode.addParticleSystem(SCNParticleSystem(named: "greenFlame.scnp", inDirectory: nil)!)
+                                
+                                f = f+1
                                      }else{
                           // blue
                                          let scene = SCNScene(named: "art.scnassets/SS1copy.scn")
@@ -5926,6 +6042,11 @@ SaturnParent.addChildNode(SassThShoonode)
                                                                 ssShoonode.physicsBody?.isAffectedByGravity = false
                            FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                                                   FourthShoonode.physicsBody?.isAffectedByGravity = false
+                            
+                            BossShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                                           BossShoonode.physicsBody?.isAffectedByGravity = false
+                            
+                        
 
                       //    venusParent.addChildNode(Shoonode)
                            earth.addChildNode(Shoonode)
@@ -5946,6 +6067,8 @@ SaturnParent.addChildNode(SassThShoonode)
                          AllnodeArray.append(FourthShoonode)
                         AllnodeArray.append(ssShoonode)
                           AllnodeArray.append(ssThShoonode)
+                              AllnodeArray.append(BossShoonode)
+                            
                                          
                                                                                                        
                                                                                                        //changed this one!!!
@@ -5959,14 +6082,19 @@ SaturnParent.addChildNode(SassThShoonode)
                                                                                                                      
                                                                                   ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
                                                                                       FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
+                            
+                            BossShoonode.position = SCNVector3(randomFloat(min: 0.6, max: 0.7),randomFloat(min: 0.6, max: 0.7), randomFloat(min: 0.6, max: 0.9))
                                           
                         
-                        
+                      //  BossShoonode
                         
                                   moonParent.position = SCNVector3(0 ,0 , -1)
                           
                            Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                  Shoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                           BossShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                            BossShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                            //BossShoonode
                            //ShoonodeSec.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                   //ShoonodeSec.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                            //ssShoonode
@@ -5985,6 +6113,8 @@ SaturnParent.addChildNode(SassThShoonode)
                         //com.whatever.AR-JesBrA.Coins
                         //Jesse_CoinsSellas
                         self.sceneView.scene.rootNode.addChildNode(Shoonode)
+                             self.sceneView.scene.rootNode.addChildNode(BossShoonode)
+                           
                            //self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
                            self.sceneView.scene.rootNode.addChildNode(ssShoonode)
                              self.sceneView.scene.rootNode.addChildNode(ssThShoonode)
@@ -6004,6 +6134,8 @@ SaturnParent.addChildNode(SassThShoonode)
                            // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                              //  make big ships spin as it Rotate
                             Shoonode.runAction(GreenSecRo)
+                            BossShoonode.runAction(GreenSecRo)
+                           //  BossShoonode
                                          //  ShoonodeG.runAction(GreenSecRo)
                                              //                  //  ShoonodeSec.runAction(SecRotation)
                                                                 ssShoonode.runAction(GreenSecRo)
@@ -6026,10 +6158,13 @@ SaturnParent.addChildNode(SassThShoonode)
                                   earth.runAction(sunAction)
                           // earthParent.addChildNode(venusParent)
                            venusParent.addChildNode(Shoonode)
+                             venusParent.addChildNode(BossShoonode)
+                             
                         earthParent.addChildNode(venusParent)
                            
                            ////****** and ven name*/
                                   earth.addChildNode(Shoonode)
+                            earth.addChildNode(BossShoonode)
                           // earthParent.addChildNode(ShoonodeSec)
                            earthParent.addChildNode(ssShoonode)
                          //  ssThShoonode.addChildNode(ssShoonode)
@@ -6080,11 +6215,32 @@ SaturnParent.addChildNode(SassThShoonode)
             
             
             if (contact.nodeA.name! == "ha" || contact.nodeB.name! == "ha") {
+               
                 //                if let Jes = self.sceneView.scene.rootNode.childNode(withName: "ha", recursively: true)
                 //decided not add because this a bonus
                 //  power = "axe"
              //   Coins+=4
-                scoreL+=8
+              //  GreenBlast = true
+//                DispatchQueue.main.async { [weak self] in
+//                            //  isPlanetHitORneedTime = t
+//                       DispatchQueue.main.async { [weak self] in
+//                                       guard let self = self else {return}
+//                                   //  self.sceneView.scene.rootNode.removeAllAudioPlayers()
+//                                // }
+//
+//                    print("\( self.BlastColor) updated")
+//                          }
+                 //self.BlastColor = "green"
+               // runTimerBlassss()
+                 power = "axe"
+                   BlastColor = "green"
+                   timeOut = true
+                  print("\( self.BlastColor) updated")
+                // var SuperBlast
+               self.CoinsAva+=2
+                                           self.scoreL+=2
+                                           self.defaultss.set(self.Coins, forKey: "Coins")
+                                                                          self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
                 //                 if !self.AllnodeArray.isEmpty{
                 //level 9
                 //
@@ -6118,7 +6274,33 @@ SaturnParent.addChildNode(SassThShoonode)
                 
                 
                 
-            } else if (contact.nodeA.name! == "moonnn" || contact.nodeB.name! == "moonnn"){
+            }
+            
+            //added code
+            else if (contact.nodeA.name! == "mo" || contact.nodeB.name! == "mo"){
+                          DispatchQueue.main.async { [weak self] in
+                                       //  isPlanetHitORneedTime = t
+                                //  DispatchQueue.main.async { [weak self] in
+                                                  guard let self = self else {return}
+                                              //  self.sceneView.scene.rootNode.removeAllAudioPlayers()
+                                           // }
+                            self.power = "Super"
+                            self.timeOut = true
+                               self.BlastColor = "SuperBlue"
+                               print("\( self.BlastColor) updated SuperBlue")
+                                     }
+                           
+                           // var SuperBlast
+                          self.CoinsAva+=2
+                                                      self.scoreL+=2
+                                                      self.defaultss.set(self.Coins, forKey: "Coins")
+                                                                                     self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
+                      }
+            
+            
+            
+            
+            else if (contact.nodeA.name! == "moonnn" || contact.nodeB.name! == "moonnn"){
 //
 //                DispatchQueue.main.async {
 //
@@ -6150,11 +6332,28 @@ SaturnParent.addChildNode(SassThShoonode)
                 // contact.ear
                 //LETS GOOOOOOOOOOOOOOOOOO This it ******************
                 //               self.scoreLabel.text = String(self.scoreL)
-                if (contact.nodeA.name! == "mo" || contact.nodeB.name! == "mo"){
-                    
+                if (contact.nodeA.name! == "moh" || contact.nodeB.name! == "moh"){
+//                    DispatchQueue.main.async { [weak self] in
+//                                               //  isPlanetHitORneedTime = t
+//                                        //  DispatchQueue.main.async { [weak self] in
+//                                                          guard let self = self else {return}
+//                                                      //  self.sceneView.scene.rootNode.removeAllAudioPlayers()
+//                                                   // }
+//                                       self.BlastColor = "SuperBlue"
+//                                       print("\( self.BlastColor) updated SuperBlue")
+//                                             }
+//
+//                                   // var SuperBlast
+//                                  self.CoinsAva+=2
+//                                                              self.scoreL+=2
+//                                                              self.defaultss.set(self.Coins, forKey: "Coins")
+//                                                                                             self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
               
                     
                 }
+                    //added
+              
+                   // old code below
                     
                 else if (contact.nodeA.name! == "shark" || contact.nodeB.name! == "shark"){
                     // var r = 0
@@ -6208,6 +6407,10 @@ SaturnParent.addChildNode(SassThShoonode)
 //                            self.resetTimer(time: 60)
 //                            self.ReportScore(with: self.scoreL)
                             self.scoreL+=0
+                           
+                                             self.BlastColor = "original"
+                                             print("\( self.BlastColor) updated to original")
+                                                   
                             self.BeatLevel()
                             }
                             
@@ -6235,7 +6438,7 @@ SaturnParent.addChildNode(SassThShoonode)
                 self.scoreLabel.text = String(self.scoreL)
                 //added dope fireball
             }
-            let  explosion = SCNParticleSystem(named: "gaga", inDirectory: nil)
+            let  explosion = SCNParticleSystem(named: "Fire", inDirectory: nil)
             
             explosion?.particleLifeSpan = 4
             explosion?.emitterShape = contact.nodeB.geometry
