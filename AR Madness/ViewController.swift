@@ -366,9 +366,11 @@ var power = "banana"
     //timer
     var timer = Timer()
      var rr = 5
+     var rrEx = 10
     
     //to keep track of whether the timer is on
     var isTimerRunning = false
+    var ReadyToExplode = false
     
     //to run the timer
     func runTimer() {
@@ -945,7 +947,7 @@ var power = "banana"
         messageLabel.isHidden = true
         levelJB.text = "level 1"
         //addTargetNodes()
-        //super blast added! crash after beat level sometime(strongly believe it crash after report score(check if succes if not still restart))! add more force too blast! and boss ship.. mars 
+        //super blast added! crash after beat level sometime(strongly believe it crash after report score(check if succes if not still restart))! add more force too blast! and boss ship.. mars
           self.resetButton.isHidden = false
         FsaddTargetNodes()
       //  PlayInstructions()
@@ -1615,18 +1617,57 @@ var power = "banana"
            // fireBall.physicsBody?.mass = 0.5
             //add particles
        //   DispatchQueue.main.async {
+        
+//        if ReadyToExplode {
+//             if rrEx != 0 {
+//                rrEx = rrEx-1
+//                   print("\(rrEx) rxxxxxx-1")
+//             } else {
+//                ReadyToExplode = false
+//                  rrEx = 10
+//                 print("ReadyToExplode = false")
+//            }
+//
+//        }
+        
+        
         if  timeOut {
             if rr != 0 {
                 if h == "green" {
                   fireBall.addParticleSystem(SCNParticleSystem(named: "green.scnp", inDirectory: nil)!)
                     rr = rr-1
                                    print("\(rr) r-1")
+                     power = "banana"
+                    if ReadyToExplode {
+                         if rrEx != 0 {
+                            rrEx = rrEx-1
+                               print("\(rrEx) rxxxxxx-1")
+                         } else {
+                            ReadyToExplode = false
+                              rrEx = 10
+                             print("ReadyToExplode = false")
+                        }
+                        
+                    }
+                    //axe
                 }
                 else if h == "SuperBlue" {
                     fireBall.addParticleSystem(SCNParticleSystem(named: "gaga.scnp", inDirectory: nil)!)
                             //  print
                     rr = rr-1
                                    print("\(rr) r-1")
+                     power = "banana"
+                    if ReadyToExplode {
+                         if rrEx != 0 {
+                            rrEx = rrEx-1
+                               print("\(rrEx) rxxxxxx-1")
+                         } else {
+                            ReadyToExplode = false
+                              rrEx = 10
+                             print("ReadyToExplode = false")
+                        }
+                        
+                    }
                 }
            
             } else {
@@ -1637,6 +1678,17 @@ var power = "banana"
                 timeOut = false
                 
                 rr = 5
+                if ReadyToExplode {
+                     if rrEx != 0 {
+                        rrEx = rrEx-1
+                           print("\(rrEx) rxxxxxx-1")
+                     } else {
+                        ReadyToExplode = false
+                          rrEx = 10
+                         print("ReadyToExplode = false")
+                    }
+                    
+                }
             }
         }
 //        if r == 0 {
@@ -1655,6 +1707,17 @@ var power = "banana"
         else {
               fireBall.addParticleSystem(SCNParticleSystem(named: "Fire.scnp", inDirectory: nil)!)
                 print("reg blast \(BlastColor)")
+            if ReadyToExplode {
+                 if rrEx != 0 {
+                    rrEx = rrEx-1
+                       print("\(rrEx) rxxxxxx-1")
+                 } else {
+                    ReadyToExplode = false
+                      rrEx = 10
+                     print("ReadyToExplode = false")
+                }
+                
+            }
         }
           
      //   }
@@ -5958,7 +6021,7 @@ SaturnParent.addChildNode(SassThShoonode)
                                   BossShoonode = (SpaceShscene?.rootNode.childNode(withName: "Jes", recursively: true)!)!
                                   BossShoonode.scale = SCNVector3(0.08,0.08,0.08)
         //  ssShoonode.
-          BossShoonode.name = "shark"
+          BossShoonode.name = "mo"
         
         
                        for index in 0...2 {
@@ -6201,11 +6264,16 @@ SaturnParent.addChildNode(SassThShoonode)
         //                   let score = gameScore as! Int
         let nodeA = contact.nodeA
         let nodeB = contact.nodeB
-        if nodeA.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue {
+         
+        if nodeA.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue  {
+            
             self.target = nodeA
+           // }
         } else
-            if nodeB.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue {
+            if nodeB.physicsBody?.categoryBitMask == CollisionCategory.targetCategory.rawValue && ReadyToExplode == false {
+//                if !(nodeA.name == "mo" && ReadyToExplode == true){
                 self.target = nodeB
+             //   }
         }
         //can reduce by size to
         print("** Collision!! " + contact.nodeA.name! + " hit " + contact.nodeB.name!)
@@ -6286,6 +6354,7 @@ SaturnParent.addChildNode(SassThShoonode)
                                            // }
                             self.power = "Super"
                             self.timeOut = true
+                            self.ReadyToExplode = true
                                self.BlastColor = "SuperBlue"
                                print("\( self.BlastColor) updated SuperBlue")
                                      }
@@ -6320,15 +6389,28 @@ SaturnParent.addChildNode(SassThShoonode)
                                
                 
             }
-            
+//            if !(nodeA.name == "mo" && ReadyToExplode == true){
+//
+//                print("(nodeA.name == mo && ReadyToExplode == true)")
             
             DispatchQueue.main.async { [weak self] in
                        //  isPlanetHitORneedTime = t
                 //  DispatchQueue.main.async { [weak self] in
                                   guard let self = self else {return}
+               // ReadyToExplode
+               // if
+//                if (contact.nodeA.name! == "mo" || contact.nodeB.name! == "mo") && self.ReadyToExplode == true {
+//
+//                }
+                //else {
+                if !(nodeA.name == "mo" && self.rrEx != 0) || (nodeB.name == "mo" && self.rrEx != 0){
+                       //boss ship working(maybe not optimized) some actual pressure applied to blast. - need to debug report crash... optimize levels for more fun based on winning apps - mars -----fb sdk, push notica, in app, and review,test thoroughly for bugs
+                        print("(nodeA.name == mo && ReadyToExplode and BB == true)")
                 contact.nodeA.removeFromParentNode()
-                // contact.nodeA.removeFromParentNode()
+               
                 contact.nodeB.removeFromParentNode()
+                }
+                
                 // contact.ear
                 //LETS GOOOOOOOOOOOOOOOOOO This it ******************
                 //               self.scoreLabel.text = String(self.scoreL)
@@ -6437,7 +6519,8 @@ SaturnParent.addChildNode(SassThShoonode)
                 
                 self.scoreLabel.text = String(self.scoreL)
                 //added dope fireball
-            }
+           // }
+        }
             let  explosion = SCNParticleSystem(named: "Fire", inDirectory: nil)
             
             explosion?.particleLifeSpan = 4
