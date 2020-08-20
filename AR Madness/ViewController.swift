@@ -1588,12 +1588,12 @@ var power = "banana"
                 //this stronger make a lot easier this should be temporary and rewarded after a certain level
                 //or destroying enemy ship/s JBsmartsound.mp3
             case "axe":
-               mnodeDirection  = SCNVector3(direction.x*80,direction.y*80,direction.z*80)
+               mnodeDirection  = SCNVector3(direction.x*20,direction.y*20,direction.z*20)
                       mnode.physicsBody?.applyForce(mnodeDirection, at: SCNVector3(0.1,0,0), asImpulse: true)
                       //mnode.physicsBody?.applyForce(SCNVector3(direction.x,direction.y,direction.z), at: SCNVector3(0.1,0,0), asImpulse: true)
                       playSound(sound: "JBsmartsound", format: "mp3")
                 case "Super":
-                            mnodeDirection  = SCNVector3(direction.x*100,direction.y*100,direction.z*100)
+                            mnodeDirection  = SCNVector3(direction.x*10,direction.y*10,direction.z*10)
                                    mnode.physicsBody?.applyForce(mnodeDirection, at: SCNVector3(0.1,0,0), asImpulse: true)
                                    //mnode.physicsBody?.applyForce(SCNVector3(direction.x,direction.y,direction.z), at: SCNVector3(0.1,0,0), asImpulse: true)
                                    playSound(sound: "Power", format: "mp3")
