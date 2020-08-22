@@ -48,6 +48,10 @@
 		E3F4A1602438999A00C36E91 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F4A15F2438999A00C36E91 /* StoreKit.framework */; };
 		E3F6D5E82424D96800D19AB0 /* mViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F6D5E72424D96800D19AB0 /* mViewController.swift */; };
 		E3F8B0A2242F398C00E986B9 /* Power.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3F8B0A1242F398600E986B9 /* Power.mp3 */; };
+		E3FC9D2B24F0551F001073B7 /* BossShipExplox.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3FC9D2A24F05516001073B7 /* BossShipExplox.mp3 */; };
+		E3FC9D2D24F06B5E001073B7 /* BS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3FC9D2C24F06B5E001073B7 /* BS.mp3 */; };
+		E3FC9D2F24F06E2B001073B7 /* BSS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3FC9D2E24F06E2B001073B7 /* BSS.mp3 */; };
+		E3FC9D3124F0C4CA001073B7 /* BJes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3FC9D3024F0C4C9001073B7 /* BJes.mp3 */; };
 		FBE15BCC45154E7C82CED360 /* libPods-AR shooting Game.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B72751EF882E60CB7D024C8 /* libPods-AR shooting Game.a */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +104,10 @@
 		E3F4A15F2438999A00C36E91 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		E3F6D5E72424D96800D19AB0 /* mViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mViewController.swift; sourceTree = "<group>"; };
 		E3F8B0A1242F398600E986B9 /* Power.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Power.mp3; sourceTree = "<group>"; };
+		E3FC9D2A24F05516001073B7 /* BossShipExplox.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BossShipExplox.mp3; sourceTree = "<group>"; };
+		E3FC9D2C24F06B5E001073B7 /* BS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BS.mp3; sourceTree = "<group>"; };
+		E3FC9D2E24F06E2B001073B7 /* BSS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BSS.mp3; sourceTree = "<group>"; };
+		E3FC9D3024F0C4C9001073B7 /* BJes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BJes.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +127,10 @@
 		A7216ABA20BE18C4009F6A51 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				E3FC9D3024F0C4C9001073B7 /* BJes.mp3 */,
+				E3FC9D2E24F06E2B001073B7 /* BSS.mp3 */,
+				E3FC9D2C24F06B5E001073B7 /* BS.mp3 */,
+				E3FC9D2A24F05516001073B7 /* BossShipExplox.mp3 */,
 				E32BDFF024EF11FF0062BF6E /* FrsChange.mp3 */,
 				E32BDFEE24EF11D90062BF6E /* ChangeHa.mp3 */,
 				E32BDFEC24EF11AC0062BF6E /* changeJes.mp3 */,
@@ -282,6 +294,7 @@
 				E313248C23EBF906009C648F /* confetti.png in Resources */,
 				E313248823EBF89E009C648F /* Fire.scnp in Resources */,
 				A7216ABC20BE1930009F6A51 /* explosion.wav in Resources */,
+				E3FC9D2F24F06E2B001073B7 /* BSS.mp3 in Resources */,
 				A73D42A320B80B4000965934 /* art.scnassets in Resources */,
 				E313249023EBF94A009C648F /* star.png in Resources */,
 				E32BDFEF24EF11DA0062BF6E /* ChangeHa.mp3 in Resources */,
@@ -289,6 +302,7 @@
 				A73D42AD20B80B4200965934 /* LaunchScreen.storyboard in Resources */,
 				A7216ABE20BE1940009F6A51 /* monkey.mp3 in Resources */,
 				E3107D8724CAC08C00F885C2 /* JafFire.scnp in Resources */,
+				E3FC9D3124F0C4CA001073B7 /* BJes.mp3 in Resources */,
 				A73D42AA20B80B4200965934 /* Assets.xcassets in Resources */,
 				E32BDFF124EF12000062BF6E /* FrsChange.mp3 in Resources */,
 				E313248F23EBF94A009C648F /* Stars.scnp in Resources */,
@@ -303,6 +317,8 @@
 				E383ABD92423822F001F79BB /* JBsmartsound.mp3 in Resources */,
 				E313248B23EBF906009C648F /* caffefe.scnp in Resources */,
 				A7216AC020BE1957009F6A51 /* watersplash.wav in Resources */,
+				E3FC9D2B24F0551F001073B7 /* BossShipExplox.mp3 in Resources */,
+				E3FC9D2D24F06B5E001073B7 /* BS.mp3 in Resources */,
 				E338BE80247BC4040000D2FC /* spark.png in Resources */,
 				188ACF9F245F0856001993EC /* GoogleService-Info.plist in Resources */,
 				A7216AC220BE1967009F6A51 /* rooster.mp3 in Resources */,

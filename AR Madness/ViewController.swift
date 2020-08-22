@@ -134,7 +134,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var AdsLoaded = false
      var BShpAlive = false
     var tracking = true
-    
+    var ExpSnd = false
      var timeOut = false
     
     var GreenBlast = false
@@ -221,20 +221,32 @@ var power = "banana"
     func ReportScore(with value: Int) {
        
         // take score
-         
+         let gkScore = GKScore(leaderboardIdentifier: "Jescom.whatever.ARJesBrA.Scores")
+         gkScore.value = Int64(value)
+             GKScore.report([gkScore]) { (error) in
+                // check for errors
+                if error != nil {
+                    print("Score updating -- \(error!)")
+                   // return nil
+                    self.play()
+                } else {
+                    print("Score  submitted")
+                }
+            }
      
         // set value for score
         score.value = Int64(value)
         // push score to Game Center
-        GKScore.report([score]) { (error) in
-            // check for errors
-            if error != nil {
-                print("Score updating -- \(error!)")
-               // return nil
-            } else {
-                print("Score  submitted")
-            }
-        }
+//       GKScore.report([score]) { (error) in
+//            // check for errors
+//            if error != nil {
+//                print("Score updating -- \(error!)")
+//               // return nil
+//                self.play()
+//            } else {
+//                print("Score  submitted")
+//            }
+//        }
 //full few glitch mmmn
     }
      
@@ -290,7 +302,7 @@ var power = "banana"
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
                self.sceneView.addGestureRecognizer(gestureRecognizer)
 
-             if let gameScore = self.defaultss.value(forKey: "Coins"){
+             if let gameScore = self.defaultss.value(forKey: "Coinss"){
                         self.Coins = gameScore as! Int
                         print("\(self.Coins) Jesse KKKK")
                             
@@ -375,7 +387,7 @@ var power = "banana"
     //to keep track of whether the timer is on
     var isTimerRunning = false
     var ReadyToExplode = false
-    
+      var BlasSnd = false
     //to run the timer
     func runTimer() {
         //fixed timer bug
@@ -620,9 +632,20 @@ var power = "banana"
             //   scoreL += score
           //  let fscre = self.scoreL
             //store the score in UserDefaults
-            self.defaultss.set(self.Coins, forKey: "Coins")
+           // self.defaultss.set(self.Coins, forKey: "Coins")
+            if self.Coins < 10 {
+               self.Coins = self.Coins + 20
+            }
+            else {
+            self.Coins = self.Coins + 10
+            }
             self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
-            
+//            if self.Coins < 10 {
+//                Coins = Coins +10
+//            }
+           // self.Coins+=1
+                                   self.defaultss.set(self.Coins, forKey: "Coinss")
+            print("Coins \(self.Coins) level")
             //        scoreL += score
             //  defaults.set(scoreL, forKey: "scoreL")CoinsAva
             
@@ -633,6 +656,7 @@ var power = "banana"
             self.arrrrr = currentScore
            
             self.defaultss.set(self.arrrrr, forKey: "scoreL")
+            
             self.ReportScore(with: self.arrrrr)
             //go back to the Home View Controller
             // removeAud
@@ -644,7 +668,7 @@ var power = "banana"
 //            self.BestScore.isHidden = true
             self.BesLabel.isHidden = true
             self.resetTimer(time: 60)
-                                    self.ReportScore(with: self.scoreL)
+                                   // self.ReportScore(with: self.scoreL)
             
             self.play()
         })
@@ -939,7 +963,8 @@ var power = "banana"
      self.Coins = 0
                              print("\(self.Coins) Coins after")
                             // if let gameScore = self.defaultss.value(forKey: "Coins")
-                             defaultss.set(self.Coins, forKey: "Coins")
+          self.defaultss.set(self.Coins, forKey: "Coinss")
+                             //defaultss.set(self.Coins, forKey: "Coins")
            defaultss.set(self.CoinsAva, forKey: "CoinsAva")
                              //        scoreL += score
                              //  defaults.set(scoreL, forKey: "scoreL")
@@ -1348,8 +1373,8 @@ var power = "banana"
             // self.scoreLabel = self.scoreL
             //print("\(self.Coins) Coins after")
             //  let defaults = UserDefaults.standard
-            
-            if 11...25 ~= Coins {
+            //check current level and if it was 10 (= level one), it can only ^ 10 when beat level when hit X saved as level 1 again..
+            if 20 ~= Coins {
                 power = "banana"
                 messageLabel.isHidden = true
                 levelJB.text = "level 2"
@@ -1382,7 +1407,7 @@ var power = "banana"
                 runTimer()
                 print("\(Coinse): welcome to level Coinse 2")
                 print("\(Coins): welcome to level 2")
-            } else if 26...36 ~= Coins{
+            } else if 30 ~= Coins{
                 //power = "banana"
                 //  sceneView.backgroundColor = UIColor.red
                 messageLabel.isHidden = true
@@ -1413,7 +1438,7 @@ var power = "banana"
                 
             }
                 //score update properly, coin almost done
-            else if 37...47 ~= Coins{
+            else if 40 ~= Coins{
               //  power = "banana"
                 GreenBlast = false
                               power = "banana"
@@ -1443,7 +1468,7 @@ var power = "banana"
                 
             }
             //nexxxxx
-            else if 48...55 ~= Coins{
+            else if 50 ~= Coins{
                // power = "banana"
                 GreenBlast = false
                               power = "banana"
@@ -1477,7 +1502,7 @@ var power = "banana"
                 print("\(Coins): welcome to level 5 jess")
                 print("\(Coinse): welcome to level 5 Coinse jess")
                 //
-            } else if 55...78 ~= Coins{
+            } else if 60 ~= Coins{
                // power = "banana"
                 GreenBlast = false
                               power = "banana"
@@ -1516,7 +1541,7 @@ var power = "banana"
             }
                 
                 //addTargetNodesSaturn()
-            else if 79...93 ~= Coins{
+            else if 70 ~= Coins{
                 //power = "banana"
                 GreenBlast = false
                               power = "banana"
@@ -1555,7 +1580,7 @@ var power = "banana"
                 print("\(Coins): welcome to level 7 jess")
                 print("\(Coinse): welcome to level 7 jess Coinse")
                 
-            } else if 94...50000 ~= Coins{
+            } else if 80...50000000 ~= Coins{
                 
                // power = "banana"
                 GreenBlast = false
@@ -1711,10 +1736,12 @@ var power = "banana"
                     if ReadyToExplode {
                          if rrEx != 0 {
                             rrEx = rrEx-1
+                            
                                print("\(rrEx) rxxxxxx-1")
                          } else {
                             ReadyToExplode = false
                               rrEx = 10
+                            BlasSnd = true
                              print("ReadyToExplode = false")
                         }
                         
@@ -1735,6 +1762,7 @@ var power = "banana"
                          } else {
                             ReadyToExplode = false
                               rrEx = 10
+                             BlasSnd = true
                              print("ReadyToExplode = false")
                         }
                         
@@ -1756,6 +1784,7 @@ var power = "banana"
                      } else {
                         ReadyToExplode = false
                           rrEx = 10
+                         BlasSnd = true
                          print("ReadyToExplode = false")
                     }
                     
@@ -1785,6 +1814,7 @@ var power = "banana"
                  } else {
                     ReadyToExplode = false
                       rrEx = 10
+                     BlasSnd = true
                      print("ReadyToExplode = false")
                 }
                 
@@ -6404,36 +6434,24 @@ SaturnParent.addChildNode(SassThShoonode)
             
             
             if (contact.nodeA.name! == "ha" || contact.nodeB.name! == "ha") {
-               
-                //                if let Jes = self.sceneView.scene.rootNode.childNode(withName: "ha", recursively: true)
-                //decided not add because this a bonus
-                //  power = "axe"
-             //   Coins+=4
-              //  GreenBlast = true
-//                DispatchQueue.main.async { [weak self] in
-//                            //  isPlanetHitORneedTime = t
-//                       DispatchQueue.main.async { [weak self] in
-//                                       guard let self = self else {return}
-//                                   //  self.sceneView.scene.rootNode.removeAllAudioPlayers()
-//                                // }
-//
-//                    print("\( self.BlastColor) updated")
-//                          }
-                 //self.BlastColor = "green"
-               // runTimerBlassss()
-                //FrsChange ChangeHa
-                                                   playSound(sound: "ChangeHa", format: "mp3")
+   DispatchQueue.main.async { [weak self] in
+    //BossShipExplox
+                                         //  isPlanetHitORneedTime = t
+                                  //  DispatchQueue.main.async { [weak self] in
+                                                    guard let self = self else {return}
+//    self.playSound(sound: "changeJes", format: "mp3")
                 
                
-                 power = "axe"
-                   BlastColor = "green"
-                   timeOut = true
+    self.power = "axe"
+    self.BlastColor = "green"
+    self.timeOut = true
                   print("\( self.BlastColor) updated")
+                }
                 // var SuperBlast
-               self.CoinsAva+=2
+             //  self.CoinsAva+=2
                                            self.scoreL+=2
-                                           self.defaultss.set(self.Coins, forKey: "Coins")
-                                                                          self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
+                                          // self.defaultss.set(self.Coins, forKey: "Coins")
+                                                                          //self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
                 //                 if !self.AllnodeArray.isEmpty{
                 //level 9
                 //
@@ -6477,7 +6495,7 @@ SaturnParent.addChildNode(SassThShoonode)
                                                   guard let self = self else {return}
                                               //  self.sceneView.scene.rootNode.removeAllAudioPlayers()
                                            // }
-                            self.playSound(sound: "FrsChange", format: "mp3")
+                        //    self.playSound(sound: "FrsChange", format: "mp3")
                             self.power = "Super"
                             self.timeOut = true
                             self.ReadyToExplode = true
@@ -6486,10 +6504,10 @@ SaturnParent.addChildNode(SassThShoonode)
                                      }
                            
                            // var SuperBlast
-                          self.CoinsAva+=2
+                        //  self.CoinsAva+=2
                                                       self.scoreL+=2
-                                                      self.defaultss.set(self.Coins, forKey: "Coins")
-                                                                                     self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
+                                                      //self.defaultss.set(self.Coins, forKey: "Coins")
+                                                                                     //self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
                       }
             
             else if (contact.nodeA.name! == "mor" || contact.nodeB.name! == "mor"){
@@ -6508,10 +6526,10 @@ SaturnParent.addChildNode(SassThShoonode)
                                                 }
                                       
                                       // var SuperBlast
-                                     self.CoinsAva+=2
+                                   //  self.CoinsAva+=2
                                                                  self.scoreL+=2
-                                                                 self.defaultss.set(self.Coins, forKey: "Coins")
-                                                                                                self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
+                                                                 //self.defaultss.set(self.Coins, forKey: "Coins")
+                                                                                                //self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
                                  }
                 
                        
@@ -6559,7 +6577,13 @@ SaturnParent.addChildNode(SassThShoonode)
                         print("(nodeA.name == mo && ReadyToExplode and BB == true)")
                     if  (contact.nodeA.name == "mor" ||  contact.nodeB.name == "mor"){
                         self.BShpAlive = false
+                        //check for shark
+                        self.ExpSnd = true
+                        if let _ = self.sceneView.scene.rootNode.childNode(withName: "shark", recursively: true)  {
+                        }
+                        else {
                           self.BeatLevel()
+                        }
                         
                     }
                 contact.nodeA.removeFromParentNode()
@@ -6599,11 +6623,12 @@ SaturnParent.addChildNode(SassThShoonode)
                     if let _ = self.sceneView.scene.rootNode.childNode(withName: "shark", recursively: true)  {
                      //   let rrr = (self.timerLabel.text)
                         self.scoreL+=1
-                        self.Coins+=1
+//                        self.Coins+=1
+//                        self.defaultss.set(self.Coins, forKey: "Coins")
                         if self.seconds < 60 && self.seconds > 50 {
                             self.CoinsAva+=3
                             self.scoreL+=3
-                            self.defaultss.set(self.Coins, forKey: "Coins")
+//                            self.defaultss.set(self.Coins, forKey: "Coins")
                                                            self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
 //                             self.Coins+=1
                             print("Jess annnnnnnnnnnnnnnnnnnnnnnnnn")
@@ -6635,7 +6660,7 @@ SaturnParent.addChildNode(SassThShoonode)
                         print("\(contact.nodeA.name!)")
                      
                       //  print("\(self.timer)")
-                            self.defaultss.set(self.Coins, forKey: "Coins")
+                          //  self.defaultss.set(self.Coins, forKey: "Coins")
                                                            self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
                        // r = r + 1
                       //  print("\(self.timerLabel.text) scoreL")
@@ -6656,6 +6681,7 @@ SaturnParent.addChildNode(SassThShoonode)
                                              self.BlastColor = "original"
                                              print("\( self.BlastColor) updated to original")
                             if !self.BShpAlive{
+                              //  self.Coins = self.Coins; +10
                               self.BeatLevel()
                             }
                            // self.BeatLevel()
@@ -6673,12 +6699,12 @@ SaturnParent.addChildNode(SassThShoonode)
                     // SS1copy.scn
                 }
                 else {
-                    self.Coins+=1
+                   // self.Coins+=1
                     self.scoreL+=1
                     print("\(self.Coins)Coins else else")
                                               print("\(self.CoinsAva)CoinsAvaAva else else")
                      print("\(self.scoreL)scoreL else else")
-                    self.defaultss.set(self.Coins, forKey: "Coins")
+                   // self.defaultss.set(self.Coins, forKey: "Coins")
                               self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
                 }
                 
@@ -6686,12 +6712,29 @@ SaturnParent.addChildNode(SassThShoonode)
                 //added dope fireball
            // }
         }
+           // rrEx      ReadyToExplode = false
+                                  //  rrEx = 10
+           // if (rrEx == 10) && (!ReadyToExplode) && (BlasSnd)  {
+                //explosion BossShipExplox
+            if (contact.nodeA.name! == "ha" || contact.nodeB.name! == "ha") {
+                self.playSound(sound: "changeJes", format: "mp3")
+            }
+                else if (contact.nodeA.name! == "mo" || contact.nodeB.name! == "mo") {
+//                    self.playSound(sound: "changeJes", format: "mp3")
+                self.playSound(sound: "FrsChange", format: "mp3")
+                }
+             //solid, fix major crash, levels and sounds
+            else {
+                      playSound(sound: "BSS", format: "mp3")
+            }
+                   //   }
             let  explosion = SCNParticleSystem(named: "Fire", inDirectory: nil)
             
             explosion?.particleLifeSpan = 4
             explosion?.emitterShape = contact.nodeB.geometry
             contact.nodeB.addParticleSystem(explosion!)
-            
+             BlasSnd = false
+          
         }
     }
     
