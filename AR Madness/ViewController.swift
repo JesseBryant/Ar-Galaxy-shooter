@@ -474,7 +474,18 @@ var power = "banana"
         //        messageLabel.isHidden = false
         //        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
         self.messageLabel.isHidden = false
-        self.messageLabel.text = "Shoot all the spaceships. Do not shoot planets"
+        self.messageLabel.text = "Shoot the spaceships. Do not shoot planets"
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: { [weak self] in
+            guard let self = self else {return}
+            self.messageLabel.isHidden = true
+        })
+    }
+    func PlayInstructionsWave() {
+        
+        //        messageLabel.isHidden = false
+        //        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
+        self.messageLabel.isHidden = false
+        self.messageLabel.text = "Wave 2"
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: { [weak self] in
             guard let self = self else {return}
             self.messageLabel.isHidden = true
@@ -582,6 +593,15 @@ var power = "banana"
         BlastColor = "original"
         // timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
         let currentScore = self.scoreL
+        //if wave = true {
+       // plaWave
+   // } else { whats left
+        //when done (in "shark" do increments of 5 so it nat right)
+        //must add 5 so its enough time to test
+    //}
+        
+        
+        
        // var h = 0
 //           if h == CoinsAva  {
 //                timer.invalidate()
@@ -1658,6 +1678,7 @@ var power = "banana"
         //  stopBackgroundMusic()
     }
     
+    
     // MARK: - missiles & targets
     
     //creates banana or axe node and 'fires' it
@@ -1735,7 +1756,7 @@ var power = "banana"
                      power = "banana"
                     if ReadyToExplode {
                          if rrEx != 0 {
-                            rrEx = rrEx-1
+                            rrEx = rrEx-2
                             
                                print("\(rrEx) rxxxxxx-1")
                          } else {
@@ -1757,7 +1778,7 @@ var power = "banana"
                      power = "banana"
                     if ReadyToExplode {
                          if rrEx != 0 {
-                            rrEx = rrEx-1
+                            rrEx = rrEx-5
                                print("\(rrEx) rxxxxxx-1")
                          } else {
                             ReadyToExplode = false
@@ -5890,10 +5911,13 @@ SaturnParent.addChildNode(SassThShoonode)
                                         let venusParent = SCNNode()
                                   //    let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
               let earthParent = SCNNode()
-            let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
+//            let earth = planet(geometry: SCNSphere(radius: 0.2), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
+    let mar = createPlanet(radius: 0.2, image: "mars")
+                            mar.name = "earthQJ"
+                            mar.position = SCNVector3(x:1.2 , y: 0, z: 0)
          //   venusParent
-             earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                                earth.physicsBody?.isAffectedByGravity = false
+             mar.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                mar.physicsBody?.isAffectedByGravity = false
              earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                 earthParent.physicsBody?.isAffectedByGravity = false
 
@@ -5911,12 +5935,12 @@ SaturnParent.addChildNode(SassThShoonode)
     //         earth.addChildNode(Shoonode)
             //8328579
             earN = earthParent
-              earth.name = "earthQJ"
+              mar.name = "earthQJ"
              earthParent.name = "earthQJ"
-                                      earth.position = SCNVector3(0,0,-1)
+                                      mar.position = SCNVector3(0,0,-1)
                                        earthParent.position = SCNVector3(0,0,-1)
-            earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-            earth.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+            mar.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+            mar.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
             earthParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
             earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
             venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
@@ -6000,10 +6024,10 @@ SaturnParent.addChildNode(SassThShoonode)
                                                                                FourthShoonode.physicsBody?.isAffectedByGravity = false
 
                    //    venusParent.addChildNode(Shoonode)
-                        earth.addChildNode(Shoonode)
-                            earth.addChildNode(ssShoonode)
-                                            earth.addChildNode(ssThShoonode)
-                                            earth.addChildNode(FourthShoonode)
+                        mar.addChildNode(Shoonode)
+                           mar.addChildNode(ssShoonode)
+                                            mar.addChildNode(ssThShoonode)
+                                            mar.addChildNode(FourthShoonode)
     //                     earth.name = "earth"
     //                    earthParent.name = "earthParent"
                       //  earth.addChildNode(ShoonodeSec)
@@ -6012,7 +6036,7 @@ SaturnParent.addChildNode(SassThShoonode)
                         AllnodeArray.append(FourthShoonode)
                        AllnodeArray.append(ssShoonode)
                         AllnodeArray.append(ssThShoonode)
-                        EarGroupNodeArray.append(earth)
+                        EarGroupNodeArray.append(mar)
                                            EarGroupNodeArray.append(earthParent)
     //                    let r = ssShoonode
     //                     let b = ssShoonode
@@ -6061,7 +6085,7 @@ SaturnParent.addChildNode(SassThShoonode)
                                                                                                      FourthShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                         
                         // -0.8
-                               self.sceneView.scene.rootNode.addChildNode(earth)
+                               self.sceneView.scene.rootNode.addChildNode(mar)
                                self.sceneView.scene.rootNode.addChildNode(earthParent)
                                self.sceneView.scene.rootNode.addChildNode(venusParent)
 
@@ -6097,14 +6121,14 @@ SaturnParent.addChildNode(SassThShoonode)
                                moonParent.runAction(moonRotation)
 
                                
-                               earth.runAction(JRRotation)
+                               mar.runAction(JRRotation)
                        // earthParent.addChildNode(venusParent)
                         venusParent.addChildNode(Shoonode)
                         
                         ////****** and ven name*/
                            //    earthParent.addChildNode(Shoonode)
                        // earthParent.addChildNode(ShoonodeSec)
-                       earth.addChildNode(ssShoonode)
+                      mar.addChildNode(ssShoonode)
                       //  ssThShoonode.addChildNode(ssShoonode)
                         earthParent.addChildNode(ssThShoonode)
                         earthParent.addChildNode(FourthShoonode)
@@ -6678,7 +6702,7 @@ SaturnParent.addChildNode(SassThShoonode)
 //                            self.ReportScore(with: self.scoreL)
                             self.scoreL+=0
                            
-                                             self.BlastColor = "original"
+                                           //  self.BlastColor = "original"
                                              print("\( self.BlastColor) updated to original")
                             if !self.BShpAlive{
                               //  self.Coins = self.Coins; +10
