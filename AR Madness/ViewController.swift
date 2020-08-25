@@ -1957,12 +1957,12 @@ var power = "banana"
                           // let mat = SCNMatrix4(frame.camera.transform)
                    
                    //**********define boss ship here*********
-                   var BossShoonode = SCNNode()
-                   let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
-                                             BossShoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
-                                             BossShoonode.scale = SCNVector3(0.08,0.08,0.08)
-                   //  ssShoonode.
-                     BossShoonode.name = "mor"
+//                   var BossShoonode = SCNNode()
+//                   let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+//                                             BossShoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+//                                             BossShoonode.scale = SCNVector3(0.08,0.08,0.08)
+//                   //  ssShoonode.
+//                     BossShoonode.name = "mor"
                    BShpAlive = true
                    
                                   for index in 0...2 {
@@ -2047,8 +2047,8 @@ var power = "banana"
                                       FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                                                                                              FourthShoonode.physicsBody?.isAffectedByGravity = false
                                        
-                                       BossShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-                                                                                                                      BossShoonode.physicsBody?.isAffectedByGravity = false
+                                      // BossShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                                                      //BossShoonode.physicsBody?.isAffectedByGravity = false
                                        
                                    
 
@@ -2071,7 +2071,7 @@ var power = "banana"
                                     AllnodeArray.append(FourthShoonode)
                                    AllnodeArray.append(ssShoonode)
                                      AllnodeArray.append(ssThShoonode)
-                                         AllnodeArray.append(BossShoonode)
+                                     //    AllnodeArray.append(BossShoonode)
                                        
                                                     
                                                                                                                   
@@ -2087,7 +2087,7 @@ var power = "banana"
                                                                                              ssThShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
                                                                                                  FourthShoonode.position = SCNVector3(randomFloat(min: -0.8, max: 0.3),randomFloat(min: -0.8, max: 0.3), randomFloat(min: 0.1, max: 0.9))
                                        
-                                       BossShoonode.position = SCNVector3(randomFloat(min: 0.6, max: 0.7),randomFloat(min: 0.6, max: 0.7), randomFloat(min: 0.6, max: 0.9))
+                                    //   BossShoonode.position = SCNVector3(randomFloat(min: 0.6, max: 0.7),randomFloat(min: 0.6, max: 0.7), randomFloat(min: 0.6, max: 0.9))
                                                      
                                    
                                  //  BossShoonode
@@ -2096,8 +2096,8 @@ var power = "banana"
                                      
                                       Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                             Shoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
-                                      BossShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-                                       BossShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+//                                      BossShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+//                                       BossShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
                                        //BossShoonode
                                       //ShoonodeSec.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
                                                              //ShoonodeSec.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
@@ -2117,7 +2117,7 @@ var power = "banana"
                                    //com.whatever.AR-JesBrA.Coins
                                    //Jesse_CoinsSellas
                                    self.sceneView.scene.rootNode.addChildNode(Shoonode)
-                                        self.sceneView.scene.rootNode.addChildNode(BossShoonode)
+                                     //   self.sceneView.scene.rootNode.addChildNode(BossShoonode)
                                       
                                       //self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
                                       self.sceneView.scene.rootNode.addChildNode(ssShoonode)
@@ -2138,7 +2138,7 @@ var power = "banana"
                                       // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
                                         //  make big ships spin as it Rotate
                                        Shoonode.runAction(GreenSecRo)
-                                       BossShoonode.runAction(GreenSecRo)
+                                    //   BossShoonode.runAction(GreenSecRo)
                                       //  BossShoonode
                                                     //  ShoonodeG.runAction(GreenSecRo)
                                                         //                  //  ShoonodeSec.runAction(SecRotation)
@@ -2162,13 +2162,13 @@ var power = "banana"
                                              earth.runAction(sunAction)
                                      // earthParent.addChildNode(venusParent)
                                       venusParent.addChildNode(Shoonode)
-                                        venusParent.addChildNode(BossShoonode)
+                                    //    venusParent.addChildNode(BossShoonode)
                                         
                                    earthParent.addChildNode(venusParent)
                                       
                                       ////****** and ven name*/
                                              earth.addChildNode(Shoonode)
-                                       earth.addChildNode(BossShoonode)
+                                   //    earth.addChildNode(BossShoonode)
                                      // earthParent.addChildNode(ShoonodeSec)
                                       earthParent.addChildNode(ssShoonode)
                                     //  ssThShoonode.addChildNode(ssShoonode)
