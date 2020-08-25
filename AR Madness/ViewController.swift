@@ -1958,7 +1958,7 @@ var power = "banana"
                    
                    //**********define boss ship here*********
                    var BossShoonode = SCNNode()
-                   let SpaceShscene = SCNScene(named: "art.scnassets/spaceARJes.scn")
+                   let SpaceShscene = SCNScene(named: "art.scnassets/spaceARJesn.scn")
                                              BossShoonode = (SpaceShscene?.rootNode.childNode(withName: "Jes", recursively: true)!)!
                                              BossShoonode.scale = SCNVector3(0.08,0.08,0.08)
                    //  ssShoonode.
