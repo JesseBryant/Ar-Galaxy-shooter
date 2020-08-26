@@ -1963,7 +1963,7 @@ var power = "banana"
 //                                             BossShoonode.scale = SCNVector3(0.08,0.08,0.08)
 //                   //  ssShoonode.
 //                     BossShoonode.name = "mor"
-                   BShpAlive = true
+                //   BShpAlive = true
                    
                                   for index in 0...2 {
                              
