@@ -53,5 +53,18 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb1014620505654359</string>
+      </array>
+      </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>1014620505654359</string>
+    <key>FacebookDisplayName</key>
+    <string>shhhhhh</string>
 </dict>
 </plist>

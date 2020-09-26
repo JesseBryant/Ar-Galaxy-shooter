@@ -11,5 +11,5 @@ target 'AR shooting Game' do
 #  pod 'Google-Mobile-Ads-SDK'
   pod 'SwiftSpinner'
   pod 'FBAudienceNetwork'
-  
+  pod 'FBSDKCoreKit/Swift'
 end

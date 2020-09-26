@@ -241,6 +241,7 @@
 				A73D429920B80B4000965934 /* Sources */,
 				A73D429A20B80B4000965934 /* Frameworks */,
 				A73D429B20B80B4000965934 /* Resources */,
+				23EABAD2F68283EBE9A8D8DC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -330,6 +331,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		23EABAD2F68283EBE9A8D8DC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AR shooting Game/Pods-AR shooting Game-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AR shooting Game/Pods-AR shooting Game-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AR shooting Game/Pods-AR shooting Game-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9A54DDC11407875B539C6A57 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
