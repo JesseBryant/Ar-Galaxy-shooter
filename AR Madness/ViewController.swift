@@ -132,9 +132,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var trackerNode: SCNNode?
     var foundSurface = false
     var AdsLoaded = false
-     var BShpAlive = false
+     var BShpAliveJes = false
     var tracking = true
-    var ExpSnd = false
+    //var ExpSnd = false
      var timeOut = false
     
     var GreenBlast = false
@@ -142,6 +142,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var SuperBlast = false
     let defaultss = UserDefaults.standard
     var arrrrr : Int = 0
+    var JesVC = 0
     var cc = 0
     let configuration = ARWorldTrackingConfiguration()
     let audioNode = SCNNode()
@@ -480,6 +481,27 @@ var power = "banana"
             self.messageLabel.isHidden = true
         })
     }
+    
+    // FsaddTargetNodesWaveBossShip()
+    
+    
+    func BossWaveOnePlayInstructions() {
+          
+          //        messageLabel.isHidden = false
+          //        [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
+          self.messageLabel.isHidden = false
+          self.messageLabel.text = "WARNING BOSS SHIP"
+          DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: { [weak self] in
+              guard let self = self else {return}
+              self.messageLabel.isHidden = true
+            self.FsaddTargetNodesWaveBossShip()
+          })
+      }
+    
+    
+    
+    
+    
     func PlayInstructionsWave() {
         
         //        messageLabel.isHidden = false
@@ -1001,7 +1023,11 @@ var power = "banana"
       //  FsaddTargetNodes()
        // FsaddTargetNodesWaveOne()
        // addTargetNodesNeptune()
-        FsaddTargetNodesWaveOne()
+     //   FsaddTargetNodesWaveOne()
+      //  FsaddTargetNodesWavetwo()
+        
+      //  FsaddTargetNodesWaveBossShip()
+        BossWaveOnePlayInstructions()
         
       //  PlayInstructions()
         //play background music
@@ -5715,6 +5741,648 @@ var power = "banana"
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
+    
+    // MARK: - Waves FRFR
+    
+    
+      func FsaddTargetNodesWaveBossShip(){
+                          playBackgroundMusic()
+                       //when points get to a certain point like 40 means 1 left and 37 means 2 may be left
+                       //when game finish congrat them
+                       //kill certain ship and certain amount of points
+                       //when time run out
+                       //next take code from here appl to brd version
+                                                   let venusParent = SCNNode()
+                                        //         let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
+                         let earthParent = SCNNode()
+                       let earth = planet(geometry: SCNSphere(radius: 0.1), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
+                    //   venusParent
+                        earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                           earth.physicsBody?.isAffectedByGravity = false
+                        earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                           earthParent.physicsBody?.isAffectedByGravity = false
+
+                       AllnodeArray.removeAll()
+                    EarGroupNodeArray.removeAll()
+                  
+                       venusParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                 venusParent.physicsBody?.isAffectedByGravity = false
+                           venusParent.position = SCNVector3(0,0,-1)
+                        
+                       // venusParent.name = "earth"
+               //         earth.addChildNode(Shoonode)
+                       //8328579
+                       earN = earthParent
+                         earth.name = "earthQJ"
+                        earthParent.name = "earthQJ"
+                                                 earth.position = SCNVector3(0,0,-1)
+                                                  earthParent.position = SCNVector3(0,0,-1)
+            
+                       earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                       earth.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                       earthParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                       earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                       venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                            venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                     //  let frame = self.sceneView.session.currentFrame
+                     //  let frame = self.sceneView.
+                       // let mat = SCNMatrix4(frame.camera.transform)
+                
+                //**********define boss ship here*********
+                var BossShoonode = SCNNode()
+                let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                          BossShoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                          BossShoonode.scale = SCNVector3(0.03,0.03,0.03)
+                //  ssShoonode.
+                  BossShoonode.name = "mor"
+        //self.BShpAlive = true
+        self.BShpAliveJes = true
+    //
+    //                                          var ShoonodeG = SCNNode()
+    //                                        let sceneGreen = SCNScene(named: "art.scnassets/spaceGreen.scn")
+    //                                                                                ShoonodeG = (sceneGreen?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+    //                                                                                 ShoonodeG.scale = SCNVector3(0.01,0.01,0.01)
+    //
+    //                                                                                ShoonodeG.name = "ha"
+    //
+    //        var ShoonodeGG = SCNNode()
+    //                                           let sceneGreenn = SCNScene(named: "art.scnassets/spaceGreen.scn")
+    //                                                                                   ShoonodeGG = (sceneGreenn?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+    //                                                                                    ShoonodeGG.scale = SCNVector3(0.01,0.01,0.01)
+    //
+    //                                                                                   ShoonodeGG.name = "ha"
+    //
+                
+                               for index in 0...1 {
+                          
+                                autoreleasepool {
+                                    //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
+                                    //make node array empty in the end of the game func
+                                    //decent increase number of ships still seem a bit easy but that might be fine
+                                    var Shoonode = SCNNode()
+                                    //make it to where it dont kill so many
+                               //var ShoonodeSec = SCNNode()
+                                   // var ShoonodeCloserEarP = SCNNode()
+               //                     let earthParent = SCNNode()
+                                                // var ssShoonode = SCNNode()
+                                              // var ssThShoonode = SCNNode()
+                                            //   var FourthShoonode = SCNNode()
+               //frts one!!!
+                                var f = 0
+//                                   let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+//                                                           ssShoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+//                                                            ssShoonode.scale = SCNVector3(0.01,0.01,0.01)
+                                 //  ssShoonode.
+                                //   ssShoonode.name = "shark"
+                                
+                                   //second one
+//
+//                                   let Spacehscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+//                                                           ssThShoonode = (Spacehscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+//                                                            ssThShoonode.scale = SCNVector3(0.01,0.01,0.01)
+//                                   ssThShoonode.name = "shark"
+//                                f = f+1
+//                                   // third one
+//
+//                                   let SpacehFscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+//                                                                              FourthShoonode = (SpacehFscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+//                                                                               FourthShoonode.scale = SCNVector3(0.01,0.01,0.01)
+//                                                      FourthShoonode.name = "shark"
+    //                                let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
+    //                                                                        Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+    //                                                                         Shoonode.scale = SCNVector3(0.03,0.03,0.03)
+    //
+    //                                                                        Shoonode.name = "ha"
+                                f = f+1
+                                   
+                                   //ThirdGroupNodeArray
+                                   //name
+               //                    for v in name {
+               //
+               //                        ssShoonode.name = v
+               //                    }
+               //                    name.removeAll()
+                                       let moonParent = SCNNode()
+                     
+                                  if (index > 1) && (index % 2 == 0) {
+                                    
+                                
+                                  // red
+                                         //  fireBall.addParticleSystem(SCNParticleSystem(named: "green.scnp", inDirectory: nil)!
+                                                 let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
+                                                Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+                                                 Shoonode.scale = SCNVector3(0.01,0.01,0.01)
+                                    
+                                                Shoonode.name = "ha"
+                                    
+                                   // Shoonode.addParticleSystem(SCNParticleSystem(named: "green.scnp", inDirectory: nil)!
+        //                             Shoonode.addParticleSystem(SCNParticleSystem(named: "greenFlame.scnp", inDirectory: nil)!)
+                                        
+                                  //      f = f+1
+                                             }else{
+                                  // blue
+    //                                             let scene = SCNScene(named: "art.scnassets/SS1copy.scn")
+    //                                            Shoonode = (scene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+    //                                             Shoonode.scale = SCNVector3(0.03,0.03,0.03)
+    //                                             Shoonode.name = "shark"
+                                    let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
+                                                                           Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+                                                                            Shoonode.scale = SCNVector3(0.01,0.01,0.01)
+                                                               
+                                                                           Shoonode.name = "ha"
+                              //      f = f+1
+                                             }
+                                   //ShoonodeG
+    //                                ShoonodeG.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+    //                                                                               ShoonodeG.physicsBody?.isAffectedByGravity = false
+    //                                ShoonodeGG.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+    //                                                                               ShoonodeGG.physicsBody?.isAffectedByGravity = false
+                                  
+                                   Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                      Shoonode.physicsBody?.isAffectedByGravity = false
+                                 //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                      //ShoonodeSec.physicsBody?.isAffectedByGravity = false
+//                                   ssThShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+//                                                                         ssThShoonode.physicsBody?.isAffectedByGravity = false
+//                                                      ssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+//                                                                        ssShoonode.physicsBody?.isAffectedByGravity = false
+//                                   FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+//                                                                                          FourthShoonode.physicsBody?.isAffectedByGravity = false
+                                    
+                                    BossShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                                                   BossShoonode.physicsBody?.isAffectedByGravity = false
+                                    
+                                
+
+                              //    venusParent.addChildNode(ShoonodeG)
+                                   earth.addChildNode(Shoonode)
+                                    earth.addChildNode(BossShoonode)
+    //                                earth.addChildNode(ShoonodeGG)
+//                                       earth.addChildNode(ssShoonode)
+//                                                       earth.addChildNode(ssThShoonode)
+//                                                       earth.addChildNode(FourthShoonode)
+               //                     earth.name = "earth"
+               //                    earthParent.name = "earthParent"
+                                 //  earth.addChildNode(ShoonodeSec)
+        //                           nodeArray.append(Shoonode)
+        //                        //   nodeArray.append(ShoonodeSec)
+        //                           ThirdGroupNodeArray.append(FourthShoonode)
+        //                          SSnodeArray.append(ssShoonode)
+        //                           SecGroupNodeArray.append(ssThShoonode)
+                                EarGroupNodeArray.append(earth)
+                                                   EarGroupNodeArray.append(earthParent)
+                                AllnodeArray.append(Shoonode)
+    //                                  AllnodeArray.append(ShoonodeG)
+    //                                  AllnodeArray.append(ShoonodeGG)
+//                                 AllnodeArray.append(FourthShoonode)
+//                                AllnodeArray.append(ssShoonode)
+//                                  AllnodeArray.append(ssThShoonode)
+                                      AllnodeArray.append(BossShoonode)
+                                    
+                                                 
+                                                                                                               
+                                                                                                               //changed this one!!!
+                                    Shoonode.position = SCNVector3(randomFloat(min: -0.3, max: 0.3),randomFloat(min: -0.3, max: 0.3), randomFloat(min: -0.4, max: 0.3))
+    //                                                                                               ShoonodeG.position = SCNVector3(randomFloat(min: -0.5, max: 0.3),randomFloat(min: -0.1, max: 0.3), randomFloat(min: -0.1, max: 0.3))
+    //                                  ShoonodeGG.position = SCNVector3(randomFloat(min: -0.1, max: 0.2),randomFloat(min: -0.1, max: 0.3), randomFloat(min: -0.1, max: 0.4))
+                                                                                                                                      
+                                                                                                                                      //changed this one!!!
+//                                    ssShoonode.position = SCNVector3(randomFloat(min: -0.4, max: 0.3),randomFloat(min: -0.3, max: 0.2), randomFloat(min: -0.2, max: 0.3))
+//
+//
+//
+//                                                                                          ssThShoonode.position = SCNVector3(randomFloat(min: -0.3, max: 0.3),randomFloat(min: -0.4, max: 0.3), randomFloat(min: -0.5, max: 0.3))
+//                                                                                              FourthShoonode.position = SCNVector3(randomFloat(min: -0.1, max: 0.3),randomFloat(min: -0.2, max: 0.3), randomFloat(min: -0.1, max: 0.3))
+                                    
+                                    BossShoonode.position = SCNVector3(randomFloat(min: -0.5, max: 0.5),randomFloat(min: -0.4, max: 0.5), randomFloat(min: -0.4, max: 0.7))
+                                                  
+                                
+                              //  BossShoonode
+                                
+                                          moonParent.position = SCNVector3(0 ,0 , -1)
+                                //  ShoonodeG.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                     //ShoonodeG.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                    //ShoonodeGG.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                       //ShoonodeGG.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                    
+                                   Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                         Shoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                   BossShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                   BossShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                    //BossShoonode
+                                   //ShoonodeSec.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                          //ShoonodeSec.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                   //ssShoonode
+//                                   ssShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+//                                                                            ssShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+//                                   ssThShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+//                                                                                              ssThShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+//                                    FourthShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+//                                                                                                                FourthShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                   
+                                   // -0.8
+                                          self.sceneView.scene.rootNode.addChildNode(earth)
+                                          self.sceneView.scene.rootNode.addChildNode(earthParent)
+                                          self.sceneView.scene.rootNode.addChildNode(venusParent)
+
+                                //com.whatever.AR-JesBrA.Coins
+                                //Jesse_CoinsSellas
+                                self.sceneView.scene.rootNode.addChildNode(Shoonode)
+                                    //self.sceneView.scene.rootNode.addChildNode(ShoonodeG)
+                                    //self.sceneView.scene.rootNode.addChildNode(ShoonodeGG)
+                                     self.sceneView.scene.rootNode.addChildNode(BossShoonode)
+                                   
+                                   //self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
+//                                   self.sceneView.scene.rootNode.addChildNode(ssShoonode)
+//                                     self.sceneView.scene.rootNode.addChildNode(ssThShoonode)
+//                                    self.sceneView.scene.rootNode.addChildNode(FourthShoonode)
+
+                  
+                                    let GreenSecRo = XRotation(time: 4)
+                                    let JRRotation = Rotation(time: 5)
+                                       //   let SecRotation = XRotation(time: 300)
+                                  //   let SecRo = XRotation(time: 6)
+                                             let sunAction = Rotation(time: 5)
+                                         //  let earthParentRotation = Rotation(time: 8)
+                                 //  let VRotation = Rotation(time: 6)
+                                  //         let venusParentRotation = XRotation(time: 20)
+                                      //     let earthRotation = Rotation(time: 20)
+                                           let moonRotation = Rotation(time: 5)
+                                   // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
+                                     //  make big ships spin as it Rotate
+                                    Shoonode.runAction(GreenSecRo)
+                                  //  ShoonodeG.runAction(GreenSecRo)
+                                    // ShoonodeGG.runAction(GreenSecRo)
+                                    BossShoonode.runAction(GreenSecRo)
+                                   //  BossShoonode
+                                                 //  ShoonodeG.runAction(GreenSecRo)
+                                                     //                  //  ShoonodeSec.runAction(SecRotation)
+//                                                                        ssShoonode.runAction(GreenSecRo)
+//                                                     //                    //FourthShoonode
+//                                                                        ssThShoonode.runAction(GreenSecRo)
+//                                                                         FourthShoonode.runAction(GreenSecRo)
+                                    
+        //                           Shoonode.runAction(SecRotation)
+        //       //                  //  ShoonodeSec.runAction(SecRotation)
+        //                          ssShoonode.runAction(SecRotation)
+        //       //                    //FourthShoonode
+        //                          ssThShoonode.runAction(SecRo)
+        //                           FourthShoonode.runAction(SecRotation)
+               //                        ssThShoonode
+                                          earthParent.runAction(JRRotation)
+                                          venusParent.runAction(JRRotation)
+                                          moonParent.runAction(moonRotation)
+
+                                          
+                                          earth.runAction(sunAction)
+                                  // earthParent.addChildNode(venusParent)
+                                   venusParent.addChildNode(Shoonode)
+        //                             venusParent.addChildNode(BossShoonode)
+                                     
+                                earthParent.addChildNode(venusParent)
+                                   
+                                   ////****** and ven name*/
+                                          earth.addChildNode(Shoonode)
+                                   //   earth.addChildNode(ShoonodeG)
+                                    //  earth.addChildNode(ShoonodeGG)
+        //                            earth.addChildNode(BossShoonode)
+                                  // earthParent.addChildNode(ShoonodeSec)
+//                                   earthParent.addChildNode(ssShoonode)
+//                                 //  ssThShoonode.addChildNode(ssShoonode)
+//                                   earthParent.addChildNode(ssThShoonode)
+//                                   earthParent.addChildNode(FourthShoonode)
+                                     earthParent.addChildNode(BossShoonode)
+                                    
+                                          earthParent.addChildNode(moonParent)
+               //                    for n in SSnodeArray {
+               //                        print("\(n.name) jessss")
+               //                    }
+                                print("nnnnnnnnnn\(f)")
+                       
+                               }
+                           }
+            }
+    
+    
+    
+    func FsaddTargetNodesWavetwo(){
+                          playBackgroundMusic()
+                       //when points get to a certain point like 40 means 1 left and 37 means 2 may be left
+                       //when game finish congrat them
+                       //kill certain ship and certain amount of points
+                       //when time run out
+                       //next take code from here appl to brd version
+                                                   let venusParent = SCNNode()
+                                        //         let msun = SCNNode(geometry: SCNSphere(radius: 0.15))
+                         let earthParent = SCNNode()
+                       let earth = planet(geometry: SCNSphere(radius: 0.1), diffuse: #imageLiteral(resourceName: "Earth day"), specular: #imageLiteral(resourceName: "Earth Specular"), emission: #imageLiteral(resourceName: "Earth Emission"), normal: #imageLiteral(resourceName: "Earth Normal"), position: SCNVector3(1.2 ,0 , 0))
+                    //   venusParent
+                        earth.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                           earth.physicsBody?.isAffectedByGravity = false
+                        earthParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                           earthParent.physicsBody?.isAffectedByGravity = false
+
+                       AllnodeArray.removeAll()
+                    EarGroupNodeArray.removeAll()
+                  
+                       venusParent.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                 venusParent.physicsBody?.isAffectedByGravity = false
+                           venusParent.position = SCNVector3(0,0,-1)
+                        
+                       // venusParent.name = "earth"
+               //         earth.addChildNode(Shoonode)
+                       //8328579
+                       earN = earthParent
+                         earth.name = "earthQJ"
+                        earthParent.name = "earthQJ"
+                                                 earth.position = SCNVector3(0,0,-1)
+                                                  earthParent.position = SCNVector3(0,0,-1)
+            
+                       earth.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                       earth.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                       earthParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                       earthParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                       venusParent.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                            venusParent.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                     //  let frame = self.sceneView.session.currentFrame
+                     //  let frame = self.sceneView.
+                       // let mat = SCNMatrix4(frame.camera.transform)
+                
+                //**********define boss ship here*********
+                var BossShoonode = SCNNode()
+                let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                          BossShoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                          BossShoonode.scale = SCNVector3(0.03,0.03,0.03)
+                //  ssShoonode.
+                  BossShoonode.name = "mor"
+        //self.BShpAlive = true
+        self.BShpAliveJes = true
+    //
+    //                                          var ShoonodeG = SCNNode()
+    //                                        let sceneGreen = SCNScene(named: "art.scnassets/spaceGreen.scn")
+    //                                                                                ShoonodeG = (sceneGreen?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+    //                                                                                 ShoonodeG.scale = SCNVector3(0.01,0.01,0.01)
+    //
+    //                                                                                ShoonodeG.name = "ha"
+    //
+    //        var ShoonodeGG = SCNNode()
+    //                                           let sceneGreenn = SCNScene(named: "art.scnassets/spaceGreen.scn")
+    //                                                                                   ShoonodeGG = (sceneGreenn?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+    //                                                                                    ShoonodeGG.scale = SCNVector3(0.01,0.01,0.01)
+    //
+    //                                                                                   ShoonodeGG.name = "ha"
+    //
+                
+                               for index in 0...1 {
+                          
+                                autoreleasepool {
+                                    //need to create an array of nodes..each time you shoot check name and if it right one remove 5 reg nodes and the one hit make sure it explode. Make strings var make  this func shorter
+                                    //make node array empty in the end of the game func
+                                    //decent increase number of ships still seem a bit easy but that might be fine
+                                    var Shoonode = SCNNode()
+                                    //make it to where it dont kill so many
+                               //var ShoonodeSec = SCNNode()
+                                   // var ShoonodeCloserEarP = SCNNode()
+               //                     let earthParent = SCNNode()
+                                                 var ssShoonode = SCNNode()
+                                               var ssThShoonode = SCNNode()
+                                               var FourthShoonode = SCNNode()
+               //frts one!!!
+                                var f = 0
+                                   let SpaceShscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                           ssShoonode = (SpaceShscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                                            ssShoonode.scale = SCNVector3(0.01,0.01,0.01)
+                                 //  ssShoonode.
+                                   ssShoonode.name = "shark"
+                                
+                                   //second one
+                                   
+                                   let Spacehscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                           ssThShoonode = (Spacehscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                                            ssThShoonode.scale = SCNVector3(0.01,0.01,0.01)
+                                   ssThShoonode.name = "shark"
+                                f = f+1
+                                   // third one
+                                   
+                                   let SpacehFscene = SCNScene(named: "art.scnassets/SS1copy.scn")
+                                                                              FourthShoonode = (SpacehFscene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+                                                                               FourthShoonode.scale = SCNVector3(0.01,0.01,0.01)
+                                                      FourthShoonode.name = "shark"
+    //                                let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
+    //                                                                        Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+    //                                                                         Shoonode.scale = SCNVector3(0.03,0.03,0.03)
+    //
+    //                                                                        Shoonode.name = "ha"
+                                f = f+1
+                                   
+                                   //ThirdGroupNodeArray
+                                   //name
+               //                    for v in name {
+               //
+               //                        ssShoonode.name = v
+               //                    }
+               //                    name.removeAll()
+                                       let moonParent = SCNNode()
+                     
+                                  if (index > 1) && (index % 2 == 0) {
+                                    
+                                
+                                  // red
+                                         //  fireBall.addParticleSystem(SCNParticleSystem(named: "green.scnp", inDirectory: nil)!
+                                                 let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
+                                                Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+                                                 Shoonode.scale = SCNVector3(0.01,0.01,0.01)
+                                    
+                                                Shoonode.name = "shark"
+                                    
+                                   // Shoonode.addParticleSystem(SCNParticleSystem(named: "green.scnp", inDirectory: nil)!
+        //                             Shoonode.addParticleSystem(SCNParticleSystem(named: "greenFlame.scnp", inDirectory: nil)!)
+                                        
+                                        f = f+1
+                                             }else{
+                                  // blue
+    //                                             let scene = SCNScene(named: "art.scnassets/SS1copy.scn")
+    //                                            Shoonode = (scene?.rootNode.childNode(withName: "SS1copy", recursively: true)!)!
+    //                                             Shoonode.scale = SCNVector3(0.03,0.03,0.03)
+    //                                             Shoonode.name = "shark"
+                                    let scene = SCNScene(named: "art.scnassets/spaceGreen.scn")
+                                                                           Shoonode = (scene?.rootNode.childNode(withName: "spaceGreenn", recursively: true)!)!
+                                                                            Shoonode.scale = SCNVector3(0.01,0.01,0.01)
+                                                               
+                                                                           Shoonode.name = "ha"
+                                    f = f+1
+                                             }
+                                   //ShoonodeG
+    //                                ShoonodeG.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+    //                                                                               ShoonodeG.physicsBody?.isAffectedByGravity = false
+    //                                ShoonodeGG.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+    //                                                                               ShoonodeGG.physicsBody?.isAffectedByGravity = false
+                                  
+                                   Shoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                      Shoonode.physicsBody?.isAffectedByGravity = false
+                                 //  ShoonodeSec.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                      //ShoonodeSec.physicsBody?.isAffectedByGravity = false
+                                   ssThShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                         ssThShoonode.physicsBody?.isAffectedByGravity = false
+                                                      ssShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                        ssShoonode.physicsBody?.isAffectedByGravity = false
+                                   FourthShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                          FourthShoonode.physicsBody?.isAffectedByGravity = false
+                                    
+                                    BossShoonode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                                                                                                                   BossShoonode.physicsBody?.isAffectedByGravity = false
+                                    
+                                
+
+                              //    venusParent.addChildNode(ShoonodeG)
+                                   earth.addChildNode(Shoonode)
+                                    earth.addChildNode(BossShoonode)
+    //                                earth.addChildNode(ShoonodeGG)
+                                       earth.addChildNode(ssShoonode)
+                                                       earth.addChildNode(ssThShoonode)
+                                                       earth.addChildNode(FourthShoonode)
+               //                     earth.name = "earth"
+               //                    earthParent.name = "earthParent"
+                                 //  earth.addChildNode(ShoonodeSec)
+        //                           nodeArray.append(Shoonode)
+        //                        //   nodeArray.append(ShoonodeSec)
+        //                           ThirdGroupNodeArray.append(FourthShoonode)
+        //                          SSnodeArray.append(ssShoonode)
+        //                           SecGroupNodeArray.append(ssThShoonode)
+                                EarGroupNodeArray.append(earth)
+                                                   EarGroupNodeArray.append(earthParent)
+                                AllnodeArray.append(Shoonode)
+    //                                  AllnodeArray.append(ShoonodeG)
+    //                                  AllnodeArray.append(ShoonodeGG)
+                                 AllnodeArray.append(FourthShoonode)
+                                AllnodeArray.append(ssShoonode)
+                                  AllnodeArray.append(ssThShoonode)
+                                      AllnodeArray.append(BossShoonode)
+                                    
+                                                 
+                                                                                                               
+                                                                                                               //changed this one!!!
+                                    Shoonode.position = SCNVector3(randomFloat(min: -0.3, max: 0.3),randomFloat(min: -0.3, max: 0.3), randomFloat(min: -0.4, max: 0.3))
+    //                                                                                               ShoonodeG.position = SCNVector3(randomFloat(min: -0.5, max: 0.3),randomFloat(min: -0.1, max: 0.3), randomFloat(min: -0.1, max: 0.3))
+    //                                  ShoonodeGG.position = SCNVector3(randomFloat(min: -0.1, max: 0.2),randomFloat(min: -0.1, max: 0.3), randomFloat(min: -0.1, max: 0.4))
+                                                                                                                                      
+                                                                                                                                      //changed this one!!!
+                                    ssShoonode.position = SCNVector3(randomFloat(min: -0.4, max: 0.3),randomFloat(min: -0.3, max: 0.2), randomFloat(min: -0.2, max: 0.3))
+                                                                                                               
+                                                                                                                                      
+                                                                                                                             
+                                                                                          ssThShoonode.position = SCNVector3(randomFloat(min: -0.3, max: 0.3),randomFloat(min: -0.4, max: 0.3), randomFloat(min: -0.5, max: 0.3))
+                                                                                              FourthShoonode.position = SCNVector3(randomFloat(min: -0.1, max: 0.3),randomFloat(min: -0.2, max: 0.3), randomFloat(min: -0.1, max: 0.3))
+                                    
+                                    BossShoonode.position = SCNVector3(randomFloat(min: -0.5, max: 0.5),randomFloat(min: -0.4, max: 0.5), randomFloat(min: -0.4, max: 0.7))
+                                                  
+                                
+                              //  BossShoonode
+                                
+                                          moonParent.position = SCNVector3(0 ,0 , -1)
+                                //  ShoonodeG.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                     //ShoonodeG.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                    //ShoonodeGG.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                       //ShoonodeGG.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                    
+                                   Shoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                         Shoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                   BossShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                   BossShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                    //BossShoonode
+                                   //ShoonodeSec.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                          //ShoonodeSec.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                   //ssShoonode
+                                   ssShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                            ssShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                   ssThShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                                              ssThShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                    FourthShoonode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+                                                                                                                FourthShoonode.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
+                                   
+                                   // -0.8
+                                          self.sceneView.scene.rootNode.addChildNode(earth)
+                                          self.sceneView.scene.rootNode.addChildNode(earthParent)
+                                          self.sceneView.scene.rootNode.addChildNode(venusParent)
+
+                                //com.whatever.AR-JesBrA.Coins
+                                //Jesse_CoinsSellas
+                                self.sceneView.scene.rootNode.addChildNode(Shoonode)
+                                    //self.sceneView.scene.rootNode.addChildNode(ShoonodeG)
+                                    //self.sceneView.scene.rootNode.addChildNode(ShoonodeGG)
+                                     self.sceneView.scene.rootNode.addChildNode(BossShoonode)
+                                   
+                                   //self.sceneView.scene.rootNode.addChildNode(ShoonodeSec)
+                                   self.sceneView.scene.rootNode.addChildNode(ssShoonode)
+                                     self.sceneView.scene.rootNode.addChildNode(ssThShoonode)
+                                    self.sceneView.scene.rootNode.addChildNode(FourthShoonode)
+
+                  
+                                    let GreenSecRo = XRotation(time: 4)
+                                    let JRRotation = Rotation(time: 5)
+                                       //   let SecRotation = XRotation(time: 300)
+                                  //   let SecRo = XRotation(time: 6)
+                                             let sunAction = Rotation(time: 5)
+                                         //  let earthParentRotation = Rotation(time: 8)
+                                 //  let VRotation = Rotation(time: 6)
+                                  //         let venusParentRotation = XRotation(time: 20)
+                                      //     let earthRotation = Rotation(time: 20)
+                                           let moonRotation = Rotation(time: 5)
+                                   // decent rotations a bit to easy.. need to make harder to kill big blue and red--show blast hitting maybe with fire but instead ship dont disappear
+                                     //  make big ships spin as it Rotate
+                                    Shoonode.runAction(GreenSecRo)
+                                  //  ShoonodeG.runAction(GreenSecRo)
+                                    // ShoonodeGG.runAction(GreenSecRo)
+                                    BossShoonode.runAction(GreenSecRo)
+                                   //  BossShoonode
+                                                 //  ShoonodeG.runAction(GreenSecRo)
+                                                     //                  //  ShoonodeSec.runAction(SecRotation)
+                                                                        ssShoonode.runAction(GreenSecRo)
+                                                     //                    //FourthShoonode
+                                                                        ssThShoonode.runAction(GreenSecRo)
+                                                                         FourthShoonode.runAction(GreenSecRo)
+                                    
+        //                           Shoonode.runAction(SecRotation)
+        //       //                  //  ShoonodeSec.runAction(SecRotation)
+        //                          ssShoonode.runAction(SecRotation)
+        //       //                    //FourthShoonode
+        //                          ssThShoonode.runAction(SecRo)
+        //                           FourthShoonode.runAction(SecRotation)
+               //                        ssThShoonode
+                                          earthParent.runAction(JRRotation)
+                                          venusParent.runAction(JRRotation)
+                                          moonParent.runAction(moonRotation)
+
+                                          
+                                          earth.runAction(sunAction)
+                                  // earthParent.addChildNode(venusParent)
+                                   venusParent.addChildNode(Shoonode)
+        //                             venusParent.addChildNode(BossShoonode)
+                                     
+                                earthParent.addChildNode(venusParent)
+                                   
+                                   ////****** and ven name*/
+                                          earth.addChildNode(Shoonode)
+                                   //   earth.addChildNode(ShoonodeG)
+                                    //  earth.addChildNode(ShoonodeGG)
+        //                            earth.addChildNode(BossShoonode)
+                                  // earthParent.addChildNode(ShoonodeSec)
+                                   earthParent.addChildNode(ssShoonode)
+                                 //  ssThShoonode.addChildNode(ssShoonode)
+                                   earthParent.addChildNode(ssThShoonode)
+                                   earthParent.addChildNode(FourthShoonode)
+                                     earthParent.addChildNode(BossShoonode)
+                                    
+                                          earthParent.addChildNode(moonParent)
+               //                    for n in SSnodeArray {
+               //                        print("\(n.name) jessss")
+               //                    }
+                                print("nnnnnnnnnn\(f)")
+                       
+                               }
+                           }
+            }
+    
   // MARK: - Waves
     
    
@@ -7293,30 +7961,80 @@ var power = "banana"
                                                       //self.defaultss.set(self.Coins, forKey: "Coins")
                                                                                      //self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
                       }
+          
+//
+//                 else  if (nodeA.name == "mor" && self.rrEx == 0) || (nodeB.name == "mor" && self.rrEx == 0){
+//                            print("we are (nodeA.name == mor && self.rrEx != 0) || (nodeB.name == mor && self.rrEx != 0)")
+//                print("\(self.rrEx) self.rrEx")
+//
+//                DispatchQueue.main.async {
+//
+//                    self.BeatLevel()
+//                }
+//                 }
+                
             
             else if (contact.nodeA.name! == "mor" || contact.nodeB.name! == "mor"){
-                     if let _ = self.sceneView.scene.rootNode.childNode(withName: "mor", recursively: true)  {
-                                     DispatchQueue.main.async { [weak self] in
-                                                  //  isPlanetHitORneedTime = t
-                                           //  DispatchQueue.main.async { [weak self] in
-                                                             guard let self = self else {return}
-                                                         //  self.sceneView.scene.rootNode.removeAllAudioPlayers()
-                                                      // }
-                                     //  self.power = "banana"
-                                     //  self.timeOut = true
-                                       self.ReadyToExplode = true
-                                       //   self.BlastColor = "original"
-                                          print("\( self.BlastColor) updated SuperBlue")
-                                                }
-                                      
-                                      // var SuperBlast
-                                   //  self.CoinsAva+=2
-                                                                 self.scoreL+=2
-                                                                 //self.defaultss.set(self.Coins, forKey: "Coins")
-                                                                                                //self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
-                                 }
+                if  JesVC != 10 {
+                JesVC = JesVC + 2
+                  print("\(JesVC) Jesse jesVC ")
+                } else {
+                      ReadyToExplode = false
+                    //make read false
+                    print("We at 10 Jess well supposeldly \(JesVC)")
+                      DispatchQueue.main.async {
+                        contact.nodeA.removeFromParentNode()
+                                
+                           
+                            contact.nodeB.removeFromParentNode()
+                        self.JesVC = 0
+                    self.BeatLevel()
+                          
+                    }
+
+                }
                 
-                       
+//                   if (nodeA.name == "mor" && self.rrEx == 0) || (nodeB.name == "mor" && self.rrEx  0){
+//
+//                    print("we are (nodeA.name == mor && self.rrEx != 0) || (nodeB.name == mor && self.rrEx != 0)")
+//                }
+//                 if let _ = self.sceneView.scene.rootNode.childNode(withName: "mor", recursively: true)  {
+//                                     DispatchQueue.main.async { [weak self] in
+//                                                  //  isPlanetHitORneedTime = t
+//                                           //  DispatchQueue.main.async { [weak self] in
+//                                                             guard let self = self else {return}
+//                                                         //  self.sceneView.scene.rootNode.removeAllAudioPlayers()
+//                                                      // }
+//                                     //  self.power = "banana"
+//                                     //  self.timeOut = true
+//
+//
+//                                       self.ReadyToExplode = true
+//                                       //   self.BlastColor = "original"
+//                                          print("\( self.BlastColor) updated SuperBlue")
+//                                                }
+//
+//                                      // var SuperBlast
+//                                   //  self.CoinsAva+=2
+//                                                                 self.scoreL+=2
+//
+//                    //self.defaultss.set(self.Coins, forKey: "Coins")
+//                    //self.defaultss.set(self.CoinsAva, forKey: "CoinsAva")
+//                     } else {
+//                        ReadyToExplode = false
+//                        print("here Jessenchcjh")
+//
+//
+//
+//
+//
+//               //  self.BeatLevel()
+//                           print("here  self.BeatLevel() Jessenchcjh")
+//
+//                }
+//                //else beat level!!! leave everythinng else the same will work because no shark! change shark beat level back(same except func boss ship)!!
+//
+//
                        
             }
             
@@ -7358,22 +8076,27 @@ var power = "banana"
                 //must destroy bossShps need make sure no "shark", correct levels , game play creative
                 if !(nodeA.name == "mor" && self.rrEx != 0) || (nodeB.name == "mor" && self.rrEx != 0){
                        //boss ship working(maybe not optimized) some actual pressure applied to blast. - need to debug report crash... optimize levels for more fun based on winning apps - mars -----fb sdk, push notica, in app, and review,test thoroughly for bugs
-                        print("(nodeA.name == mo && ReadyToExplode and BB == true)")
-                    if  (contact.nodeA.name == "mor" ||  contact.nodeB.name == "mor"){
-                        self.BShpAlive = false
-                        //check for shark
-                        self.ExpSnd = true
-                        if let _ = self.sceneView.scene.rootNode.childNode(withName: "shark", recursively: true)  {
-                        }
-                        else {
-                          self.BeatLevel()
-                        }
-                        
-                    }
+                    
+                       
+//                    if  (contact.nodeA.name == "mor" ||  contact.nodeB.name == "mor"){
+////                        self.BShpAliveJes = false
+//                        //check for shark
+//                    //    self.ExpSnd = true
+//
+//                        //remove
+////                        if let _ = self.sceneView.scene.rootNode.childNode(withName: "shark", recursively: true)  {
+////                        }
+////                        else {
+////                          self.BeatLevel()
+////                        }
+////remove above
+//                    }
                 contact.nodeA.removeFromParentNode()
                     
                
                 contact.nodeB.removeFromParentNode()
+                //      self.BShpAlive = false
+                   //print("BShpAlive = false Jesse for mo")
                 }
                 
                 // contact.ear
@@ -7464,10 +8187,21 @@ var power = "banana"
                            
                                            //  self.BlastColor = "original"
                                              print("\( self.BlastColor) updated to original")
-                         //   if !self.BShpAlive{
+                          
+                        //    if !self.BShpAliveJes == true{
+
+                                 print("\(self.BShpAliveJes )" )
+                                    print( "after all dead sharks")
                               //  self.Coins = self.Coins; +10
+                              if let _ = self.sceneView.scene.rootNode.childNode(withName: "mor", recursively: true)  {
+                            }
+                              else {
                               self.BeatLevel()
-                         //   }
+                            }
+                      //      }
+                            
+                         
+                            
                            // self.BeatLevel()
                             }
                             

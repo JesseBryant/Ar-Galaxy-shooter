@@ -12,4 +12,11 @@ target 'AR shooting Game' do
   pod 'SwiftSpinner'
   pod 'FBAudienceNetwork'
   pod 'FBSDKCoreKit/Swift'
+
+ 
+
+#  pod 'FBSDKLoginKit', '~> 7.2'
+#  pod 'FBSDKShareKit', '~> 7.2'
+#
+#  pod 'FBSDKGamingServiceKit', '~> 7.2'
 end
