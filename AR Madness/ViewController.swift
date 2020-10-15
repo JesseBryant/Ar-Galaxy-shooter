@@ -462,6 +462,7 @@ var power = "banana"
 //                   }
 //
 //                   }
+         self.PLANE_HIT_WEIGHT = false
                    isPlanetHit = false
          adShowFinish = false
              // self.runTimer()
@@ -518,6 +519,7 @@ var power = "banana"
                self.messageLabel.isHidden = true
            })
           SecaddTargetNodesWaveOne()
+        
         
        }
     func PlayInstructionsLevelTwoWaveTwo() {
@@ -1401,13 +1403,14 @@ var power = "banana"
     func NeedMoreTime(){
         //only if PoP = false meaning no PoP up available so no double pop ups
        // if !PoP {
+          if  !self.PLANE_HIT_WEIGHT {
         self.resetButton.isHidden = false
         self.needTimeLabel.text = "Need more time"
         self.isPlanetHit = false
         
         self.shouldShowBestScoreContainerView(state: true)
        // }
-       
+        }
     }
     
     @IBAction func didTapCross() {
@@ -1457,6 +1460,7 @@ var power = "banana"
         
       //  FsaddTargetNodesWaveBossShip()
        // BossWaveOnePlayInstructions()
+          self.PLANE_HIT_WEIGHT = false
            FsaddTargetNodesWaveOne()
       //  PlayInstructions()
         //play background music
@@ -1509,7 +1513,7 @@ var power = "banana"
                       //        scoreL += score
                       //  defaults.set(scoreL, forKey: "scoreL")
                        arrrrr = self.scoreL
-                    
+                    self.PLANE_HIT_WEIGHT = false
                       defaultss.set(arrrrr, forKey: "scoreL")
                      self.ReportScore(with: arrrrr)
                       //since planet got hit restart with **Correct** points
@@ -1535,7 +1539,7 @@ var power = "banana"
                  
                       //need pop up letting user know
                       self.buyPremiumQuotes()
-                      
+                      self.PLANE_HIT_WEIGHT = false
                       //done in ph world too
                      //  self.ReportScore(with: arrrrr)
                       self.Coins = 0
@@ -11987,17 +11991,30 @@ func twoNodesWaveBossShip(){
                                              
                                                                                                            
                                                                                                            //changed this one!!!
-                                Shoonode.position = SCNVector3(randomFloat(min: -0.3, max: 0.3),randomFloat(min: -0.3, max: 0.3), randomFloat(min: -0.4, max: 0.3))
-//                                                                                               ShoonodeG.position = SCNVector3(randomFloat(min: -0.5, max: 0.3),randomFloat(min: -0.1, max: 0.3), randomFloat(min: -0.1, max: 0.3))
-//                                  ShoonodeGG.position = SCNVector3(randomFloat(min: -0.1, max: 0.2),randomFloat(min: -0.1, max: 0.3), randomFloat(min: -0.1, max: 0.4))
-                                                                                                                                  
-                                                                                                                                  //changed this one!!!
-                                ssShoonode.position = SCNVector3(randomFloat(min: -0.4, max: 0.3),randomFloat(min: -0.3, max: 0.2), randomFloat(min: -0.2, max: 0.3))
-                                                                                                           
-                                                                                                                                  
-                                                                                                                         
-                                                                                      ssThShoonode.position = SCNVector3(randomFloat(min: -0.3, max: 0.3),randomFloat(min: -0.4, max: 0.3), randomFloat(min: -0.5, max: 0.3))
-                                                                                          FourthShoonode.position = SCNVector3(randomFloat(min: -0.1, max: 0.3),randomFloat(min: -0.2, max: 0.3), randomFloat(min: -0.1, max: 0.3))
+//                                Shoonode.position = SCNVector3(randomFloat(min: -0.3, max: 0.3),randomFloat(min: -0.3, max: 0.3), randomFloat(min: -0.4, max: 0.3))
+////                                                                                               ShoonodeG.position = SCNVector3(randomFloat(min: -0.5, max: 0.3),randomFloat(min: -0.1, max: 0.3), randomFloat(min: -0.1, max: 0.3))
+////                                  ShoonodeGG.position = SCNVector3(randomFloat(min: -0.1, max: 0.2),randomFloat(min: -0.1, max: 0.3), randomFloat(min: -0.1, max: 0.4))
+//
+//                                                                                                                                  //changed this one!!!
+//                                ssShoonode.position = SCNVector3(randomFloat(min: -0.4, max: 0.3),randomFloat(min: -0.3, max: 0.2), randomFloat(min: -0.2, max: 0.3))
+//
+//
+//
+//                                                                                      ssThShoonode.position = SCNVector3(randomFloat(min: -0.3, max: 0.3),randomFloat(min: -0.4, max: 0.3), randomFloat(min: -0.5, max: 0.3))
+//   fixed bug when time run out and planet hit                                                                                       FourthShoonode.position = SCNVector3(randomFloat(min: -0.1, max: 0.3),randomFloat(min: -0.2, max: 0.3), randomFloat(min: -0.1, max: 0.3))
+                                
+                                
+                                Shoonode.position = SCNVector3(randomFloat(min: -0.1, max: 0.3),randomFloat(min: -0.1, max: 0.4), randomFloat(min: -0.1, max: 0.5))
+                                 //                                                                                               ShoonodeG.position = SCNVector3(randomFloat(min: -0.5, max: 0.3),randomFloat(min: -0.1, max: 0.3), randomFloat(min: -0.1, max: 0.3))
+                                 //                                  ShoonodeGG.position = SCNVector3(randomFloat(min: -0.1, max: 0.2),randomFloat(min: -0.1, max: 0.3), randomFloat(min: -0.1, max: 0.4))
+                                                                                                                                                                   
+                                                                                                                                                                   //changed this one!!!
+                                                                 ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: 0.3),randomFloat(min: -0.2, max: 0.3), randomFloat(min: -0.2, max: 0.3))
+                                                                                                                                            
+                                                                                                                                                                   
+                                                                                                                                                          
+                                                                                                                       ssThShoonode.position = SCNVector3(randomFloat(min: -0.3, max: 0.2),randomFloat(min: -0.1, max: 0.2), randomFloat(min: -0.2, max: 0.5))
+                                                                                                                           FourthShoonode.position = SCNVector3(randomFloat(min: -0.1, max: 0.2),randomFloat(min: -0.1, max: 0.3), randomFloat(min: -0.1, max: 0.4))
                                 
     //                            BossShoonode.position = SCNVector3(randomFloat(min: 0.6, max: 0.7),randomFloat(min: 0.6, max: 0.7), randomFloat(min: 0.6, max: 0.9))
                                               
@@ -13144,17 +13161,17 @@ func twoNodesWaveBossShip(){
                                                  
                                                                                                                
                                                                                                                //changed this one!!!
-                                    Shoonode.position = SCNVector3(randomFloat(min: -0.1, max: 0.3),randomFloat(min: -0.3, max: 0.3), randomFloat(min: -0.4, max: 0.3))
+                                    Shoonode.position = SCNVector3(randomFloat(min: -0.1, max: 0.3),randomFloat(min: -0.1, max: 0.4), randomFloat(min: -0.1, max: 0.5))
     //                                                                                               ShoonodeG.position = SCNVector3(randomFloat(min: -0.5, max: 0.3),randomFloat(min: -0.1, max: 0.3), randomFloat(min: -0.1, max: 0.3))
     //                                  ShoonodeGG.position = SCNVector3(randomFloat(min: -0.1, max: 0.2),randomFloat(min: -0.1, max: 0.3), randomFloat(min: -0.1, max: 0.4))
                                                                                                                                       
                                                                                                                                       //changed this one!!!
-                                    ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: 0.3),randomFloat(min: -0.2, max: 0.2), randomFloat(min: -0.2, max: 0.3))
+                                    ssShoonode.position = SCNVector3(randomFloat(min: -0.1, max: 0.3),randomFloat(min: -0.2, max: 0.3), randomFloat(min: -0.2, max: 0.3))
                                                                                                                
                                                                                                                                       
                                                                                                                              
-                                                                                          ssThShoonode.position = SCNVector3(randomFloat(min: -0.1, max: 0.3),randomFloat(min: -0.1, max: 0.3), randomFloat(min: -0.2, max: 0.3))
-                                                                                              FourthShoonode.position = SCNVector3(randomFloat(min: -0.1, max: 0.3),randomFloat(min: -0.2, max: 0.3), randomFloat(min: -0.1, max: 0.3))
+                                                                                          ssThShoonode.position = SCNVector3(randomFloat(min: -0.3, max: 0.2),randomFloat(min: -0.1, max: 0.2), randomFloat(min: -0.2, max: 0.5))
+                                                                                              FourthShoonode.position = SCNVector3(randomFloat(min: -0.1, max: 0.2),randomFloat(min: -0.1, max: 0.3), randomFloat(min: -0.1, max: 0.4))
                                     
         //                            BossShoonode.position = SCNVector3(randomFloat(min: 0.6, max: 0.7),randomFloat(min: 0.6, max: 0.7), randomFloat(min: 0.6, max: 0.9))
                                                   
@@ -14246,6 +14263,7 @@ func twoNodesWaveBossShip(){
 
                 }
                 } else {
+                        self.ReadyToExplode = false
                     self.BeatLevel()
                 }
                 
@@ -14435,6 +14453,7 @@ func twoNodesWaveBossShip(){
                     else{
                         self.ReadyToExplode = false
                           if self.adShowFinish == false {
+                            self.BeatLevel()
                         DispatchQueue.main.async {
                           
 //                            self.resetTimer(time: 60)
@@ -14443,6 +14462,8 @@ func twoNodesWaveBossShip(){
                            
                                            //  self.BlastColor = "original"
                                              print("\( self.BlastColor) updated to original")
+                               print("ALL sharks gone")
+                              print("\(self.ReadyToExplode) ALL sharks gone")
                           
                         //    if !self.BShpAliveJes == true{
 
@@ -14452,7 +14473,7 @@ func twoNodesWaveBossShip(){
 //                              if let _ = self.sceneView.scene.rootNode.childNode(withName: "mor", recursively: true)  {
 //                            }
 //                              else {
-                              self.BeatLevel()
+//                              self.BeatLevel()
                             
                       //      }
                             
