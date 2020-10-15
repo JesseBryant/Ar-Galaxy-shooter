@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -34,6 +34,8 @@
 		E313249223EBF97A009C648F /* rain.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313249123EBF97A009C648F /* rain.scnp */; };
 		E313249423EBF9B0009C648F /* react.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E313249323EBF9B0009C648F /* react.scnp */; };
 		E314896A24A782630030B9D6 /* gaga.scnp in Resources */ = {isa = PBXBuildFile; fileRef = E314896924A782610030B9D6 /* gaga.scnp */; };
+		E31BA6A4252D0A97006F6F74 /* sirenAlarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E31BA6A3252D0A95006F6F74 /* sirenAlarm.mp3 */; };
+		E31BA6A6252E7203006F6F74 /* Reward.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E31BA6A5252E7202006F6F74 /* Reward.mp3 */; };
 		E32BDFED24EF11AD0062BF6E /* changeJes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E32BDFEC24EF11AC0062BF6E /* changeJes.mp3 */; };
 		E32BDFEF24EF11DA0062BF6E /* ChangeHa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E32BDFEE24EF11D90062BF6E /* ChangeHa.mp3 */; };
 		E32BDFF124EF12000062BF6E /* FrsChange.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E32BDFF024EF11FF0062BF6E /* FrsChange.mp3 */; };
@@ -90,6 +92,8 @@
 		E313249123EBF97A009C648F /* rain.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = rain.scnp; sourceTree = "<group>"; };
 		E313249323EBF9B0009C648F /* react.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = react.scnp; sourceTree = "<group>"; };
 		E314896924A782610030B9D6 /* gaga.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = gaga.scnp; sourceTree = "<group>"; };
+		E31BA6A3252D0A95006F6F74 /* sirenAlarm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sirenAlarm.mp3; sourceTree = "<group>"; };
+		E31BA6A5252E7202006F6F74 /* Reward.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Reward.mp3; sourceTree = "<group>"; };
 		E32BDFEC24EF11AC0062BF6E /* changeJes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = changeJes.mp3; sourceTree = "<group>"; };
 		E32BDFEE24EF11D90062BF6E /* ChangeHa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ChangeHa.mp3; sourceTree = "<group>"; };
 		E32BDFF024EF11FF0062BF6E /* FrsChange.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FrsChange.mp3; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 		A7216ABA20BE18C4009F6A51 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				E31BA6A5252E7202006F6F74 /* Reward.mp3 */,
+				E31BA6A3252D0A95006F6F74 /* sirenAlarm.mp3 */,
 				E3FC9D3024F0C4C9001073B7 /* BJes.mp3 */,
 				E3FC9D2E24F06E2B001073B7 /* BSS.mp3 */,
 				E3FC9D2C24F06B5E001073B7 /* BS.mp3 */,
@@ -299,6 +305,7 @@
 				A73D42A320B80B4000965934 /* art.scnassets in Resources */,
 				E313249023EBF94A009C648F /* star.png in Resources */,
 				E32BDFEF24EF11DA0062BF6E /* ChangeHa.mp3 in Resources */,
+				E31BA6A4252D0A97006F6F74 /* sirenAlarm.mp3 in Resources */,
 				E32BDFED24EF11AD0062BF6E /* changeJes.mp3 in Resources */,
 				A73D42AD20B80B4200965934 /* LaunchScreen.storyboard in Resources */,
 				A7216ABE20BE1940009F6A51 /* monkey.mp3 in Resources */,
@@ -318,6 +325,7 @@
 				E383ABD92423822F001F79BB /* JBsmartsound.mp3 in Resources */,
 				E313248B23EBF906009C648F /* caffefe.scnp in Resources */,
 				A7216AC020BE1957009F6A51 /* watersplash.wav in Resources */,
+				E31BA6A6252E7203006F6F74 /* Reward.mp3 in Resources */,
 				E3FC9D2B24F0551F001073B7 /* BossShipExplox.mp3 in Resources */,
 				E3FC9D2D24F06B5E001073B7 /* BS.mp3 in Resources */,
 				E338BE80247BC4040000D2FC /* spark.png in Resources */,
